@@ -25,22 +25,22 @@ public class ServerConnection
             "fcmtoken" : "\(userInformationClass.fcm_token)"
         ]
 
-        AF.request(targetUrl, method: .post, parameters: parameters, headers: nil).responseJSON { (response) in
-            
-            switch response.result
-            {
-            case .success(let value):
-                
-                print("++ ServerConnection[login] response : \(value)")
-                
-                let dataJSon = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
-                
-                break
-                
-            case .failure(_):
-                break
-            }
-        }
+//        AF.request(targetUrl, method: .post, parameters: parameters, headers: nil).responseJSON { (response) in
+//
+//            switch response.result
+//            {
+//            case .success(let value):
+//
+//                print("++ ServerConnection[login] response : \(value)")
+//
+//                let dataJSon = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+//
+//                break
+//
+//            case .failure(_):
+//                break
+//            }
+//        }
     }
     // MARK: ServerConnection 로그인 END
 }
