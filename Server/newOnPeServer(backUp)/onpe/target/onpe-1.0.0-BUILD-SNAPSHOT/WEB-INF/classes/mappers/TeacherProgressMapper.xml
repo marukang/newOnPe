@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 선생클래스 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.TeacherProgressMapper">
+
+	<!-- 클래스 목록 가져오기 -->
+    <select id="Get_Class_Code_By_Id" resultType="String" parameterType="String">
+    	SELECT class_code FROM class_list WHERE teacher_id=#{teacher_id}
+    </select>
+    
+    <!-- 클래스 목록 가져오기 -->
+    <select id="Get_Class_List_By_Class_Code" resultType="kr.co.onpe.vo.Class_List_VO" parameterType="String">
+    	SELECT * FROM class_list WHERE class_code=#{class_code}
+    </select>
+    
+    <!-- 클래스, 차시별 데이터 가져오기 -->
+    <select id="Get_Curriculum_Unit_List_Class" resultType="kr.co.onpe.vo.Curriculum_Unit_List_Class_VO" parameterType="hashMap">
+    	SELECT * FROM curriculum_unit_list_class WHERE class_code IN 
+    		<foreach collection="class_code" item="class_code" open="(" close=")" separator=",">
+    		#{class_code} 
+    		</foreach>
+    		AND unit_start_date IS NOT NULL AND unit_end_date IS NOT NULL GROUP BY unit_code;
+    </select>
+    
+    <!-- 하나의 차시 데이터 가져오기 -->
+    <select id="Get_Curriculum_Unit_List_Class_One" resultType="kr.co.onpe.vo.Curriculum_Unit_List_Class_VO" parameterType="hashMap">
+    	SELECT * FROM curriculum_unit_list_class WHERE class_code = #{class_code} AND unit_code = #{unit_code}
+    </select>
+    
+    <!-- 하나의 차시별 기록 데이터 가져오기(학생 목록) -->
+    <select id="Get_Student_Class_Record_List" resultType="kr.co.onpe.vo.Class_Record_VO" parameterType="hashMap">
+    	<if test="id_list == null">
+    		SELECT * FROM student_class_record WHERE class_code = #{class_code} AND unit_code = #{unit_code} LIMIT #{page}, 5;
+    	</if>
+    	<if test="id_list != null">
+    		SELECT * FROM student_class_record WHERE class_code = #{class_code} AND unit_code = #{unit_code} AND student_id IN 
+    		<foreach collection="id_list" item="id_list" open="(" close=")" separator=",">
+    		#{id_list} 
+    		</foreach>
+    		LIMIT #{page}, 5;
+    	</if>
+    </select>
+    
+    <!-- 하나의 차시별 기록 데이터 가져오기(전체) -->
+    <select id="Get_Student_Class_Record_List_All" resultType="kr.co.onpe.vo.Class_Record_VO" parameterType="hashMap">
+    	SELECT * FROM student_class_record WHERE class_code = #{class_code} AND unit_code = #{unit_code};
+    </select>
+    
+    <!-- 하나의 차시별 기록 데이터 개수 가져오기(학생 목록) -->
+    <select id="Get_Student_Class_Record_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="id_list == null">
+    		SELECT COUNT(*) FROM student_class_record WHERE class_code = #{class_code} AND unit_code = #{unit_code};
+    	</if>
+    	<if test="id_list != null">
+    		SELECT COUNT(*) FROM student_class_record WHERE class_code = #{class_code} AND unit_code = #{unit_code} AND student_id IN 
+    		<foreach collection="id_list" item="id_list" open="(" close=")" separator=",">
+    		#{id_list} 
+    		</foreach>
+    	</if>
+    </select>
+    
+    <!-- 학생 점수평가 기록 -->
+    <update id="Update_Student_Class_Record_Evaluation" parameterType="hashMap">
+    	<![CDATA[UPDATE student_class_record SET evaluation_type_1=#{evaluation_type_1}, evaluation_type_2=#{evaluation_type_2}, evaluation_type_3=#{evaluation_type_3} WHERE unit_code=#{unit_code} AND class_code=#{class_code} AND student_id=#{student_id}]]> 
+    </update>
+    
+    
+    <!-- 내 보유클래스 목록 개수 가져오기 -->
+    <select id="Get_My_Class_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="class_grade == null">
+	    	<if test="class_group == null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id}]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester}]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group}]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester}]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    	<if test="class_grade != null">
+    		<if test="class_group == null">
+    			<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade}]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester}]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group}]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester}]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%')]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    </select>
+    
+    
+    <!-- 내 보유클래스 목록 가져오기 -->
+    <select id="Get_My_Class_List" resultType="kr.co.onpe.vo.Class_List_VO" parameterType="hashMap">
+    	<if test="class_grade == null">
+	    	<if test="class_group == null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} ORDER BY number DESC LIMIT #{page}, 5]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester} ORDER BY number DESC LIMIT #{page}, 5]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} ORDER BY number DESC LIMIT #{page}, 5]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester} ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    	<if test="class_grade != null">
+    		<if test="class_group == null">
+    			<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester} ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester} ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') ORDER BY number DESC LIMIT #{page}, 5]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    </select>
+    
+    <!-- 내 커리큘럼 가져오기 -->
+    <select id="Get_My_Curriculum_Unit_List_Class_One" resultType="kr.co.onpe.vo.Curriculum_Unit_List_Class_VO" parameterType="hashMap">
+    	SELECT * FROM curriculum_unit_list_class WHERE class_code=#{class_code} AND unit_code=#{unit_code}
+    </select>
+    
+    
+    <!-- 내 클래스코드 목록에 해당하는 게시물 목록 개수 가져오기 -->
+    <select id="Get_Class_Community_List_Count" resultType="String" parameterType="hashMap">
+    	SELECT COUNT(*) FROM class_community WHERE community_class_code IN 
+   		<foreach collection="class_code" item="class_code" open="(" close=")" separator=",">
+   		#{class_code} 
+   		</foreach>
+   		<if test="keyword != null">
+   			<if test="option == null">
+   			 AND (community_id LIKE concat('%', #{keyword}, '%') OR community_name LIKE concat('%', #{keyword}, '%') OR community_title LIKE concat('%', #{keyword}, '%'))
+   			</if>
+   			<if test="option != null and option.equals('이름')">
+   			 AND community_name LIKE concat('%', #{keyword}, '%')
+   			</if>
+   			<if test="option != null and option.equals('아이디')">
+   			 AND community_id LIKE concat('%', #{keyword}, '%')
+   			</if>
+   			<if test="option != null and option.equals('제목')">
+   			 AND community_title LIKE concat('%', #{keyword}, '%')
+   			</if>
+   		</if>
+    </select>
+    
+    <!-- 내 클래스코드 목록에 해당하는 게시물 목록 가져오기 -->
+    <select id="Get_Class_Community_List" resultType="kr.co.onpe.vo.Class_Community_VO" parameterType="hashMap">
+    	SELECT * FROM class_community WHERE community_class_code IN 
+   		<foreach collection="class_code" item="class_code" open="(" close=")" separator=",">
+   		#{class_code}
+   		</foreach>
+   		<if test="keyword != null">
+   			<if test="option == null">
+   			 AND (community_id LIKE concat('%', #{keyword}, '%') OR community_name LIKE concat('%', #{keyword}, '%') OR community_title LIKE concat('%', #{keyword}, '%'))
+   			</if>
+   			<if test="option != null and option.equals('이름')">
+   			 AND community_name LIKE concat('%', #{keyword}, '%')
+   			</if>
+   			<if test="option != null and option.equals('아이디')">
+   			 AND community_id LIKE concat('%', #{keyword}, '%')
+   			</if>
+   			<if test="option != null and option.equals('제목')">
+   			 AND community_title LIKE concat('%', #{keyword}, '%')
+   			</if>
+   		</if>
+   		 ORDER BY community_date DESC LIMIT #{page}, 15;
+    </select>
+    
+    <!-- 게시물 하나 가져오기 -->
+    <select id="Get_Class_Community_One" resultType="kr.co.onpe.vo.Class_Community_VO" parameterType="hashMap">
+    	SELECT * FROM class_community WHERE community_number = #{community_number};
+    </select>
+    
+    <!-- 게시물 하나 가져오기(내꺼) -->
+    <select id="Get_My_Class_Community_One" resultType="kr.co.onpe.vo.Class_Community_VO" parameterType="hashMap">
+    	SELECT * FROM class_community WHERE community_number = #{community_number} AND community_id = #{teacher_id} AND community_auth IS NOT NULL;
+    </select>
+    
+    <!-- 게시물 댓글 목록 가져오기 -->
+    <select id="Get_Class_Community_Comment_List" resultType="kr.co.onpe.vo.Class_Community_Comment_VO" parameterType="hashMap">
+    	SELECT * FROM class_community_comment WHERE comment_community_number = #{community_number} ORDER BY comment_date ASC;
+    </select>
+    
+    <!-- 게시물 작성하기 -->
+    <insert id="Create_Class_Community" parameterType="hashMap">
+    	INSERT INTO class_community 
+    	(community_class_code, community_id, community_name, community_title, community_text, community_date, community_count, community_auth) 
+    	VALUES(#{community_class_code}, #{community_id}, #{community_name}, <![CDATA[#{community_title}]]>, #{community_text}, #{community_date}, 0, "1")
+    </insert>
+    
+    <!-- 게시물 수정하기 -->
+    <update id="Update_Class_Community" parameterType="hashMap">
+    	<![CDATA[UPDATE class_community SET community_class_code=#{community_class_code}, community_title=#{community_title}, community_text=#{community_text} WHERE community_number=#{community_number} AND community_id=#{community_id}]]>
+    </update>
+    
+    <!-- 게시물 삭제하기 -->
+    <delete id="Delete_Class_Community" parameterType="hashMap">
+    	<![CDATA[DELETE FROM class_community WHERE community_number=#{community_number} AND community_id=#{community_id}]]>;
+    	<![CDATA[DELETE FROM class_community_comment WHERE comment_community_number=#{community_number} AND comment_id=#{community_id}]]>;
+    </delete>
+    	
+    <!-- 게시물 댓글 작성하기 -->
+    <insert id="Create_Class_Community_Comment" parameterType="hashMap">
+    	<![CDATA[INSERT INTO class_community_comment 
+    	(comment_community_number, comment_id, comment_name, comment_content, comment_date, comment_auth) 
+    	VALUES(#{comment_community_number}, #{comment_id}, #{comment_name}, #{comment_content}, #{comment_date}, "1")]]>
+    </insert>
+    
+    <!-- 게시글 댓글수 증가 -->
+    <update id="Update_Class_Community_Count_Up" parameterType="hashMap">
+    	UPDATE class_community SET community_count=(community_count+1) WHERE community_number=#{community_number}
+    </update>
+    
+    <!-- 게시글 댓글수 감소 -->
+    <update id="Update_Class_Community_Count_Down" parameterType="hashMap">
+    	UPDATE class_community SET community_count=(community_count-1) WHERE community_number=#{community_number}
+    </update>
+    
+    <!-- 게시물 댓글 삭제하기 -->
+    <delete id="Delete_Class_Community_Comment" parameterType="hashMap">
+    	<![CDATA[DELETE FROM class_community_comment WHERE comment_number=#{comment_number} AND comment_id=#{comment_id}]]>
+    </delete>
+    
+    
+    
+    
+    
+    <!-- 내 보유클래스 목록 개수 가져오기(마감아닌것들) -->
+    <select id="Get_My_Class_List_Count_For_DeadLine" resultType="String" parameterType="hashMap">
+    	<if test="class_grade == null">
+	    	<if test="class_group == null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    	<if test="class_grade != null">
+    		<if test="class_group == null">
+    			<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT COUNT(*) FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3"]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    </select>
+    
+    
+    <!-- 내 보유클래스 목록 가져오기 -->
+    <select id="Get_My_Class_List_For_DeadLine" resultType="kr.co.onpe.vo.Class_List_VO" parameterType="hashMap">
+    	<if test="class_grade == null">
+	    	<if test="class_group == null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]> 
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    	<if test="class_grade != null">
+    		<if test="class_group == null">
+    			<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+	    	</if>
+	    	<if test="class_group != null">
+	    		<if test="class_semester == null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+		    	<if test="class_semester != null">
+		    		<if test="keyword == null">
+		    			<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+			    	<if test="keyword != null">
+			    		<![CDATA[SELECT * FROM class_list WHERE teacher_id=#{teacher_id} AND class_grade=#{class_grade} AND class_group=#{class_group} AND class_semester=#{class_semester} AND class_name LIKE concat('%', #{keyword}, '%') AND class_end_date IS NOT NULL AND class_end_date < #{today} AND class_state != "3" ORDER BY number DESC LIMIT #{page}, 15]]>
+			    	</if>
+		    	</if>
+	    	</if>
+    	</if>
+    </select>
+    
+    <!-- 마감처리 -->
+    <update id="DeadLine_Work" parameterType="hashMap">
+    	<![CDATA[UPDATE class_list SET class_state="3" WHERE teacher_id=#{teacher_id} AND class_code=#{class_code}]]> 
+    </update>
+    
+    <!-- 공지사항 보낼 학생 토큰 가져오기 -->
+    <select id="Get_Student_Tokens_For_Noti" parameterType="hashMap" resultType="kr.co.onpe.vo.Student_Information_VO">
+    	<![CDATA[SELECT * FROM student_information WHERE student_token IS NOT NULL AND student_classcode LIKE concat('%', #{class_code}, '%')]]>
+    </select>
+    
+    <!-- 학생 새소식 업데이트 -->
+    <update id="Update_Student_News_State" parameterType="hashMap">
+    	UPDATE student_information SET news_state="1" WHERE student_id IN  
+    	<foreach collection="student_id" item="student_id" open="(" close=")" separator=",">
+    	#{student_id} 
+    	</foreach>
+    </update>
+    
+    <!-- 공지사항 목록 추가 -->
+    <insert id="Create_Notice_List" parameterType="hashMap">
+    	<![CDATA[INSERT INTO notice_list(notice_class_code, notice_title, notice_content, notice_type, notice_date, notice_id, notice_name) VALUES(#{class_code}, #{title}, #{content}, "1", #{date}, #{id}, #{name})]]>
+    </insert>
+    
+    
+    
+</mapper>

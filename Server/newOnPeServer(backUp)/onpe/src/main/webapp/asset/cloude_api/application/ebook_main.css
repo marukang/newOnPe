@@ -1,0 +1,142 @@
+
+/*--------------------------------------------------------------------------------------------------
+		가운데 음영 부분 
+*/
+
+/* 왼쪽 페이지 */
+.even .page_center_gradient {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:-webkit-gradient(linear, left top, right top, color-stop(0.94, transparent), color-stop(1, rgba(0, 0, 0, 0.24)));
+	background-image:-webkit-linear-gradient(left,transparent 94%, rgba(0, 0, 0, 0.24) 100%);
+	background-image:-moz-linear-gradient(left, transparent 94%, rgba(0, 0, 0, 0.24) 100%);
+	background-image:-ms-linear-gradient(left, transparent 94%, rgba(0, 0, 0, 0.24) 100%);
+	background-image:-o-linear-gradient(left, transparent 94%, rgba(0, 0, 0, 0.24) 100%);
+	background-image:linear-gradient(left, transparent 94%, rgba(0, 0, 0, 0.24) 100%);
+}
+
+/* 오른쪽 페이지 */
+.odd .page_center_gradient {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:-webkit-gradient(linear, right top, left top, color-stop(0.94, transparent), color-stop(1, rgba(0, 0, 0, 0.22)));
+	background-image:-webkit-linear-gradient(right,transparent 94%, rgba(0, 0, 0, 0.22) 100%);
+	background-image:-moz-linear-gradient(right, transparent 94%, rgba(0, 0, 0, 0.22) 100%);
+	background-image:-ms-linear-gradient(right, transparent 94%, rgba(0, 0, 0, 0.22) 100%);
+	background-image:-o-linear-gradient(right, transparent 94%, rgba(0, 0, 0, 0.22) 100%);
+	background-image:linear-gradient(right, transparent 94%, rgba(0, 0, 0, 0.22) 100%);
+}
+
+.page_center_gradient {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+/* 음영 넣었을때 z-index 관련 2019-01-08 */
+.ebookpagecomp {z-index: 10;}  
+
+
+/* 모바일 링크관련 20180313 jr */
+.next-button,
+.previous-button  {  
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 메뉴버튼 선택 유무관련 메뉴 위치 정리  2018-05-08 jr */
+ #menu_center img.menuobjects { position: relative; right: auto !important; margin: 0 10px;}
+ #bottom_center {text-align: right;} 
+ #bottom_center img.bottomobjects{ position: relative; right: auto !important; margin: 10px;}
+
+
+/*  확대 슬라이더 2018-06-08 정란  */
+#control {  position: absolute;   right:  0px;      text-align: left;  z-index: 10;  width:  60px;   height:  200px;
+  top: 50%;   margin-top: -100px;  text-align: center; }
+
+#control .ui-slider {  margin: 10px auto;  height: 100px !important;  background: #d7dcdf !important;  width: 10px !important; border-radius: 10px; }
+#control .ui-widget-header {background: #2c3e50 !important;}
+#control .ui-state-default { width: 20px; height: 20px; border: 1px solid #ddd; border-radius: 50%; background: #fff; cursor: pointer; -webkit-transition: background .15s ease-in-out;
+transition: background .15s ease-in-out; }
+#control  .ui-state-default:hover { background: #1abc9c; }
+#control .ui-slider-vertical .ui-slider-handle {margin-left: -1px;} 
+#control .scalebox {   display: inline-block;	width: 35px; 	margin: auto;     position: relative;    color: #fff;    line-height: 20px;    text-align: center;    border-radius: 3px;    background: #5e92c5;    padding: 5px 0px;
+	margin-top: 4px;	font-size:  11px; }
+#control span.plus  {display: block; width: 35px; border-radius : 4px; background: #464646; color: #ffffff; font-size: 24px; line-height: 30px; font-weight: bold; text-align: center; margin: auto; cursor: pointer;}
+#control span.minus  {display: block; width: 35px; border-radius : 4px; background: #464646; color: #ffffff; font-size: 24px; line-height: 30px; font-weight: bold; text-align: center;  margin: auto; cursor: pointer;}
+#control .closezoom {display: block; width: 35px; border-radius : 4px; background: #464646; color: #ffffff; font-size: 24px; line-height: 30px; font-weight: bold; text-align: center; margin: auto; cursor: pointer; margin-top: 4px;}
+.ismobile {display:none;}
+
+#page_prev_btn {z-index: 10;}
+#page_next_btn {z-index: 10;}
+
+#pageframe {   
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    -ms-transition: all 0.4s ease-in-out 0s;
+    -o-transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;}
+#pageview {overflow: visible;} 
+#pageview_m {width: 100%;}
+
+
+/* 목차창 관련 수정 2018-11-07 정란 */
+.tablelist ul	{ width:100%; height:100%; overflow-y:auto; padding:0px; margin:0px; list-style-type:none;  }
+.tablelist li.contents	{ cursor:pointer;  border-bottom:0px; }
+.tablelist li.contents:hover	{	/*border-top:0px solid #F0F0F0; border-bottom:0px solid #E2E2E2; */ }
+.tablelist li p			{ margin:0.5em auto; padding-left:1em; padding-right:1em; font-size:0.9em; color:#7C8187; }
+.tablelist li span	{ float:right; color:#39C; display: none; }
+.tablelist .topmemu:after{ content:""; display: block; width:10px; height:10px; border-top:2px solid #333; border-right:2px solid #333;   /* 목록에 서브메뉴 화살표 */
+ -webkit-transform: rotate(45deg); transform: rotate(135deg); position: absolute; right:10px; top: 14px; }
+
+
+.tablelist[hastree='false'] ul	{ width:100%; height:100%; overflow-y:auto; padding:0px; margin:0px; list-style-type:none; border: 1px solid #E6E6E6; background: #EBEBEB; }
+.tablelist[hastree='false'] li.contents	{ cursor:pointer; border-top:1px solid #F0F0F0; border-bottom:1px solid #E2E2E2;   }
+.tablelist[hastree='false'] li.contents:hover	{	border-top:1px solid #F0F0F0; border-bottom:1px solid #E2E2E2; }
+.tablelist[hastree='false'] li p			{ margin:0.5em auto; padding-left:1em; padding-right:1em; font-size:0.9em; color:#7C8187; }
+.tablelist[hastree='false'] li span	{ float:right; color:#39C; display: none; }
+
+/*--------------------------------------------------------------------------------------------------
+목차 창 - tree mokcha
+*/
+div.tablelist[hastree='true'] { background: #EBEBEB; }
+div.tablelist[hastree='true'] ul { border:0;  list-style-type: disc; margin-block-start: 0em; margin-block-end: 0.0em; margin-inline-start: 0px; margin-inline-end: 0px; padding-inline-start: 0px; line-height: 0.5em; /**line-height: 10%;*/ }
+div.tablelist[hastree='true'] ul li.contents { display: block; text-align: -webkit-match-parent; padding: 0px 0 0px 15px;   border-top: 1px solid #E2E2E2; margin: 0; position: relative; vertical-align: top; }
+div.tablelist[hastree='true'] ul li.contents:hover {border-bottom: 0;}
+div.tablelist[hastree='true'] ul li:focus.contents {background-color: #EBEBEB;}  
+div.tablelist[hastree='true'] ul li.contents p	{ font-size:0.8em; color:#7C8187;  padding: 5px 0; line-height: 20px;  }
+div.tablelist[hastree='true'] ul li.contents p:hover { cursor:pointer; color:#990033; border-bottom: 0px;}
+/*div.tablelist[hastree='true'] li:focus.contents > p { color:#990033;  } */
+div.tablelist[hastree='true'] ul li.contents span	{ display: none; }
+div.tablelist[hastree='true'] ul li.contents > ul	{ display: none; }
+
+
+/*검색창 수정 */
+.searchlist li.header { border: 0; padding: 10px; margin: 0;}
+.searchlist li.header input.search_text {height: 2em;}
+div.searchlist {border-right-width : 0px;}
+div.bookmarklist {border-right-width : 0px;}
+
+/* 컴포넌트 닫기버튼 수정 */
+div span.close {    right: 0.5em;    top: -1.6em;    font-size: 28px; }
+
+
+/* 스크롤바 디자인 설정 */
+::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: #efefef}
+::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}
+::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}
+
+
+/* 유튜브 반응형 */
+.embed_youtube {    position: relative;    width: 100%;    height: 0;  }
+.embed_youtube iframe {    position: absolute;    top: 0 !important;    left: 0  !important;    width: 100%;    height: 100%  !important;}
+
+/* 인쇄 방향 옵션 */
+@page { size: auto; }
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 사용자 정보 테이블(student_information) 테이블 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.TeacherInformationMapper">
+
+	<!-- 사용자 로그인에 사용할 쿼리 -->
+    <select id="Get_Teacher_information" resultType="kr.co.onpe.vo.Teacher_Information_VO" parameterType="hashMap">
+        SELECT * FROM teacher_information WHERE BINARY teacher_id=#{teacher_id}
+    </select>
+    
+    <!-- 아이디 찾기에 사용할 쿼리 -->
+    <select id="Teacher_Find_Id" resultType="String" parameterType="hashMap">
+    	SELECT teacher_id FROM teacher_information WHERE teacher_name=#{teacher_name} and teacher_email = #{teacher_email}
+    </select>
+    
+    <!-- 존재하는 아이디인지 확인(비밀번호찾기) -->
+    <select id="Teacher_Find_Id_For_Pw" resultType="String" parameterType="hashMap">
+    	SELECT teacher_id FROM teacher_information WHERE teacher_id=#{teacher_id} and teacher_email = #{teacher_email}
+    </select>
+    
+    <!-- 비밀번호 변경 -->
+    <update id="Teacher_Change_Pw" parameterType="hashMap">
+    	UPDATE teacher_information SET teacher_password=#{teacher_password} WHERE teacher_id=#{teacher_id}
+    </update>
+    
+    <!-- 아이디 중복검사 -->
+    <select id="Teacher_Id_Overlap" resultType="String" parameterType="String">
+    	SELECT teacher_id FROM teacher_information WHERE teacher_id=#{teacher_id}
+    </select>
+    
+    <!-- 이메일 중복검사 -->
+    <select id="Teacher_Email_Overlap" resultType="String" parameterType="String">
+    	<![CDATA[SELECT teacher_email FROM teacher_information WHERE teacher_email=#{teacher_email}]]>
+    </select>
+    
+    <!-- 핸드폰번호 중복검사 -->
+    <select id="Teacher_Phone_Overlap" resultType="String" parameterType="String">
+    	SELECT teacher_phone FROM teacher_information WHERE teacher_phone=#{teacher_phone}
+    </select>
+    
+    <!-- 회원가입 -->
+    <insert id="Teacher_Sign_Up" parameterType="hashMap">
+    	INSERT INTO teacher_information(teacher_id, teacher_name, teacher_password, teacher_email, teacher_phone, teacher_birth, teacher_sex, teacher_school, teacher_state, teacher_email_agreement, teacher_message_agreement, teacher_join_date, admin_auth) VALUES(#{teacher_id}, #{teacher_name}, #{teacher_password}, #{teacher_email}, #{teacher_phone}, #{teacher_birth}, #{teacher_sex}, #{teacher_school}, "0", #{teacher_email_agreement}, #{teacher_message_agreement}, #{teacher_join_date}, "ROLE_USER");
+    </insert>
+    
+    <!-- 접속일 업데이트 -->
+    <update id="Teacher_Update_Jodin_Date" parameterType="hashMap">
+    	UPDATE teacher_information SET teacher_recent_join_date=#{teacher_recent_join_date} WHERE teacher_id=#{teacher_id}
+    </update>
+    
+    <!-- 정보변경 전 비밀번호 체크 -->
+    <select id="Teacher_Password_Check" resultType="String" parameterType="hashMap">
+    	SELECT teacher_id FROM teacher_information WHERE teacher_id=#{teacher_id} and teacher_password=#{teacher_password}
+    </select>
+    
+    <!-- 회원 정보 변경 -->
+    <update id="Teacher_Modify_Information" parameterType="hashMap">
+    	
+    	<!-- 비번 바꿀 때 -->
+    	<if test='change_password.equals("y")'>
+    		UPDATE teacher_information SET teacher_password=#{teacher_password}, teacher_email=#{teacher_email}, teacher_phone=#{teacher_phone}, teacher_email_agreement=#{teacher_email_agreement}, teacher_message_agreement=#{teacher_message_agreement} WHERE teacher_id=#{teacher_id}
+    	</if>
+    	
+    	<!-- 비번 안바꿀 때 -->
+    	<if test='change_password.equals("n")'>
+    		UPDATE teacher_information SET teacher_email=#{teacher_email}, teacher_phone=#{teacher_phone}, teacher_email_agreement=#{teacher_email_agreement}, teacher_message_agreement=#{teacher_message_agreement} WHERE teacher_id=#{teacher_id}
+    	</if>
+    	
+    </update>
+    
+    <!-- 학교명 불러오기 -->
+    <select id="Get_School_List" parameterType="String" resultType="String">
+    	SELECT * FROM school_list WHERE school_name LIKE concat('%', #{keyword}, '%')
+    </select>
+    
+    <!-- 보유 클래스코드 가져오기 -->
+    <select id="Get_Classcode_List" parameterType="String" resultType="String">
+    	SELECT class_code FROM class_list WHERE teacher_id=#{teacher_id}
+    </select>
+    
+    <!-- 학교정보 변경 -->
+    <update id="Teacher_School_Change" parameterType="hashMap">
+    	<![CDATA[UPDATE teacher_information SET teacher_school=#{teacher_school} WHERE teacher_id=#{teacher_id}]]>
+    </update>
+    
+    
+</mapper>

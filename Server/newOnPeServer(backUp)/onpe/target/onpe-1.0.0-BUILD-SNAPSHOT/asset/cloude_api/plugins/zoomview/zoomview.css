@@ -1,0 +1,96 @@
+div.zoomview {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 2147483647;
+    /* top most */
+}
+
+div.zoomview div.blind {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+}
+
+div.zoomview img.loading {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    z-index: 2147483647;
+    /* top most */
+}
+
+div.zoomview img.target {
+    position: absolute !important;
+    background-color: white;
+}
+
+div.zoomview .zoomviewBtn {
+    position: absolute;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+//    left: 0px;
+    border-radius: 20px;
+    opacity: 0.2;
+}
+
+div.zoomview #zoomviewIn {
+    bottom: 100px;
+		left: 0px;
+}
+
+div.zoomview #zoomviewOut {
+    bottom: 50px;
+		left: 0px;
+}
+
+div.zoomview #zoomviewClose {
+    bottom: 0px;
+		left: 0px;
+}
+
+/* 2016.12.21 김대원 페이지 이동 버튼 */
+
+div.zoomview #zoomviewFirst {
+    top: 50%;
+    left: 1%
+}
+
+div.zoomview #zoomviewPrev {
+    top: 50%;
+    left: 0%;
+}
+
+div.zoomview #zoomviewNext {
+    top: 50%;
+    right: 0%;
+}
+
+div.zoomview #zoomviewLast {
+    top: 50%;
+    right: 1%
+}
+
+div.zoomview .zoomviewRatio {
+    position: absolute;
+    z-index: 10;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 5em;
+    border-radius: 1em 1em 0em 0em;
+    opacity: 0;
+}

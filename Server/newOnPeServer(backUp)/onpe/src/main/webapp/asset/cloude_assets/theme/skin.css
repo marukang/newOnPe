@@ -1,0 +1,182 @@
+/* 내장 폰트 */
+@font-face {
+	font-family	: 'OpenSans-Bold';
+	font-style	:	normal;
+	font-weight	:	700;
+	src					:	url(./fonts/OpenSans-Bold.woff) format('woff');
+}
+body {
+  font-family	: OpenSans-Bold, Helvetica, Arial, Sans-Serif;
+	overflow		: hidden;
+	margin			: 0px;
+}
+
+
+img { -ms-interpolation-mode: bicubic; }
+
+/* 탭 포커싱 테두리 */
+img:focus, select:focus, span:focus, li:focus {
+	border : 1px solid rgba(128, 255, 255, 0.5) !important; 
+	box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; /* inner border style */
+	outline : none;	/* hide default focus frame */
+}
+
+/*--------------------------------------------------------------------------------------------------
+		Components By Class
+*/
+
+/* 페이지 번호 */			.pagenum			{	text-align : center; font-size : 1em;}
+/* 페이지 번호 */			.pagetotal		{	text-align : center; font-size : 0.9em;}
+
+/* 로고 이미지 */			.logo					{	cursor : pointer; }
+/* 홈 버튼 */					.home					{	cursor : pointer; }
+
+/* 섬네일 항목 */				.thumblist ul	{	margin:0px; padding:0px; }
+/* 섬네일 항목 */				.thumblist li		{	display:inline; margin:0px 2px; }
+												.thumblist li div	{	display:inline-block; width:12%; }
+/* 섬네일 선택 표시 */	.thumblist .on	{	border : 4px solid rgb(255, 128, 0);
+																				box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; 	/* inner border style */
+																				}
+/* 섬네일 번호 칸 */		.thumblist span	{ position : absolute; padding : 0.2em 0.4em; margin : 2px 0px 0px 2px;
+																					border : 1px solid rgb(128, 128, 128); border-radius : 1em;
+																					background-color : rgb(255,255,255); color : rgb(64,64,64);
+																					text-align : center; text-shadow : 1px 1px rgb(192,192,192);
+																					font-weight : bold; font-size : 10px; font-family : Helvetica, Arial, sans-serif;
+																					}
+												.thumblist img		{	cursor : pointer; width:100%; height:auto; }
+
+/* 책갈피 이미지 */		.pageview img.bookmark			{ position:absolute; width:5%; height:auto; cursor:pointer; top:-5px; left:0px; right:0px; margin:auto; opacity:0.25; filter:alpha(opacity=25); }
+									.pageview img.bookmark:hover			{ opacity:0.5; filter:alpha(opacity=50); border:3px dotted #DDDDDD; }
+									.pageview img.bookmark.activate	{ opacity:0.5 !important; filter:alpha(opacity=50) !important; }
+
+/* 창 끌기바(공통속성) */
+.draggable		{ width:100%; left:0px; top:-52px; position:absolute; margin:0px; font-weight:bold; color:#51545B; z-index:10; background: #E3E3E3; border: 1px solid #E3E3E3;}
+.draggable p		{ margin:1.1em; font-size:0.9em; }
+div span.close	{ position:absolute; right:1em; top:-2.25em; cursor:pointer; color:#51545B; z-index:10; }
+
+/* 암호입력박스 */
+#pwdBox {
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 33%, #e1e1e1 34%, #f6f6f6 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 33%,#e1e1e1 34%,#f6f6f6 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 33%,#e1e1e1 34%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+}
+
+/*--------------------------------------------------------------------------------------------------
+		목차 창
+*/
+div.tablelist { position : absolute;	left : 30%; top : 15%; min-width : 200px; max-width : 400px; width : 30%;	height : 300px; z-index : 6; display : none;
+}
+.tablelist ul						{ width:100%; height:100%; overflow-y:auto; padding:0px; margin:0px; list-style-type:none; border: 1px solid #E6E6E6; background: #EBEBEB; }
+.tablelist li.contents	{ cursor:pointer; border-top:1px solid #F0F0F0; border-bottom:1px solid #E2E2E2; }
+.tablelist li.contents:hover	{	border-top:1px solid #F0F0F0; border-bottom:1px solid #E2E2E2; }
+.tablelist li p			{ margin:0.5em auto; padding-left:1em; padding-right:1em; font-size:0.9em; color:#7C8187; }
+.tablelist li span	{ float:right; color:#39C; display: none; }
+
+/*--------------------------------------------------------------------------------------------------
+		책갈피 창
+*/
+div.bookmarklist { position : absolute;	left : 30%; top : 15%; min-width : 250px; max-width : 400px; width : 30%;	height : 300px; z-index : 6; display : none;
+border-right-style:solid; border-right-width:2px; border-right-color:#EBEBEB; background:#EBEBEB; }
+/* 책갈피 목록 */
+.bookmarklist ul					{ width:95%; height:95%; left:0px; right:0px; top:0px; bottom:0px; margin:auto; padding:0px; position:absolute; list-style-type:none; overflow:auto; border: 1px solid #E6E6E6; }
+.bookmarklist li.contents	{ cursor:pointer; height:100px; border-top:1px solid #F0F0F0; border-bottom:1px solid #E2E2E2; }
+.bookmarklist li.contents:hover	{ border-top:1px solid #F0F0F0; border-bottom:1px solid #E2E2E2; }
+.bookmarklist li.contents img				{ display:inline-block; float:left; width:auto; height:100%; border:1px solid gray; }
+.bookmarklist li.contents span.page	{ position:absolute; left:5px; background-color:white; border:1px solid gray; border-radius:1em; font-size:0.75em; padding:0.2em 0.5em; margin-top:0.5em; }
+.bookmarklist li.contents p.text		{ font-size:0.9em; color:#7C8187; }
+
+/*--------------------------------------------------------------------------------------------------
+		검색 창
+*/
+div.searchlist { position:absolute; left : 30%; top : 15%; min-width : 250px; max-width : 400px; width : 30%; min-height:100px; max-height:90%; height:300px; z-index:6; display:none; border-right-style:solid; border-right-width:2px; border-right-color:#EBEBEB; background:#EBEBEB; }
+.searchlist ul					{ width:100%; height:100%; left:0px; right:0px; top:0px; margin:auto; padding:0px; position:absolute; list-style-type:none; overflow-y:auto; }
+.searchlist li					{ border:1px solid #AAA; }
+.searchlist li.header		{ text-align:center; border:1px solid #AAA; margin:1px 0px 0px 2px; }
+.searchlist li.header input.search_text	{ position:relative; width:98%; height:1.5em; left:0px; right:0px; margin:auto; }
+.searchlist li.header p								{ position:relative; margin:0px; font-weight:bold; }
+/* 검색 목록 */
+.searchlist li.contents	{ cursor:pointer; height:100px;	background: #f9fcf7;}
+.searchlist li.contents:hover	{}
+.searchlist li.contents img						{ display:inline-block; float:left; width:auto; height:100%; border:1px solid gray; }
+.searchlist li.contents span.page				{ position:absolute; left:5px; background-color:white; border:1px solid gray; border-radius:1em; font-size:0.75em; padding:0.2em 0.5em; margin-top:0.5em; }
+.searchlist li.contents span.text				{ color:#39C}
+.searchlist li.contents span.highlight		{ color:#F90; background-color:#FF0;font-weight:bold;}
+
+.searchlist li.more 									{ color:black; font-weight:bold; text-align:center; cursor:pointer; background: #EBEBEB; }
+.searchlist li.more:hover 						{ }
+
+/*--------------------------------------------------------------------------------------------------
+		Objects By ID
+*/
+
+/* 배경 영역 */
+#background{
+        position:absolute; left:0px; top:0px; width:100%; height:100%; z-index:1; border:0px; background:#f5f5f5; 
+         
+        
+        background-color: ;
+        
+}
+
+
+/* 페이지 표시 영역 */
+#pageview{ position:absolute; left:0px; right:0px; margin:auto; top:50px; max-width:1400px; width:100%; height:85%; min-height:50px; z-index:2; border:0px; background: rgba(0,0,0,0); overflow:hidden; }
+
+/* 이전호 목록 */		#booklist		{ position : absolute;	right:100px;	top:10px;	max-width : 200px; width:30%;	height:30px; font-size:12px; background:#f5f5f5; border:1px solid #EBEBEB; }
+
+/*--------------------------------------------------------------------------------------------------
+		도구 메뉴
+*/
+/* 상단 창 */				#top_window		{ position:relative; display:block; z-index:5; width:100%; height : 50px; text-align:center; background:#ff9500; }
+										#top_center		{ position:absolute; left:0px; right:0px; margin:auto; width:100%; max-width:1200px; height : 100%; }
+/* 로고 이미지 */		#top_logo			{ position:absolute; left:0px; top:0px;bottom:0px; margin:auto; width:auto; height:60%; }
+
+/* 메뉴 창 */				#menu_window	{ position:absolute; right:0px; top:55px; width:214px; height:auto; display:none; z-index:6; }
+#menu_contents { 
+	position: fixed;
+	width: 214px;
+	height: 80%;
+	top: 55px;
+	max-height: 560px;
+	overflow-y: auto;
+}
+#arrow_up { width:0; height:0;
+	border-left:15px solid transparent;
+	border-right:15px solid transparent;
+	border-bottom:15px solid #4C4743;
+	float:right;
+	margin-right:10%;
+	margin-top:-15px;
+}
+
+/* 도구 항목 */			.topobjects	{ margin:auto; width:5%; max-width:30px; height:auto; top:0px; bottom:0px; position:absolute;}
+.menuobjects { width:100%; height:auto; margin:0px; display:block; position:relative; background:#4C4743; }
+#top_search_btn		{ right:60px; }
+#top_menu_btn			{ right:20px; }
+
+/*--------------------------------------------------------------------------------------------------
+		퀵 메뉴
+*/
+.quickobjects { width : auto;	height : 100%; margin:0px 1%; }
+.quickobjects_m { width : auto;	height : 100%; margin:0px 3%; }
+
+/* 퀵 메뉴 페이지 번호 글자 */	#quick_pagenum_area		{ color:gray; position:relative; bottom:10px; font-size:10px;  }
+/* 퀵 메뉴 페이지 수 글자 */		#quick_pagetotal_area	{ color:gray; position:relative; bottom:10px; font-size:10px;  }
+#quick_first_btn { height:20px; margin-bottom:5px; }
+#quick_last_btn { height:20px; margin-bottom:5px; }
+.quicktexts { color:gray; position:relative; bottom:10px; font-size:10px; }
+#bottom_window		{ position : absolute;	z-index : 4; width:100%; max-width:1200px; height:30px; left:0px; right:0px; bottom:15px; margin:auto; text-align:right; }
+#bottom_window_m	{ position : absolute;	z-index : 4; width:100%; max-width:1200px; height:30px; left:0px; right:0px; bottom:15px; margin:auto; text-align:left; }
+#quick_prev_btn	{ margin-right:3%; }
+#quick_next_btn	{ margin-left:3%; }
+#quick_home			{ float:left; }
+#quick_home_m		{ float:right; }
+
+/*--------------------------------------------------------------------------------------------------
+		섬네일
+*/
+div.thumblist						{ position:absolute; z-index:6; display:none; }
+div.thumblist .bg				{ position:fixed; left:0px; top:0px; width:100%; height:100%; background:rgba(0,0,0,0.5); }
+div.thumblist .contents	{ position:fixed; left : 5%; top : 5%; min-width : 100px; width : 90%; min-height:100px; height:90%; overflow-x:hidden; overflow-y:auto; }

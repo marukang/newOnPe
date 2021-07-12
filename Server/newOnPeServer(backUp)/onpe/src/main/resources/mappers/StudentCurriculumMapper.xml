@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 사용자 클래스, 컨텐츠리스트 테이블 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.StudentCurriculumMapper">
+
+	<!-- 차시(단원)별 클래스 수업 입장하기 == 만약 수업타입이 1:(맞춤형 수업)일 때는 그룹이므로 여러개의 레코드가 반환된다. , 만약 수업타입이 0:(전체형 수업)일 때는 그룹이 아니므로 하나의 레코드가 반환된다.  -->
+	<select id="Get_Student_Curriculum" resultType="kr.co.onpe.vo.Curriculum_Unit_List_Class_VO" parameterType="hashMap">
+		SELECT * FROM curriculum_unit_list_class WHERE class_code=#{class_code} and unit_code=#{unit_code}
+	</select>
+	
+	<!-- 해당 차시의 현재 참여중인 사용자 번호를 불러온다. -->
+	<select id="Get_Student_Curriculum_Participation" resultType="String" parameterType="hashMap">
+		<!-- 그룹일 때 -->
+		<if test="unit_group_name != null">
+			<![CDATA[SELECT content_participation FROM curriculum_unit_list_class WHERE unit_group_name=#{unit_group_name} and unit_code=#{unit_code} and class_code=#{class_code}]]>
+		</if>
+		<!-- 그룹이 아닐 때 -->
+		<if test="unit_group_name == null">
+			<![CDATA[SELECT content_participation FROM curriculum_unit_list_class WHERE unit_code=#{unit_code} and class_code=#{class_code}]]>
+ 		</if>
+	</select>
+	
+	<!-- 해당 차시의 현재 과제를 제출한 사용자 번호를 불러온다. -->
+	<select id="Get_Student_Curriculum_Submit_Task" resultType="String" parameterType="hashMap">
+		<!-- 그룹일 때 -->
+		<if test="unit_group_name != null">
+			SELECT content_submit_task FROM curriculum_unit_list_class WHERE unit_group_name=#{unit_group_name} and unit_code=#{unit_code} and class_code=#{class_code}
+		</if>
+		<!-- 그룹이 아닐 때 -->
+		<if test="unit_group_name == null">
+			SELECT content_submit_task FROM curriculum_unit_list_class WHERE unit_code=#{unit_code} and class_code=#{class_code}
+ 		</if>
+	</select>
+	
+	<!-- 수업참여 확인하기 (학생번호를 해당 차시별 수업<curriculum_unit_list_class>의 content_participation 컬럼의 JSON 배열에 추가한다.) -->
+	<update id="Update_Student_Curriculum_Participation" parameterType="hashMap">
+		<!-- 그룹일 때 -->
+		<if test="unit_group_name != null">
+			<![CDATA[UPDATE curriculum_unit_list_class SET content_participation=#{content_participation} WHERE class_code=#{class_code} and unit_code=#{unit_code} and unit_group_name=#{unit_group_name}]]>
+ 		</if>
+ 		
+		<!-- 그룹이 아닐 때 -->
+		<if test="unit_group_name == null">
+			<![CDATA[UPDATE curriculum_unit_list_class SET content_participation=#{content_participation} WHERE class_code=#{class_code} and unit_code=#{unit_code}]]>
+ 		</if>
+	</update>
+	
+	<!-- 최종 과제 제출하기 (학생번호를 해당 차시별 수업<curriculum_unit_list_class>의 content_submit_task 컬럼의 JSON 배열에 추가한다.)  -->
+	<update id="Update_Student_Curriculum_Submit_Task" parameterType="hashMap">
+		<!-- 그룹일 때 -->
+		<if test="unit_group_name != null">
+			<![CDATA[UPDATE curriculum_unit_list_class SET content_submit_task=#{content_submit_task} WHERE class_code=#{class_code} and unit_code=#{unit_code} and unit_group_name=#{unit_group_name};]]>
+ 		</if>
+ 		
+		<!-- 그룹이 아닐 때 -->
+		<if test="unit_group_name == null">
+			<![CDATA[UPDATE curriculum_unit_list_class SET content_submit_task=#{content_submit_task} WHERE class_code=#{class_code} and unit_code=#{unit_code};]]>
+ 		</if>
+ 		UPDATE student_class_record SET student_practice="1" WHERE unit_code=#{unit_code} AND class_code=#{class_code} AND student_id=#{student_id};
+	</update>
+</mapper>
