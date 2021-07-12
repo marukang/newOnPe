@@ -1,1355 +1,667 @@
-!SESSION 2021-07-01 17:26:13.580 -----------------------------------------------
-eclipse.buildId=4.11.0.202106180608
-java.version=16.0.1
+!SESSION 2021-07-12 16:12:31.672 -----------------------------------------------
+eclipse.buildId=4.1.1.201901241133-RELEASE
+java.version=1.8.0_201
 java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
-Framework arguments:  -product org.springframework.boot.ide.branding.sts4
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/woozie/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/woozie/.eclipse_keyring
 
-!ENTRY org.eclipse.jface 2 0 2021-07-01 17:26:47.587
+!ENTRY org.eclipse.core.net 1 0 2021-07-12 16:12:43.646
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|localhost|*.localhost|lx.astxsvc.com|*.lx.astxsvc.com by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2021-07-12 16:12:44.161
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
-!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-01 17:26:47.587
-!MESSAGE A conflict occurred for CTRL+SHIFT+T:
-Binding(CTRL+SHIFT+T,
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-12 16:12:44.161
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@29ee8174,
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@646d58cd,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
-Binding(CTRL+SHIFT+T,
+Binding(COMMAND+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@23365142,
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@388e4c25,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
-!ENTRY org.eclipse.egit.ui 2 0 2021-07-01 17:26:50.802
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\컴플렉시온'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-!SESSION 2021-07-01 17:29:09.869 -----------------------------------------------
-eclipse.buildId=4.11.0.202106180608
-java.version=16.0.1
-java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
-Framework arguments:  -product org.springframework.boot.ide.branding.sts4
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:13:43.941
+!MESSAGE Failed to write tracking file /Users/woozie/.m2/repository/com/github/r4mz0r/cryptoutil/1.0.5/cryptoutil-1.0.5.pom.lastUpdated
+!STACK 0
+java.io.IOException: Invalid argument
+	at java.io.RandomAccessFile.writeBytes(Native Method)
+	at java.io.RandomAccessFile.write(RandomAccessFile.java:512)
+	at org.eclipse.aether.internal.impl.TrackingFileManager.update(TrackingFileManager.java:138)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.write(DefaultUpdateCheckManager.java:615)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.touchArtifact(DefaultUpdateCheckManager.java:551)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.evaluateDownloads(DefaultArtifactResolver.java:623)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:513)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:399)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:224)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:201)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:261)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor(DefaultArtifactDescriptorReader.java:192)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.resolveCachedArtifactDescriptor(DefaultDependencyCollector.java:539)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.getArtifactDescriptorResult(DefaultDependencyCollector.java:522)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:411)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:256)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.collectDependencies(DefaultRepositorySystem.java:282)
+	at org.apache.maven.project.DefaultProjectDependenciesResolver.resolve(DefaultProjectDependenciesResolver.java:169)
+	at org.apache.maven.project.DefaultProjectBuilder.resolveDependencies(DefaultProjectBuilder.java:212)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:185)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:116)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readMavenProject(MavenImpl.java:628)
+	at org.eclipse.m2e.core.internal.project.registry.DefaultMavenDependencyResolver.resolveProjectDependencies(DefaultMavenDependencyResolver.java:63)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:525)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.lambda$1(ProjectRegistryManager.java:489)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:488)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:349)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:296)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:155)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod$1.call(MavenBuilder.java:90)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:87)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:201)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:833)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:220)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:263)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:316)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:319)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:371)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:392)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:154)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:244)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 
-!ENTRY org.eclipse.core.resources 2 10035 2021-07-01 17:29:14.872
-!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:14:01.690
+!MESSAGE Failed to write tracking file /Users/woozie/.m2/repository/com/fasterxml/jackson/jackson-parent/2.9.1.1/jackson-parent-2.9.1.1.pom.lastUpdated
+!STACK 0
+java.io.IOException: Invalid argument
+	at java.io.RandomAccessFile.writeBytes(Native Method)
+	at java.io.RandomAccessFile.write(RandomAccessFile.java:512)
+	at org.eclipse.aether.internal.impl.TrackingFileManager.update(TrackingFileManager.java:138)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.write(DefaultUpdateCheckManager.java:615)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.touchArtifact(DefaultUpdateCheckManager.java:551)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.evaluateDownloads(DefaultArtifactResolver.java:623)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:513)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:399)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:224)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:201)
+	at org.apache.maven.repository.internal.DefaultModelResolver.resolveModel(DefaultModelResolver.java:174)
+	at org.apache.maven.repository.internal.DefaultModelResolver.resolveModel(DefaultModelResolver.java:224)
+	at org.apache.maven.model.building.DefaultModelBuilder.readParentExternally(DefaultModelBuilder.java:1052)
+	at org.apache.maven.model.building.DefaultModelBuilder.readParent(DefaultModelBuilder.java:830)
+	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:332)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:314)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor(DefaultArtifactDescriptorReader.java:192)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.resolveCachedArtifactDescriptor(DefaultDependencyCollector.java:539)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.getArtifactDescriptorResult(DefaultDependencyCollector.java:522)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:411)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.doRecurse(DefaultDependencyCollector.java:507)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:460)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.doRecurse(DefaultDependencyCollector.java:507)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:460)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:256)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.collectDependencies(DefaultRepositorySystem.java:282)
+	at org.apache.maven.project.DefaultProjectDependenciesResolver.resolve(DefaultProjectDependenciesResolver.java:169)
+	at org.apache.maven.project.DefaultProjectBuilder.resolveDependencies(DefaultProjectBuilder.java:212)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:185)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:116)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readMavenProject(MavenImpl.java:628)
+	at org.eclipse.m2e.core.internal.project.registry.DefaultMavenDependencyResolver.resolveProjectDependencies(DefaultMavenDependencyResolver.java:63)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:525)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.lambda$1(ProjectRegistryManager.java:489)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:488)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:349)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1$1.call(ProjectRegistryRefreshJob.java:89)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1$1.call(ProjectRegistryRefreshJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1332)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:87)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 
-!ENTRY org.eclipse.jface 2 0 2021-07-01 17:29:16.528
-!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
-!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-01 17:29:16.528
-!MESSAGE A conflict occurred for CTRL+SHIFT+T:
-Binding(CTRL+SHIFT+T,
-	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
-		Open a type in a Java editor,
-		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1e1598e5,
-		,,true),null),
-	org.eclipse.ui.defaultAcceleratorConfiguration,
-	org.eclipse.ui.contexts.window,,,system)
-Binding(CTRL+SHIFT+T,
-	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
-		,
-		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@67a3394c,
-		,,true),null),
-	org.eclipse.ui.defaultAcceleratorConfiguration,
-	org.eclipse.ui.contexts.window,,,system)
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:14:02.660
+!MESSAGE Failed to write tracking file /Users/woozie/.m2/repository/com/google/firebase/firebase-admin/7.1.0/firebase-admin-7.1.0.pom.lastUpdated
+!STACK 0
+java.io.IOException: Invalid argument
+	at java.io.RandomAccessFile.writeBytes(Native Method)
+	at java.io.RandomAccessFile.write(RandomAccessFile.java:512)
+	at org.eclipse.aether.internal.impl.TrackingFileManager.update(TrackingFileManager.java:138)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.write(DefaultUpdateCheckManager.java:615)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.touchArtifact(DefaultUpdateCheckManager.java:551)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.evaluateDownloads(DefaultArtifactResolver.java:623)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:513)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:399)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:224)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:201)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:261)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor(DefaultArtifactDescriptorReader.java:192)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.resolveCachedArtifactDescriptor(DefaultDependencyCollector.java:539)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.getArtifactDescriptorResult(DefaultDependencyCollector.java:522)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:411)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:256)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.collectDependencies(DefaultRepositorySystem.java:282)
+	at org.apache.maven.project.DefaultProjectDependenciesResolver.resolve(DefaultProjectDependenciesResolver.java:169)
+	at org.apache.maven.project.DefaultProjectBuilder.resolveDependencies(DefaultProjectBuilder.java:212)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:185)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:116)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readMavenProject(MavenImpl.java:628)
+	at org.eclipse.m2e.core.internal.project.registry.DefaultMavenDependencyResolver.resolveProjectDependencies(DefaultMavenDependencyResolver.java:63)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:525)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.lambda$1(ProjectRegistryManager.java:489)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:488)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:349)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:296)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:155)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod$1.call(MavenBuilder.java:90)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:87)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:201)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:833)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:220)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:263)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:316)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:319)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:371)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:392)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:154)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:244)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 
-!ENTRY org.eclipse.egit.ui 2 0 2021-07-01 17:29:19.764
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\컴플렉시온'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:53.548
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:18.095
 !MESSAGE Entering DelegatingStreamConnectionProvider()
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:53.549
-!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@1d97d510[org.springframework.tooling.boot.ls:1.26.0.202106150606(id=559)]
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:18.095
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@3d3c14c3[org.springframework.tooling.boot.ls:1.2.1.201901241129(id=615)]
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:53.558
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:18.097
 !MESSAGE SpringBootLanguageServer exists!
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:53.714
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:18.377
 !MESSAGE Instantiating ReusableClasspathListenerHandler
 
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:29:55.277
-!MESSAGE The POM for com.google.api-client:google-api-client:jar:1.30.9 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+!ENTRY org.eclipse.lsp4e 4 0 2021-07-12 16:14:33.492
+!MESSAGE LanguageServer not initialized after 10s
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1771)
+	at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:1915)
+	at org.eclipse.lsp4e.LanguageServerWrapper.getServerCapabilities(LanguageServerWrapper.java:593)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.getLSWrappers(LanguageServiceAccessor.java:301)
+	at org.eclipse.lsp4e.LanguageServiceAccessor.getLSPDocumentInfosFor(LanguageServiceAccessor.java:444)
+	at org.eclipse.lsp4e.ConnectDocumentToLanguageServerSetupParticipant$1.run(ConnectDocumentToLanguageServerSetupParticipant.java:75)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.868
-!MESSAGE Boot LS startup time from start to initialized: 4302ms
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.796
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.gcbGFHBL
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.937
-!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.qcQfBwSSisBatched = true
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.797
+!MESSAGE subscribing to classpath changes: sts4.classpath.gcbGFHBL
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.940
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.797
 !MESSAGE Setting up ClasspathListenerManager
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.941
-!MESSAGE Scheduling initial event for all projects ...
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.798
+!MESSAGE subsribers = [sts4.classpath.gcbGFHBL]
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.942
-!MESSAGE Scheduling initial event for all projects DONE
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.798
+!MESSAGE Sending initial event for all projects ...
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.942
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.802
+!MESSAGE project onpe ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.803
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.803
+!MESSAGE Preparing classpath changed notification onpe
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.804
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.gcbGFHBL => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.804
 !MESSAGE exists = true open = true => deleted = false
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.943
-!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.qcQfBwSS => OK
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.808
+!MESSAGE classpath=21 entries
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.946
-!MESSAGE classpath=5 entries
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.808
+!MESSAGE executing callback sts4.classpath.gcbGFHBL onpe false 21
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.946
-!MESSAGE buffering callback sts4.classpath.qcQfBwSS onpe false 5
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:14:40.828
+!MESSAGE executing callback sts4.classpath.gcbGFHBL SUCCESS [done]
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:57.946
-!MESSAGE executing callback sts4.classpath.qcQfBwSS 1 batched events
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:14:45.618
+!MESSAGE Failed to write tracking file /Users/woozie/.m2/repository/com/google/auto/value/auto-value-annotations/1.7/auto-value-annotations-1.7.pom.lastUpdated
+!STACK 0
+java.io.IOException: Invalid argument
+	at java.io.RandomAccessFile.writeBytes(Native Method)
+	at java.io.RandomAccessFile.write(RandomAccessFile.java:512)
+	at org.eclipse.aether.internal.impl.TrackingFileManager.update(TrackingFileManager.java:138)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.write(DefaultUpdateCheckManager.java:615)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.touchArtifact(DefaultUpdateCheckManager.java:551)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.evaluateDownloads(DefaultArtifactResolver.java:623)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:513)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:399)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:224)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:201)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:261)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor(DefaultArtifactDescriptorReader.java:192)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.resolveCachedArtifactDescriptor(DefaultDependencyCollector.java:539)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.getArtifactDescriptorResult(DefaultDependencyCollector.java:522)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:411)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.doRecurse(DefaultDependencyCollector.java:507)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:460)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.doRecurse(DefaultDependencyCollector.java:507)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:460)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:256)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.collectDependencies(DefaultRepositorySystem.java:282)
+	at org.apache.maven.project.DefaultProjectDependenciesResolver.resolve(DefaultProjectDependenciesResolver.java:169)
+	at org.apache.maven.project.DefaultProjectBuilder.resolveDependencies(DefaultProjectBuilder.java:212)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:185)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:116)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readMavenProject(MavenImpl.java:628)
+	at org.eclipse.m2e.core.internal.project.registry.DefaultMavenDependencyResolver.resolveProjectDependencies(DefaultMavenDependencyResolver.java:63)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:525)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.lambda$1(ProjectRegistryManager.java:489)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:488)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:349)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1$1.call(ProjectRegistryRefreshJob.java:89)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1$1.call(ProjectRegistryRefreshJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1332)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:87)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:29:58.229
-!MESSAGE executing callback sts4.classpath.qcQfBwSS SUCCESS [done]
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:14:47.366
+!MESSAGE Failed to write tracking file /Users/woozie/.m2/repository/org/apache/httpcomponents/httpclient/4.5.10/httpclient-4.5.10.pom.lastUpdated
+!STACK 0
+java.io.IOException: Invalid argument
+	at java.io.RandomAccessFile.writeBytes(Native Method)
+	at java.io.RandomAccessFile.write(RandomAccessFile.java:512)
+	at org.eclipse.aether.internal.impl.TrackingFileManager.update(TrackingFileManager.java:138)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.write(DefaultUpdateCheckManager.java:615)
+	at org.eclipse.aether.internal.impl.DefaultUpdateCheckManager.touchArtifact(DefaultUpdateCheckManager.java:551)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.evaluateDownloads(DefaultArtifactResolver.java:623)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:513)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:399)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:224)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:201)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:261)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor(DefaultArtifactDescriptorReader.java:192)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.resolveCachedArtifactDescriptor(DefaultDependencyCollector.java:539)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.getArtifactDescriptorResult(DefaultDependencyCollector.java:522)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:411)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.doRecurse(DefaultDependencyCollector.java:507)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:460)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.doRecurse(DefaultDependencyCollector.java:507)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:460)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.doRecurse(DefaultDependencyCollector.java:507)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:460)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:365)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.process(DefaultDependencyCollector.java:353)
+	at org.eclipse.aether.internal.impl.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:256)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.collectDependencies(DefaultRepositorySystem.java:282)
+	at org.apache.maven.project.DefaultProjectDependenciesResolver.resolve(DefaultProjectDependenciesResolver.java:169)
+	at org.apache.maven.project.DefaultProjectBuilder.resolveDependencies(DefaultProjectBuilder.java:212)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:185)
+	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:116)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readMavenProject(MavenImpl.java:628)
+	at org.eclipse.m2e.core.internal.project.registry.DefaultMavenDependencyResolver.resolveProjectDependencies(DefaultMavenDependencyResolver.java:63)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:525)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.lambda$1(ProjectRegistryManager.java:489)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:488)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:349)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1$1.call(ProjectRegistryRefreshJob.java:89)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1$1.call(ProjectRegistryRefreshJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1332)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:87)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:30:11.668
-!MESSAGE The POM for commons-codec:commons-codec:jar:1.9 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:00.430
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:47.603
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:00.447
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:00.544
+!MESSAGE Preparing classpath changed notification onpe
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:00.545
 !MESSAGE exists = true open = true => deleted = false
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:47.605
-!MESSAGE classpath=119 entries
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:00.547
+!MESSAGE classpath=135 entries
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:47.609
-!MESSAGE buffering callback sts4.classpath.qcQfBwSS onpe false 119
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:00.547
+!MESSAGE executing callback sts4.classpath.gcbGFHBL onpe false 135
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:47.609
-!MESSAGE executing callback sts4.classpath.qcQfBwSS 1 batched events
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:00.583
+!MESSAGE executing callback sts4.classpath.gcbGFHBL SUCCESS [done]
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:47.657
-!MESSAGE executing callback sts4.classpath.qcQfBwSS SUCCESS [done]
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:04.118
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:30:53.167
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:04.141
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:30:53.192
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:55.392
-!MESSAGE exists = true open = true => deleted = false
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:55.393
-!MESSAGE classpath=119 entries
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:55.398
-!MESSAGE buffering callback sts4.classpath.qcQfBwSS onpe false 119
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:55.398
-!MESSAGE executing callback sts4.classpath.qcQfBwSS 1 batched events
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:30:55.423
-!MESSAGE executing callback sts4.classpath.qcQfBwSS SUCCESS [done]
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:30:55.928
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:30:55.955
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:32:06.665
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:23.204
 !MESSAGE Could not download sources for com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:304)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:254)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:32:06.666
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:23.205
 !MESSAGE Could not resolve artifact com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:32:06.666
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:23.205
 !MESSAGE Missing com.google.guava:listenablefuture:jar:sources:9999.0-empty-to-avoid-conflict-with-guava
 
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:33:07.785
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:42.209
 !MESSAGE Could not download sources for org.apache.poi:poi-ooxml-schemas:3.11
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact org.apache.poi:poi-ooxml-schemas:jar:sources:3.11
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:304)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:254)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing org.apache.poi:poi-ooxml-schemas:jar:sources:3.11
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:07.785
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:42.210
 !MESSAGE Could not resolve artifact org.apache.poi:poi-ooxml-schemas:jar:sources:3.11
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:07.785
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:42.210
 !MESSAGE Missing org.apache.poi:poi-ooxml-schemas:jar:sources:3.11
 
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:33:08.352
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:42.377
 !MESSAGE Could not download sources for org.apache.xmlbeans:xmlbeans:2.6.0
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact org.apache.xmlbeans:xmlbeans:jar:sources:2.6.0
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:304)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:254)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing org.apache.xmlbeans:xmlbeans:jar:sources:2.6.0
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:08.352
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:42.378
 !MESSAGE Could not resolve artifact org.apache.xmlbeans:xmlbeans:jar:sources:2.6.0
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:08.352
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:42.378
 !MESSAGE Missing org.apache.xmlbeans:xmlbeans:jar:sources:2.6.0
 
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:33:08.833
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:42.546
 !MESSAGE Could not download sources for stax:stax-api:1.0.1
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact stax:stax-api:jar:sources:1.0.1
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:304)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:254)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing stax:stax-api:jar:sources:1.0.1
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:08.833
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:42.546
 !MESSAGE Could not resolve artifact stax:stax-api:jar:sources:1.0.1
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:08.833
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:42.546
 !MESSAGE Missing stax:stax-api:jar:sources:1.0.1
 
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:33:09.504
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:42.635
+!MESSAGE Preparing classpath changed notification onpe
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:42.635
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:42.638
+!MESSAGE classpath=135 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:42.639
+!MESSAGE executing callback sts4.classpath.gcbGFHBL onpe false 135
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-12 16:16:42.819
+!MESSAGE executing callback sts4.classpath.gcbGFHBL SUCCESS [done]
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:43.018
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:43.020
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:44.470
 !MESSAGE Could not download javadoc for com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:316)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:265)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:09.504
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:44.470
 !MESSAGE Could not resolve artifact com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:09.504
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:44.470
 !MESSAGE Missing com.google.guava:listenablefuture:jar:javadoc:9999.0-empty-to-avoid-conflict-with-guava
 
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:33:10.201
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:44.716
 !MESSAGE Could not download javadoc for org.apache.poi:poi-ooxml-schemas:3.11
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact org.apache.poi:poi-ooxml-schemas:jar:javadoc:3.11
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:316)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:265)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing org.apache.poi:poi-ooxml-schemas:jar:javadoc:3.11
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:10.201
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:44.716
 !MESSAGE Could not resolve artifact org.apache.poi:poi-ooxml-schemas:jar:javadoc:3.11
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:10.201
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:44.716
 !MESSAGE Missing org.apache.poi:poi-ooxml-schemas:jar:javadoc:3.11
 
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:33:10.930
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:44.886
 !MESSAGE Could not download javadoc for org.apache.xmlbeans:xmlbeans:2.6.0
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact org.apache.xmlbeans:xmlbeans:jar:javadoc:2.6.0
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:316)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:265)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing org.apache.xmlbeans:xmlbeans:jar:javadoc:2.6.0
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:10.930
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:44.887
 !MESSAGE Could not resolve artifact org.apache.xmlbeans:xmlbeans:jar:javadoc:2.6.0
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:10.930
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:44.887
 !MESSAGE Missing org.apache.xmlbeans:xmlbeans:jar:javadoc:2.6.0
 
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-01 17:33:11.407
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2021-07-12 16:16:45.055
 !MESSAGE Could not download javadoc for stax:stax-api:1.0.1
 !STACK 1
 org.eclipse.core.runtime.CoreException: Could not resolve artifact stax:stax-api:jar:javadoc:1.0.1
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:316)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
-	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
-	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:265)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221)
 	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 Contains: Missing stax:stax-api:jar:javadoc:1.0.1
-!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:11.408
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:45.055
 !MESSAGE Could not resolve artifact stax:stax-api:jar:javadoc:1.0.1
-!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-01 17:33:11.408
+!SUBENTRY 2 org.eclipse.m2e.core 4 -1 2021-07-12 16:16:45.055
 !MESSAGE Missing stax:stax-api:jar:javadoc:1.0.1
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:33:11.636
-!MESSAGE exists = true open = true => deleted = false
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:33:11.644
-!MESSAGE classpath=119 entries
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:33:11.648
-!MESSAGE buffering callback sts4.classpath.qcQfBwSS onpe false 119
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:33:11.649
-!MESSAGE executing callback sts4.classpath.qcQfBwSS 1 batched events
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-01 17:33:11.672
-!MESSAGE executing callback sts4.classpath.qcQfBwSS SUCCESS [done]
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:33:11.866
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-01 17:33:11.868
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-!SESSION 2021-07-05 10:10:26.950 -----------------------------------------------
-eclipse.buildId=4.11.0.202106180608
-java.version=16.0.1
-java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
-Framework arguments:  -product org.springframework.boot.ide.branding.sts4
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
-
-!ENTRY org.eclipse.core.resources 2 10035 2021-07-05 10:10:39.419
-!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
-
-!ENTRY org.eclipse.jface 2 0 2021-07-05 10:10:50.777
-!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
-!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-05 10:10:50.777
-!MESSAGE A conflict occurred for CTRL+SHIFT+T:
-Binding(CTRL+SHIFT+T,
-	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
-		Open a type in a Java editor,
-		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3987a1e8,
-		,,true),null),
-	org.eclipse.ui.defaultAcceleratorConfiguration,
-	org.eclipse.ui.contexts.window,,,system)
-Binding(CTRL+SHIFT+T,
-	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
-		,
-		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@20d65767,
-		,,true),null),
-	org.eclipse.ui.defaultAcceleratorConfiguration,
-	org.eclipse.ui.contexts.window,,,system)
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:02.530
-!MESSAGE Entering DelegatingStreamConnectionProvider()
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:02.535
-!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@3c70115c[org.springframework.tooling.boot.ls:1.26.0.202106150606(id=559)]
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:02.559
-!MESSAGE SpringBootLanguageServer exists!
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:02.814
-!MESSAGE Instantiating ReusableClasspathListenerHandler
-
-!ENTRY org.eclipse.egit.ui 2 0 2021-07-05 10:11:05.369
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\컴플렉시온'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.776
-!MESSAGE Boot LS startup time from start to initialized: 8201ms
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.872
-!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.ittmDQeJisBatched = true
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.876
-!MESSAGE Setting up ClasspathListenerManager
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.878
-!MESSAGE Scheduling initial event for all projects ...
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.879
-!MESSAGE Scheduling initial event for all projects DONE
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.879
-!MESSAGE exists = true open = true => deleted = false
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.880
-!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.ittmDQeJ => OK
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.889
-!MESSAGE classpath=119 entries
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.893
-!MESSAGE buffering callback sts4.classpath.ittmDQeJ onpe false 119
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:10.894
-!MESSAGE executing callback sts4.classpath.ittmDQeJ 1 batched events
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 10:11:11.236
-!MESSAGE executing callback sts4.classpath.ittmDQeJ SUCCESS [done]
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 10:11:15.083
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 10:11:15.144
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.ui 2 2 2021-07-05 13:11:21.603
-!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 13:11:59.715
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 13:11:59.722
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2021-07-05 13:12:42.426
-!MESSAGE Project facet wst.jsdt.web has not been defined. It is used in plugin org.eclipse.jst.server.core.
-
-!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2021-07-05 13:12:42.426
-!MESSAGE Project facet wst.jsdt.web has not been defined. It is used in plugin org.eclipse.jst.server.preview.adapter.
-
-!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2021-07-05 13:12:42.427
-!MESSAGE Project facet wst.jsdt.web has not been defined. It is used in plugin org.eclipse.jst.server.tomcat.core.
-
-!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2021-07-05 13:12:42.427
-!MESSAGE Project facet wst.jsdt.web has not been defined. It is used in plugin org.eclipse.wst.server.http.core.
-
-!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2021-07-05 13:12:42.428
-!MESSAGE Project facet wst.jsdt.web has not been defined. It is used in plugin org.eclipse.wst.server.preview.adapter.
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 13:26:12.294
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 13:26:12.296
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:09:33.975
-!MESSAGE exists = true open = true => deleted = false
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:09:33.990
-!MESSAGE classpath=119 entries
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:09:33.996
-!MESSAGE buffering callback sts4.classpath.ittmDQeJ onpe false 119
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:09:33.997
-!MESSAGE executing callback sts4.classpath.ittmDQeJ 1 batched events
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:09:34.025
-!MESSAGE executing callback sts4.classpath.ittmDQeJ SUCCESS [done]
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 15:09:34.987
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 15:09:35.015
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 15:09:35.244
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:15.990
-!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.ittmDQeJ
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:15.991
-!MESSAGE unsubscribing from classpath changes: sts4.classpath.ittmDQeJ
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:15.991
-!MESSAGE subsribers = {}
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:15.992
-!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.ittmDQeJ => OK
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:20.203
-!MESSAGE Entering DelegatingStreamConnectionProvider()
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:20.203
-!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@3c70115c[org.springframework.tooling.boot.ls:1.26.0.202106150606(id=559)]
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:20.204
-!MESSAGE SpringBootLanguageServer exists!
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.870
-!MESSAGE Boot LS startup time from start to initialized: 1665ms
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.937
-!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.BAnvdJDfisBatched = true
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.937
-!MESSAGE Setting up ClasspathListenerManager
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.938
-!MESSAGE Scheduling initial event for all projects ...
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.938
-!MESSAGE Scheduling initial event for all projects DONE
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.939
-!MESSAGE exists = true open = true => deleted = false
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.939
-!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.BAnvdJDf => OK
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.943
-!MESSAGE classpath=119 entries
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.947
-!MESSAGE buffering callback sts4.classpath.BAnvdJDf onpe false 119
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:21.947
-!MESSAGE executing callback sts4.classpath.BAnvdJDf 1 batched events
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 15:18:22.273
-!MESSAGE executing callback sts4.classpath.BAnvdJDf SUCCESS [done]
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 15:24:59.917
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 15:24:59.922
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:09:39.822
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:09:39.824
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:09:53.504
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:09:53.505
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:21.634
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:21.637
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:22.830
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:22.831
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:24.046
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:24.048
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:25.111
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:25.113
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:26.126
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:26.127
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:27.191
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:27.192
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:51.288
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:20:51.290
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:23:47.350
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:23:47.352
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:23:48.898
-!MESSAGE exists = true open = true => deleted = false
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:23:48.910
-!MESSAGE classpath=136 entries
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:23:48.914
-!MESSAGE buffering callback sts4.classpath.BAnvdJDf onpe false 136
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:23:48.914
-!MESSAGE executing callback sts4.classpath.BAnvdJDf 1 batched events
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:23:49.327
-!MESSAGE executing callback sts4.classpath.BAnvdJDf SUCCESS [done]
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:23:50.047
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:23:50.073
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:24:21.450
-!MESSAGE exists = true open = true => deleted = false
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:24:21.456
-!MESSAGE classpath=136 entries
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:24:21.462
-!MESSAGE buffering callback sts4.classpath.BAnvdJDf onpe false 136
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:24:21.463
-!MESSAGE executing callback sts4.classpath.BAnvdJDf 1 batched events
-
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-07-05 16:24:21.483
-!MESSAGE executing callback sts4.classpath.BAnvdJDf SUCCESS [done]
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:24:22.111
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:24:22.131
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:24:30.095
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:24:30.115
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:25:01.594
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:25:01.596
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:29:02.321
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:29:02.326
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:34:47.629
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:34:47.630
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:39:45.643
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:39:45.646
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:47:51.747
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:47:51.752
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:48:12.155
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:48:12.157
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:49:30.005
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 16:49:30.008
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:08:36.448
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:08:36.458
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:20:52.141
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:20:52.146
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2021-07-05 17:36:30.395
-!MESSAGE The server cannot be started because one or more of the ports are invalid. Open the server editor and correct the invalid ports.
-
-!ENTRY org.eclipse.lsp4e 2 0 2021-07-05 17:38:40.653
-!MESSAGE Javadoc unavailable. Failed to obtain it.
-!STACK 0
-java.lang.InterruptedException
-	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:385)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2092)
-	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
-	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
-	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:38:49.848
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:38:49.852
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:39:49.151
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:39:49.155
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:40:32.558
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:40:32.559
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:52:37.680
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 17:52:37.685
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:02:11.577
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:02:11.582
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:02:52.421
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:02:52.422
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:06:38.214
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:06:38.216
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:09:45.878
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:09:45.883
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:10:09.659
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:10:09.661
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:13:11.893
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:13:11.899
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:13:32.788
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:13:32.788
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:15:56.059
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:15:56.063
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:16:04.415
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-05 18:16:04.421
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 16:36:46.106
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 16:36:46.115
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 16:39:47.286
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 16:39:47.287
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.jface 2 0 2021-07-06 16:44:10.383
-!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
-!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-06 16:44:10.383
-!MESSAGE A conflict occurred for CTRL+SHIFT+C:
-Binding(CTRL+SHIFT+C,
-	ParameterizedCommand(Command(org.eclipse.tm4e.languageconfiguration.togglelinecommentcommand,Toggle Line Comment,
-		,
-		Category(org.eclipse.tm4e.languageconfiguration.category,TM4E Language Configuration,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@31b24fbc,
-		,,true),null),
-	org.eclipse.ui.defaultAcceleratorConfiguration,
-	org.eclipse.ui.textEditorScope,,,system)
-Binding(CTRL+SHIFT+C,
-	ParameterizedCommand(Command(org.springframework.tooling.boot.ls.ToggleComment,Toggle Comment,
-		,
-		Category(org.springframework.ide.eclipse.commands,Spring Generic Text Editor,Spring Language Server Commands,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@12fadbf8,
-		,,true),null),
-	org.eclipse.ui.defaultAcceleratorConfiguration,
-	org.eclipse.ui.textEditorScope,,,system)
-
-!ENTRY org.eclipse.jface.text 4 0 2021-07-06 16:44:16.099
-!MESSAGE java.lang.NullPointerException: Cannot invoke "java.util.concurrent.CompletionStage.toCompletableFuture()" because the return value of "java.util.function.Function.apply(Object)" is null
-!STACK 0
-java.util.concurrent.CompletionException: java.lang.NullPointerException: Cannot invoke "java.util.concurrent.CompletionStage.toCompletableFuture()" because the return value of "java.util.function.Function.apply(Object)" is null
-	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:314)
-	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:319)
-	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1155)
-	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:479)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:295)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1016)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1665)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1598)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-Caused by: java.lang.NullPointerException: Cannot invoke "java.util.concurrent.CompletionStage.toCompletableFuture()" because the return value of "java.util.function.Function.apply(Object)" is null
-	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1146)
-	... 6 more
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 17:26:33.774
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 17:26:33.776
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 18:35:47.211
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-06 18:35:47.214
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:22:42.724
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:22:42.728
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:53:39.193
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:53:39.198
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:54:09.009
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:54:09.013
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:58:07.098
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:58:07.102
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:58:09.203
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:58:09.206
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:58:11.554
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 10:58:11.558
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.lsp4e 2 0 2021-07-07 11:03:21.430
-!MESSAGE Javadoc unavailable. Failed to obtain it.
-!STACK 0
-java.lang.InterruptedException
-	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:385)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2092)
-	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
-	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
-	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
-
-!ENTRY org.eclipse.lsp4e 2 0 2021-07-07 11:09:37.399
-!MESSAGE Javadoc unavailable. Failed to obtain it.
-!STACK 0
-java.lang.InterruptedException
-	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:385)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2092)
-	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
-	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
-	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:29:34.937
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:29:34.950
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:29:37.092
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:29:37.098
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:29:39.178
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:29:39.182
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:33:31.056
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:33:31.059
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.lsp4e 2 0 2021-07-07 13:34:47.927
-!MESSAGE Javadoc unavailable. Failed to obtain it.
-!STACK 0
-java.lang.InterruptedException
-	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:385)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2092)
-	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
-	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
-	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:40:06.129
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:40:06.134
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:42:13.978
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:42:13.982
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:42:20.923
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:42:20.928
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:43:32.218
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:43:32.225
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:43:51.058
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:43:51.063
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:44:22.099
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:44:22.104
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:44:33.338
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:44:33.342
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:46:47.660
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:46:47.665
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:47:04.743
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:47:04.746
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:48:41.836
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 13:48:41.840
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:04:16.566
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:04:16.571
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:04:38.659
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:04:38.665
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:10:40.375
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:10:40.379
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:10:49.116
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:10:49.120
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:11:08.190
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:11:08.192
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:11:28.993
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:11:28.997
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:15:25.693
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:15:25.696
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:16:18.817
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:16:18.818
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:59:06.487
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 14:59:06.489
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:14:36.221
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:14:36.227
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:14:57.443
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:14:57.443
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:30:16.351
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:30:16.356
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:30:39.219
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:30:39.220
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:32:24.726
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 15:32:24.730
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:19:02.303
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:19:02.305
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:19:13.571
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:19:13.573
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:19:37.584
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:19:37.587
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:27:11.588
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:27:11.589
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:41:29.882
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:41:29.887
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:43:22.993
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:43:22.994
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:50:00.298
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 16:50:00.302
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:04:23.750
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:04:23.756
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:04:47.982
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:04:47.983
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:17:50.901
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:17:50.906
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:18:14.808
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:18:14.810
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:19:04.691
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:19:04.694
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:37:32.478
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:37:32.482
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:37:53.147
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-07 17:37:53.148
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.lsp4e 2 0 2021-07-08 10:37:55.604
-!MESSAGE Timeout waiting for data to generate LS hover
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1956)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2091)
-	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
-	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
-	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
-	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:42:48.472
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:42:48.475
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:46:54.913
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:46:54.917
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:47:12.284
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:47:12.288
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:47:55.477
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:47:55.479
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:56:03.920
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:56:03.924
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:56:34.226
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 10:56:34.227
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:22:37.591
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:22:37.596
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:22:59.400
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:22:59.402
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:32:30.213
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:32:30.214
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:34:56.864
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:34:56.865
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:38:39.283
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:38:39.287
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:39:03.346
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:39:03.348
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:42:18.083
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:42:18.087
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:42:39.995
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 11:42:39.996
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 13:00:06.218
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 13:00:06.224
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 13:00:27.135
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-08 13:00:27.136
-!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:47.699
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-07-12 16:16:47.701
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
