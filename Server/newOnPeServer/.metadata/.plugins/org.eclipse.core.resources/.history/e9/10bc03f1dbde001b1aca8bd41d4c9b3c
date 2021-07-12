@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 사용자 정보 테이블(student_information) 테이블 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.StudentInformationMapper">
+
+	<!-- 사용자 로그인에 사용할 쿼리 -->
+    <select id="Get_Student_information" resultType="kr.co.onpe.vo.Student_Information_VO" parameterType="hashMap">
+        SELECT * FROM student_information WHERE BINARY student_id=#{student_id} and student_password=#{student_password} and student_state = "0"
+    </select>
+    
+    <update id="Student_Resign" parameterType="hashMap">
+    	UPDATE student_information SET student_state = "1" WHERE BINARY student_id=#{student_id}
+    </update>
+    
+    <!-- 사용자 로그인에 사용할 쿼리 ( 토큰 로그인, 자동로그인 ) -->
+    <select id="Get_Student_information_auto" resultType="kr.co.onpe.vo.Student_Information_VO" parameterType="String">
+        SELECT * FROM student_information WHERE BINARY student_id=#{student_id} and student_state = "0"
+    </select>
+    
+    <!-- 사용자 sns 로그인에 사용할 쿼리 ( 토큰 로그인, 자동로그인 ) -->
+    <select id="Get_Student_information_sns_auto" resultType="kr.co.onpe.vo.Student_Information_VO" parameterType="hashMap">
+        SELECT * FROM student_information WHERE BINARY student_id=#{student_id} and student_state = "0" and student_login_type=#{student_login_type}
+    </select>
+    
+    <!-- 사용자 존재여부, 아이디 중복여부에 사용할 쿼리 -->
+    <select id="Get_Student_id" resultType="String">
+    	SELECT student_id FROM student_information WHERE student_id=#{student_id}
+    </select>
+    
+    <!-- 사용자 최근 접속시간 업데이트에 사용할 쿼리 -->
+    <update id="Update_student_recent_join_date" parameterType="hashMap">
+    	UPDATE student_information SET student_recent_join_date=#{time_number} WHERE student_id=#{student_id}
+    </update>
+    
+    <!-- 사용자 이메일 중복검사 -->
+    <select id="Get_Student_email" resultType="String">
+    	SELECT student_email FROM student_information WHERE student_email=#{student_email}
+    </select>
+    
+    <!-- 사용자 회원가입 이메일 인증코드 발급전 기존 테이블의 사용자 데이터 삭제 -->
+    <delete id="Delete_Student_Email_Authentication_Code" parameterType="String">
+		DELETE FROM email_authentication WHERE email=#{email}    
+    </delete>
+    
+    <!-- 사용자 회원가입시 이메일 인증코드 발급 -->
+    <insert id="Create_Student_Email_Authentication_Code" parameterType="hashMap">
+    	INSERT INTO email_authentication VALUES(#{email}, #{authentication_code})
+    </insert>
+    
+    <!-- 사용자 회원가입시 이메일, 인증코드 검증 -->
+    <select id="Student_Email_Authentication_Code_Check" parameterType="hashMap" resultType="String">
+    	SELECT email FROM email_authentication WHERE email=#{email} and authentication_code=#{authentication_code}
+    </select>
+    
+    <!-- 사용자 회원가입 -->
+    <insert id="Create_Student_Information" parameterType="hashMap">
+    	INSERT INTO student_information(student_id, student_name, student_password, student_email, student_phone, student_push_agreement, student_email_agreement, student_message_agreement, student_state, news_state, new_messgae_state, student_create_date) VALUES(#{student_id}, #{student_name}, #{student_password}, #{student_email}, #{student_phone}, #{student_push_agreement}, #{student_push_agreement}, #{student_push_agreement}, "0", "0", "0", #{student_create_date});
+    </insert>
+    
+    <!-- 사용자 아이디 찾기 -->
+    <select id="Student_Find_Id" parameterType="hashMap" resultType="String">
+    	SELECT student_id FROM student_information WHERE student_name=#{student_name} and student_email=#{student_email}
+    </select>
+    
+    <!-- 사용자 비밀번호 찾기 -->
+    <select id="Student_Find_Pw" parameterType="hashMap" resultType="String">
+    	SELECT student_email FROM student_information WHERE student_id=#{student_id} and student_email=#{student_email} and student_name=#{student_name}
+    </select>
+    
+    <!-- 사용자 비밀번호 변경 -->
+    <update id="Student_Change_Pw" parameterType="hashMap">
+    	UPDATE student_information SET student_password=#{student_password} WHERE student_email=#{student_email}
+    </update>
+    
+    
+    
+    
+    <!-- 사용자 PUSH알림 상태 변경 -->
+    <update id="Student_Change_Push_Agreement" parameterType="hashMap">
+    	UPDATE student_information SET student_push_agreement=#{student_push_agreement} WHERE student_id=#{student_id}
+    </update>
+    
+    <!-- 사용자 학급 정보 변경 -->
+    <update id="Student_Change_Class_Information" parameterType="hashMap">
+    	UPDATE student_information SET student_level=#{student_level}, student_class=#{student_class}, student_number=#{student_number} WHERE student_id=#{student_id}
+    </update>
+    
+    <!-- 사용자 기초정보 변경 -->
+    <update id="Student_Change_Default_Information" parameterType="hashMap">
+    	<choose>
+    		<when test="student_sex != null">
+    			UPDATE student_information SET student_content=#{student_content}, student_tall=#{student_tall}, student_weight=#{student_weight}, student_age=#{student_age}, student_sex=#{student_sex} WHERE student_id=#{student_id}
+    		</when>
+    		<otherwise>
+    			UPDATE student_information SET student_content=#{student_content}, student_tall=#{student_tall}, student_weight=#{student_weight}, student_age=#{student_age} WHERE student_id=#{student_id}
+    		</otherwise>
+    	</choose>
+    </update>
+    
+    <!-- 사용자 프로필 이미지 변경 -->
+    <update id="Student_Change_Profile_Image" parameterType="hashMap">
+    	UPDATE student_information SET student_image_url=#{student_image_url} WHERE student_id=#{student_id}
+    </update>
+    
+    <!-- 사용자 비밀번호 변경 -->
+    <update id="Student_Change_Password_By_Id" parameterType="hashMap">
+    	UPDATE student_information SET student_password=#{student_password} WHERE student_id=#{student_id}
+    </update>
+    
+    <!-- 사용자 클래스목록 업데이트 -->
+    <update id="Student_Change_Class" parameterType="hashMap">
+    	<![CDATA[UPDATE student_information SET student_classcode=#{student_classcode} WHERE student_id=#{student_id}]]>;
+    	<![CDATA[UPDATE student_information SET student_school=#{student_school} WHERE student_id=#{student_id}]]>;
+    	<![CDATA[INSERT class_join_list VALUES(#{class_code}, #{student_id})]]>
+    </update>
+    
+    <!-- FCM 토큰 업데이트 -->
+    <update id="Update_Student_Token" parameterType="hashMap">
+    	<![CDATA[UPDATE student_information SET student_token=#{student_token} WHERE student_id=#{student_id}]]>
+    </update>
+    
+    <!-- 전체 공지사항 가져오기 -->
+    <select id="Get_Push_List" resultType="kr.co.onpe.vo.Push_List_VO">
+    	SELECT * FROM push_list ORDER BY push_create_date DESC;
+    </select>
+    
+    <!-- 개별 공지사항 가져오기 -->
+    <select id="Get_Notice_List" resultType="kr.co.onpe.vo.Notice_List_VO" parameterType="String">
+    	<![CDATA[SELECT * FROM notice_list WHERE notice_class_code=#{class_code} ORDER BY notice_date DESC]]>
+    </select>
+    
+    <!-- 메시지함 가져오기 -->
+    <select id="Get_Common_Message" resultType="kr.co.onpe.vo.Common_Message_VO" parameterType="String">
+    	<![CDATA[SELECT * FROM common_message WHERE target_id=#{student_id} ORDER BY message_date DESC]]>
+    </select>
+    
+    <!-- 새소식 상태변경 -->
+    <update id="Update_Student_News_State" parameterType="String">
+    	<![CDATA[UPDATE student_information SET news_state='0' WHERE student_id=#{student_id}]]>
+    </update>
+    
+</mapper>

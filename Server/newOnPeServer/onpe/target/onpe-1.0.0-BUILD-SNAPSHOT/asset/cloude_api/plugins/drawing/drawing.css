@@ -1,0 +1,148 @@
+
+@font-face {
+    font-family	: 'Fira Sans';
+		font-weight	: bold;
+		font-style	: italic;
+    src: url(FiraSans-BoldItalic.woff);
+}
+
+div#ebookdrawing {
+	z-index		: 2147483647; /* top most */	
+	position	: absolute;
+	width			: 100%;
+	height		: 100%;
+	left			: 0px;
+	top				: 0px;
+}
+
+div#ebookdrawing #ebookdrawingTools {
+	width					: 230px;
+	height				: 160px;
+	position			: absolute;
+	left					: 0px;
+	top						: 0px;
+	padding				: 20px;
+	border				: 2px solid black;
+	/* background		: #333; */
+	border-radius	: 10px;
+	border-color	: #DEF #789 #034 #EFF;
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#959595+0,0d0d0d+6,4e4e4e+23,4e4e4e+23,6b6b6b+24,4e4e4e+29,1b1b1b+100 */
+background: rgb(149,149,149); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(149,149,149,1) 0%, rgba(13,13,13,1) 6%, rgba(78,78,78,1) 23%, rgba(78,78,78,1) 23%, rgba(107,107,107,1) 24%, rgba(78,78,78,1) 29%, rgba(27,27,27,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 6%,rgba(78,78,78,1) 23%,rgba(78,78,78,1) 23%,rgba(107,107,107,1) 24%,rgba(78,78,78,1) 29%,rgba(27,27,27,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 6%,rgba(78,78,78,1) 23%,rgba(78,78,78,1) 23%,rgba(107,107,107,1) 24%,rgba(78,78,78,1) 29%,rgba(27,27,27,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#1b1b1b',GradientType=0 ); /* IE6-9 */
+
+}
+
+div#ebookdrawing div.drawingToolSub {
+	position : absolute;
+	margin:auto;
+}
+
+div#ebookdrawing div#drawingcolors {
+	width	: 160px;
+	left	: 0px;
+	top		: 0px;
+	color	: #EEE;
+	border-right : 2px dashed #777;
+	padding : 10px 0px 10px 5px;
+}
+
+div#ebookdrawing div#drawingsizes {
+	width	: 65px;
+	right	: 0px;
+	top		: 0px;
+	color	: #EEE;
+	padding : 10px 5px 10px 5px;
+}
+
+div#ebookdrawing div#drawingmenubar {
+	width			: 100%;
+	bottom		: 0px;
+	left			: 0px;
+	/* background: #CDE; */
+	text-align: right;
+	border-radius : 2px 2px 10px 10px;
+	
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f6f8f9+0,e5ebee+50,d7dee3+51,f5f7f9+100;White+Gloss */
+	background: rgb(246,248,249); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(246,248,249,1) 0%, rgba(229,235,238,1) 50%, rgba(215,222,227,1) 51%, rgba(245,247,249,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=0 ); /* IE6-9 */
+
+}
+
+div#ebookdrawing span.category {
+	font-family	: 'Fira Sans';
+	font-weight	: bold;
+	font-style	: italic;
+	padding-left: 0.5em;
+	display			: block;
+	margin			: 0.25em auto;
+	cursor			: default;
+}
+
+div#ebookdrawing div#drawingcolors a.drawingColors {
+	width		: 28px;
+	height	: 28px;
+	display : inline-block;
+	margin	: 4px 0px 0px 6px;
+	opacity	: 0.5;
+	border	: 2px solid #CCC;
+	border-radius		: 10px;
+	text-align			: center;
+	text-decoration : none;
+}
+
+div#ebookdrawing div#drawingcolors a.drawingColors span{
+	margin-top	: 0.5em;
+	opacity			: 0.5;
+	color				: #333;
+	font-size		: 0.75em;
+	cursor			: default;
+}
+
+div#ebookdrawing div#drawingsizes a.drawingSizes {
+	width			: 60px;
+	display		: block;
+	margin		: 6px auto;
+	background: #000;
+	opacity		: 0.3;
+	outline		: 1px dotted white;
+	text-align			: center;
+	text-decoration : none;
+}
+
+div#ebookdrawing div#drawingsizes a.drawingSizes span{
+	opacity		: 0.5;
+	color			: #333;
+	margin		: auto;
+	position	: absolute;
+	left			: 0px;
+	right			: 0px;
+	cursor			: default;
+}
+
+div#ebookdrawing div#drawingmenubar img.drawingBtns{
+	cursor : pointer;
+	margin : 0px 0.4em;
+	cursor : pointer;
+	height : 1em;
+}
+
+div#ebookdrawing div#drawingmenubar img.drawingBtns.undo,
+div#ebookdrawing div#drawingmenubar img.drawingBtns.redo {
+	opacity : 0.25;
+}
+
+div#ebookdrawing div#drawingmenubar img.drawingBtns.download {
+	display:none; /* 다운받기 감춤 */
+}
+
+div#ebookdrawing div#drawingmenubar img.drawingBtns.close {
+	z-index		: 2147483647; /* top most */	
+	margin-left : 4em;
+}

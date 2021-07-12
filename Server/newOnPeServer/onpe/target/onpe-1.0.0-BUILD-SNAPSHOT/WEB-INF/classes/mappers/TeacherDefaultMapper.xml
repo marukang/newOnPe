@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 선생 index 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.TeacherDefaultMapper">
+
+	<!-- 공지사항 목록 개수 가져오기 -->
+    <select id="Get_Admin_Notice_Count" resultType="String" parameterType="hashMap">
+       	<if test='keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE (admin_notice_target="0" or admin_notice_target="2") and admin_notice_title LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	<if test='keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE (admin_notice_target="0" or admin_notice_target="2")]]>
+    	</if>
+    </select>
+    
+    <!-- 공지사항 목록 가져오기 -->
+    <select id="Get_Admin_Notice_List" resultType="kr.co.onpe.vo.Admin_Notice_VO" parameterType="hashMap">
+       	<if test='keyword != null'>
+    		<![CDATA[SELECT * FROM admin_notice WHERE (admin_notice_target="0" or admin_notice_target="2") and admin_notice_title LIKE concat('%', #{keyword}, '%') ORDER BY admin_notice_date DESC LIMIT #{page}, 5]]>
+    	</if>
+    	<if test='keyword == null'>
+    		<![CDATA[SELECT * FROM admin_notice WHERE (admin_notice_target="0" or admin_notice_target="2") ORDER BY admin_notice_date DESC LIMIT #{page}, 5]]>
+    	</if>
+    </select>
+    
+    <!-- 팝업 목록 가져오기 -->
+    <select id="Get_Popup_List" resultType="kr.co.onpe.vo.Popup_List_VO" parameterType="hashMap">
+       	<![CDATA[SELECT * FROM popup_list WHERE popup_start_date <= #{today} AND popup_end_date >= #{today} ORDER BY popup_create_date DESC]]>
+    </select>
+    
+    <!-- 메세지 목록 개수 가져오기 -->
+    <select id="Get_Student_Message_Count" resultType="String" parameterType="hashMap">
+    	<if test='keyword != null'>
+    		SELECT COUNT(*) FROM student_message WHERE message_class_code IN 
+    		<foreach collection="message_class_code" item="message_class_code" open="(" close=")" separator=",">
+    		#{message_class_code}
+    		</foreach>
+    		and (message_title LIKE concat('%', #{keyword}, '%') or message_name LIKE concat('%', #{keyword}, '%')) 
+    	</if>
+    	<if test='keyword == null'>
+    		SELECT COUNT(*) FROM student_message WHERE message_class_code IN 
+    		<foreach collection="message_class_code" item="message_class_code" open="(" close=")" separator=",">
+    		#{message_class_code}
+    		</foreach>
+    	</if>
+    </select>
+    
+    <!-- 메세지 목록 가져오기 -->
+    <select id="Get_Student_Message_List" resultType="kr.co.onpe.vo.Student_Message_VO" parameterType="hashMap">
+    	<if test='keyword != null'>
+    		SELECT * FROM student_message WHERE message_class_code IN 
+    		<foreach collection="message_class_code" item="message_class_code" open="(" close=")" separator=",">
+    		#{message_class_code}
+    		</foreach>
+    		and (message_title LIKE concat('%', #{keyword}, '%') or message_name LIKE concat('%', #{keyword}, '%')) ORDER BY message_date DESC LIMIT #{page}, 5;
+    	</if>
+    	<if test='keyword == null'>
+    		SELECT * FROM student_message WHERE message_class_code IN 
+    		<foreach collection="message_class_code" item="message_class_code" open="(" close=")" separator=",">
+    		#{message_class_code}
+    		</foreach>
+    		ORDER BY message_date DESC LIMIT #{page}, 5;
+    	</if>
+    </select>
+    
+    <!-- 답변안한 메세지 여부 확인 -->
+    <select id="Get_Student_Message_List_None_Reply" resultType="kr.co.onpe.vo.Student_Message_VO" parameterType="hashMap">
+    	SELECT * FROM student_message WHERE message_comment_state="0" AND message_class_code IN 
+    		<foreach collection="message_class_code" item="message_class_code" open="(" close=")" separator=",">
+    		#{message_class_code}
+    		</foreach>
+    		ORDER BY message_date DESC LIMIT 0, 1;
+    </select>
+    
+    <!-- 메세지 삭제하기 -->
+    <delete id="Delete_Student_Message" parameterType="hashMap">
+    	DELETE FROM student_message WHERE message_number IN
+    	<foreach collection="message_number" item="message_number" open="(" close=")" separator=",">
+    		#{message_number}
+   		</foreach>
+    </delete>
+    
+    <!-- 메세지 답신하기 -->
+    <update id="Update_Student_Message" parameterType="hashMap">
+    	<![CDATA[UPDATE student_message SET message_comment_state='1', message_comment=#{message_comment}, message_teacher_name=#{message_teacher_name}, message_teacher_id=#{message_teacher_id}, message_comment_date=#{message_comment_date} WHERE message_number=#{message_number}]]>
+    </update>
+    
+    <!-- 메인 오늘의수업 개수 받아오기 -->
+    <select id="Get_Today_Curriculum_Unit_List_Class_Count" resultType="String" parameterType="hashMap">
+    	SELECT COUNT(*) FROM curriculum_unit_list_class WHERE class_code IN 
+    		<foreach collection="class_code" item="class_code" open="(" close=")" separator=",">
+    		#{class_code} 
+    		</foreach>
+    		AND unit_start_date IS NOT NULL AND unit_end_date IS NOT NULL AND <![CDATA[unit_start_date<=#{today} AND #{today} < unit_end_date]]>
+    </select>
+    
+    <!-- 메인 오늘의수업 받아오기 -->
+    <select id="Get_Today_Curriculum_Unit_List_Class" resultType="kr.co.onpe.vo.Curriculum_Unit_List_Class_VO" parameterType="hashMap">
+    	SELECT * FROM curriculum_unit_list_class WHERE class_code IN 
+    		<foreach collection="class_code" item="class_code" open="(" close=")" separator=",">
+    		#{class_code} 
+    		</foreach>
+    		AND unit_start_date IS NOT NULL AND unit_end_date IS NOT NULL AND <![CDATA[unit_start_date<=#{today} AND #{today} < unit_end_date LIMIT #{page}, 4]]>
+    </select>
+    
+    <!-- 학생정보 불러오기 -->
+    <select id="Get_Student_Information" parameterType="hashMap" resultMap="selectMapList">
+    	SELECT A.student_id, A.student_name FROM student_information A JOIN class_join_list B WHERE A.student_id=B.student_id AND A.student_level=#{student_level} AND A.student_class=#{student_class} 
+    	AND B.class_code IN 
+		<foreach collection="class_code" item="class_code" open="(" close=")" separator=",">
+   		#{class_code} 
+   		</foreach>
+    </select>
+    <resultMap type="map" id="selectMapList">
+    	<result column="student_id" property="student_id"/>
+    	<result column="student_name" property="student_name"/> 
+    </resultMap>
+    
+    <!-- 메세지 전송 -->
+    <insert id="Send_Common_Message" parameterType="hashMap">
+    	<![CDATA[INSERT INTO common_message(id, name, message_content, target_id, message_date, target_authority) VALUES(#{teacher_id}, #{teacher_name}, #{message_content}, #{target_id}, #{message_date}, "STUDENT")]]>
+    </insert>
+    
+    <!-- 학생 새소식 업데이트 -->
+    <update id="Update_Student_News_State" parameterType="hashMap">
+    	UPDATE student_information SET news_state="1" WHERE student_id = #{target_id};
+    </update>
+    
+</mapper>

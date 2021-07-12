@@ -1,0 +1,45 @@
+﻿/** 이북 데이터 자료 정의
+**/
+var eBookData = {
+{REPLACEAREA_USEGUIDEPOPUP},
+	password			: "{REPLACEAREA_PASSWORD}",
+	useDebug			: false,
+	pageExt				: 'jpg',
+	totalPageNum	: {REPLACEAREA_TOTALPAGENUM},
+	useLogo				: {REPLACEAREA_USELOGO},
+	logoUrl				: "{REPLACEAREA_LOGOURL}",
+	homeUrl				: "{REPLACEAREA_HOMEURL}",
+	useBooklist		: {REPLACEAREA_USEBOOKLIST},
+	
+	pageView : { /** 페이지 넘김 속성 */
+		type			: "{REPLACEAREA_PAGEVIEW_TYPE}",
+		side			: "{REPLACEAREA_PAGEVIEW_SIDE}",
+		duration	: {REPLACEAREA_PAGEVIEW_DURATION},
+		cover			: {REPLACEAREA_PAGEVIEW_COVER},
+	},
+	
+{REPLACEAREA_PAGESHADOW},
+{REPLACEAREA_PAGEAREA},
+
+{REPLACEAREA_MOKCHA},
+{REPLACEAREA_BOOKMARK},
+{REPLACEAREA_AUTOSKIP},
+{REPLACEAREA_PRINT},
+{REPLACEAREA_SUMNAIL},
+{REPLACEAREA_TWITTER},
+{REPLACEAREA_FACEBOOK},
+{REPLACEAREA_RANDOM},
+
+
+	bookList : [ /** 이전호 목록 */
+{REPLACEAREA_BOOKLIST}	],
+	
+	tableList : [ /** 목차 */
+{REPLACEAREA_TABLELIST}	],
+	
+	pageContents : [ /** 페이지 컨텐츠 */
+{REPLACEAREA_CONTENTSLIST}	],
+	
+	textList : [ /** 본문 검색 */
+{REPLACEAREA_TEXTLIST}	],
+};

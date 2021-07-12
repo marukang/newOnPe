@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 사용자 클래스, 컨텐츠리스트 테이블 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.StudentClassMapper">
+    
+   	<!-- 존재하는 클래스인지 확인하는 쿼리 -->
+    <select id="Get_Class_Code" resultType="String" parameterType="String">
+    	<![CDATA[SELECT class_code FROM class_list WHERE class_code=#{class_code} and ( class_people_max_count > class_people_count )]]>
+    </select>
+    
+    <!-- 해당 클래스의 현재 참여인원 늘리기 -->
+    <update id="Update_Class_People_Count_Up" parameterType="String">
+    	UPDATE class_list SET class_people_count=(class_people_count + 1) WHERE class_code=#{class_code}
+    </update>
+    
+    <!-- 해당 클래스의 현재 참여인원 줄이기 -->
+    <update id="Update_Class_People_Count_Down" parameterType="String">
+    	UPDATE class_list SET class_people_count=(class_people_count - 1) WHERE class_code=#{class_code}
+    </update>
+    
+    <!-- 클래스 입장하기 == class_unit_list 컬럼 가져오기 -->
+    <select id="Get_Class_Unit_List" resultType="String" parameterType="String">
+    	SELECT class_unit_list FROM class_list WHERE class_code=#{class_code}
+    </select>
+    
+    <!-- 컨텐츠 목록 가져오기 -->
+    <select id="Get_Content_List" resultType="kr.co.onpe.vo.Content_List_VO" parameterType="String">
+    	SELECT * FROM content_list WHERE content_code=#{content_code}
+    </select>
+    
+</mapper>

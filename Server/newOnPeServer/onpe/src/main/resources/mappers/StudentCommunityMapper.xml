@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 사용자 메세지, qna, 커뮤니티 테이블 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.StudentCommunityMapper">
+    
+   	<!-- 아이디 + 클래스코드로 메세지 목록 키, 제목, 답글상태, 작성시간 불러오기 -->
+    <select id="Get_Student_Message_List" resultType="kr.co.onpe.vo.Student_Message_List_VO" parameterType="hashMap">
+        SELECT message_number, message_title, message_date, message_comment_state FROM student_message WHERE message_id=#{message_id} and message_class_code=#{message_class_code} ORDER BY message_date DESC
+    </select>
+    
+    <!-- 아이디 + 클래스코드 + 메세지 키로 메세지 불러오기 -->
+    <select id="Get_Student_Message" resultType="kr.co.onpe.vo.Student_Message_VO" parameterType="hashMap">
+        SELECT * FROM student_message WHERE message_id=#{message_id} and message_number=#{message_number}
+    </select>
+    
+    <!-- 메세지 보내기 -->
+    <insert id="Send_Student_Message" parameterType="hashMap">
+    	INSERT INTO student_message(message_class_code, message_title, message_text, message_date, message_id, message_name, message_comment_state) VALUE(#{message_class_code}, #{message_title}, #{message_text}, #{message_date}, #{message_id}, #{message_name}, "0")
+    </insert>
+    
+    <!-- 메세지 수정 -->
+    <update id="Update_Student_Message" parameterType="hashMap">
+    	UPDATE student_message SET message_title=#{message_title}, message_text=#{message_text} WHERE message_id=#{message_id} and message_number=#{message_number}
+    </update>
+    
+    <!-- 메세지 삭제 -->
+    <delete id="Delete_Student_Message" parameterType="hashMap">
+    	DELETE FROM student_message WHERE message_id=#{message_id} and message_number=#{message_number}
+    </delete>
+    
+    <!-- FAQ 목록 가져오기 -->
+    <select id="Get_FAQ" resultType="kr.co.onpe.vo.FAQ_VO">
+    	SELECT * FROM admin_faq ORDER BY faq_date DESC
+    </select>
+    
+    <!-- 콘텐츠관 목록 가져오기 -->
+    <select id="Get_Content_List_Admin" resultType="kr.co.onpe.vo.Content_List_Admin_VO">
+    	SELECT * FROM content_list_admin ORDER BY content_date DESC
+    </select>
+    
+    
+    
+    
+    <!-- ####################################################################################################################################################### -->
+	
+    <!-- 소식 목록 가져오기 -->
+    <select id="Get_Notice_List" resultType="kr.co.onpe.vo.Notice_List_VO" parameterType="String">
+    	SELECT * FROM notice_list WHERE notice_class_code=#{notice_class_code} ORDER BY notice_date DESC
+    </select>
+    
+    <!-- 학급 커뮤니티 리스트 가져오기 -->
+    <select id="Get_Class_Community_List" resultType="kr.co.onpe.vo.Class_Community_List_VO" parameterType="String">
+    	SELECT * FROM class_community WHERE community_class_code=#{community_class_code} ORDER BY community_date DESC
+    </select>
+    
+    <!-- 학급 커뮤니티 하나 가져오기 -->
+    <select id="Get_Class_Community" resultType="kr.co.onpe.vo.Class_Community_VO" parameterType="hashMap">
+    	SELECT * FROM class_community WHERE community_number = #{community_number}
+    </select>
+    
+    <!-- 학급 커뮤니티 내꺼 하나 가져오기 -->
+    <select id="Get_My_Class_Community" resultType="kr.co.onpe.vo.Class_Community_VO" parameterType="hashMap">
+    	SELECT * FROM class_community WHERE community_number = #{community_number} and community_id = #{community_id}
+    </select>
+    
+    <!-- 학급 커뮤니티 작성 -->
+    <insert id="Create_Class_Community" parameterType="hashMap">
+    	INSERT INTO class_community(community_class_code, community_id, community_name, community_title, community_text, community_date, community_file1, community_file2, community_count) VALUES(#{community_class_code}, #{community_id}, #{community_name}, #{community_title}, #{community_text}, #{community_date}, #{community_file1}, #{community_file2}, 0)
+    </insert>
+    
+    <!-- 학급 커뮤니티 삭제(id + community_number) -->
+    <insert id="Delete_Class_Community" parameterType="hashMap">
+    	DELETE FROM class_community WHERE community_number = #{community_number} and community_id = #{community_id}
+    </insert>
+    <!-- 학급 커뮤니티 파일 실제소유중인지 확인 -->
+    <select id="Class_Community_Is_Your_File" resultType="String" parameterType="hashMap">
+    	SELECT community_number FROM class_community WHERE community_number = #{community_number} and community_id = #{community_id} and ( community_file1 = #{community_file} or community_file2 = #{community_file} )
+    </select>
+    
+    <!-- 학급 커뮤니티 수정(id + community_number), 댓글수 증가 or 감소 -->
+    <update id="Update_Class_Community" parameterType="hashMap">
+    	<!-- 파일 아무것도 안바꿀 때 -->
+    	UPDATE class_community SET community_title=#{community_title}, community_text=#{community_text}, community_file1=#{community_file1}, community_file2=#{community_file2} WHERE community_number = #{community_number} and community_id = #{community_id}    	
+    </update>
+    
+    
+    <!-- 학급 커뮤니티 댓글 리스트 가져오기 -->
+    <select id="Get_Class_Community_Comment" resultType="kr.co.onpe.vo.Class_Community_Comment_VO" parameterType="String">
+    	SELECT * FROM class_community_comment WHERE comment_community_number=#{comment_community_number} ORDER BY comment_date ASC
+    </select>
+    
+    <!-- 학급 커뮤니티 댓글 작성 -->
+    <insert id="Create_Class_Community_Comment" parameterType="hashMap">
+    	INSERT INTO class_community_comment(comment_community_number, comment_id, comment_name, comment_content, comment_date) VALUES(#{comment_community_number}, #{comment_id}, #{comment_name}, #{comment_content}, #{comment_date})
+    </insert>
+    
+    <!-- 커뮤니티 댓글수 증가 -->
+    <update id="Update_Class_Community_Comment_Number_Up" parameterType="hashMap">
+    	UPDATE class_community SET community_count = community_count + 1 WHERE community_number = #{comment_community_number}
+    </update>
+    
+    <!-- 커뮤니티 댓글수 감소 -->
+    <update id="Update_Class_Community_Comment_Number_Down" parameterType="String">
+    	UPDATE class_community SET community_count = community_count - 1 WHERE community_number = #{comment_community_number}
+    </update>
+    
+    <!-- 학급 커뮤니티 댓글 삭제(id + comment_number) -->
+    <delete id="Delete_Class_Community_Comment" parameterType="hashMap">
+    	DELETE FROM class_community_comment WHERE comment_number = #{comment_number} and comment_id = #{comment_id}
+    </delete>
+    
+    <!-- 학급 커뮤니티 댓글 삭제(community_number) -->
+    <delete id="Delete_Class_Community_Comment_By_Community" parameterType="String">
+    	DELETE FROM class_community_comment WHERE comment_community_number = #{comment_community_number}
+    </delete>
+
+
+
+
+
+</mapper>

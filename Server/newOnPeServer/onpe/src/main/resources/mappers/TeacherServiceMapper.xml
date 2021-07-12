@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 선생클래스 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.TeacherServiceMapper">
+    
+    <!-- 하나의 공지사항 정보 가져오기 -->
+    <select id="Get_Admin_Notice_One" resultType="kr.co.onpe.vo.Admin_Notice_VO" parameterType="hashMap">
+    	SELECT * FROM admin_notice WHERE admin_notice_number=#{admin_notice_number}
+    </select>
+    
+    <!-- 공지사항 목록 개수 가져오기 -->
+    <select id="Get_Admin_Notice_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%') or admin_notice_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE admin_notice_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    	</if>
+    </select>
+    
+    <!-- 공지사항 목록 가져오기 -->
+    <select id="Get_Admin_Notice_List" resultType="kr.co.onpe.vo.Admin_Notice_VO" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT * FROM admin_notice ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT * FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%') or admin_notice_content LIKE concat('%', #{keyword}, '%') ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    			<![CDATA[SELECT * FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%') ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    			<![CDATA[SELECT * FROM admin_notice WHERE admin_notice_content LIKE concat('%', #{keyword}, '%') ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    	</if>
+    </select>
+    
+    <!-- 하나의 FAQ 정보 가져오기 -->
+    <select id="Get_Admin_FAQ_One" resultType="kr.co.onpe.vo.FAQ_VO" parameterType="String">
+    	SELECT * FROM admin_faq WHERE faq_number=#{faq_number}
+    </select>
+    
+    <!-- FAQ 목록 개수 가져오기 -->
+    <select id="Get_Admin_FAQ_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT COUNT(*) FROM admin_faq]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT COUNT(*) FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%') or faq_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_faq WHERE faq_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    	</if>
+    </select>
+    
+    <!-- FAQ 목록 가져오기 -->
+    <select id="Get_Admin_FAQ_List" resultType="kr.co.onpe.vo.FAQ_VO" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT * FROM admin_faq ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT * FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%') or faq_content LIKE concat('%', #{keyword}, '%') ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    		<![CDATA[SELECT * FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%') ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    		<![CDATA[SELECT * FROM admin_faq WHERE faq_content LIKE concat('%', #{keyword}, '%') ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    	</if>
+    </select>
+    
+    
+    
+    
+    <!-- 하나의 Q&A 정보 가져오기 -->
+    <select id="Get_Admin_Qna_One" resultType="kr.co.onpe.vo.Admin_Qna_VO" parameterType="hashMap">
+    	SELECT * FROM admin_qna WHERE question_number=#{question_number} AND question_id=#{teacher_id}
+    </select>
+    
+    <!-- Q&A 생성 -->
+    <insert id="Create_Admin_Qna" parameterType="hashMap">
+    	<![CDATA[INSERT INTO admin_qna(question_date,question_id,question_name,question_belong,question_phonenumber,question_title,question_type,question_content,question_image_content,question_state) VALUES(#{question_date}, #{question_id}, #{question_name}, #{question_belong}, #{question_phonenumber}, #{question_title}, #{question_type}, #{question_content}, #{question_image_content}, "0")]]>
+    </insert>
+    
+    <!-- Q&A 수정 -->
+    <insert id="Update_Admin_Qna" parameterType="hashMap">
+    	<![CDATA[UPDATE admin_qna SET question_image_content=#{question_image_content}, question_title=#{question_title}, question_content=#{question_content} WHERE question_number=#{question_number} AND question_id=#{teacher_id} AND question_state='0']]>
+    </insert>
+    
+    <!-- Q&A 삭제 -->
+    <insert id="Delete_Admin_Qna" parameterType="hashMap">
+    	<![CDATA[DELETE FROM admin_qna WHERE question_number=#{question_number} AND question_id=#{teacher_id}]]>
+    </insert>
+    
+    <!-- Q&A 목록 개수 가져오기 -->
+    <select id="Get_Admin_Qna_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="answer == null">
+    		<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_id=#{teacher_id}]]>
+    	</if>
+    	<if test="answer != null">
+    		<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_id=#{teacher_id} AND question_state=#{answer}]]>
+    	</if>
+    </select>
+    
+    <!-- Q&A 목록 가져오기 -->
+    <select id="Get_Admin_Qna_List" resultType="kr.co.onpe.vo.Admin_Qna_VO" parameterType="hashMap">
+    	<if test="answer == null">
+    		<![CDATA[SELECT * FROM admin_qna WHERE question_id=#{teacher_id} ORDER BY question_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	<if test="answer != null">
+    		<![CDATA[SELECT * FROM admin_qna WHERE question_id=#{teacher_id} AND question_state=#{answer} ORDER BY question_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    </select>
+    
+</mapper>

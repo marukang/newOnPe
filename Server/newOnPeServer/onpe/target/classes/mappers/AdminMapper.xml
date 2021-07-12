@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 관리자 관련 매퍼 -->  
+<mapper namespace="kr.co.mappers.AdminMapper">
+
+
+	<!-- #################################  회원관리(LMS & APP) 통합  ################################# -->
+
+	<!-- 가입된 선생수 가져오기 -->
+    <select id="Get_Teachers_Count" resultType="String" parameterType="hashMap">
+    
+       	<if test='keyword != null and option.equals("teacher_name")'>
+    		<![CDATA[SELECT COUNT(*) FROM teacher_information WHERE admin_auth != "ROLE_ADMIN" and teacher_state = "0" and teacher_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<if test='keyword != null and option.equals("teacher_id")'>
+    		<![CDATA[SELECT COUNT(*) FROM teacher_information WHERE admin_auth != "ROLE_ADMIN" and teacher_state = "0" and teacher_id LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<if test='keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM teacher_information WHERE admin_auth != "ROLE_ADMIN" and teacher_state = "0"]]>
+    	</if>
+    	
+    </select>
+    
+    <!-- 가입된 학생수 가져오기 -->
+    <select id="Get_Students_Count" resultType="String" parameterType="hashMap">
+        
+        <if test='keyword != null and option.equals("student_name")'>
+    		<![CDATA[SELECT COUNT(*) FROM student_information WHERE student_state = '0' and student_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<if test='keyword != null and option.equals("student_id")'>
+    		<![CDATA[SELECT COUNT(*) FROM student_information WHERE student_state = '0' and student_id LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<if test='keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM student_information WHERE student_state = '0']]>
+    	</if>
+    	
+    </select>
+    
+    <!-- 선생 목록 불러오기 -->
+    <select id="Get_Teachers_List" resultType="kr.co.onpe.vo.Teacher_Information_Management_VO" parameterType="hashMap">
+    
+    	<if test='keyword != null and option.equals("teacher_name")'>
+    		<![CDATA[SELECT * FROM teacher_information WHERE admin_auth != "ROLE_ADMIN" and teacher_state = "0" and teacher_name LIKE concat('%', #{keyword}, '%') ORDER BY teacher_join_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<if test='keyword != null and option.equals("teacher_id")'>
+    		<![CDATA[SELECT * FROM teacher_information WHERE admin_auth != "ROLE_ADMIN" and teacher_state = "0" and teacher_id LIKE concat('%', #{keyword}, '%') ORDER BY teacher_join_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<if test='keyword == null'>
+    		<![CDATA[SELECT * FROM teacher_information WHERE admin_auth != "ROLE_ADMIN" and teacher_state = "0" ORDER BY teacher_join_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    </select>
+    
+    <!-- 학생 목록 불러오기 -->
+    <select id="Get_Students_List" resultType="kr.co.onpe.vo.Student_Information_VO" parameterType="hashMap">
+    
+    	<if test='keyword != null and option.equals("student_name")'>
+    		<![CDATA[SELECT * FROM student_information WHERE student_state = "0" and student_name LIKE concat('%', #{keyword}, '%') ORDER BY student_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<if test='keyword != null and option.equals("student_id")'>
+    		<![CDATA[SELECT * FROM student_information WHERE student_state = "0" and student_id LIKE concat('%', #{keyword}, '%') ORDER BY student_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<if test='keyword == null'>
+    		<![CDATA[SELECT * FROM student_information WHERE student_state = "0" ORDER BY student_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    </select>
+    
+    
+    <!-- 선생 한명정보 불러오기 -->
+    <select id="Get_Teacher_Information" resultType="kr.co.onpe.vo.Teacher_Information_Management_VO" parameterType="String">
+    	<![CDATA[SELECT * FROM teacher_information WHERE teacher_id=#{teacher_id} and teacher_state="0"]]>
+    </select>
+    
+    <!-- 학생 한명정보 불러오기 -->
+    <select id="Get_Student_Information" resultType="kr.co.onpe.vo.Student_Information_VO" parameterType="String">
+    	<![CDATA[SELECT * FROM student_information WHERE student_id=#{student_id} and student_state="0"]]>
+    </select>
+    
+    <!-- 선생 탈퇴시킬 때 -->
+    <update id="Teacher_Delete_Information" parameterType="String">
+    	<![CDATA[UPDATE teacher_information SET teacher_state="1" WHERE teacher_id=#{teacher_id}]]>
+    </update>
+    
+    <!-- 학생 탈퇴시킬 때 -->
+    <update id="Student_Delete_Information" parameterType="String">
+    	<![CDATA[UPDATE student_information SET student_state="1" WHERE student_id=#{student_id}]]>
+    </update>
+    
+    <!-- 선생 정보변경전 이메일 검증 -->
+    <select id="Get_Teacher_Email_For_Modify" parameterType="String" resultType="String">
+    	<![CDATA[SELECT teacher_id FROM teacher_information WHERE teacher_email=#{teacher_email}]]>
+    </select>
+    
+    <!-- 학생 정보변경전 이메일 검증 -->
+    <select id="Get_Student_Email_For_Modify" parameterType="String" resultType="String">
+    	<![CDATA[SELECT student_id FROM student_information WHERE student_email=#{student_email}]]>
+    </select>
+    
+    <!-- 선생 정보변경전 폰번호 검증 -->
+    <select id="Get_Teacher_Phone_For_Modify" parameterType="String" resultType="String">
+    	<![CDATA[SELECT teacher_id FROM teacher_information WHERE teacher_phone=#{teacher_phone}]]>
+    </select>
+    
+    <!-- 선생 정보 변경 -->
+    <update id="Teacher_Modify_Information" parameterType="hashMap">
+    	
+    	<!-- 비번 바꿀 때 -->
+    	<if test='teacher_password != null'>
+    		<![CDATA[UPDATE teacher_information SET teacher_password=#{teacher_password}, teacher_name=#{teacher_name}, teacher_birth=#{teacher_birth}, teacher_sex=#{teacher_sex}, teacher_school=#{teacher_school}, teacher_email=#{teacher_email}, teacher_phone=#{teacher_phone}, teacher_email_agreement=#{teacher_email_agreement}, teacher_message_agreement=#{teacher_message_agreement} WHERE teacher_id=#{teacher_id}]]>
+    	</if>
+    	
+    	<!-- 비번 안바꿀 때 -->
+    	<if test='teacher_password == null'>
+    		<![CDATA[UPDATE teacher_information SET teacher_name=#{teacher_name}, teacher_birth=#{teacher_birth}, teacher_sex=#{teacher_sex}, teacher_school=#{teacher_school}, teacher_email=#{teacher_email}, teacher_phone=#{teacher_phone}, teacher_email_agreement=#{teacher_email_agreement}, teacher_message_agreement=#{teacher_message_agreement} WHERE teacher_id=#{teacher_id}]]>
+    	</if>
+    	
+    </update>
+    
+    <!-- 학생 정보 변경 -->
+    <update id="Student_Modify_Information" parameterType="hashMap">
+    	
+    	<!-- 비번 바꿀 때 -->
+    	<if test='student_password != null'>
+    		<![CDATA[UPDATE student_information SET student_password=#{student_password}, student_age=#{student_age}, student_email=#{student_email}, student_email_agreement=#{student_email_agreement}, student_name=#{student_name}, student_phone=#{student_phone}, student_push_agreement=#{student_push_agreement}, student_school=#{student_school}, student_sex=#{student_sex} WHERE student_id=#{student_id}]]>
+    	</if>
+    	
+    	<!-- 비번 안바꿀 때 -->
+    	<if test='student_password == null'>
+    		<![CDATA[UPDATE student_information SET student_age=#{student_age}, student_email=#{student_email}, student_email_agreement=#{student_email_agreement}, student_name=#{student_name}, student_phone=#{student_phone}, student_push_agreement=#{student_push_agreement}, student_school=#{student_school}, student_sex=#{student_sex} WHERE student_id=#{student_id}]]>
+    	</if>
+    	
+    </update>
+    
+    <!-- 학생 회원가입 -->
+    <insert id="Student_Insert_Information" parameterType="hashMap">
+    	<![CDATA[INSERT INTO student_information(student_id, student_name, student_password, student_email, student_phone, student_age, student_sex, student_school, student_email_agreement, student_push_agreement, student_message_agreement, student_state, news_state, new_messgae_state, student_create_date, student_recent_join_date) VALUES(#{student_id}, #{student_name}, #{student_password}, #{student_email}, #{student_phone}, #{student_age}, #{student_sex}, #{student_school}, #{student_email_agreement}, #{student_push_agreement}, "1", "0", "0", "0", #{student_create_date}, #{student_create_date})]]>
+    </insert>
+    
+    
+    
+    <!-- #################################  종목 관리  ################################# -->
+    
+   	<!-- 조회된 종목 개수 가져오기 -->
+    <select id="Get_Exercise_Count" resultType="String" parameterType="hashMap">
+    
+       	<!-- 종목명:전체, 대분류:전체, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:전체, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area == null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:전체, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_area LIKE concat('%', #{exercise_area}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:전체, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_category = #{exercise_category}]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area == null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_category = #{exercise_category} and exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name}]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area == null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_area LIKE concat('%', #{exercise_area}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category}]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area == null and keyword != null'>
+			<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category} and exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>    	
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%')]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    </select>
+	
+	<!-- 종목 리스트 조회 -->    
+    <select id="Get_Exercise_List" resultType="kr.co.onpe.vo.Exercise_Category_VO" parameterType="hashMap">
+    	
+    	<!-- 종목명:전체, 대분류:전체, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:전체, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area == null and keyword != null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:전체, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_area LIKE concat('%', #{exercise_area}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:전체, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category == null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_category = #{exercise_category} ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area == null and keyword != null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_category = #{exercise_category} and exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:전체, 대분류:단일, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name == null and exercise_category != null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area == null and keyword != null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_area LIKE concat('%', #{exercise_area}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:전체, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category == null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:전체, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area == null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category} ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:전체, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area == null and keyword != null'>
+			<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category} and exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>    	
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:단일, 동작명:미포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area != null and keyword == null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 종목명:단일, 대분류:단일, 운동영역:단일, 동작명:포함 -->
+    	<if test='exercise_name != null and exercise_category != null and exercise_area != null and keyword != null'>
+    		<![CDATA[SELECT * FROM exercise_category WHERE exercise_name=#{exercise_name} and exercise_category=#{exercise_category} and exercise_area LIKE concat('%', #{exercise_area}, '%') and exercise_detail_name LIKE concat('%', #{keyword}, '%') ORDER BY exercise_code DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    </select>
+    
+    
+    <!-- 종목 조회 -->    
+    <select id="Get_Exercise" resultType="kr.co.onpe.vo.Exercise_Category_VO" parameterType="hashMap">
+    	<![CDATA[SELECT * FROM exercise_category WHERE exercise_code=#{exercise_code}]]>
+   	</select>
+   	
+   	<!-- 종목 수정 -->
+   	<update id="Modify_Exercise" parameterType="hashMap">
+		<![CDATA[UPDATE exercise_category SET exercise_name=#{exercise_name}, exercise_category=#{exercise_category}, exercise_type=#{exercise_type}, exercise_area=#{exercise_area}, exercise_detail_name=#{exercise_detail_name}, exercise_count=#{exercise_count}, exercise_time=#{exercise_time}, exercise_url=#{exercise_url}, exercise_level=#{exercise_level} WHERE exercise_code=#{exercise_code}]]>   	
+   	</update>
+   	
+   	<!-- 종목 추가 -->
+   	<insert id="Create_Exercise" parameterType="hashMap">
+		<![CDATA[INSERT INTO exercise_category(exercise_name, exercise_category, exercise_type, exercise_area, exercise_detail_name, exercise_count, exercise_time, exercise_url, exercise_level) VALUES(#{exercise_name}, #{exercise_category}, #{exercise_type}, #{exercise_area}, #{exercise_detail_name}, #{exercise_count}, #{exercise_time}, #{exercise_url}, #{exercise_level})]]>   	
+   	</insert>
+   	
+   	
+   	
+   	
+   	<!-- #################################  팝업 관리  ################################# -->
+   	
+   	
+   	<!-- 조회된 팝업 개수 가져오기 -->
+    <select id="Get_Popup_Count" resultType="String" parameterType="hashMap">
+    
+  	    <!-- 사용여부:전체, 검색:미포함 -->
+    	<if test='popup_use == null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM popup_list]]>
+    	</if>
+    	
+    	<!-- 사용여부:전체, 검색:포함 -->
+    	<if test='popup_use == null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM popup_list WHERE popup_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    	<!-- 사용여부:사용or미사용, 검색:미포함 -->
+    	<if test='popup_use != null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM popup_list WHERE popup_use=#{popup_use}]]>
+    	</if>
+    	
+    	<!-- 사용여부:사용or미사용, 검색:포함 -->
+    	<if test='popup_use != null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM popup_list WHERE popup_use=#{popup_use} and popup_name LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    </select>
+    
+    <!-- 조회된 팝업 목록 가져오기 -->
+    <select id="Get_Popup_List" resultType="kr.co.onpe.vo.Popup_List_VO" parameterType="hashMap">
+    
+   	    <!-- 사용여부:전체, 검색:미포함 -->
+    	<if test='popup_use == null and keyword == null'>
+    		<![CDATA[SELECT * FROM popup_list ORDER BY popup_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 사용여부:전체, 검색:포함 -->
+    	<if test='popup_use == null and keyword != null'>
+    		<![CDATA[SELECT * FROM popup_list WHERE popup_name LIKE concat('%', #{keyword}, '%') ORDER BY popup_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 사용여부:사용or미사용, 검색:미포함 -->
+    	<if test='popup_use != null and keyword == null'>
+    		<![CDATA[SELECT * FROM popup_list WHERE popup_use=#{popup_use} ORDER BY popup_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<!-- 사용여부:사용or미사용, 검색:포함 -->
+    	<if test='popup_use != null and keyword != null'>
+    		<![CDATA[SELECT * FROM popup_list WHERE popup_use=#{popup_use} and popup_name LIKE concat('%', #{keyword}, '%') ORDER BY popup_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    </select>
+    
+    <!-- 팝업 조회 -->    
+    <select id="Get_Popup" resultType="kr.co.onpe.vo.Popup_List_VO" parameterType="hashMap">
+    	<![CDATA[SELECT * FROM popup_list WHERE popup_number=#{popup_number}]]>
+   	</select>
+   	
+   	<!-- 팝업 수정 -->
+   	<update id="Modify_Popup" parameterType="hashMap">
+   		<![CDATA[UPDATE popup_list SET popup_name=#{popup_name}, popup_content=#{popup_content}, popup_x_size=#{popup_x_size}, popup_y_size=#{popup_y_size}, popup_x_location=#{popup_x_location}, popup_y_location=#{popup_y_location}, popup_start_date=#{popup_start_date}, popup_end_date=#{popup_end_date}, popup_use=#{popup_use} WHERE popup_number=#{popup_number}]]>
+   	</update>
+   	
+   	<!-- 팝업 추가 -->
+   	<insert id="Create_Popup" parameterType="hashMap">
+   		<![CDATA[INSERT INTO popup_list(popup_name, popup_content, popup_x_size, popup_y_size, popup_x_location, popup_y_location, popup_start_date, popup_end_date, popup_create_date, popup_attachments, popup_use) VALUES(#{popup_name}, #{popup_content}, #{popup_x_size}, #{popup_y_size}, #{popup_x_location}, #{popup_y_location}, #{popup_start_date}, #{popup_end_date}, #{popup_create_date}, #{popup_attachments}, #{popup_use})]]>
+   	</insert>
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	<!-- 조회된 푸시 개수 가져오기 -->
+    <select id="Get_Push_Count" resultType="String" parameterType="hashMap">
+    
+  	    <!-- 검색:미포함 -->
+    	<if test='option == null and keyword == null'>
+    		<![CDATA[SELECT COUNT(*) FROM push_list]]>
+    	</if>
+    	
+    	<if test='option != null'>
+   	    	<!-- 검색:포함, 옵션:제목 -->
+	    	<if test='option.equals("push_title") and keyword != null'>
+	    		<![CDATA[SELECT COUNT(*) FROM push_list WHERE push_title LIKE concat('%', #{keyword}, '%')]]>
+	    	</if>
+	    	
+	    	<!-- 검색:포함, 옵션:내용 -->
+	    	<if test='option.equals("push_content") and keyword != null'>
+	    		<![CDATA[SELECT COUNT(*) FROM push_list WHERE push_content LIKE concat('%', #{keyword}, '%')]]>
+	    	</if>
+    	</if>
+    	
+    	<!-- 검색:포함, 옵션:전체 -->
+    	<if test='option == null and keyword != null'>
+    		<![CDATA[SELECT COUNT(*) FROM push_list WHERE push_title LIKE concat('%', #{keyword}, '%') or push_content LIKE concat('%', #{keyword}, '%')]]>
+    	</if>
+    	
+    </select>
+    
+    <!-- 조회된 푸시 목록 가져오기 -->
+    <select id="Get_Push_List" resultType="kr.co.onpe.vo.Push_List_VO" parameterType="hashMap">
+    
+    	<!-- 검색:미포함 -->
+    	<if test='option == null and keyword == null'>
+    		<![CDATA[SELECT * FROM push_list ORDER BY push_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    	<if test='option != null'>
+    		<!-- 검색:포함, 옵션:제목 -->
+	    	<if test='option.equals("push_title") and keyword != null'>
+	    		<![CDATA[SELECT * FROM push_list WHERE push_title LIKE concat('%', #{keyword}, '%') ORDER BY push_create_date DESC LIMIT #{page}, 15]]>
+	    	</if>
+	    	
+	    	<!-- 검색:포함, 옵션:내용 -->
+	    	<if test='option.equals("push_content") and keyword != null'>
+	    		<![CDATA[SELECT * FROM push_list WHERE push_content LIKE concat('%', #{keyword}, '%') ORDER BY push_create_date DESC LIMIT #{page}, 15]]>
+	    	</if>
+    	</if>
+    	
+    	<!-- 검색:포함, 옵션:전체 -->
+    	<if test='option == null and keyword != null'>
+    		<![CDATA[SELECT * FROM push_list WHERE push_title LIKE concat('%', #{keyword}, '%') or push_content LIKE concat('%', #{keyword}, '%') ORDER BY push_create_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	
+    </select>
+   	
+   	<!-- 푸시 하나 조회 -->
+    <select id="Get_Push" resultType="kr.co.onpe.vo.Push_List_VO" parameterType="String">
+    	<![CDATA[SELECT * FROM push_list WHERE push_number=#{push_number}]]>
+   	</select>
+   	
+   	<!-- 푸시 수정 -->
+   	<update id="Modify_Push" parameterType="hashMap">
+   		<![CDATA[UPDATE push_list SET push_title=#{push_title}, push_content=#{push_content}, push_reservation_time=#{push_reservation_time} WHERE push_number=#{push_number}]]>
+   	</update>
+   	
+   	<!-- 푸시 추가 -->
+   	<insert id="Create_Push" parameterType="hashMap">
+   		<![CDATA[INSERT INTO push_list(push_title, push_content, push_reservation_time, push_create_date, push_state) VALUES(#{push_title}, #{push_content}, #{push_reservation_time}, #{push_create_date}, #{push_state})]]>
+   	</insert>
+   	
+   	<!-- 푸시 삭제 -->
+   	<delete id="Delete_Push" parameterType="String">
+   		<![CDATA[DELETE FROM push_list WHERE push_number = #{push_number}]]>
+   	</delete>
+   	
+   	<!-- 모든 학생 토큰 GET -->
+   	<select id="Get_Student_Token" resultType="String">
+   		SELECT student_token FROM student_information WHERE student_token IS NOT NULL;
+   	</select>
+   	
+   	<!-- 모든 학생 새소식 UPDATE -->
+   	<update id="Update_Student_News_State">
+   		UPDATE student_information SET news_state="1";
+   	</update>
+   	
+   	<!-- 하나의 공지사항 정보 가져오기 -->
+    <select id="Get_Admin_Notice_One" resultType="kr.co.onpe.vo.Admin_Notice_VO" parameterType="String">
+    	SELECT * FROM admin_notice WHERE admin_notice_number=#{admin_notice_number}
+    </select>
+    
+    <!-- 공지사항 등록하기 -->
+    <insert id="Create_Admin_Notice" parameterType="hashMap">
+    	<![CDATA[INSERT INTO admin_notice(admin_notice_target, admin_notice_title, admin_notice_content, admin_notice_date) VALUES("0", #{admin_notice_title}, #{admin_notice_content}, #{admin_notice_date})]]>
+    </insert>
+    
+    <!-- 공지사항 수정하기 -->
+    <insert id="Update_Admin_Notice" parameterType="hashMap">
+    	<![CDATA[UPDATE admin_notice SET admin_notice_title=#{admin_notice_title}, admin_notice_content=#{admin_notice_content} WHERE admin_notice_number=#{admin_notice_number}]]>
+    </insert>
+    
+    <!-- 공지사항 목록 개수 가져오기 -->
+    <select id="Get_Admin_Notice_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%') or admin_notice_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_notice WHERE admin_notice_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    	</if>
+    </select>
+    
+    <!-- 공지사항 목록 가져오기 -->
+    <select id="Get_Admin_Notice_List" resultType="kr.co.onpe.vo.Admin_Notice_VO" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT * FROM admin_notice ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT * FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%') or admin_notice_content LIKE concat('%', #{keyword}, '%') ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    			<![CDATA[SELECT * FROM admin_notice WHERE admin_notice_title LIKE concat('%', #{keyword}, '%') ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    			<![CDATA[SELECT * FROM admin_notice WHERE admin_notice_content LIKE concat('%', #{keyword}, '%') ORDER BY admin_notice_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    	</if>
+    </select>
+    
+    
+    
+    
+    <!-- 하나의 FAQ 정보 가져오기 -->
+    <select id="Get_Admin_FAQ_One" resultType="kr.co.onpe.vo.FAQ_VO" parameterType="String">
+    	SELECT * FROM admin_faq WHERE faq_number=#{faq_number}
+    </select>
+    
+    <!-- FAQ 등록하기 -->
+    <insert id="Create_Admin_FAQ" parameterType="hashMap">
+    	<![CDATA[INSERT INTO admin_faq(faq_target, faq_title, faq_content, faq_date, faq_type) VALUES("0", #{faq_title}, #{faq_content}, #{faq_date}, #{faq_type})]]>
+    </insert>
+    
+    <!-- FAQ 수정하기 -->
+    <insert id="Update_Admin_FAQ" parameterType="hashMap">
+    	<![CDATA[UPDATE admin_faq SET faq_title=#{faq_title}, faq_type=#{faq_type}, faq_content=#{faq_content} WHERE faq_number=#{faq_number}]]>
+    </insert>
+    
+    <!-- FAQ 목록 개수 가져오기 -->
+    <select id="Get_Admin_FAQ_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT COUNT(*) FROM admin_faq]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT COUNT(*) FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%') or faq_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    		<![CDATA[SELECT COUNT(*) FROM admin_faq WHERE faq_content LIKE concat('%', #{keyword}, '%')]]>
+    		</if>
+    	</if>
+    </select>
+    
+    <!-- FAQ 목록 가져오기 -->
+    <select id="Get_Admin_FAQ_List" resultType="kr.co.onpe.vo.FAQ_VO" parameterType="hashMap">
+    	<if test="keyword == null">
+    		<![CDATA[SELECT * FROM admin_faq ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    	</if>
+    	<if test="keyword != null">
+    		<if test="option.equals('전체')">
+    			<![CDATA[SELECT * FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%') or faq_content LIKE concat('%', #{keyword}, '%') ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('제목')">
+    		<![CDATA[SELECT * FROM admin_faq WHERE faq_title LIKE concat('%', #{keyword}, '%') ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    		<if test="option.equals('내용')">
+    		<![CDATA[SELECT * FROM admin_faq WHERE faq_content LIKE concat('%', #{keyword}, '%') ORDER BY faq_date DESC LIMIT #{page}, 15]]>
+    		</if>
+    	</if>
+    </select>
+    
+    
+    
+    
+    
+    
+    <!-- 하나의 Q&A 정보 가져오기 -->
+    <select id="Get_Admin_Qna_One" resultType="kr.co.onpe.vo.Admin_Qna_VO" parameterType="String">
+    	SELECT * FROM admin_qna WHERE question_number=#{question_number}
+    </select>
+    
+    <!-- Q&A 답변하기, 답변 수정하기 -->
+    <insert id="Answer_Admin_Qna" parameterType="hashMap">
+    	<![CDATA[UPDATE admin_qna SET question_state="1", question_comment=#{question_comment}, question_comment_date=#{question_comment_date} WHERE question_number=#{question_number}]]>
+    </insert>
+    
+    <!-- Q&A 목록 개수 가져오기 -->
+    <select id="Get_Admin_Qna_List_Count" resultType="String" parameterType="hashMap">
+    	<if test="answer == null">
+    		<if test="keyword == null">
+	    		<![CDATA[SELECT COUNT(*) FROM admin_qna]]>
+	    	</if>
+	    	<if test="keyword != null">
+	    		<if test="option.equals('전체')">
+	    			<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_id LIKE concat('%', #{keyword}, '%') or question_name LIKE concat('%', #{keyword}, '%')]]>
+	    		</if>
+	    		<if test="option.equals('아이디')">
+	    			<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_id LIKE concat('%', #{keyword}, '%')]]>
+	    		</if>
+	    		<if test="option.equals('이름')">
+	    			<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_name LIKE concat('%', #{keyword}, '%')]]>
+	    		</if>
+	    	</if>
+    	</if>
+    	<if test="answer != null">
+    		<if test="keyword == null">
+	    		<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_state=#{answer}]]>
+	    	</if>
+	    	<if test="keyword != null">
+	    		<if test="option.equals('전체')">
+	    			<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_state=#{answer} and (question_id LIKE concat('%', #{keyword}, '%') or question_name LIKE concat('%', #{keyword}, '%'))]]>
+	    		</if>
+	    		<if test="option.equals('아이디')">
+	    			<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_state=#{answer} and question_id LIKE concat('%', #{keyword}, '%')]]>
+	    		</if>
+	    		<if test="option.equals('이름')">
+	    			<![CDATA[SELECT COUNT(*) FROM admin_qna WHERE question_state=#{answer} and question_name LIKE concat('%', #{keyword}, '%')]]>
+	    		</if>
+	    	</if>
+    	</if>
+    </select>
+    
+    <!-- Q&A 목록 가져오기 -->
+    <select id="Get_Admin_Qna_List" resultType="kr.co.onpe.vo.Admin_Qna_VO" parameterType="hashMap">
+    	<if test="answer == null">
+	    	<if test="keyword == null">
+	    		<![CDATA[SELECT * FROM admin_qna ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    	</if>
+    		<if test="keyword != null">
+	    		<if test="option.equals('전체')">
+	    			<![CDATA[SELECT * FROM admin_qna WHERE question_id LIKE concat('%', #{keyword}, '%') or question_name LIKE concat('%', #{keyword}, '%') ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    		</if>
+	    		<if test="option.equals('아이디')">
+	    			<![CDATA[SELECT * FROM admin_qna WHERE question_id LIKE concat('%', #{keyword}, '%') ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    		</if>
+	    		<if test="option.equals('이름')">
+	    			<![CDATA[SELECT * FROM admin_qna WHERE question_name LIKE concat('%', #{keyword}, '%') ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    		</if>
+	    	</if>
+    	</if>
+    	<if test="answer != null">
+    		<if test="keyword == null">
+	    		<![CDATA[SELECT * FROM admin_qna WHERE question_state=#{answer} ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    	</if>
+    		<if test="keyword != null">
+	    		<if test="option.equals('전체')">
+	    			<![CDATA[SELECT * FROM admin_qna WHERE question_state=#{answer} and (question_id LIKE concat('%', #{keyword}, '%') or question_name LIKE concat('%', #{keyword}, '%')) ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    		</if>
+	    		<if test="option.equals('아이디')">
+	    			<![CDATA[SELECT * FROM admin_qna WHERE question_state=#{answer} and question_id LIKE concat('%', #{keyword}, '%') ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    		</if>
+	    		<if test="option.equals('이름')">
+	    			<![CDATA[SELECT * FROM admin_qna WHERE question_state=#{answer} and question_name LIKE concat('%', #{keyword}, '%') ORDER BY question_date DESC LIMIT #{page}, 15]]>
+	    		</if>
+	    	</if>
+    	</if>
+    </select>
+</mapper>
