@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="896"
+        android:background="@color/white"
+        tools:context=".home.class_result.class_result_Activity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:background="@drawable/view_bottom_line"
+    >
+        <ImageView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                app:srcCompat="@drawable/back_button_image"
+                android:padding="18dp"
+        />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="60"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:text="저글링 성공하기 1차시"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#404040"
+                android:textStyle="normal"
+
+        />
+
+
+
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="- 차시별 수업 현황"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:textStyle="normal"
+            android:textSize="16dp"
+            android:textColor="@color/main_color"
+            android:layout_weight="52"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+    />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:background="#f9f9f9"
+    />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="236"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+    >
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="출석 : Y"
+          android:textColor="#595959"
+          android:textSize="16dp"
+          android:textStyle="normal"
+          android:fontFamily="@font/notosanscjkkr_medium"
+          android:includeFontPadding="false"
+          android:paddingBottom="5dp"
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="수업 (이론) : Y"
+                android:textColor="#595959"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:paddingBottom="5dp"
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="수업 (실습) : Y"
+                android:textColor="#595959"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:paddingBottom="5dp"
+        />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="과제 (제출형) : NA"
+                android:textColor="#595959"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:paddingBottom="5dp"
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="과제 (실습형) : N"
+                android:textColor="#595959"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:paddingBottom="5dp"
+        />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="평가 (제출형) : 상"
+                android:textColor="#595959"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:paddingBottom="5dp"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="평가 (실습형) : 상"
+            android:textColor="#595959"
+            android:textSize="16dp"
+            android:textStyle="normal"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:paddingBottom="5dp"
+    />
+
+
+
+
+    </LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:background="#f9f9f9"
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="52"
+        android:weightSum="100"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="- 동작별 현황"
+            android:textColor="@color/main_color"
+            android:textSize="16dp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    </LinearLayout>
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:background="#f9f9f9"
+    />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="398"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+    >
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/class_result_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:weightSum="2"
+            android:orientation="horizontal"
+    >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="다시 하기"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:textStyle="normal"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="#9f9f9f"
+        />
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="완료하기"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:textStyle="normal"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@color/main_color"
+        />
+
+
+    </LinearLayout>
+
+</LinearLayout>

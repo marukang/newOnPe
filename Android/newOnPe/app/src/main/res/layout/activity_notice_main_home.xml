@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/notice_main_home_drawerview"
+    tools:context=".notice_class.notice_main_home_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="896"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:background="@drawable/view_bottom_line"
+            >
+            <ImageView
+                android:id="@+id/notice_main_home_back_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                app:srcCompat="@drawable/back_button_image"
+                android:padding="18dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="60"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:text="새 소식"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#404040"
+                android:textStyle="normal"
+
+                />
+            <ImageView
+                android:id="@+id/notice_main_home_side_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                app:srcCompat="@drawable/menu_button"
+                android:padding="20dp"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="60"
+            android:orientation="vertical"
+            >
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/notice_tab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/main_color"
+                app:tabIndicatorColor="@color/main_color"
+                app:tabIndicatorHeight="3dp"
+                app:tabPaddingStart="20dp"
+                app:tabPaddingEnd="20dp"
+                app:tabPaddingBottom="5dp"
+                app:tabPaddingTop="5dp"
+                app:tabGravity="fill"
+                android:background="#FFFFFF"
+                app:tabRippleColor="@null"
+
+                >
+
+            </com.google.android.material.tabs.TabLayout>
+        </LinearLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/notice_container"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="766"
+            >
+        </androidx.viewpager.widget.ViewPager>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/notice_main_home_child_drawerview"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/view_side_round_edge"
+        android:orientation="vertical"
+        android:weightSum="896"
+        android:layout_gravity="right"
+
+        >
+
+        <include layout="@layout/activity_side_menu"
+            android:id="@+id/side_menu_layout"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+
+            />
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

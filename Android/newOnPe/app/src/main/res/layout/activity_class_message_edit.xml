@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".home.class_community_board.class_community_write_Activity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="896"
+        android:orientation="vertical"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:background="@drawable/view_bottom_line"
+            >
+            <ImageView
+                android:id="@+id/class_message_edit_back_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                app:srcCompat="@drawable/back_button_image"
+                android:padding="18dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="60"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:text="문의 수정"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#404040"
+                android:textStyle="normal"
+
+                />
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/class_message_edit_input_title_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50"
+            android:hint="제목을 입력해주세요."
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textColor="#404040"
+            android:textSize="16dp"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:gravity="center_vertical"
+            android:background="#f9f9f9"
+            android:maxLength="20"
+            android:singleLine="false"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:paddingLeft="20dp"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="작성자 : "
+                android:textColor="#777777"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="13dp"
+                />
+            <TextView
+                android:id="@+id/class_community_edit_user_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홍길동"
+                android:textColor="#777777"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="13dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\u00b7"
+                android:textColor="#777777"
+                android:fontFamily="@font/notosans_kr_bold"
+                android:includeFontPadding="false"
+                android:textSize="16dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 작성일 : "
+                android:textColor="#777777"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="13dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                />
+            <TextView
+                android:id="@+id/class_message_edit_user_date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 2021-01-03 "
+                android:textColor="#777777"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="13dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:background="#f9f9f9"
+            />
+
+        <EditText
+            android:id="@+id/class_message_edit_input_content_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="405"
+            android:ellipsize="end"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:padding="20dp"
+            android:text=""
+            android:hint="본문 내용을 작성하세요."
+            android:gravity="top"
+            android:background="@null"
+            android:textColor="#404040"
+            android:textSize="16dp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:background="#f9f9f9"
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="49"
+            android:background="@color/white"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/class_message_edit_confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/main_color"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:gravity="center"
+        android:text="문의내용 수정하기"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "530982907543",
+    "project_id": "onpeproject",
+    "storage_bucket": "onpeproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530982907543:android:9c50896ed87db8cf94c3d2",
+        "android_client_info": {
+          "package_name": "com.funidea.newonpeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530982907543-d0vknf7v815gpgvmb3mb8rotb6ro2g77.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.funidea.newonpeproject",
+            "certificate_hash": "3e47da298a1d48e295683326159ca35e803671bf"
+          }
+        },
+        {
+          "client_id": "530982907543-pg5vigct2926ecf1h1j3cpsa3nid2h69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.funidea.newonpeproject",
+            "certificate_hash": "93fad4da1970d074bc4f85919b37cd2b54b4e042"
+          }
+        },
+        {
+          "client_id": "530982907543-el3i4envngmk1nmq1bl2pht48gs81vc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpLu5N0EyjGVHm98hKJhSUYYd7Yssqdj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530982907543-el3i4envngmk1nmq1bl2pht48gs81vc6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "530982907543-pm0o56pdvcqnkfp4prtugij2vd5f03qp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.funidea.onPhysicaleducation"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

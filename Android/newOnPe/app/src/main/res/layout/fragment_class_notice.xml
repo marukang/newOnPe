@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="896"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:background="#f9f9f9"
+        />
+
+    <LinearLayout
+        android:id="@+id/class_notice_class_code_button_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="62"
+        android:weightSum="100"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+
+        <TextView
+            android:id="@+id/class_notice_class_code_name_textview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="(서울)고성고 1학년 2학기 수업"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:layout_weight="90"
+            android:gravity="center_vertical"
+            android:textSize="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:includeFontPadding="false"
+            />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            app:srcCompat="@drawable/main_color_down_button"
+            android:padding="3dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:background="#f9f9f9"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/class_notice_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="822"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+        />
+</LinearLayout>

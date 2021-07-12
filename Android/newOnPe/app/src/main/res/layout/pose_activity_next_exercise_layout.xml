@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#E6000000"
+    >
+
+    <TextView
+        android:id="@+id/next_exercise_pose_name_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="70dp"
+        android:textColor="@color/red"
+        android:fontFamily="@font/notosans_kr_bold"
+        android:includeFontPadding="false"
+        android:text="스쿼트"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        >
+
+        <TextView
+            android:id="@+id/next_exercise_pose_reset_textview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="돌아가기\n(다시 반복)"
+            android:layout_weight="45"
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:gravity="center"
+            android:background="@drawable/view_main_color_in_white_round_edge"
+            android:textSize="25dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            />
+
+
+        <TextView
+            android:id="@+id/next_exercise_pose_pause_textview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="일시정지"
+            android:layout_weight="45"
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:gravity="center"
+            android:background="@drawable/view_main_color_in_white_round_edge"
+            android:textSize="25dp"
+            />
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/next_exercise_pose_count_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="80dp"
+        android:textColor="@color/red"
+        android:text="5"
+        android:fontFamily="@font/notosans_kr_bold"
+        android:includeFontPadding="false"
+        android:gravity="center"
+        />
+</LinearLayout>

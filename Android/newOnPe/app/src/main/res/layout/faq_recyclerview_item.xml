@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:id="@+id/faq_recyclerview_parent_linearlayout"
+>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+    >
+        <TextView
+                android:id="@+id/faq_recyclerview_number_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1."
+                android:layout_marginTop="5dp"
+                android:textColor="@color/main_color"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="12dp"
+
+        />
+
+        <TextView
+                android:id="@+id/faq_recyclerview_title_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="공지사항입니다."
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="#404040"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="14dp"
+        />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+        >
+
+            <TextView
+                    android:id="@+id/faq_recyclerview_category_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="회원정보 관련"
+                    android:textColor="#777777"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:textSize="12dp"
+            />
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="#f1f1f1"
+    />
+
+</LinearLayout>

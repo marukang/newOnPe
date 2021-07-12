@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@color/white"
+
+    >
+    <LinearLayout
+        android:id="@+id/class_detail_unit_list_parent_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/view_main_color_round_edge"
+        >
+        <LinearLayout
+            android:id="@+id/class_detail_unit_list_child_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:weightSum="377"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="1.5dp"
+            android:layout_marginRight="1.5dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/textview_main_color_bottom_line"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="24"
+                />
+
+            <TextView
+                android:id="@+id/class_detail_unit_list_sub_textview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="326"
+                android:text="[농구][공다루기][공다루기 실습]"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/main_color"
+                android:layout_marginBottom="2dp"
+
+                />
+
+
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="24"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:weightSum="377"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="25"
+                />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="310"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/class_detail_unit_list_title_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="[1차시] 공다루기 수업"
+                    android:textColor="@color/main_color"
+                    android:layout_gravity="center"
+                    android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/class_detail_unit_list_complete_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="[완료]"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#4CAF50"
+                    android:layout_gravity="center"
+                    android:textSize="23dp"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/class_detail_unit_list_right_arrow_imagview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/right_arrow_main_color"
+                android:layout_weight="33"
+                android:padding="4dp"
+                />
+
+
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

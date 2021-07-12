@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.funidea.newonpe.camearutils.CameraSourcePreview
+            android:id="@+id/preview_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.funidea.newonpe.camearutils.GraphicOverlay
+            android:id="@+id/graphic_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/main_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/change_camera_linearlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/view_white_color_circle_edge"
+                android:checked="false"
+                android:gravity="right"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:weightSum="100">
+
+
+                <ToggleButton
+                    android:id="@+id/facing_switch"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/camera_change"
+                    android:checked="false"
+                    android:padding="20dp"
+                    android:textOff=""
+                    android:textOn="" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="전환"
+                    android:textColor="@color/main_color"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/pose_gif_framelayout"
+                android:layout_width="180dp"
+                android:layout_height="138dp"
+                android:layout_marginBottom="60dp"
+                android:background="@color/main_color">
+
+                <ImageView
+                    android:id="@+id/side_user_imageview"
+                    android:layout_width="170dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/side_gif_imageview"
+                    android:layout_width="170dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="14"
+                    android:background="@drawable/view_white_color_circle_edge"
+                    android:gravity="center"
+                    android:weightSum="100">
+
+                    <ImageView
+                        android:id="@+id/pose_estimation_imageview"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/red_circle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="인식상태"
+                        android:textColor="@color/main_color"
+                        android:textSize="13dp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="50"
+                    android:background="@drawable/view_white_color_circle_edge"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="65">
+
+                    <TextView
+                        android:id="@+id/posename_textview"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="운동을 시작합니다."
+                        android:textAlignment="center"
+                        android:textColor="@color/main_color"
+                        android:textSize="13dp"></TextView>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:padding="10dp"
+                        android:src="@drawable/pose_timer" />
+
+                    <TextView
+                        android:id="@+id/posetime_textview"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="15"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="00:00"
+                        android:textAlignment="center"
+                        android:textColor="@color/main_color"
+                        android:textSize="15dp"></TextView>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        app:srcCompat="@drawable/main_color_circle" />
+
+                    <TextView
+                        android:id="@+id/posecount_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/main_color"
+                        android:textSize="15dp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="회"
+                        android:textAlignment="center"
+                        android:textColor="@color/main_color"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/posescore_textview"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="16"
+                        android:text="점수"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:visibility="gone"></TextView>
+
+
+                </LinearLayout>
+
+
+                <!--       <LinearLayout
+                           android:id="@+id/change_display_size__linearlayout"
+                           android:layout_marginTop="10dp"
+                           android:layout_marginBottom="10dp"
+                           android:layout_width="0dp"
+                           android:layout_height="match_parent"
+                           android:layout_weight="13"
+                           android:weightSum="100"
+                           android:gravity="center"
+                           android:checked="false"
+                           android:layout_marginLeft="20dp"
+                           android:background="@drawable/view_white_color_circle_edge"
+                           >
+                           &lt;!&ndash;  <ImageView
+                                 android:layout_width="15dp"
+                                 android:layout_height="15dp"
+                                 android:layout_gravity="center_vertical"
+                                 android:src="@drawable/camera_change"
+                                 />
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="match_parent"
+                                 android:text="전환"
+                                 android:gravity="center"
+                                 android:layout_marginLeft="5dp"
+                                 android:textColor="@color/main_color"
+                                 android:fontFamily="@font/notosanscjkkr_medium"
+                                 android:includeFontPadding="false"
+                                 android:textSize="13dp"
+                                 />&ndash;&gt;
+
+                           <ImageView
+                               android:id="@+id/change_image"
+                               android:layout_width="20dp"
+                               android:layout_height="20dp"
+                               android:src="@drawable/opposite_arrows"
+                              />
+
+                           <TextView
+
+                               android:layout_width="wrap_content"
+                               android:layout_height="match_parent"
+                               android:text="전환"
+                               android:gravity="center"
+                               android:layout_marginLeft="5dp"
+                               android:textColor="@color/main_color"
+                               android:fontFamily="@font/notosanscjkkr_medium"
+                               android:includeFontPadding="false"
+                               android:textSize="13dp"
+                               />
+                       </LinearLayout>-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <ToggleButton
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"
+                        android:background="@layout/toggle_style"
+                        android:checked="false"
+                        android:textOff=""
+                        android:textOn="" />
+
+                </LinearLayout>
+                <!--      <LinearLayout
+                          android:layout_width="0dp"
+                          android:layout_height="match_parent"
+                          android:layout_weight="10"
+                          android:gravity="center">
+
+                          <include
+                              android:id="@+id/settings_button"
+                              layout="@layout/settings_style"
+                              android:layout_width="60dp"
+                              android:layout_height="60dp"/>
+
+                      </LinearLayout>-->
+
+            </LinearLayout>
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:gravity="end">-->
+
+            <!--                <Button-->
+            <!--                    android:id="@+id/button_start_pause"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="start" />-->
+
+            <!--                <Button-->
+            <!--                    android:id="@+id/button_reset"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="reset"-->
+            <!--                    android:visibility="invisible"-->
+            <!--                    />-->
+
+            <!--            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#40000000">
+
+                    <TextView
+                        android:id="@+id/posescorelist_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="점수 리스트"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                </ScrollView>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pose_class_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/view_main_color_round_button"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="3dp"
+                    android:text="과제"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+
+                <TextView
+                    android:id="@+id/pose_reset_button_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/view_white_color_round_edge"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="3dp"
+                    android:text="다시하기"
+                    android:textColor="@color/join_gray"
+                    android:textSize="13dp" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/pose_exercise_name_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="체육단원/요가/스트레칭 자세평가"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pose_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/transparent"
+
+                />
+
+
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:id="@+id/pose_activity_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#9C000000"
+            android:padding="140dp"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:id="@+id/pose_activity_start_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E6000000"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/pose_activity_start_button_textview"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_main_color_in_white_round_edge"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="25dp"
+                android:text="시작하기"
+                android:textColor="@color/main_color"
+                android:textSize="25dp"
+
+                />
+
+            <TextView
+                android:id="@+id/pose_activity_start_timer_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="10"
+                android:textColor="@color/red"
+                android:textSize="150dp"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/pose_activity_count_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="#00A749"
+            android:textSize="160dp"
+            android:visibility="gone" />
+
+
+        <include
+            android:id="@+id/next_exercise_post_parent_layout"
+            layout="@layout/pose_activity_next_exercise_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <!--
+                <include layout="@layout/pose_complete_layout"
+                    android:id="@+id/pose_complete_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    />-->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pose_complete_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E6000000"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/pose_complete_move_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/view_main_color_round_button"
+                android:fontFamily="@font/notosans_kr_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="완료하기"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/pose_complete_show_record_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="45"
+                    android:background="@drawable/view_main_color_in_white_round_edge"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="기록 확인"
+                    android:textColor="@color/main_color"
+                    android:textSize="25dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10" />
+
+
+                <TextView
+                    android:id="@+id/pose_complete_reset_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="45"
+                    android:background="@drawable/view_main_color_in_white_round_edge"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="처음부터"
+                    android:textColor="@color/main_color"
+                    android:textSize="25dp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

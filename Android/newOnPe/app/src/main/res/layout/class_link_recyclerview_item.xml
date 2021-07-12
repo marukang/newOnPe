@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="10dp"
+    >
+
+    <TextView
+        android:id="@+id/class_link_title_Textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="30"
+        android:textColor="@color/black"
+        android:fontFamily="@font/notosans_kr_bold"
+        android:includeFontPadding="false"
+        android:text="N 드라이브"
+        android:textSize="15dp"
+    />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:textColor="@color/black"
+        android:fontFamily="@font/notosans_kr_bold"
+        android:includeFontPadding="false"
+        android:text=":"
+        android:textSize="15dp"
+        />
+
+    <TextView
+        android:id="@+id/class_link_email_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="65"
+        android:textColor="@color/black"
+        android:fontFamily="@font/notosans_kr_bold"
+        android:includeFontPadding="false"
+        android:text="hw00173@naver.com"
+        android:textSize="15dp"
+        />
+
+</LinearLayout>

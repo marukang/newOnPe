@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/view_bottom_dialog_round_edge"
+    >
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="새롭게 추가할 수업 코드를 입력해주세요."
+        android:gravity="center"
+        android:textSize="16dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textStyle="normal"
+        android:textColor="#404040"
+        android:includeFontPadding="false"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <EditText
+        android:id="@+id/input_new_class_code_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:hint="수업 코드를 입력해주세요."
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/view_gray_color_2_round_edge"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+
+        />
+
+    <TextView
+
+        android:id="@+id/bottom_dialog_confirm_button"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:textColor="@color/white"
+        android:text="확인"
+        android:gravity="center"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/view_main_color_round_button"
+        />
+
+
+
+</LinearLayout>

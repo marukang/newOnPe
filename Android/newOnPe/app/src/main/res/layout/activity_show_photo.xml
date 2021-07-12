@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="896"
+    tools:context=".home.show_photo_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:background="@drawable/view_bottom_line"
+        >
+        <ImageView
+            android:id="@+id/show_photo_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            app:srcCompat="@drawable/back_button_image"
+            android:padding="18dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:text="첨부파일 사진 보기"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#404040"
+            android:textStyle="normal"
+
+            />
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/show_photo_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="826"
+        android:layout_margin="10dp"
+        android:scaleType="fitCenter"
+        />
+
+</LinearLayout>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".login.search_id_pw.pw_search_input_code_Activity">
+
+
+    <ScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+        >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:background="@drawable/view_bottom_line"
+            >
+                <ImageView
+                        android:id="@+id/pw_search_input_code_back_button"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        app:srcCompat="@drawable/back_button_image"
+                        android:padding="18dp"
+                />
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="60"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:text="비밀번호 찾기"                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="#404040"
+                        android:textStyle="normal"
+                        android:includeFontPadding="false"
+
+                />
+
+
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                  android:layout_height="6dp"
+                  android:background="#f9f9f9"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:text="제한 시간 안에 이메일로 전송 된 번호를 입력해주세요."
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:includeFontPadding="false"
+                    android:textSize="15dp"
+                    android:textColor="@color/gray"
+
+            />
+
+            <View android:layout_width="match_parent"
+                  android:layout_height="6dp"
+                  android:background="#f9f9f9"
+            />
+
+            <TextView
+                    android:id="@+id/countdown_textview"
+                    android:text="00:00"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    android:gravity="center"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginBottom="35dp"
+                    android:textSize="35dp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+
+            />
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:orientation="horizontal"
+              android:weightSum="414"
+            >
+                <View
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="20"
+                />
+
+                <EditText
+                    android:id="@+id/input_code_edittext_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="56"
+                    android:textColor="@color/main_color"
+                    android:background="@drawable/view_gray_color_round_edge"
+                    android:text=""
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:maxLength="1"
+                    android:nextFocusDown="@id/input_code_edittext_2"
+                />
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                />
+                <EditText
+                        android:id="@+id/input_code_edittext_2"
+                        android:inputType="number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="56"
+                        android:textColor="@color/main_color"
+                        android:background="@drawable/view_gray_color_round_edge"
+                        android:text=""
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:maxLength="1"
+                        android:nextFocusDown="@id/input_code_edittext_3"
+                />
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                />
+                <EditText
+                        android:id="@+id/input_code_edittext_3"
+                        android:inputType="number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="56"
+                        android:textColor="@color/main_color"
+                        android:background="@drawable/view_gray_color_round_edge"
+                        android:text=""
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:maxLength="1"
+                        android:nextFocusDown="@id/input_code_edittext_4"
+                />
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                />
+                <EditText
+                        android:id="@+id/input_code_edittext_4"
+                        android:inputType="number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="56"
+                        android:textColor="@color/main_color"
+                        android:background="@drawable/view_gray_color_round_edge"
+                        android:text=""
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:maxLength="1"
+                        android:nextFocusDown="@id/input_code_edittext_5"
+                />
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                />
+                <EditText
+                        android:id="@+id/input_code_edittext_5"
+                        android:inputType="number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="56"
+                        android:textColor="@color/main_color"
+                        android:background="@drawable/view_gray_color_round_edge"
+                        android:text=""
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:maxLength="1"
+                        android:nextFocusDown="@id/input_code_edittext_6"
+                />
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                />
+                <EditText
+                        android:id="@+id/input_code_edittext_6"
+                        android:inputType="number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="56"
+                        android:textColor="@color/main_color"
+                        android:background="@drawable/view_gray_color_round_edge"
+                        android:text=""
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:maxLength="1"
+                />
+
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                />
+
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="인증번호가 일치하지 않습니다. 다시 확인해주세요."
+                    android:gravity="center"
+                    android:textSize="13dp"
+                    android:textColor="@color/red"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:textStyle="normal"
+                    android:padding="10dp"
+                    android:visibility="gone"
+            />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+    <TextView
+            android:id="@+id/pw_search_input_code_confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="확인"
+            android:gravity="center"
+            android:background="@color/gray"
+            android:textColor="@color/white"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:textSize="18dp"
+            android:textStyle="normal"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

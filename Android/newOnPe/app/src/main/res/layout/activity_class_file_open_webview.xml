@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="896"
+    android:background="@color/white"
+    tools:context=".home.class_file_open_webview_Activity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:background="@drawable/view_bottom_line"
+        >
+        <ImageView
+            android:id="@+id/class_file_open_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            app:srcCompat="@drawable/back_button_image"
+            android:padding="18dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:text="첨부파일 보기"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#404040"
+            android:textStyle="normal"
+            />
+
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="826"
+        >
+
+
+        <WebView
+            android:id="@+id/class_file_open_webview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="826"
+            />
+
+        <ImageView
+            android:id="@+id/class_file_open_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            />
+
+    </FrameLayout>
+
+
+
+</LinearLayout>

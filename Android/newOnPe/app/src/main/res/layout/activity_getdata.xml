@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="896"
+    android:layout_height="match_parent">
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="150"
+    />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="200"
+        android:gravity="center"
+        android:src="@drawable/exercise"
+        android:layout_gravity="center"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="150"
+        />
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="모든 운동을 완료하였습니다!"
+        android:layout_weight="100"
+        android:textColor="@color/main_color"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textSize="20dp">
+
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/poseresult_textview"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="결과값"
+        android:visibility="gone"
+        android:textSize="20dp">
+
+    </TextView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="170"
+        />
+
+    <TextView
+        android:id="@+id/getdate_confirm_button_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:text="확인"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textColor="@color/white"
+        android:background="@drawable/view_main_color_round_button"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:textSize="20dp"
+        />
+
+
+</LinearLayout>

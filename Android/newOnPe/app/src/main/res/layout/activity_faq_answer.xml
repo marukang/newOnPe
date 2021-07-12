@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="896"
+    android:background="@color/white"
+    tools:context=".faq.faq_answer_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:background="@drawable/view_bottom_line"
+        >
+        <ImageView
+            android:id="@+id/faq_answer_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            app:srcCompat="@drawable/back_button_image"
+            android:padding="18dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:text="자주 묻는 질문"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#404040"
+            android:textStyle="normal"
+
+            />
+      <!--  <ImageView
+            android:id="@+id/faq_side_menu_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            app:srcCompat="@drawable/menu_button"
+            android:padding="20dp"
+            />-->
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/faq_answer_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:background="#f9f9f9"
+        android:text="제목"
+        android:textStyle="normal"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textSize="16dp"
+        android:textColor="#404040"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        />
+
+    <TextView
+        android:id="@+id/faq_answer_category_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:background="@color/white"
+        android:text="회원정보 관련"
+        android:textStyle="normal"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textSize="13dp"
+        android:textColor="#777777"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        />
+
+    <View android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#f9f9f9"
+        />
+
+    <TextView
+        android:id="@+id/faq_answer_content_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:layout_weight="560"
+        android:textColor="#404040"
+        android:textSize="16dp"
+        android:padding="20dp"
+        android:textStyle="normal"
+        android:includeFontPadding="false"
+        android:text="본문 내용을 작성하세요."
+
+        />
+
+
+</LinearLayout>
