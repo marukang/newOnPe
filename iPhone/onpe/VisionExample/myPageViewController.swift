@@ -193,7 +193,7 @@ extension myPageViewController : appMemberMypageDelegate {
     
     func appMemberDefaultInformationChange1(result: Int) {
         if result == 0 {
-            let a = userInformationClass.self
+            let a = UserInformation.self
             
             let alert = UIAlertController(title: "성공", message: "기초 정보가 수정 되었습니다.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
@@ -215,7 +215,7 @@ extension myPageViewController : appMemberMypageDelegate {
     func appMemberProfileChange(result: Int, imageUrl: String) {
         if result == 0 {
             print(imageUrl)
-            userInformationClass.student_image_url = imageUrl
+            UserInformation.student_image_url = imageUrl
         } else if result == 1 {
             
         } else {
@@ -229,9 +229,9 @@ extension myPageViewController : appMemberMypageDelegate {
         if result == 0 {
             let alert = UIAlertController(title: "성공", message: "학급 정보가 변경 되었습니다.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-                userInformationClass.student_level = self.gradeStr
-                userInformationClass.student_class = self.classStr
-                userInformationClass.student_number = self.numberStr
+                UserInformation.student_level = self.gradeStr
+                UserInformation.student_class = self.classStr
+                UserInformation.student_number = self.numberStr
                 alert.dismiss(animated: true, completion: nil)
             }
             alert.addAction(okAction)
@@ -307,7 +307,7 @@ extension myPageViewController{
     
     func setupText(){
         //이용자 정보 text 적기
-        let a = userInformationClass.self
+        let a = UserInformation.self
         gradeTexField.text = a.student_level
         classTexField.text = a.student_class
         numberTexField.text = a.student_number
@@ -516,10 +516,10 @@ extension myPageViewController{
         classStr = classTexField.text ?? ""
         numberStr = numberTexField.text ?? ""
         if gradeStr != "", classStr != "", numberStr != ""{
-            userInformationClass.student_level = gradeStr
-            userInformationClass.student_class = classStr
-            userInformationClass.student_number = numberStr
-            AF.appMemberClassInformationChange(student_id: userInformationClass.student_id, student_level: gradeStr, student_class: classStr, student_number: numberStr, student_token: userInformationClass.access_token, url: "app/member/class_information_change")
+            UserInformation.student_level = gradeStr
+            UserInformation.student_class = classStr
+            UserInformation.student_number = numberStr
+            AF.appMemberClassInformationChange(student_id: UserInformation.student_id, student_level: gradeStr, student_class: classStr, student_number: numberStr, student_token: UserInformation.access_token, url: "app/member/class_information_change")
             
         } else {
             extensionClass.showToast(view: view, message: "정보를 입력해주세요.", font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
@@ -535,11 +535,11 @@ extension myPageViewController{
         let height = heightTextField.text
         let weight = weightTextField.text
         let age = ageTextField.text
-        userInformationClass.student_content = introduce ?? ""
-        AF.appMemberDefualtInformationChange(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_content: introduce ?? "", student_tall: height ?? "", student_weight: weight ?? "" , student_age: age ?? "" , student_sex: "", url: "app/member/default_information_change")
+        UserInformation.student_content = introduce ?? ""
+        AF.appMemberDefualtInformationChange(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_content: introduce ?? "", student_tall: height ?? "", student_weight: weight ?? "" , student_age: age ?? "" , student_sex: "", url: "app/member/default_information_change")
         if checkProfileBool {
             if let imgae = getProfileImage {
-                AF.appMemberProfileChange(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, file: imgae, url: "app/member/profile_change")
+                AF.appMemberProfileChange(student_id: UserInformation.student_id, student_token: UserInformation.access_token, file: imgae, url: "app/member/profile_change")
             }
             
         }
@@ -569,7 +569,7 @@ extension myPageViewController{
         
         if pw1 == pw2 {
             
-            AF.appMemberPasswordInformationChange(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_password_before: pw0TextField.text ?? "", student_password_new: pw2, url: "app/member/password_information_change")
+            AF.appMemberPasswordInformationChange(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_password_before: pw0TextField.text ?? "", student_password_new: pw2, url: "app/member/password_information_change")
             
         } else {
             showToast(text: "변경할 비밀번호가 일치하지 않습니다.")
@@ -1056,7 +1056,7 @@ extension myPageViewController{
         textview.layer.borderColor = mainColor.hexStringToUIColor(hex: "#ebebeb").cgColor
         //textview.text = ""
         textview.delegate = self
-        textview.text = userInformationClass.student_content
+        textview.text = UserInformation.student_content
         //textFieldDoneBtnMake(text_field: textField)
         
         //textField.addTarget(self, action: #selector(introducesTextFieldAction), for: .editingChanged)

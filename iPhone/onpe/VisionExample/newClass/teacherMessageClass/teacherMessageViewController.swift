@@ -22,7 +22,7 @@ class teacherMessageViewController: UIViewController {
         super.viewWillAppear(animated)
         print("viewwillAppear")
         delegate?.teacherViewWillAppear(result : 2)
-        AF.appMemberGetMyNews(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, type: "message", class_code: nil, url: "app/member/get_my_news", completion : {
+        AF.appMemberGetMyNews(student_id: UserInformation.student_id, student_token: UserInformation.access_token, type: "message", class_code: nil, url: "app/member/get_my_news", completion : {
             [weak self] result, result1 in
             
             self?.getMessageNoticeList.removeAll()

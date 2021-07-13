@@ -29,7 +29,7 @@ class classContentViewController: UIViewController {
             self.title = unitGroupName
         }
         setSideMenuCollectionviewY = statusBarHeight
-        AF.appRecordGetStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
+        AF.appRecordGetStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
         
         
     }
@@ -573,10 +573,10 @@ extension classContentViewController {
             if let classCode = unitList?.class_code, let unitCode = unitList?.unit_code {
                 print(unitType)
                 print(unitGroupName)
-                AF.appCurriculumStudentUpdateParticipation(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unitCode, student_number: userInformationClass.student_number, unit_class_type: unitType, unit_group_name: unitGroupName ?? title!, url: "app/curriculum/student_update_participation")
+                AF.appCurriculumStudentUpdateParticipation(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unitCode, student_number: UserInformation.student_number, unit_class_type: unitType, unit_group_name: unitGroupName ?? title!, url: "app/curriculum/student_update_participation")
                 
                 
-                AF.appRecordCreateStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unitCode, student_name: userInformationClass.student_name, student_grade: userInformationClass.student_level, student_group: userInformationClass.student_class, student_number: userInformationClass.student_number, student_participation: "1", student_practice: self.subjectBool ? "0" : "-", url: "app/record/create_student_class_record")
+                AF.appRecordCreateStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unitCode, student_name: UserInformation.student_name, student_grade: UserInformation.student_level, student_group: UserInformation.student_class, student_number: UserInformation.student_number, student_participation: "1", student_practice: self.subjectBool ? "0" : "-", url: "app/record/create_student_class_record")
                 
                 
                     
@@ -604,7 +604,7 @@ extension classContentViewController {
             if !nameBool{
                 if recordDic == nil {
                     recordDicBool = true
-                    AF.appRecordGetStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
+                    AF.appRecordGetStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
                 } else {
                     let vc = classTestViewController()
                     vc.unitGroupName = unitGroupName ?? title//그룹 이름 전달
@@ -623,7 +623,7 @@ extension classContentViewController {
                 
             } else {
                 //컨탠츠 리스트에 수업(이론)만 잇을경우
-                AF.appRecordGetStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
+                AF.appRecordGetStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
                 extensionClass.showToast(view: view, message: "수업참석 완료", font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
             }
             

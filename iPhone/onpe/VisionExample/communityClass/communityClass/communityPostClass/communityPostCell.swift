@@ -45,7 +45,7 @@ class communityPostCell: UICollectionViewCell {
     }
     func setupText(){
         guard let name = getCommentStruct?.comment_name else { return }
-        if getCommentStruct?.comment_id == userInformationClass.student_id {
+        if getCommentStruct?.comment_id == UserInformation.student_id {
             deleteBtn.isHidden = false
         } else {
             deleteBtn.isHidden = true

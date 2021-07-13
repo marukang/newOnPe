@@ -155,11 +155,11 @@ public class extensionClass{
     //이용자의 정보를 변경하고 쉐어드의 토큰과 스테틱의 토큰 변경하는 함수
     public static func setTokenChange(token : String){
         
-        userInformationClass.access_token = token
+        UserInformation.access_token = token
         print("변경 토큰 : ",token)
         
-        let autoPramater : [String : String] = ["student_id" : userInformationClass.student_id, "student_token" : token, "fcm_token" : userInformationClass.fcm_token]
-        userInformationClass.preferences.set(autoPramater, forKey: userInformationClass.autoLoginKey)
+        let autoPramater : [String : String] = ["student_id" : UserInformation.student_id, "student_token" : token, "fcm_token" : UserInformation.fcm_token]
+        UserInformation.preferences.set(autoPramater, forKey: UserInformation.autoLoginKey)
         //print(userInformationClass.access_token)
     }
     //변수의 자료형 타입 확인하는 함수

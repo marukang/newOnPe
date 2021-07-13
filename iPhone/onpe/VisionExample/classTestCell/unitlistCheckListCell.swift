@@ -92,7 +92,7 @@ class unitlistCheckListCell: UICollectionViewCell {
             type = true
             
             
-            var joinUnitList : [String]? = userInformationClass.preferences.object(forKey: userInformationClass.unitListKey) as? [String]
+            var joinUnitList : [String]? = UserInformation.preferences.object(forKey: UserInformation.unitListKey) as? [String]
             if joinUnitList != nil {
                 joinUnitList?.append(getUnitCode!)
             } else {
@@ -102,7 +102,7 @@ class unitlistCheckListCell: UICollectionViewCell {
                 joinUnitList?.append(getUnitCode!)
             }
             //print(joinUnitList)
-            userInformationClass.preferences.set(joinUnitList, forKey: userInformationClass.unitListKey)
+            UserInformation.preferences.set(joinUnitList, forKey: UserInformation.unitListKey)
         } else {
             type = false
         }

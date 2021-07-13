@@ -29,7 +29,7 @@ class communityPostViewController: UIViewController {
         if let communityNumber = self.communityNumber{
             print("community_number : ",communityNumber)
             //상세글 가져오기
-            AF.appCommunityGetStudentCommunity(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, community_number: communityNumber, url: "app/community/get_student_community")
+            AF.appCommunityGetStudentCommunity(student_id: UserInformation.student_id, student_token: UserInformation.access_token, community_number: communityNumber, url: "app/community/get_student_community")
             
             
         }
@@ -158,7 +158,7 @@ extension communityPostViewController : appCommunityGetStudentCommunityDelegate 
     
     func appCommunityCreateStudentCommunityCommentList(result: Int) {
         if result == 0 {
-            AF.appCommunityGetStudentCommunityCommentList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, community_number: communityNumber!, url: "app/community/get_student_community_comment_list")
+            AF.appCommunityGetStudentCommunityCommentList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, community_number: communityNumber!, url: "app/community/get_student_community_comment_list")
             
         } else if result == 1 {
             extensionClass.showToast(view: view, message: extensionClass.wrongConnectErrotText, font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
@@ -216,7 +216,7 @@ extension communityPostViewController : appCommunityGetStudentCommunityDelegate 
     func appCommunityGetStudentCommunity(result: Int, community: Community?) {
         if result == 0 {
             communityHeaderIndex = community
-            AF.appCommunityGetStudentCommunityCommentList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, community_number: communityNumber!, url: "app/community/get_student_community_comment_list")
+            AF.appCommunityGetStudentCommunityCommentList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, community_number: communityNumber!, url: "app/community/get_student_community_comment_list")
             
         } else if result == 1 {
             extensionClass.showToast(view: view, message: extensionClass.wrongConnectErrotText, font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
@@ -245,7 +245,7 @@ extension communityPostViewController {
             if count == 0 {
                 extensionClass.showToast(view: view, message: "댓글을 작성해주세요.", font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
             } else {
-                AF.appCommunityCreateStudentCommunityCommentList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_name: userInformationClass.student_name, community_number: communityNumber!, comment_content: replayTextView.text, url: "app/community/create_student_community_comment_list")
+                AF.appCommunityCreateStudentCommunityCommentList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_name: UserInformation.student_name, community_number: communityNumber!, comment_content: replayTextView.text, url: "app/community/create_student_community_comment_list")
                 
                 
             }
@@ -297,7 +297,7 @@ extension communityPostViewController : UICollectionViewDelegateFlowLayout, UICo
         let alert = UIAlertController(title: "온체육", message: "댓글을 삭제 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "삭제", style: .default) { _ in
             //print(customExerciseList)
-            self.AF.appCommunityDeleteStudentCommunityCommentList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, comment_number: row, community_number: (self.communityNumber)!, indexpath : indexpath ,url: "app/community/delete_student_community_comment_list")
+            self.AF.appCommunityDeleteStudentCommunityCommentList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, comment_number: row, community_number: (self.communityNumber)!, indexpath : indexpath ,url: "app/community/delete_student_community_comment_list")
             
         }
         let cancelBtn = UIAlertAction(title: "취소", style: .cancel, handler: nil)

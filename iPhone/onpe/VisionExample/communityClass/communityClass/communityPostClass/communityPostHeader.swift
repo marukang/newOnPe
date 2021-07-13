@@ -79,7 +79,7 @@ class communityPostHeader: UICollectionReusableView, appCommunityPostStudentComm
         let alert = UIAlertController(title: "온체육", message: "게시글을 삭제 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "삭제", style: .default) { (action) in
             
-            self.AF.appCommunityDeleteStudentCommunity(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, community_number: (self.getCommunityHeaderIndex?.community_number)!, url: "app/community/delete_student_community")
+            self.AF.appCommunityDeleteStudentCommunity(student_id: UserInformation.student_id, student_token: UserInformation.access_token, community_number: (self.getCommunityHeaderIndex?.community_number)!, url: "app/community/delete_student_community")
             
         }
         let cancelBtn = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -178,7 +178,7 @@ src="\(AF.basURL)
         print(htmlTag)
 
         contentTextView.attributedText = htmlTag.htmlToAttributedString
-        if userInformationClass.student_id == getCommunityHeaderIndex?.community_id{
+        if UserInformation.student_id == getCommunityHeaderIndex?.community_id{
             deleteBtn.isHidden = false
             modifyBtn.isHidden = false
         } else {

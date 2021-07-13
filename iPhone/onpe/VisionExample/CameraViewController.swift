@@ -801,7 +801,7 @@
                             userImageContainerBool = true
                             if let classCode = unitList?.class_code, let unitCode = unitList?.unit_code {
                                 //서버로 운동한 사람의 얼굴을 보여주는 함수
-                                AF.appRecordUpdateStudentRecordImageConfirmation(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unitCode, image_file_name: unitCode + userInformationClass.student_name + userInformationClass.student_id , file: userImageContainer!, url: "app/record/update_student_record_image_confirmation")
+                                AF.appRecordUpdateStudentRecordImageConfirmation(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unitCode, image_file_name: unitCode + UserInformation.student_name + UserInformation.student_id , file: userImageContainer!, url: "app/record/update_student_record_image_confirmation")
                             }
                             
                         }
@@ -1596,12 +1596,12 @@
     @objc
     func recordCheckBtnAction(){
         let practice : String = extensionClass.arrayToJsonString(from: totalRecordList) ?? ""
-        userInformationClass.recordCheckBool = true
+        UserInformation.recordCheckBool = true
         print("practice : ",practice)
         if let classCode = unitList?.class_code, let unit_code = unitList?.unit_code, let subjectType = subjectType {
             finishBool = true
             totalTimer.invalidate()
-            AF.appRecordUpdateStudentRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unit_code, practice: practice, subjectType: subjectType,content_use_time: "\(number4)", unit_group_name: self.unitGroupName)
+            AF.appRecordUpdateStudentRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unit_code, practice: practice, subjectType: subjectType,content_use_time: "\(number4)", unit_group_name: self.unitGroupName)
             
         }
     }
@@ -1613,7 +1613,7 @@
         if let classCode = unitList?.class_code, let unit_code = unitList?.unit_code, let subjectType = subjectType {
             finishBool = true
             totalTimer.invalidate()
-            AF.appRecordUpdateStudentRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unit_code, practice: practice, subjectType: subjectType,content_use_time: "\(number4)", unit_group_name: self.unitGroupName)
+            AF.appRecordUpdateStudentRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unit_code, practice: practice, subjectType: subjectType,content_use_time: "\(number4)", unit_group_name: self.unitGroupName)
             
         }
     }

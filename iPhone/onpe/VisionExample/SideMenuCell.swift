@@ -168,9 +168,9 @@ class sideMenuCell: UICollectionViewCell {
         
         userProfileImage.translatesAutoresizingMaskIntoConstraints = false
         
-        if userInformationClass.student_image_url != "" {
+        if UserInformation.student_image_url != "" {
             
-            self.userProfileImage.sd_setImage(with: URL(string: userInformationClass.student_image_url), completed: nil)
+            self.userProfileImage.sd_setImage(with: URL(string: UserInformation.student_image_url), completed: nil)
         } else {
             self.userProfileImage.image = UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysOriginal)
         }
@@ -193,7 +193,7 @@ class sideMenuCell: UICollectionViewCell {
     func _userNameLabel(label : UILabel){
         scrollView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = userInformationClass.student_name
+        label.text = UserInformation.student_name
         label.font = UIFont.NotoSansCJKkr(type: .medium, size: 16)
         label.textColor = mainColor._404040
         
@@ -206,7 +206,7 @@ class sideMenuCell: UICollectionViewCell {
         scrollView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        label.text = "최근 운동일 \(extensionClass.DateToString(date: userInformationClass.student_recent_exercise_date, type: 0))"
+        label.text = "최근 운동일 \(extensionClass.DateToString(date: UserInformation.student_recent_exercise_date, type: 0))"
         label.font = UIFont.NotoSansCJKkr(type: .normal, size: 14)
         label.textColor = mainColor.hexStringToUIColor(hex: "#777777")
         

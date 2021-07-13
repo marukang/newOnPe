@@ -436,7 +436,7 @@ extension classListViewController : unitListPageDelegate, mainPageDelegate {
                 for unitListArr in unitList {
                     var breakBool = false
                     for idList in extensionClass.jsonToArray(jsonString: unitListArr.unit_group_id_list ?? "") {
-                        if idList == userInformationClass.student_id {
+                        if idList == UserInformation.student_id {
                             breakBool = true
                             break
                         }
@@ -481,7 +481,7 @@ extension classListViewController : UICollectionViewDelegate, UICollectionViewDa
             indexTitle = title
             //x차시 공다루기 수업 이동 함수
             //classCodeNumber -> unit_code(차시별 코드)
-            AF.appCurriculumStudentGetCurriculum(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unitCode, url: "app/curriculum/student_get_curriculum")
+            AF.appCurriculumStudentGetCurriculum(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unitCode, url: "app/curriculum/student_get_curriculum")
             
         } else {
             
@@ -494,7 +494,7 @@ extension classListViewController : UICollectionViewDelegate, UICollectionViewDa
         indexTitle = title
         print("클래스 코드 : ",classCode)
         print("차시별 코드 : ",unitCode)
-        AF.appRecordGetStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unitCode, url: "app/record/get_student_class_record")
+        AF.appRecordGetStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unitCode, url: "app/record/get_student_class_record")
         
         
     }
@@ -605,17 +605,17 @@ extension classListViewController : UIPickerViewDelegate, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return userInformationClass.student_classcodeList.count
+        return UserInformation.student_classcodeList.count
         
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return userInformationClass.student_classcodeNameList[row]
+        return UserInformation.student_classcodeNameList[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        getClassCode = userInformationClass.student_classcodeList[row]
-        classTextField.text = userInformationClass.student_classcodeNameList[row]
-        AF.appClassGetClassUnitList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: getClassCode, url: "app/class/get_class_unit_list")
+        getClassCode = UserInformation.student_classcodeList[row]
+        classTextField.text = UserInformation.student_classcodeNameList[row]
+        AF.appClassGetClassUnitList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: getClassCode, url: "app/class/get_class_unit_list")
         
     }
     
@@ -642,7 +642,7 @@ extension classListViewController {
     func _classTextField(textField : UITextField){
         view.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "\(userInformationClass.student_classcodeNameList[ViewController1.pageControlerRow])"
+        textField.text = "\(UserInformation.student_classcodeNameList[ViewController1.pageControlerRow])"
         textField.font = UIFont.NotoSansCJKkr(type: .normal, size: 14)
         
         textField.textAlignment = .left

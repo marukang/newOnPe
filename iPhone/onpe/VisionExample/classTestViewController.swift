@@ -32,15 +32,15 @@ class classTestViewController: UIViewController {
         
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         //수업현황을 업데이트 하기 위해서 사용하는 함수
-        AF.appRecordGetStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
+        AF.appRecordGetStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
         
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if userInformationClass.recordCheckBool {
-            userInformationClass.recordCheckBool = false
+        if UserInformation.recordCheckBool {
+            UserInformation.recordCheckBool = false
             classReportBtnActionBool = true
-            AF.appRecordGetStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
+            AF.appRecordGetStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -234,7 +234,7 @@ class classTestViewController: UIViewController {
     }
     func exerciseEnter(exerciseContentStr : String?){
         self.getExerciseContentStr = exerciseContentStr
-        var joinUnitList : [String]? = userInformationClass.preferences.object(forKey: userInformationClass.unitListKey) as? [String]
+        var joinUnitList : [String]? = UserInformation.preferences.object(forKey: UserInformation.unitListKey) as? [String]
         print(joinUnitList)
         var unitCodeBool = false // 해당 값이 false면 이미 체크리스트 작성, true라면 체크리스트 미작성
         if let unitList = joinUnitList{
@@ -753,7 +753,7 @@ extension classTestViewController {
             teskCompleteAlert = UIAlertController(title: "온체육", message: "정말 평가기록을 제출 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
                 if let classCode = self.unitList?.class_code, let unitCode = self.unitList?.unit_code {
-                    self.AF.appCurriculumStudentUpdateSubmitTask(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unitCode, student_number: userInformationClass.student_number, unit_class_type: self.unitType, unit_group_name: self.unitGroupName ?? "", url: "app/curriculum/student_update_submit_task")
+                    self.AF.appCurriculumStudentUpdateSubmitTask(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unitCode, student_number: UserInformation.student_number, unit_class_type: self.unitType, unit_group_name: self.unitGroupName ?? "", url: "app/curriculum/student_update_submit_task")
                 }
                 
                 
@@ -784,7 +784,7 @@ extension classTestViewController {
         //x차시 공다루기 수업의 수업현황 이동함수
         if !classReportBtnActionBool {
             classReportBtnActionBool = !classReportBtnActionBool
-            AF.appRecordGetStudentClassRecord(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
+            AF.appRecordGetStudentClassRecord(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: unitList!.class_code!, unit_code: unitList!.unit_code!, url: "app/record/get_student_class_record")
         }
         
     }
@@ -811,7 +811,7 @@ extension classTestViewController : UICollectionViewDelegate, UICollectionViewDa
                 
                 let alert = UIAlertController(title: "온체육", message: "평가를 시작하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
                 let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-                    self.AF.appClassGetContentList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, content_code: contentCode, url: "app/class/get_content_list")
+                    self.AF.appClassGetContentList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, content_code: contentCode, url: "app/class/get_content_list")
                     alert.dismiss(animated: true, completion: nil)
                 }
                 let cancelAction = UIAlertAction(title: "취소", style: .cancel)
@@ -825,7 +825,7 @@ extension classTestViewController : UICollectionViewDelegate, UICollectionViewDa
                 } else {
                     let alert = UIAlertController(title: "온체육", message: "운동을 시작하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-                        self.AF.appClassGetContentList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, content_code: contentCode, url: "app/class/get_content_list")
+                        self.AF.appClassGetContentList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, content_code: contentCode, url: "app/class/get_content_list")
                         alert.dismiss(animated: true, completion: nil)
                     }
                     let cancelAction = UIAlertAction(title: "취소", style: .cancel)

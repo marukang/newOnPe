@@ -59,8 +59,8 @@ class join2ViewController: UIViewController {
 extension join2ViewController : appMemberDefaultInformationChangeDelegate {
     func appMemberDefaultInformationChange(result: Int) {
         if result == 0 {
-            userInformationClass.student_content = introducesSelfTextField.text
-            userInformationClass.student_sex = setSex
+            UserInformation.student_content = introducesSelfTextField.text
+            UserInformation.student_sex = setSex
             self.dismiss(animated: true, completion: nil)
             extensionClass.showToast(view: view, message: "저장 완료.", font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
         } else if result == 1 {
@@ -216,11 +216,11 @@ extension join2ViewController {
             } else {
                 setSex = "f"
             }
-            userInformationClass.student_sex = setSex
-            userInformationClass.student_age = ageTextField.text ?? ""
-            userInformationClass.student_tall = heightTextField.text ?? ""
-            userInformationClass.student_weight = weightTextField.text ?? ""
-            AF.appMemberDefualtInformationChange(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_content: introducesSelfTextField.text ?? "", student_tall: heightTextField.text ?? "", student_weight: weightTextField.text ?? "", student_age: ageTextField.text ?? "", student_sex: setSex, url: "app/member/default_information_change")
+            UserInformation.student_sex = setSex
+            UserInformation.student_age = ageTextField.text ?? ""
+            UserInformation.student_tall = heightTextField.text ?? ""
+            UserInformation.student_weight = weightTextField.text ?? ""
+            AF.appMemberDefualtInformationChange(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_content: introducesSelfTextField.text ?? "", student_tall: heightTextField.text ?? "", student_weight: weightTextField.text ?? "", student_age: ageTextField.text ?? "", student_sex: setSex, url: "app/member/default_information_change")
             
             
         } else {

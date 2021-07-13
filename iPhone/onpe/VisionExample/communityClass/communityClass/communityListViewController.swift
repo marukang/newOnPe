@@ -13,14 +13,14 @@ class communityListViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         AF.delegate14 = self
-        selectClassCode = userInformationClass.student_classcodeList[ViewController1.pageControlerRow]
+        selectClassCode = UserInformation.student_classcodeList[ViewController1.pageControlerRow]
         //if let getStudentClassDode = userInformationClass.s
         
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AF.appCommunityGetStudentCommunityList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_class_code: "\(userInformationClass.student_classcodeList[ViewController1.pageControlerRow])", url: "app/community/get_student_community_list")
+        AF.appCommunityGetStudentCommunityList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_class_code: "\(UserInformation.student_classcodeList[ViewController1.pageControlerRow])", url: "app/community/get_student_community_list")
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -136,17 +136,17 @@ extension communityListViewController : UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return userInformationClass.student_classcodeNameList.count
+        return UserInformation.student_classcodeNameList.count
         
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return userInformationClass.student_classcodeNameList[row]
+        return UserInformation.student_classcodeNameList[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectClassCode = userInformationClass.student_classcodeList[row]
-        classTextField.text = userInformationClass.student_classcodeNameList[row]
-        AF.appCommunityGetStudentCommunityList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_class_code: "\(selectClassCode)", url: "app/community/get_student_community_list")
+        selectClassCode = UserInformation.student_classcodeList[row]
+        classTextField.text = UserInformation.student_classcodeNameList[row]
+        AF.appCommunityGetStudentCommunityList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_class_code: "\(selectClassCode)", url: "app/community/get_student_community_list")
     }
     
     
@@ -221,7 +221,7 @@ extension communityListViewController {
         textField.setRightPaddingPoints(100)
         
         
-        textField.text = userInformationClass.student_classcodeNameList[ViewController1.pageControlerRow]
+        textField.text = UserInformation.student_classcodeNameList[ViewController1.pageControlerRow]
         
         textField.topAnchor.constraint(equalTo: grayLine1.bottomAnchor, constant: 10).isActive = true
         textField.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

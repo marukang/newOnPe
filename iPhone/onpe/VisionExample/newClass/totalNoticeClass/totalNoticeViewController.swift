@@ -24,7 +24,7 @@ class totalNoticeViewController: UIViewController {
         
         delegate?.totalNoticeViewWillAppear(result: 0)
         
-        AF.appMemberGetMyNews(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, type: "push", class_code: nil, url: "app/member/get_my_news", completion : {
+        AF.appMemberGetMyNews(student_id: UserInformation.student_id, student_token: UserInformation.access_token, type: "push", class_code: nil, url: "app/member/get_my_news", completion : {
             [weak self] result, result1 in
             
             self?.getTotalNoticeList.removeAll()

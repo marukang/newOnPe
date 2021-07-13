@@ -26,7 +26,7 @@ class messagePostViewController: UIViewController {
         
         if let messageNumber = self.messageNumber{
             //print(messageNumber)
-            AF.appCommunityGetStudentMessage(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, message_number: messageNumber, url: "app/community/get_student_message")
+            AF.appCommunityGetStudentMessage(student_id: UserInformation.student_id, student_token: UserInformation.access_token, message_number: messageNumber, url: "app/community/get_student_message")
         }
         
     }
@@ -96,7 +96,7 @@ extension messagePostViewController {
     func deleteBtnAction(){
         let alert = UIAlertController(title: "온체육", message: "메세지를 삭제 하시겠습니까?.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "삭제", style: .default) { _ in
-            self.AF.appCommunityDeleteStudentMessage(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_message_number: self.messageNumber!, url: "app/community/delete_student_message")
+            self.AF.appCommunityDeleteStudentMessage(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_message_number: self.messageNumber!, url: "app/community/delete_student_message")
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         alert.addAction(okAction)
@@ -110,7 +110,7 @@ extension messagePostViewController {
         if titleTextField.text?.count ?? 0 > 1, titleTextField.text != ""  {
             if contentTextView.text.count > 0, contentTextView.text != nil {
                 
-                AF.appCommunityUpdateStudentMessage(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_message_number: messageNumber!, student_message_title: titleTextField.text ?? "", student_message_text: contentTextView.text, url: "app/community/update_student_message")
+                AF.appCommunityUpdateStudentMessage(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_message_number: messageNumber!, student_message_title: titleTextField.text ?? "", student_message_text: contentTextView.text, url: "app/community/update_student_message")
                 
             } else {
                 extensionClass.showToast(view: view, message: "내용을 작성해주세요.", font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
@@ -203,7 +203,7 @@ extension messagePostViewController : appCommunityGetStudentMessageDelegate {
             titleTextField.text = message_title
             userLabel.text = "작성자 : \(message_name) ・ 작성일 \(messageDate)"
             contentTextView.text = message_text
-            if userInformationClass.student_name != message_name {
+            if UserInformation.student_name != message_name {
                 modifyBtn.isHidden = true
                 deleteBtn.isHidden = true
             }

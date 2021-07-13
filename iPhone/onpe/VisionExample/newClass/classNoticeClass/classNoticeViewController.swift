@@ -14,14 +14,14 @@ class classNoticeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectClassCode = userInformationClass.student_classcodeList[ViewController1.pageControlerRow]
+        selectClassCode = UserInformation.student_classcodeList[ViewController1.pageControlerRow]
         setupLayout()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         delegate?.classNoticeViewWillAppear(result : 1)
-        AF.appMemberGetMyNews(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, type: "notice", class_code: selectClassCode, url: "app/member/get_my_news", completion : {
+        AF.appMemberGetMyNews(student_id: UserInformation.student_id, student_token: UserInformation.access_token, type: "notice", class_code: selectClassCode, url: "app/member/get_my_news", completion : {
             [weak self] result, result1 in
             
             self?.getClassNoticeList.removeAll()
@@ -66,18 +66,18 @@ extension classNoticeViewController : UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return userInformationClass.student_classcodeNameList.count
+        return UserInformation.student_classcodeNameList.count
         
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return userInformationClass.student_classcodeNameList[row]
+        return UserInformation.student_classcodeNameList[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectClassCode = userInformationClass.student_classcodeList[row]
-        classTextField.text = userInformationClass.student_classcodeNameList[row]
+        selectClassCode = UserInformation.student_classcodeList[row]
+        classTextField.text = UserInformation.student_classcodeNameList[row]
         
-        AF.appMemberGetMyNews(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, type: "notice", class_code: selectClassCode, url: "app/member/get_my_news", completion : {
+        AF.appMemberGetMyNews(student_id: UserInformation.student_id, student_token: UserInformation.access_token, type: "notice", class_code: selectClassCode, url: "app/member/get_my_news", completion : {
             [weak self] result, result1 in
             
             self?.getClassNoticeList.removeAll()
@@ -160,7 +160,7 @@ extension classNoticeViewController {
         textField.setRightPaddingPoints(100)
         
         
-        textField.text = userInformationClass.student_classcodeNameList[ViewController1.pageControlerRow]
+        textField.text = UserInformation.student_classcodeNameList[ViewController1.pageControlerRow]
         
         textField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         textField.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

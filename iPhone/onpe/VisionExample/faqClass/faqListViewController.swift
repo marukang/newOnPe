@@ -10,7 +10,7 @@ class faqListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        AF.appCommunityGetStudentFaq(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, url: "app/community/get_student_faq")
+        AF.appCommunityGetStudentFaq(student_id: UserInformation.student_id, student_token: UserInformation.access_token, url: "app/community/get_student_faq")
         AF.delegate10 = self
         setupLayout()
         

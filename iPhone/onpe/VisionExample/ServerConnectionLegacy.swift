@@ -389,7 +389,7 @@ public class ServerConnectionLegacy {
                             result = 1
                         }
                         
-                        userInformationClass.student_recent_exercise_date = extensionClass.DateToString(date: extensionClass.nowTimw(), type: 0)
+                        UserInformation.student_recent_exercise_date = extensionClass.DateToString(date: extensionClass.nowTimw(), type: 0)
                         print(result)
                         
                     } catch {
@@ -1350,7 +1350,7 @@ public class ServerConnectionLegacy {
             for (key, value) in parameters {
                 multipartFormData.append(Data("\(value)".utf8), withName: "\(key)")
             }
-            multipartFormData.append(imageData, withName: "file", fileName: "\(userInformationClass.student_id).jpg", mimeType: "image/jpg")
+            multipartFormData.append(imageData, withName: "file", fileName: "\(UserInformation.student_id).jpg", mimeType: "image/jpg")
             print(multipartFormData)
         }, to: basURL + url)//<- url 입력
         .responseJSON {
@@ -1379,7 +1379,7 @@ public class ServerConnectionLegacy {
                 break
             }
             
-            self.delegate7?.appMemberProfileChange(result: result, imageUrl: "https://lllloooo.shop/resources/student_profile/\(userInformationClass.student_id).jpg")
+            self.delegate7?.appMemberProfileChange(result: result, imageUrl: "https://lllloooo.shop/resources/student_profile/\(UserInformation.student_id).jpg")
             
         }
         
@@ -1752,7 +1752,7 @@ public class ServerConnectionLegacy {
         //아이디 비밀번호 일치 result -> 0
         //불일치, 토큰 - > 1
         var result : Int = 3
-        let parameters : Parameters = ["student_id" : "\(student_id)", "student_token" : "\(student_token)", "fcmtoken" : "\(userInformationClass.fcm_token)"]
+        let parameters : Parameters = ["student_id" : "\(student_id)", "student_token" : "\(student_token)", "fcmtoken" : "\(UserInformation.fcm_token)"]
         
         AF.request(basURL + url, method: .post, parameters: parameters, headers: nil)
             .responseJSON
@@ -1772,48 +1772,48 @@ public class ServerConnectionLegacy {
                         
                         if getResult.fail == nil {
                             result = 0
-                            userInformationClass.access_token = getResult.access_token ?? ""
+                            UserInformation.access_token = getResult.access_token ?? ""
                             
-                            userInformationClass.student_id = getResult.student_id ?? ""
-                            userInformationClass.student_name = getResult.student_name ?? ""
-                            userInformationClass.student_email = getResult.student_email ?? ""
-                            userInformationClass.student_phone = getResult.student_phone ?? ""
-                            userInformationClass.student_push_agreement = getResult.student_push_agreement ?? ""
-                            userInformationClass.student_email_agreement = getResult.student_email_agreement ?? ""
+                            UserInformation.student_id = getResult.student_id ?? ""
+                            UserInformation.student_name = getResult.student_name ?? ""
+                            UserInformation.student_email = getResult.student_email ?? ""
+                            UserInformation.student_phone = getResult.student_phone ?? ""
+                            UserInformation.student_push_agreement = getResult.student_push_agreement ?? ""
+                            UserInformation.student_email_agreement = getResult.student_email_agreement ?? ""
                            
                             if getResult.student_image_url != nil {
-                                userInformationClass.student_image_url = self.basURL +  getResult.student_image_url!
+                                UserInformation.student_image_url = self.basURL +  getResult.student_image_url!
                             } else {
-                                userInformationClass.student_image_url = ""
+                                UserInformation.student_image_url = ""
                             }
                             
-                            userInformationClass.student_content = getResult.student_content ?? ""
-                            userInformationClass.student_tall = getResult.student_tall ?? ""
-                            userInformationClass.student_weight = getResult.student_weight ?? ""
-                            userInformationClass.student_age = getResult.student_age ?? ""
-                            userInformationClass.student_sex = getResult.student_sex ?? ""
-                            userInformationClass.student_school = getResult.student_school ?? ""
-                            userInformationClass.student_level = getResult.student_level ?? ""
-                            userInformationClass.student_class = getResult.student_class ?? ""
-                            userInformationClass.student_number = getResult.student_number ?? ""
-                            userInformationClass.news_state = getResult.news_state ?? ""
-                            userInformationClass.new_messgae_state = getResult.new_messgae_state ?? ""
+                            UserInformation.student_content = getResult.student_content ?? ""
+                            UserInformation.student_tall = getResult.student_tall ?? ""
+                            UserInformation.student_weight = getResult.student_weight ?? ""
+                            UserInformation.student_age = getResult.student_age ?? ""
+                            UserInformation.student_sex = getResult.student_sex ?? ""
+                            UserInformation.student_school = getResult.student_school ?? ""
+                            UserInformation.student_level = getResult.student_level ?? ""
+                            UserInformation.student_class = getResult.student_class ?? ""
+                            UserInformation.student_number = getResult.student_number ?? ""
+                            UserInformation.news_state = getResult.news_state ?? ""
+                            UserInformation.new_messgae_state = getResult.new_messgae_state ?? ""
 
                             if let data = getResult.student_classcode?.data(using: .utf8) {
                                 
                                 do {
                                     if let jsonDic = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String:String]]{
                                         print(jsonDic)
-                                        userInformationClass.student_classcode = jsonDic
+                                        UserInformation.student_classcode = jsonDic
                                         
                                         for index in jsonDic {
                                             for (key,value) in index{
-                                                userInformationClass.student_classcodeList.append(key)
-                                                userInformationClass.student_classcodeNameList.append(value)
+                                                UserInformation.student_classcodeList.append(key)
+                                                UserInformation.student_classcodeNameList.append(value)
                                             }
                                         }
-                                        userInformationClass.student_classcodeList.reverse()
-                                        userInformationClass.student_classcodeNameList.reverse()
+                                        UserInformation.student_classcodeList.reverse()
+                                        UserInformation.student_classcodeNameList.reverse()
                                        /*
                                         print(userInformationClass.student_classcodeList)
                                         print(userInformationClass.student_classcodeNameList)
@@ -1827,13 +1827,13 @@ public class ServerConnectionLegacy {
                                 }
                             }
                             
-                            userInformationClass.student_create_date = getResult.student_create_date ?? ""
-                            userInformationClass.student_recent_join_date = getResult.student_recent_join_date ?? ""
-                            userInformationClass.student_recent_exercise_date = getResult.student_recent_exercise_date ?? ""
+                            UserInformation.student_create_date = getResult.student_create_date ?? ""
+                            UserInformation.student_recent_join_date = getResult.student_recent_join_date ?? ""
+                            UserInformation.student_recent_exercise_date = getResult.student_recent_exercise_date ?? ""
                             
                             
-                            let autoPramater : [String : String] = ["student_id" : userInformationClass.student_id, "student_token" : userInformationClass.access_token, "fcm_token" : userInformationClass.fcm_token]
-                            userInformationClass.preferences.set(autoPramater, forKey: userInformationClass.autoLoginKey)
+                            let autoPramater : [String : String] = ["student_id" : UserInformation.student_id, "student_token" : UserInformation.access_token, "fcm_token" : UserInformation.fcm_token]
+                            UserInformation.preferences.set(autoPramater, forKey: UserInformation.autoLoginKey)
                             
                         }
                         else
@@ -1866,7 +1866,7 @@ public class ServerConnectionLegacy {
         //불일치, 토큰 - > 1
         //인터넷 불안정 - > 2
         var result : Int = 3
-        let parameters : Parameters = ["student_id" : "\(student_id)", "student_password" : "\(student_password)", "fcmtoken" : "\(userInformationClass.fcm_token)"]
+        let parameters : Parameters = ["student_id" : "\(student_id)", "student_password" : "\(student_password)", "fcmtoken" : "\(UserInformation.fcm_token)"]
         
         AF.request(basURL + url, method: .post, parameters: parameters, headers: nil)
             .responseJSON
@@ -1884,47 +1884,47 @@ public class ServerConnectionLegacy {
                         
                         if getResult.fail == nil {
                             result = 0
-                            userInformationClass.access_token = getResult.access_token ?? ""
-                            print("처음 토큰 : ", userInformationClass.access_token)
-                            userInformationClass.student_id = getResult.student_id ?? ""
-                            userInformationClass.student_name = getResult.student_name ?? ""
-                            userInformationClass.student_email = getResult.student_email ?? ""
-                            userInformationClass.student_phone = getResult.student_phone ?? ""
-                            userInformationClass.student_push_agreement = getResult.student_push_agreement ?? ""
-                            userInformationClass.student_email_agreement = getResult.student_email_agreement ?? ""
+                            UserInformation.access_token = getResult.access_token ?? ""
+                            print("처음 토큰 : ", UserInformation.access_token)
+                            UserInformation.student_id = getResult.student_id ?? ""
+                            UserInformation.student_name = getResult.student_name ?? ""
+                            UserInformation.student_email = getResult.student_email ?? ""
+                            UserInformation.student_phone = getResult.student_phone ?? ""
+                            UserInformation.student_push_agreement = getResult.student_push_agreement ?? ""
+                            UserInformation.student_email_agreement = getResult.student_email_agreement ?? ""
                             
                             if getResult.student_image_url != nil {
-                                userInformationClass.student_image_url = self.basURL +  getResult.student_image_url!
+                                UserInformation.student_image_url = self.basURL +  getResult.student_image_url!
                             } else {
-                                userInformationClass.student_image_url = ""
+                                UserInformation.student_image_url = ""
                             }
                             
-                            userInformationClass.student_content = getResult.student_content ?? ""
-                            userInformationClass.student_tall = getResult.student_tall ?? ""
-                            userInformationClass.student_weight = getResult.student_weight ?? ""
-                            userInformationClass.student_age = getResult.student_age ?? ""
-                            userInformationClass.student_sex = getResult.student_sex ?? ""
-                            userInformationClass.student_school = getResult.student_school ?? ""
-                            userInformationClass.student_level = getResult.student_level ?? ""
-                            userInformationClass.student_class = getResult.student_class ?? ""
-                            userInformationClass.student_number = getResult.student_number ?? ""
+                            UserInformation.student_content = getResult.student_content ?? ""
+                            UserInformation.student_tall = getResult.student_tall ?? ""
+                            UserInformation.student_weight = getResult.student_weight ?? ""
+                            UserInformation.student_age = getResult.student_age ?? ""
+                            UserInformation.student_sex = getResult.student_sex ?? ""
+                            UserInformation.student_school = getResult.student_school ?? ""
+                            UserInformation.student_level = getResult.student_level ?? ""
+                            UserInformation.student_class = getResult.student_class ?? ""
+                            UserInformation.student_number = getResult.student_number ?? ""
                             
                             
-                            userInformationClass.news_state = getResult.news_state ?? ""
-                            userInformationClass.new_messgae_state = getResult.new_messgae_state ?? ""
+                            UserInformation.news_state = getResult.news_state ?? ""
+                            UserInformation.new_messgae_state = getResult.new_messgae_state ?? ""
                             if let data = getResult.student_classcode?.data(using: .utf8){
                                 do {
                                     if let jsonDic = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String:String]]{
                                         print(jsonDic)
-                                        userInformationClass.student_classcode = jsonDic
+                                        UserInformation.student_classcode = jsonDic
                                         for index in jsonDic {
                                             for (key,value) in index{
-                                                userInformationClass.student_classcodeList.append(key)
-                                                userInformationClass.student_classcodeNameList.append(value)
+                                                UserInformation.student_classcodeList.append(key)
+                                                UserInformation.student_classcodeNameList.append(value)
                                             }
                                         }
-                                        userInformationClass.student_classcodeList.reverse()
-                                        userInformationClass.student_classcodeNameList.reverse()
+                                        UserInformation.student_classcodeList.reverse()
+                                        UserInformation.student_classcodeNameList.reverse()
                                         //print(jsonDic)
                                         
                                     }
@@ -1934,13 +1934,13 @@ public class ServerConnectionLegacy {
                                 }
                             }
                             
-                            userInformationClass.student_create_date = getResult.student_create_date ?? ""
-                            userInformationClass.student_recent_join_date = getResult.student_recent_join_date ?? ""
-                            userInformationClass.student_recent_exercise_date = getResult.student_recent_exercise_date ?? ""
+                            UserInformation.student_create_date = getResult.student_create_date ?? ""
+                            UserInformation.student_recent_join_date = getResult.student_recent_join_date ?? ""
+                            UserInformation.student_recent_exercise_date = getResult.student_recent_exercise_date ?? ""
                             
                             
-                            let autoPramater : [String : String] = ["student_id" : userInformationClass.student_id, "student_token" : userInformationClass.access_token, "fcm_token" : userInformationClass.fcm_token]
-                            userInformationClass.preferences.set(autoPramater, forKey: userInformationClass.autoLoginKey)
+                            let autoPramater : [String : String] = ["student_id" : UserInformation.student_id, "student_token" : UserInformation.access_token, "fcm_token" : UserInformation.fcm_token]
+                            UserInformation.preferences.set(autoPramater, forKey: UserInformation.autoLoginKey)
                             
                         } else {
                             result = 1

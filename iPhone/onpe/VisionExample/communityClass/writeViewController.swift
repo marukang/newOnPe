@@ -338,7 +338,7 @@ extension writeViewController {
             if contentTextView.text.count > 2 {
                 if !writeBtnBool {
                     writeBtnBool = true
-                    let a = userInformationClass.self
+                    let a = UserInformation.self
                     if getType == "메세지"{
                         AF.appCommunitySendStudentMessage(student_id: a.student_id, student_token: a.access_token, student_name: a.student_name, student_class_code: self.selectClassCode, student_message_title: titleTextField.text!, student_message_text: contentTextView.text!, url: "app/community/send_student_message")
                     } else {
@@ -357,7 +357,7 @@ extension writeViewController {
                                 }
                             }
                             
-                            AF.appCommunityCreateStudentCommunity(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, student_name: userInformationClass.student_name, student_class_code: selectClassCode, community_title: titleTextField.text!, community_text: contentTextView.text!,community_file: setImageList, url: "app/community/create_student_community")
+                            AF.appCommunityCreateStudentCommunity(student_id: UserInformation.student_id, student_token: UserInformation.access_token, student_name: UserInformation.student_name, student_class_code: selectClassCode, community_title: titleTextField.text!, community_text: contentTextView.text!,community_file: setImageList, url: "app/community/create_student_community")
                         } else {
                             
                             
@@ -385,7 +385,7 @@ extension writeViewController {
                             }
                             print("community_file1 : ",getFile1)
                             print("community_file2 : ",getFile2)
-                            AF.appCommunityUpdateStudentCommunity(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, community_title: titleTextField.text!, community_text: contentTextView.text!, community_number: getCommunityNumber!, community_file1: getFile1 ?? nil, community_file2: getFile2 ?? nil, community_new_file: setImageList, community_file_delete_name: setDeleteImageList, url: "app/community/update_student_community")
+                            AF.appCommunityUpdateStudentCommunity(student_id: UserInformation.student_id, student_token: UserInformation.access_token, community_title: titleTextField.text!, community_text: contentTextView.text!, community_number: getCommunityNumber!, community_file1: getFile1 ?? nil, community_file2: getFile2 ?? nil, community_new_file: setImageList, community_file_delete_name: setDeleteImageList, url: "app/community/update_student_community")
                             setImageList.removeAll()
                         }
                         

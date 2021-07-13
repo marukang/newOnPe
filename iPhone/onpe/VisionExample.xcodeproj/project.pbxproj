@@ -12,7 +12,7 @@
 		1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
 		10224B582087E43100A77316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B572087E43100A77316 /* ViewController.swift */; };
 		10E1152520F3DFE20013E4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
-		290B009A25C296240017ED2C /* userInformationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B009925C296240017ED2C /* userInformationClass.swift */; };
+		290B009A25C296240017ED2C /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B009925C296240017ED2C /* UserInformation.swift */; };
 		290B00A125C29D200017ED2C /* jsonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B00A025C29D200017ED2C /* jsonStruct.swift */; };
 		290B00A525C29DD30017ED2C /* ServerConnectionLegacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B00A425C29DD30017ED2C /* ServerConnectionLegacy.swift */; };
 		290B00AD25C2CFE20017ED2C /* AFProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B00AC25C2CFE20017ED2C /* AFProtocal.swift */; };
@@ -128,7 +128,7 @@
 		10224B5B2087E49F00A77316 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
 		10E114E020E5CBAA0013E4A4 /* VisionExampleObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionExampleObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F02F55AFAF855511FAFDB1 /* Pods-VisionExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisionExample.release.xcconfig"; path = "Target Support Files/Pods-VisionExample/Pods-VisionExample.release.xcconfig"; sourceTree = "<group>"; };
-		290B009925C296240017ED2C /* userInformationClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userInformationClass.swift; sourceTree = "<group>"; };
+		290B009925C296240017ED2C /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		290B00A025C29D200017ED2C /* jsonStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonStruct.swift; sourceTree = "<group>"; };
 		290B00A425C29DD30017ED2C /* ServerConnectionLegacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConnectionLegacy.swift; sourceTree = "<group>"; };
 		290B00AC25C2CFE20017ED2C /* AFProtocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFProtocal.swift; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 		290B009825C2960C0017ED2C /* userInformation */ = {
 			isa = PBXGroup;
 			children = (
-				290B009925C296240017ED2C /* userInformationClass.swift */,
+				290B009925C296240017ED2C /* UserInformation.swift */,
 			);
 			name = userInformation;
 			sourceTree = "<group>";
@@ -812,11 +812,17 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKAuth/KakaoSDKAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKCommon/KakaoSDKCommon.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKTalk/KakaoSDKTalk.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKTemplate/KakaoSDKTemplate.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKUser/KakaoSDKUser.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YoutubePlayer-in-WKWebView/YoutubePlayer_in_WKWebView.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/naveridlogin-sdk-ios/NaverThirdPartyLogin.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -832,11 +838,17 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKCommon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKTalk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKTemplate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKUser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YoutubePlayer_in_WKWebView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NaverThirdPartyLogin.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -862,11 +874,17 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKAuth/KakaoSDKAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKCommon/KakaoSDKCommon.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKTalk/KakaoSDKTalk.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKTemplate/KakaoSDKTemplate.framework",
+				"${BUILT_PRODUCTS_DIR}/KakaoSDKUser/KakaoSDKUser.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YoutubePlayer-in-WKWebView/YoutubePlayer_in_WKWebView.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/naveridlogin-sdk-ios/NaverThirdPartyLogin.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -882,11 +900,17 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKCommon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKTalk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKTemplate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KakaoSDKUser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YoutubePlayer_in_WKWebView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NaverThirdPartyLogin.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1062,7 +1086,7 @@
 				291EDEE425C274100017F984 /* myPageViewController.swift in Sources */,
 				291EDEC625C273CC0017F984 /* faqListCell.swift in Sources */,
 				291EDEE525C274100017F984 /* settingMenuViewController.swift in Sources */,
-				290B009A25C296240017ED2C /* userInformationClass.swift in Sources */,
+				290B009A25C296240017ED2C /* UserInformation.swift in Sources */,
 				291EDEC725C273CC0017F984 /* faqListViewController.swift in Sources */,
 				291EDEC925C273CC0017F984 /* selfClassCustomViewController.swift in Sources */,
 				291EDEC025C273CC0017F984 /* communityListCell.swift in Sources */,

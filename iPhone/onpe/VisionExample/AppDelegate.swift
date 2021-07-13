@@ -9,12 +9,15 @@ import UIKit
 import Firebase
 import UserNotificationsUI
 import GoogleSignIn
+import KakaoSDKAuth
+import KakaoSDKCommon
+import NaverThirdPartyLogin
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
 {
     
-    let AF = ServerConnectionLegacy()
+    let mServerConnection = ServerConnectionLegacy()
     let gcmMessageIDKey = "gcm.message_id"
 
     var orientationLock = UIInterfaceOrientationMask.all
@@ -22,13 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
-        if let error = error {
+        if error != nil {
             return
         }
         
         guard let authentication = user.authentication else { return }
         
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        _ = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
     }
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
@@ -36,6 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if (AuthApi.isKakaoTalkLoginUrl(url))
+        {
+            return AuthController.handleOpenUrl(url: url)
+        }
+        
         return ((GIDSignIn.sharedInstance()?.handle(url)) != nil)
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -53,6 +62,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
             window.makeKeyAndVisible()
         }
         
+        KakaoSDKCommon.initSDK(appKey: "ae7f17bd4bbf675f593937ddae719269")
+        
+        let naverInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+        naverInstance?.isNaverAppOauthEnable = true
+        naverInstance?.isInAppOauthEnable = true
+        naverInstance?.isOnlyPortraitSupportedInIphone()
+        naverInstance?.serviceUrlScheme = kServiceAppUrlScheme
+        naverInstance?.consumerKey = kConsumerKey
+        naverInstance?.consumerSecret = kConsumerSecret
+        naverInstance?.appName = kServiceAppName
+        
         //----------------------------push 토큰 받는 코드--------------------
         FirebaseApp.configure()
         
@@ -60,25 +80,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         GIDSignIn.sharedInstance()?.delegate = self
         
         Messaging.messaging().delegate = self
-            // [END set_messaging_delegate]
-            // Register for remote notifications. This shows a permission dialog on first run, to
-            // show the dialog at a more appropriate time move this registration accordingly.
-            // [START register_for_notifications]
-            if #available(iOS 10.0, *) {
-              // For iOS 10 display notification (sent via APNS)
-              UNUserNotificationCenter.current().delegate = self
 
-              let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-              UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-            } else {
-              let settings: UIUserNotificationSettings =
-              UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-              application.registerUserNotificationSettings(settings)
-            }
+        if #available(iOS 10.0, *)
+        {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
 
-            application.registerForRemoteNotifications()
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
+        }
+        else
+        {
+            let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+
+        application.registerForRemoteNotifications()
         
         
         //--------------------------------------------------------------------
@@ -93,7 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         //UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)
          
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: UIControl.State.highlighted)
-        
         UINavigationBar.appearance().tintColor = .black
         
         return true
@@ -158,24 +176,24 @@ extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase registration token: \(String(describing: fcmToken))")
         //let autoLoginDic : [String : String] = userInformationClass.preferences.object(forKey: userInformationClass.autoLoginKey) as? [String : String] ?? ["":""]
-        if let autoLoginDic = userInformationClass.preferences.object(forKey: userInformationClass.autoLoginKey) as? [String : String] {
+        if let autoLoginDic = UserInformation.preferences.object(forKey: UserInformation.autoLoginKey) as? [String : String] {
             if fcmToken != (autoLoginDic["fcm_token"] ?? ""){
                 //같지 않다. 토큰이 바뀌었다.
-                userInformationClass.fcm_token = fcmToken ?? ""
+                UserInformation.fcm_token = fcmToken ?? ""
                 //이미 sceneDelegate에서 값이 업데이트 돼었기 때문에 스테틱 값을 그대로 넣어준다.
                 //값 갱신하기 위해서 서버 접근
-                AF.appAutoLogin(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, url: "app/login")
+                mServerConnection.appAutoLogin(student_id: UserInformation.student_id, student_token: UserInformation.access_token, url: "app/login")
             } else {
                 //값이 없으면 로그아웃하고 로그인 창으로 넘어간 상태다.
                 //로그인 할때 토큰 값을 넣어줘야하기 때문에 값 넣어주기
-                userInformationClass.fcm_token = fcmToken ?? ""
+                UserInformation.fcm_token = fcmToken ?? ""
             }
         } else {
-            userInformationClass.fcm_token = fcmToken ?? ""
+            UserInformation.fcm_token = fcmToken ?? ""
         }
         
         
-        print(userInformationClass.fcm_token)
+        print(UserInformation.fcm_token)
         
         let dataDict:[String: String] = ["token": fcmToken ?? ""]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)

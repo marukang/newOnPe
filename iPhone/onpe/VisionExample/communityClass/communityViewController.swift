@@ -30,7 +30,7 @@ class communityViewController: UIViewController {
     
     @objc
     func commnuintyListBtnAction(){
-        if userInformationClass.student_classcodeNameList.count == 0 {
+        if UserInformation.student_classcodeNameList.count == 0 {
             let alert = UIAlertController(title: "온체육", message: "먼저 클래스에 가입해주세요.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
                 alert.dismiss(animated: true, completion: nil)
@@ -50,7 +50,7 @@ class communityViewController: UIViewController {
     }
     @objc
     func messageListBtnAction(){
-        if userInformationClass.student_classcodeNameList.count == 0 {
+        if UserInformation.student_classcodeNameList.count == 0 {
             let alert = UIAlertController(title: "온체육", message: "가입한 클래스가 없습니다.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
                 alert.dismiss(animated: true, completion: nil)

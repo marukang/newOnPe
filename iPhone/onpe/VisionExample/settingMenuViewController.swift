@@ -19,7 +19,7 @@ class settingMenuViewController: UIViewController {
         super.viewWillAppear(animated)
         getWindow = UIApplication.shared.windows.first(where: {$0.isKeyWindow})
         print(getWindow)
-        if userInformationClass.student_push_agreement == "1"{
+        if UserInformation.student_push_agreement == "1"{
             pushSwitchBtn.setOn(true, animated: false)
             
         } else {
@@ -31,7 +31,7 @@ class settingMenuViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
         if setPushValue != "" {
-            AF.appMemberPushAgreementChange(student_id: userInformationClass.student_id, student_push_agreement: setPushValue, student_token: userInformationClass.access_token, url: "app/member/push_agreement_change")
+            AF.appMemberPushAgreementChange(student_id: UserInformation.student_id, student_push_agreement: setPushValue, student_token: UserInformation.access_token, url: "app/member/push_agreement_change")
         }
     }
     let pushLabel = UILabel()
@@ -71,37 +71,37 @@ class settingMenuViewController: UIViewController {
         let alert = UIAlertController(title: "온체육", message: "정말로 로그아웃하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
             
-            userInformationClass.student_id = ""
-            userInformationClass.student_name = ""
-            userInformationClass.student_email = ""
-            userInformationClass.student_phone = ""
-            userInformationClass.student_push_agreement = ""
-            userInformationClass.student_email_agreement = ""
-            userInformationClass.student_message_agreement = ""
-            userInformationClass.student_image_url = ""
-            userInformationClass.student_content = ""
-            userInformationClass.student_tall = ""
-            userInformationClass.student_weight = ""
-            userInformationClass.student_age = ""
-            userInformationClass.student_sex = ""
-            userInformationClass.student_school = ""
-            userInformationClass.student_level = ""
-            userInformationClass.student_class = ""
-            userInformationClass.student_number = ""
-            userInformationClass.student_state = ""
-            userInformationClass.news_state = ""
-            userInformationClass.new_messgae_state = ""
-            userInformationClass.student_classcode = []
-            userInformationClass.student_classcodeList = []
-            userInformationClass.student_classcodeNameList = []
-            userInformationClass.student_create_date = ""
-            userInformationClass.student_recent_join_date = ""
-            userInformationClass.student_recent_exercise_date = ""
+            UserInformation.student_id = ""
+            UserInformation.student_name = ""
+            UserInformation.student_email = ""
+            UserInformation.student_phone = ""
+            UserInformation.student_push_agreement = ""
+            UserInformation.student_email_agreement = ""
+            UserInformation.student_message_agreement = ""
+            UserInformation.student_image_url = ""
+            UserInformation.student_content = ""
+            UserInformation.student_tall = ""
+            UserInformation.student_weight = ""
+            UserInformation.student_age = ""
+            UserInformation.student_sex = ""
+            UserInformation.student_school = ""
+            UserInformation.student_level = ""
+            UserInformation.student_class = ""
+            UserInformation.student_number = ""
+            UserInformation.student_state = ""
+            UserInformation.news_state = ""
+            UserInformation.new_messgae_state = ""
+            UserInformation.student_classcode = []
+            UserInformation.student_classcodeList = []
+            UserInformation.student_classcodeNameList = []
+            UserInformation.student_create_date = ""
+            UserInformation.student_recent_join_date = ""
+            UserInformation.student_recent_exercise_date = ""
             
-            userInformationClass.access_token = ""
-            userInformationClass.fcm_token = ""
+            UserInformation.access_token = ""
+            UserInformation.fcm_token = ""
             
-            userInformationClass.preferences.removeObject(forKey: userInformationClass.autoLoginKey)
+            UserInformation.preferences.removeObject(forKey: UserInformation.autoLoginKey)
             
             let vc = loginViewController()
             let navController = UINavigationController(rootViewController: vc)
@@ -150,7 +150,7 @@ extension settingMenuViewController : UICollectionViewDelegate, UICollectionView
     func btnAction(password: String) {
         print(password)
         
-        AF.appMemberStudentResign(student_id: userInformationClass.student_id, student_password: password, student_token: userInformationClass.access_token, url: "app/member/student_resign", {result0, result1 in
+        AF.appMemberStudentResign(student_id: UserInformation.student_id, student_password: password, student_token: UserInformation.access_token, url: "app/member/student_resign", {result0, result1 in
             
             if result0 == 0 {
                 //회원탈퇴 완료될 경우
@@ -168,37 +168,37 @@ extension settingMenuViewController : UICollectionViewDelegate, UICollectionView
                         
                         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
                             
-                            userInformationClass.student_id = ""
-                            userInformationClass.student_name = ""
-                            userInformationClass.student_email = ""
-                            userInformationClass.student_phone = ""
-                            userInformationClass.student_push_agreement = ""
-                            userInformationClass.student_email_agreement = ""
-                            userInformationClass.student_message_agreement = ""
-                            userInformationClass.student_image_url = ""
-                            userInformationClass.student_content = ""
-                            userInformationClass.student_tall = ""
-                            userInformationClass.student_weight = ""
-                            userInformationClass.student_age = ""
-                            userInformationClass.student_sex = ""
-                            userInformationClass.student_school = ""
-                            userInformationClass.student_level = ""
-                            userInformationClass.student_class = ""
-                            userInformationClass.student_number = ""
-                            userInformationClass.student_state = ""
-                            userInformationClass.news_state = ""
-                            userInformationClass.new_messgae_state = ""
-                            userInformationClass.student_classcode = []
-                            userInformationClass.student_classcodeList = []
-                            userInformationClass.student_classcodeNameList = []
-                            userInformationClass.student_create_date = ""
-                            userInformationClass.student_recent_join_date = ""
-                            userInformationClass.student_recent_exercise_date = ""
+                            UserInformation.student_id = ""
+                            UserInformation.student_name = ""
+                            UserInformation.student_email = ""
+                            UserInformation.student_phone = ""
+                            UserInformation.student_push_agreement = ""
+                            UserInformation.student_email_agreement = ""
+                            UserInformation.student_message_agreement = ""
+                            UserInformation.student_image_url = ""
+                            UserInformation.student_content = ""
+                            UserInformation.student_tall = ""
+                            UserInformation.student_weight = ""
+                            UserInformation.student_age = ""
+                            UserInformation.student_sex = ""
+                            UserInformation.student_school = ""
+                            UserInformation.student_level = ""
+                            UserInformation.student_class = ""
+                            UserInformation.student_number = ""
+                            UserInformation.student_state = ""
+                            UserInformation.news_state = ""
+                            UserInformation.new_messgae_state = ""
+                            UserInformation.student_classcode = []
+                            UserInformation.student_classcodeList = []
+                            UserInformation.student_classcodeNameList = []
+                            UserInformation.student_create_date = ""
+                            UserInformation.student_recent_join_date = ""
+                            UserInformation.student_recent_exercise_date = ""
                             
-                            userInformationClass.access_token = ""
-                            userInformationClass.fcm_token = ""
+                            UserInformation.access_token = ""
+                            UserInformation.fcm_token = ""
                             
-                            userInformationClass.preferences.removeObject(forKey: userInformationClass.autoLoginKey)
+                            UserInformation.preferences.removeObject(forKey: UserInformation.autoLoginKey)
                             
                             let vc = loginViewController()
                             let navController = UINavigationController(rootViewController: vc)
@@ -376,7 +376,7 @@ extension settingMenuViewController : appMemberPushAgreementChangeDelegate{
         print(result)
         
         if result == 0 {
-            userInformationClass.student_push_agreement = setPushValue
+            UserInformation.student_push_agreement = setPushValue
             
         }
         

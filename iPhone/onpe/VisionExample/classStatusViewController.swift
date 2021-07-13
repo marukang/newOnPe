@@ -93,7 +93,7 @@ class classStatusViewController: UIViewController {
                     print(classCode)
                     print(unitCode)
                         
-                    AF.appCurriculumStudentGetCurriculum(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, unit_code: unitCode, url: "app/curriculum/student_get_curriculum")
+                    AF.appCurriculumStudentGetCurriculum(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, unit_code: unitCode, url: "app/curriculum/student_get_curriculum")
                     
                     
                 } catch let error {

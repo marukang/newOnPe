@@ -116,12 +116,12 @@ class ViewController1: UIViewController {
         CheckUpdate.shared.showUpdate(withConfirmation: true)
         AF.delegate15 = self
         AF.delegate19 = self
-        print("체크 : ",userInformationClass.student_classcodeNameList.count)
+        print("체크 : ",UserInformation.student_classcodeNameList.count)
         //userInformationClass.preferences.removeObject(forKey: userInformationClass.unitListKey)
         
         
-        if userInformationClass.student_classcodeList.count != 0{
-            selectClassCode = userInformationClass.student_classcodeList[ViewController1.pageControlerRow]
+        if UserInformation.student_classcodeList.count != 0{
+            selectClassCode = UserInformation.student_classcodeList[ViewController1.pageControlerRow]
         } else {
             firstToggle = false
         }
@@ -130,7 +130,7 @@ class ViewController1: UIViewController {
         
         if selectClassCode != "" {
             //클래스별로 제출해야될 이메일 주소 서버로부터 받아오는 함수
-            AF.appRecordGetClassProjectSubmitType(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: selectClassCode, url: "app/record/get_class_project_submit_type")
+            AF.appRecordGetClassProjectSubmitType(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: selectClassCode, url: "app/record/get_class_project_submit_type")
         }
         
         //self.navigationController?.navigationBar.barTintColor = .white //- 상단 네비게이션 바 흰색으로 바꾸기
@@ -228,11 +228,11 @@ extension ViewController1 {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {//이용자 이미지 드레그 해서 넘길때 위치 동그라미로 표시할때 사용되는 메서드
         if scrollView == classListCollectionview{
             pageControl.currentPage = Int(classListCollectionview.contentOffset.x) / Int(classListCollectionview.frame.width)
-            selectClassCode = userInformationClass.student_classcodeList[pageControl.currentPage]
+            selectClassCode = UserInformation.student_classcodeList[pageControl.currentPage]
             //클래스별로 제출해야될 이메일 주소 서버로부터 받아오는 함수
-            AF.appRecordGetClassProjectSubmitType(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: selectClassCode, url: "app/record/get_class_project_submit_type")
+            AF.appRecordGetClassProjectSubmitType(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: selectClassCode, url: "app/record/get_class_project_submit_type")
             
-            print("지금 위치 : ",userInformationClass.student_classcodeList[pageControl.currentPage])
+            print("지금 위치 : ",UserInformation.student_classcodeList[pageControl.currentPage])
             ViewController1.pageControlerRow = Int(pageControl.currentPage)
             //
         }
@@ -268,7 +268,7 @@ extension ViewController1 : addClassCellDelegate {
     //신규 클래스코드 추가 버튼을 누르면 활성화되는 함수
     func btnAction(classCode: String) {
         var duplicateBool = true//해당 값이 true가 되어야 클래스 코드를 추가해준다.
-        for value in userInformationClass.student_classcode{
+        for value in UserInformation.student_classcode{
             for (key, _) in value {
                 if key == classCode{
                     duplicateBool = false
@@ -280,7 +280,7 @@ extension ViewController1 : addClassCellDelegate {
             let splitClassCode = classCode.components(separatedBy: "_")
             if splitClassCode.count > 1 {
                 var schoolName = splitClassCode[0]
-                userInformationClass.student_name = schoolName//클래스 추가하면 학교 이름추가
+                UserInformation.student_name = schoolName//클래스 추가하면 학교 이름추가
                 var i = 0
                 var groupNumber : String = ""
                 for value in splitClassCode[1]{
@@ -301,7 +301,7 @@ extension ViewController1 : addClassCellDelegate {
                 studentClassUpdate.removeAll()
                 addStudentClassDic.removeAll()
                 
-                studentClassUpdate = userInformationClass.student_classcode
+                studentClassUpdate = UserInformation.student_classcode
                 
                 addStudentClassDic.updateValue(schoolName, forKey: classCode)
                 studentClassUpdate.append(addStudentClassDic)
@@ -314,7 +314,7 @@ extension ViewController1 : addClassCellDelegate {
 
                     //Convert back to string. Usually only do this for debugging
                     if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
-                        AF.appClassStudentClassUpdate(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, student_classcode: JSONString, url: "app/class/student_class_update")
+                        AF.appClassStudentClassUpdate(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, student_classcode: JSONString, url: "app/class/student_class_update")
                     }
                     
                    
@@ -771,16 +771,16 @@ extension ViewController1 : mainPageDelegate, appRecordGetClassProjectSubmitType
             studentClassUpdate
             addStudentClassDic
             */
-            userInformationClass.student_classcode = studentClassUpdate
+            UserInformation.student_classcode = studentClassUpdate
             for (key, value) in addStudentClassDic {
-                userInformationClass.student_classcodeList.reverse()
-                userInformationClass.student_classcodeNameList.reverse()
-                userInformationClass.student_classcodeList.append(key)
-                userInformationClass.student_classcodeNameList.append(value)
+                UserInformation.student_classcodeList.reverse()
+                UserInformation.student_classcodeNameList.reverse()
+                UserInformation.student_classcodeList.append(key)
+                UserInformation.student_classcodeNameList.append(value)
 
             }
-            userInformationClass.student_classcodeList.reverse()
-            userInformationClass.student_classcodeNameList.reverse()
+            UserInformation.student_classcodeList.reverse()
+            UserInformation.student_classcodeNameList.reverse()
             if !firstToggle{
                 NotificationCenter.default.removeObserver(self)
                 let vc = ViewController1()
@@ -790,14 +790,14 @@ extension ViewController1 : mainPageDelegate, appRecordGetClassProjectSubmitType
             } else {
                 //기록
                 DispatchQueue.main.async {
-                    self.pageControl.numberOfPages = userInformationClass.student_classcodeList.count
+                    self.pageControl.numberOfPages = UserInformation.student_classcodeList.count
                     self.loadViewIfNeeded()
                 }
                 
-                self.selectClassCode = userInformationClass.student_classcodeList[0]
+                self.selectClassCode = UserInformation.student_classcodeList[0]
                 //self.selectClassCode = updateClassCode
                 print(selectClassCode)
-                AF.appRecordGetClassProjectSubmitType(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: selectClassCode, url: "app/record/get_class_project_submit_type")
+                AF.appRecordGetClassProjectSubmitType(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: selectClassCode, url: "app/record/get_class_project_submit_type")
                 
                 classListCollectionview.reloadData()
                 extensionClass.showToast(view: view, message: "클래스 코드가 추가되었습니다.", font: UIFont.NotoSansCJKkr(type: .normal, size: extensionClass.textSize4))
@@ -875,7 +875,7 @@ extension ViewController1{
                 addStudentClassDic.updateValue(schoolName, forKey: classCode)
                 studentClassUpdate.append(addStudentClassDic)
                 
-                userInformationClass.student_classcode = studentClassUpdate 
+                UserInformation.student_classcode = studentClassUpdate 
                 print(studentClassUpdate)
                 do {
                     
@@ -885,7 +885,7 @@ extension ViewController1{
                     //Convert back to string. Usually only do this for debugging
                     if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
                         
-                        AF.appClassStudentClassUpdate(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: classCode, student_classcode: JSONString, url: "app/class/student_class_update")
+                        AF.appClassStudentClassUpdate(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: classCode, student_classcode: JSONString, url: "app/class/student_class_update")
                     }
                     
                     
@@ -958,7 +958,7 @@ extension ViewController1{
     @objc
     func classListRightBtnAction(){
         
-        pageControl.currentPage = classListCollectionview.scrollToNextItem(total: userInformationClass.student_classcodeList.count)
+        pageControl.currentPage = classListCollectionview.scrollToNextItem(total: UserInformation.student_classcodeList.count)
     }
     
     @objc
@@ -969,8 +969,8 @@ extension ViewController1{
     @objc
     func classEnterBtnAction(){
         print(selectClassCode)
-        print(userInformationClass.access_token)
-        if userInformationClass.student_number == ""{
+        print(UserInformation.access_token)
+        if UserInformation.student_number == ""{
             
             let alert = UIAlertController(title: "온체육", message: "마이페이지에서 학급 번호를 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default) {
@@ -991,7 +991,7 @@ extension ViewController1{
         } else {
             
             classEnterBtn.isEnabled = false
-            AF.appClassGetClassUnitList(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, class_code: selectClassCode, url: "app/class/get_class_unit_list")
+            AF.appClassGetClassUnitList(student_id: UserInformation.student_id, student_token: UserInformation.access_token, class_code: selectClassCode, url: "app/class/get_class_unit_list")
         }
         
         
@@ -1014,7 +1014,7 @@ extension ViewController1 : UICollectionViewDelegate, UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == classListCollectionview{
-            return userInformationClass.student_classcodeList.count
+            return UserInformation.student_classcodeList.count
         } else if collectionView == addNewClasscollectionview {
             return 1
         }  else {
@@ -1037,7 +1037,7 @@ extension ViewController1 : UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == classListCollectionview{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SideMenuClassCell", for: indexPath) as! SideMenuClassCell
-            cell.classNameLabel.text = userInformationClass.student_classcodeNameList[indexPath.row]
+            cell.classNameLabel.text = UserInformation.student_classcodeNameList[indexPath.row]
             cell.classNameLabel.backgroundColor = mainColor._3378fd
             cell.classNameLabel.textColor = .white
             cell.classNameLabel.textAlignment = .center
@@ -1145,7 +1145,7 @@ extension ViewController1{
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.font = UIFont.NotoSansCJKkr(type: .medium, size: 25)
         userNameLabel.textColor = mainColor._404040
-        userNameLabel.text = "\(userInformationClass.student_name)님 안녕하세요"
+        userNameLabel.text = "\(UserInformation.student_name)님 안녕하세요"
         
         scrollView.addSubview(userNameLabel)
         
@@ -1160,7 +1160,7 @@ extension ViewController1{
         userLastJoinLabel.translatesAutoresizingMaskIntoConstraints = false
         userLastJoinLabel.font = UIFont.NotoSansCJKkr(type: .normal, size: 16)
         userLastJoinLabel.textColor = mainColor.hexStringToUIColor(hex: "#777777")
-        userLastJoinLabel.text = "최근 운동일 \(extensionClass.DateToString(date: (userInformationClass.student_recent_exercise_date), type: 0))"
+        userLastJoinLabel.text = "최근 운동일 \(extensionClass.DateToString(date: (UserInformation.student_recent_exercise_date), type: 0))"
         
         scrollView.addSubview(userLastJoinLabel)
         
@@ -1187,9 +1187,9 @@ extension ViewController1{
         SDImageCache.shared.clearMemory()
         SDImageCache.shared.clearDisk()
         
-        if userInformationClass.student_image_url != "" {
-            print(userInformationClass.student_image_url)
-            self.userProfileImgae.sd_setImage(with: URL(string: userInformationClass.student_image_url), completed: nil)
+        if UserInformation.student_image_url != "" {
+            print(UserInformation.student_image_url)
+            self.userProfileImgae.sd_setImage(with: URL(string: UserInformation.student_image_url), completed: nil)
         } else {
             self.userProfileImgae.image = UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysOriginal)
         }
@@ -1207,10 +1207,10 @@ extension ViewController1{
         hScroreLabel.translatesAutoresizingMaskIntoConstraints = false
         hScroreLabel.font = UIFont.NotoSansCJKkr(type: .normal, size: 12)
         hScroreLabel.textColor = mainColor.hexStringToUIColor(hex: "#777777")
-        if userInformationClass.student_school == "" {
+        if UserInformation.student_school == "" {
             hScroreLabel.text = "- 학교"
         } else {
-            hScroreLabel.text = "\(userInformationClass.student_school)"
+            hScroreLabel.text = "\(UserInformation.student_school)"
         }
         
         
@@ -1225,10 +1225,10 @@ extension ViewController1{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.NotoSansCJKkr(type: .medium, size: 20)
         label.textColor = mainColor._3378fd
-        if userInformationClass.student_level == "" {
+        if UserInformation.student_level == "" {
             label.text = "- 학년 "
         } else {
-            label.text = "\(userInformationClass.student_level)학년 "
+            label.text = "\(UserInformation.student_level)학년 "
         }
         
         
@@ -1246,10 +1246,10 @@ extension ViewController1{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.NotoSansCJKkr(type: .medium, size: 20)
         label.textColor = mainColor._3378fd
-        if userInformationClass.student_class == "" {
+        if UserInformation.student_class == "" {
             label.text = "- 반"
         } else {
-            label.text = "\(userInformationClass.student_class)반"
+            label.text = "\(UserInformation.student_class)반"
         }
         
         
@@ -1293,10 +1293,10 @@ extension ViewController1{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.NotoSansCJKkr(type: .normal, size: 12)
         label.textColor = mainColor.hexStringToUIColor(hex: "#3f3f3f")
-        if userInformationClass.student_content == "" {
+        if UserInformation.student_content == "" {
             label.text = "-"
         } else {
-            label.text = userInformationClass.student_content
+            label.text = UserInformation.student_content
         }
         
         //label.text = "\(extensionClass.DateToString(date: (extensionClass.nowTimw2()), type: 0)) ・ 또래 기준"
@@ -1414,7 +1414,7 @@ extension ViewController1{
         self.pageControl.translatesAutoresizingMaskIntoConstraints = false
         self.pageControl.currentPageIndicatorTintColor = mainColor._3378fd
         self.pageControl.pageIndicatorTintColor = .systemGray4
-        self.pageControl.numberOfPages = userInformationClass.student_classcodeList.count
+        self.pageControl.numberOfPages = UserInformation.student_classcodeList.count
         self.pageControl.transform = .init(scaleX: 0.8, y: 0.8)
         self.pageControl.currentPage = ViewController1.pageControlerRow
         scrollView.addSubview(pageControl)

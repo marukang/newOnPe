@@ -11,7 +11,7 @@ class contentsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        AF.appCommunityGetstudentContentListAdmin(student_id: userInformationClass.student_id, student_token: userInformationClass.access_token, url: "app/community/get_student_content_list_admin")
+        AF.appCommunityGetstudentContentListAdmin(student_id: UserInformation.student_id, student_token: UserInformation.access_token, url: "app/community/get_student_content_list_admin")
         AF.delegate11 = self
         setupLayout()
         

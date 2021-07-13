@@ -25,26 +25,36 @@ class AppInfo: Decodable {
 class CheckUpdate: NSObject {
 
     static let shared = CheckUpdate()
-    
-    
-    func showUpdate(withConfirmation: Bool) {
+
+    func showUpdate(withConfirmation: Bool)
+    {
         DispatchQueue.global().async {
             self.checkVersion(force : !withConfirmation)
         }
     }
-  
 
-    func checkVersion(force: Bool) {
-        if let currentVersion = self.getBundle(key: "CFBundleShortVersionString") {
+    func checkVersion(force: Bool)
+    {
+        if let currentVersion = self.getBundle(key: "CFBundleShortVersionString")
+        {
             _ = getAppInfo { (info, error) in
-                if let appStoreAppVersion = info?.version {
-                    if let error = error {
+                
+                if let appStoreAppVersion = info?.version
+                {
+                    if let error = error
+                    {
                         print("error getting app store version: ", error)
-                    } else if appStoreAppVersion == currentVersion {
+                    }
+                    else if appStoreAppVersion == currentVersion
+                    {
                         print("Already on the last app version: ",currentVersion)
-                    } else {
+                    }
+                    else
+                    {
                         print("Needs update: AppStore Version: \(appStoreAppVersion) > Current version: ",currentVersion)
+                        
                         DispatchQueue.main.async {
+                            
                             let topController: UIViewController = (UIApplication.shared.windows.first?.rootViewController)!
                             topController.showAppUpdateAlert(Version: (info?.version)!, Force: force, AppURL: (info?.trackViewUrl)!)
                         }
@@ -54,11 +64,8 @@ class CheckUpdate: NSObject {
         }
     }
 
-    private func getAppInfo(completion: @escaping (AppInfo?, Error?) -> Void) -> URLSessionDataTask? {
-    
-      // You should pay attention on the country that your app is located, in my case I put Brazil */br/*
-      // Você deve prestar atenção em que país o app está disponível, no meu caso eu coloquei Brasil */br/*
-      
+    private func getAppInfo(completion: @escaping (AppInfo?, Error?) -> Void) -> URLSessionDataTask?
+    {
         guard let identifier = self.getBundle(key: "CFBundleIdentifier"),
               let url = URL(string: "http://itunes.apple.com/br/lookup?bundleId=\(identifier)") else {
                 DispatchQueue.main.async {
@@ -66,6 +73,7 @@ class CheckUpdate: NSObject {
                 }
                 return nil
         }
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
           
             
@@ -87,7 +95,6 @@ class CheckUpdate: NSObject {
         
         task.resume()
         return task
-
     }
 
     func getBundle(key: String) -> String? {
@@ -101,16 +108,19 @@ class CheckUpdate: NSObject {
         guard let value = plist?.object(forKey: key) as? String else {
           fatalError("Couldn't find key '\(key)' in 'Info.plist'.")
         }
+        
         return value
     }
 }
 
 extension UIViewController {
-    @objc fileprivate func showAppUpdateAlert( Version : String, Force: Bool, AppURL: String) {
-        guard let appName = CheckUpdate.shared.getBundle(key: "CFBundleName") else { return } //Bundle.appName()
+    
+    @objc fileprivate func showAppUpdateAlert( Version : String, Force: Bool, AppURL: String)
+    {
+        guard CheckUpdate.shared.getBundle(key: "CFBundleName") != nil else { return } //Bundle.appName()
+        
         let alertTitle = "온체육"
         let alertMessage = "업데이트 버전이 출시 되었습니다!"
-
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
 
         if !Force {
@@ -118,18 +128,24 @@ extension UIViewController {
             alertController.addAction(notNowButton)
         }
 
-        let updateButton = UIAlertAction(title: "업데이트", style: .default) { (action:UIAlertAction) in
+        let updateButton = UIAlertAction(title: "업데이트", style: .default) { (action : UIAlertAction) in
+            
             guard let url = URL(string: AppURL) else {
                 return
             }
-            if #available(iOS 10.0, *) {
+            
+            if #available(iOS 10.0, *)
+            {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
+            }
+            else
+            {
                 UIApplication.shared.openURL(url)
             }
         }
 
         alertController.addAction(updateButton)
+        
         self.present(alertController, animated: true, completion: nil)
     }
 }

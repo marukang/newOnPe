@@ -130,236 +130,278 @@
 			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
-		<key>MLImage.xcscheme</key>
+		<key>KakaoSDKAuth.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>19</integer>
 		</dict>
-		<key>MLKitBarcodeScanning.xcscheme</key>
+		<key>KakaoSDKCommon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>20</integer>
 		</dict>
-		<key>MLKitCommon.xcscheme</key>
+		<key>KakaoSDKTalk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>21</integer>
 		</dict>
-		<key>MLKitFaceDetection-GoogleMVFaceDetectorResources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>23</integer>
-		</dict>
-		<key>MLKitFaceDetection.xcscheme</key>
+		<key>KakaoSDKTemplate.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>22</integer>
 		</dict>
-		<key>MLKitImageLabeling-MLKitImageLabelingResources.xcscheme</key>
+		<key>KakaoSDKUser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>23</integer>
 		</dict>
-		<key>MLKitImageLabeling.xcscheme</key>
+		<key>MLImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>24</integer>
 		</dict>
-		<key>MLKitImageLabelingCommon.xcscheme</key>
+		<key>MLKitBarcodeScanning.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
+		<key>MLKitCommon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>26</integer>
 		</dict>
-		<key>MLKitImageLabelingCustom.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>27</integer>
-		</dict>
-		<key>MLKitObjectDetection-MLKitObjectDetectionResources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>29</integer>
-		</dict>
-		<key>MLKitObjectDetection.xcscheme</key>
+		<key>MLKitFaceDetection-GoogleMVFaceDetectorResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>28</integer>
 		</dict>
-		<key>MLKitObjectDetectionCommon-MLKitObjectDetectionCommonResources.xcscheme</key>
+		<key>MLKitFaceDetection.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>31</integer>
+			<integer>27</integer>
 		</dict>
-		<key>MLKitObjectDetectionCommon.xcscheme</key>
+		<key>MLKitImageLabeling-MLKitImageLabelingResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>30</integer>
 		</dict>
-		<key>MLKitObjectDetectionCustom.xcscheme</key>
+		<key>MLKitImageLabeling.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>29</integer>
+		</dict>
+		<key>MLKitImageLabelingCommon.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>31</integer>
+		</dict>
+		<key>MLKitImageLabelingCustom.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>32</integer>
 		</dict>
-		<key>MLKitPoseDetection-MLKitPoseDetectionFastResources.xcscheme</key>
+		<key>MLKitObjectDetection-MLKitObjectDetectionResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>34</integer>
 		</dict>
-		<key>MLKitPoseDetection.xcscheme</key>
+		<key>MLKitObjectDetection.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>33</integer>
 		</dict>
-		<key>MLKitPoseDetectionAccurate-MLKitPoseDetectionAccurateResources.xcscheme</key>
+		<key>MLKitObjectDetectionCommon-MLKitObjectDetectionCommonResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>36</integer>
 		</dict>
-		<key>MLKitPoseDetectionAccurate.xcscheme</key>
+		<key>MLKitObjectDetectionCommon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>35</integer>
 		</dict>
-		<key>MLKitPoseDetectionCommon-MLKitPoseDetectionCommonResources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>38</integer>
-		</dict>
-		<key>MLKitPoseDetectionCommon.xcscheme</key>
+		<key>MLKitObjectDetectionCustom.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>37</integer>
 		</dict>
-		<key>MLKitTextRecognition-GoogleMVTextDetectorResources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>40</integer>
-		</dict>
-		<key>MLKitTextRecognition.xcscheme</key>
+		<key>MLKitPoseDetection-MLKitPoseDetectionFastResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>39</integer>
 		</dict>
-		<key>MLKitVision.xcscheme</key>
+		<key>MLKitPoseDetection.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>38</integer>
+		</dict>
+		<key>MLKitPoseDetectionAccurate-MLKitPoseDetectionAccurateResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>41</integer>
 		</dict>
-		<key>MLKitVisionKit.xcscheme</key>
+		<key>MLKitPoseDetectionAccurate.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>42</integer>
+			<integer>40</integer>
 		</dict>
-		<key>MLKitXenoCommon-MLKitXenoResources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>44</integer>
-		</dict>
-		<key>MLKitXenoCommon.xcscheme</key>
+		<key>MLKitPoseDetectionCommon-MLKitPoseDetectionCommonResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>43</integer>
 		</dict>
-		<key>Pods-VisionExample.xcscheme</key>
+		<key>MLKitPoseDetectionCommon.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>42</integer>
+		</dict>
+		<key>MLKitTextRecognition-GoogleMVTextDetectorResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>45</integer>
+		</dict>
+		<key>MLKitTextRecognition.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>44</integer>
+		</dict>
+		<key>MLKitVision.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>46</integer>
 		</dict>
-		<key>Pods-VisionExampleObjc.xcscheme</key>
+		<key>MLKitVisionKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>47</integer>
 		</dict>
-		<key>PromisesObjC.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>48</integer>
-		</dict>
-		<key>Protobuf.xcscheme</key>
+		<key>MLKitXenoCommon-MLKitXenoResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>49</integer>
 		</dict>
+		<key>MLKitXenoCommon.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>48</integer>
+		</dict>
+		<key>Pods-VisionExample.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>52</integer>
+		</dict>
+		<key>Pods-VisionExampleObjc.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>53</integer>
+		</dict>
+		<key>PromisesObjC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>54</integer>
+		</dict>
+		<key>Protobuf.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>55</integer>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>50</integer>
+			<integer>56</integer>
 		</dict>
 		<key>YoutubePlayer-in-WKWebView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>51</integer>
+			<integer>57</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>45</integer>
+			<integer>50</integer>
+		</dict>
+		<key>naveridlogin-sdk-ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>51</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

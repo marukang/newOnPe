@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class userInformationClass {
+public class UserInformation {
     public static var student_id : String = ""
     public static var student_name : String = ""
     public static var student_email : String = ""
