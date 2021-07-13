@@ -6,7 +6,8 @@ apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         debug {
-            storeFile file('C:\\workSpace\\newOnPe\\keystore\\OnPe_Bundle_Key.jks')
+            // storeFile file('C:\\workSpace\\newOnPe\\keystore\\OnPe_Bundle_Key.jks')
+            storeFile file('/Users/woozie/Desktop/complexion[OnPe]/Android/newOnPe/keystore/OnPe_Bundle_Key.jks')
             storePassword 'onpe1234'
             keyAlias 'OnPe_Bundle_key'
             keyPassword 'onpe1234'

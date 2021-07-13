@@ -233,6 +233,11 @@ class SNSLoginPage : CommonActivity()
         }
     }
 
+    private fun onEmailLoginTry()
+    {
+
+    }
+
     private fun onReceiveGoogleLoginResult(requestCode: Int, resultCode: Int, data: Intent?)
     {
         Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult requestCode : $requestCode resultCode = $resultCode")
