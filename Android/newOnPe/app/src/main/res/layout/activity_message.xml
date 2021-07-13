@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/message_drawerlayout"
-        tools:context=".message.class_message_Activity"
+        tools:context=".page.message.class_message_Activity"
         android:background="@color/white"
 >
 

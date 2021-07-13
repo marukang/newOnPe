@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".login.login_page_Activity">
+    tools:context=".page.login.EmailLoginPage">
 
     <ScrollView
         android:layout_width="match_parent"

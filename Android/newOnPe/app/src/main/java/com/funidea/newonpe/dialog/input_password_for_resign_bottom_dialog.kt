@@ -3,7 +3,7 @@ package com.funidea.newonpe.dialog
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
-import com.funidea.utils.Custom_Toast.Companion.custom_toast
+import com.funidea.utils.CustomToast.Companion.show
 import com.funidea.newonpe.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.input_password_for_resign_bottom_dialog.*
@@ -54,7 +54,7 @@ class input_password_for_resign_bottom_dialog(context: Context) : BottomSheetDia
             }
             else
             {
-                custom_toast(context, "비밀번호를 올바르게 입력해주세요.")
+                show(context, "비밀번호를 올바르게 입력해주세요.")
                 dismiss()
 
             }

@@ -10,12 +10,12 @@
         android:layout_height="match_parent">
 
 
-        <com.funidea.newonpe.camearutils.CameraSourcePreview
+        <com.funidea.newonpe.camera.CameraSourcePreview
             android:id="@+id/preview_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.funidea.newonpe.camearutils.GraphicOverlay
+        <com.funidea.newonpe.camera.GraphicOverlay
             android:id="@+id/graphic_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

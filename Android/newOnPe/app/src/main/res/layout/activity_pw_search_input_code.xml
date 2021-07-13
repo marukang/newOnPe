@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".login.search_id_pw.pw_search_input_code_Activity">
+        tools:context=".page.login.EmailAuthenticationPage">
 
 
     <ScrollView

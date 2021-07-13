@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:id="@+id/self_class_drawerlayout"
-        tools:context=".self_class.self_class_Activity">
+        tools:context=".page.management.self_class_Activity">
 
     <LinearLayout
             android:layout_width="match_parent"

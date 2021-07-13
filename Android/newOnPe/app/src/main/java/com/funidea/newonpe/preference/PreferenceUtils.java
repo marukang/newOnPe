@@ -27,7 +27,7 @@ import androidx.annotation.StringRes;
 import androidx.camera.core.CameraSelector;
 
 import com.funidea.newonpe.R;
-import com.funidea.newonpe.camearutils.CameraSource;
+import com.funidea.newonpe.camera.CameraSource;
 import com.google.android.gms.common.images.Size;
 import com.google.common.base.Preconditions;
 import com.google.mlkit.vision.pose.PoseDetectorOptionsBase;

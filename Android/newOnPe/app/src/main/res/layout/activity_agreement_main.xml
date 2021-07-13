@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:weightSum="896"
     android:orientation="vertical"
-    tools:context=".my_page.agreement.agreement_main_Activity">
+    tools:context=".page.setting.agreement_main_Activity">
 
 
     <LinearLayout

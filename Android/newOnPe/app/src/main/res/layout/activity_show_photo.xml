@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="896"
-    tools:context=".home.show_photo_Activity">
+    tools:context=".page.home.show_photo_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"

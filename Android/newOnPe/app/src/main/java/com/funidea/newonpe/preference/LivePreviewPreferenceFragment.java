@@ -25,7 +25,7 @@ import android.preference.PreferenceFragment;
 import androidx.annotation.StringRes;
 
 import com.funidea.newonpe.R;
-import com.funidea.newonpe.camearutils.CameraSource;
+import com.funidea.newonpe.camera.CameraSource;
 
 import java.util.HashMap;
 import java.util.List;

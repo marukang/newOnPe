@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".self_class.self_class_select_exercise_Activity">
+        tools:context=".page.management.self_class_select_exercise_Activity">
 
     <LinearLayout
             android:layout_width="match_parent"

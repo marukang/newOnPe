@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:id="@+id/after_school_content_drawerlayout"
-        tools:context=".after_school_class.after_school_content_Activity">
+        tools:context=".page.youtube.after_school_content_Activity">
 
     <LinearLayout
             android:layout_width="match_parent"

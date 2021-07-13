@@ -3,7 +3,7 @@ package com.funidea.newonpe.dialog
 import android.content.Context
 import android.graphics.Color
 import android.view.View
-import com.funidea.utils.Custom_Toast.Companion.custom_toast
+import com.funidea.utils.CustomToast.Companion.show
 import com.funidea.newonpe.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.pose_exercise_start_bottom_dialog_item.*
@@ -183,7 +183,7 @@ class pose_exercise_start_bottom_dialog(context: Context) : BottomSheetDialog(co
             }
             else
             {
-                custom_toast(context, "운동을 시작하기 위해선 체크리스트를 모두 체크해야합니다.")
+                show(context, "운동을 시작하기 위해선 체크리스트를 모두 체크해야합니다.")
             }
         }
 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="896"
+    tools:context=".page.login.search_id_pw.id_search_complete_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:background="@drawable/view_bottom_line">
+
+        <ImageView
+            android:id="@+id/join_complete_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            app:srcCompat="@drawable/back_button_image"
+            android:padding="18dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:text="회원가입 완료"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#404040"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="756"
+        android:orientation="vertical"
+        android:weightSum="756">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="756"
+            android:orientation="vertical"
+            android:weightSum="756">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="100"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/round_checkbox"
+                android:layout_gravity="center"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="45"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_color"
+                android:text="회원가입이 완료되었습니다."
+                android:fontFamily="@font/notosans_kr_bold"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="normal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="온 국민이 즐기는 인공지능 체육수업"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:textStyle="normal"
+                    android:textSize="16dp"
+                    android:textColor="#777777"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/join_complete_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:text="로그인 하러가기"
+        android:gravity="center"
+        android:background="@color/main_color"
+        android:textColor="@color/white"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textSize="18dp"
+        android:textStyle="normal"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</LinearLayout>

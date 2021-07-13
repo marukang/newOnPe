@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:weightSum="896"
     android:background="@color/white"
-    tools:context=".my_page.agreement.personal_information_agreement_Activity">
+    tools:context=".page.setting.PersonalAgreementPage">
 
 
     <LinearLayout

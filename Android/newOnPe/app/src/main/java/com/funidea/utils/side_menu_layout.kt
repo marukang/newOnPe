@@ -10,16 +10,16 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.funidea.utils.change_date_value.Companion.change_time
 import com.funidea.utils.set_User_info.Companion.student_name
 import com.funidea.utils.set_User_info.Companion.student_recent_exercise_date
-import com.funidea.newonpe.faq.faq_Activity
+import com.funidea.newonpe.page.faq.faq_Activity
 import com.funidea.newonpe.R
-import com.funidea.newonpe.after_school_class.after_school_content_Activity
-import com.funidea.newonpe.home.class_community_board.class_community_Activity
-import com.funidea.newonpe.main_home.MainHomeActivity.Companion.sideMenuClassItem
-import com.funidea.newonpe.message.class_message_Activity
-import com.funidea.newonpe.my_page.my_page_Activity
-import com.funidea.newonpe.my_page.setting_Activity
-import com.funidea.newonpe.main_home.side_menu_class_Adapter
-import com.funidea.newonpe.SplashActivity
+import com.funidea.newonpe.page.youtube.after_school_content_Activity
+import com.funidea.newonpe.page.home.class_community_board.class_community_Activity
+import com.funidea.newonpe.page.main.MainHomeActivity.Companion.sideMenuClassItem
+import com.funidea.newonpe.page.message.class_message_Activity
+import com.funidea.newonpe.page.setting.my_page_Activity
+import com.funidea.newonpe.page.setting.SettingPage
+import com.funidea.newonpe.page.main.side_menu_class_Adapter
+import com.funidea.newonpe.page.login.SplashActivity
 import kotlinx.android.synthetic.main.activity_side_menu.view.*
 
 /** 햄버거 버튼 레이아웃 클래스
@@ -127,7 +127,7 @@ class side_menu_layout
             val side_menu_setting_button_textview = v.side_menu_setting_button_textview
             side_menu_setting_button_textview.setOnClickListener {
 
-                val intent = Intent(context, setting_Activity::class.java)
+                val intent = Intent(context, SettingPage::class.java)
                 val bundle = ActivityOptions.makeCustomAnimation(context, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left).toBundle()
                 context.startActivity(intent, bundle)
             }

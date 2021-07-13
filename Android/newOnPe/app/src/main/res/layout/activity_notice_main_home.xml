@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/notice_main_home_drawerview"
-    tools:context=".notice_class.notice_main_home_Activity">
+    tools:context=".page.notice.notice_main_home_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"

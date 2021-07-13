@@ -9,7 +9,7 @@
         android:weightSum="896"
         android:background="@color/white"
         android:id="@+id/class_community_board_drawerlayout"
-        tools:context=".home.class_community_board.class_community_board_Activity">
+        tools:context=".page.home.class_community_board.class_community_board_Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

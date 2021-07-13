@@ -12,18 +12,18 @@
         android:supportsRtl="true"
         android:name=".GlobalApplication"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".notice_class.show_notice_message_Activity"></activity>
-        <activity android:name=".notice_class.notice_main_home_Activity" />
-        <activity android:name=".complete_exercise_record_Activity" />
-        <activity android:name=".home.class_file_open_webview_Activity" />
-        <activity android:name=".home.class_unit.class_detail_unit.class_detail_unit_Activity" />
-        <activity android:name=".home.show_photo_Activity" />
-        <activity android:name=".home.class_community_board.class_community_edit_Activity" />
-        <activity android:name=".message.class_message_edit_Activity" />
-        <activity android:name=".faq.faq_answer_Activity" />
-        <activity android:name=".message.class_message_write_Activity" />
-        <activity android:name=".after_school_class.youtube_content.after_school_youtube_content_Activity" />
-        <activity android:name=".SNSLoginPage" android:screenOrientation="portrait">
+        <activity android:name="com.funidea.newonpe.page.notice.show_notice_message_Activity"></activity>
+        <activity android:name="com.funidea.newonpe.page.notice.notice_main_home_Activity" />
+        <activity android:name=".page.main.ExerciseRecordPage" />
+        <activity android:name="com.funidea.newonpe.page.home.class_file_open_webview_Activity" />
+        <activity android:name="com.funidea.newonpe.page.home.class_unit.class_detail_unit.class_detail_unit_Activity" />
+        <activity android:name="com.funidea.newonpe.page.home.show_photo_Activity" />
+        <activity android:name="com.funidea.newonpe.page.home.class_community_board.class_community_edit_Activity" />
+        <activity android:name="com.funidea.newonpe.page.message.class_message_edit_Activity" />
+        <activity android:name="com.funidea.newonpe.page.faq.faq_answer_Activity" />
+        <activity android:name="com.funidea.newonpe.page.message.class_message_write_Activity" />
+        <activity android:name="com.funidea.newonpe.page.youtube.after_school_youtube_content_Activity" />
+        <activity android:name="com.funidea.newonpe.page.login.SNSLoginPage" android:screenOrientation="portrait">
 
         </activity>
 
@@ -39,35 +39,35 @@
         </activity>
 
         <activity
-            android:name=".my_page.agreement.agreement_main_Activity"
+            android:name="com.funidea.newonpe.page.setting.agreement_main_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".my_page.agreement.terms_of_user_information_agreement_Activity"
+            android:name="com.funidea.newonpe.page.setting.terms_of_user_information_agreement_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".my_page.agreement.personal_information_agreement_Activity"
+            android:name="com.funidea.newonpe.page.setting.PersonalAgreementPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".self_class.self_class_result_Activity"
+            android:name="com.funidea.newonpe.page.management.self_class_result_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.class_community_board.class_community_write_Activity"
+            android:name="com.funidea.newonpe.page.home.class_community_board.class_community_write_Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".faq.faq_Activity"
+            android:name="com.funidea.newonpe.page.faq.faq_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".message.class_message_answer_Activity"
+            android:name="com.funidea.newonpe.page.message.class_message_answer_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".login.search_id_pw.id_search_complete_Activity"
+            android:name="com.funidea.newonpe.page.login.search_id_pw.id_search_complete_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".login.join_complete_Activity"
+            android:name="com.funidea.newonpe.page.login.join_complete_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.funidea.newonpe.page.login.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,13 +75,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GetDateActivity_kt" />
+        <activity android:name=".page.pose.GetDateActivity_kt" />
         <activity android:name=".GetDataActivity" />
         <activity
-            android:name=".PoseActivity"
+            android:name="com.funidea.newonpe.page.pose.PoseActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".JugglingActivity"
+            android:name=".page.juggling.JugglingActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity android:name=".SelectActivity" />
@@ -89,77 +89,77 @@
             android:name=".SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".self_class.self_class_select_exercise_Activity"
+            android:name="com.funidea.newonpe.page.management.self_class_select_exercise_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.class_community_menu_Activity"
+            android:name="com.funidea.newonpe.page.home.class_community_menu_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".after_school_class.after_school_content_Activity"
+            android:name="com.funidea.newonpe.page.youtube.after_school_content_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".self_class.self_class_Activity"
+            android:name="com.funidea.newonpe.page.management.self_class_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".message.class_message_Activity"
+            android:name="com.funidea.newonpe.page.message.class_message_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.class_home.class_home_Activity"
+            android:name="com.funidea.newonpe.page.home.class_home.class_home_Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".notice_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".my_page.setting_Activity"
+            android:name="com.funidea.newonpe.page.setting.SettingPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".my_page.my_page_Activity"
+            android:name="com.funidea.newonpe.page.setting.my_page_Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".login.search_id_pw.pw_search_change_Activity"
+            android:name="com.funidea.newonpe.page.login.ChangePasswordPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".login.search_id_pw.pw_search_input_code_Activity"
+            android:name="com.funidea.newonpe.page.login.EmailAuthenticationPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".login.add_user_info_Activity"
+            android:name="com.funidea.newonpe.page.login.MemberDetailedInfoPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".login.search_id_pw.pw_search_Activity"
+            android:name="com.funidea.newonpe.page.login.SearchPasswordPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".login.search_id_pw.id_search_Activity"
+            android:name="com.funidea.newonpe.page.login.SearchIDPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".home.class_result.class_result_Activity"
+            android:name="com.funidea.newonpe.page.home.class_result.class_result_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main_home.MainHomeActivity"
+            android:name="com.funidea.newonpe.page.main.MainHomeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".test" />
         <activity
-            android:name=".home.class_unit.class_unit_Activity"
+            android:name="com.funidea.newonpe.page.home.class_unit.class_unit_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.class_community_board.class_community_board_Activity"
+            android:name="com.funidea.newonpe.page.home.class_community_board.class_community_board_Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".home.class_community_board.class_community_Activity"
+            android:name="com.funidea.newonpe.page.home.class_community_board.class_community_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".login.join_page_Activity"
+            android:name="com.funidea.newonpe.page.login.MemberJoinPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".login.login_page_Activity"
+            android:name="com.funidea.newonpe.page.login.EmailLoginPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
@@ -168,7 +168,7 @@
             android:value="@integer/google_play_services_version" />
 
         <service
-            android:name=".serviceClass.MyFirebaseMessagingService"
+            android:name=".services.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

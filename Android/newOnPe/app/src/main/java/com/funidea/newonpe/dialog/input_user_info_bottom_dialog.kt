@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.funidea.utils.Custom_Toast.Companion.custom_toast
+import com.funidea.utils.CustomToast.Companion.show
 import com.funidea.utils.save_SharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.student_age
@@ -16,7 +16,7 @@ import com.funidea.utils.set_User_info.Companion.student_sex
 import com.funidea.utils.set_User_info.Companion.student_tall
 import com.funidea.utils.set_User_info.Companion.student_weight
 import com.funidea.newonpe.R
-import com.funidea.newonpe.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.input_user_info_bottom_dialog.*
 import kotlinx.android.synthetic.main.input_user_info_bottom_dialog.view.*
@@ -334,7 +334,7 @@ class input_user_info_bottom_dialog(context: Context) : BottomSheetDialog(contex
 
                                 save_SharedPreferences.save_shard(context, student_token)
 
-                                custom_toast(context, "정보가 등록되었습니다.")
+                                show(context, "정보가 등록되었습니다.")
 
                                 student_content = get_student_content.toString()
                                 student_tall =  get_student_tall.toString()
@@ -346,7 +346,7 @@ class input_user_info_bottom_dialog(context: Context) : BottomSheetDialog(contex
                             }
                             else{
 
-                                custom_toast(context, "올바른 접근이 아닙니다. 다시 변경해주세요.")
+                                show(context, "올바른 접근이 아닙니다. 다시 변경해주세요.")
                             }
 
                         } catch (e: JSONException) {
@@ -359,7 +359,7 @@ class input_user_info_bottom_dialog(context: Context) : BottomSheetDialog(contex
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
 
 
-                        custom_toast(context, "인터넷 연결 상태를 다시 확인해주세요.")
+                        show(context, "인터넷 연결 상태를 다시 확인해주세요.")
                     }
                 })
     }

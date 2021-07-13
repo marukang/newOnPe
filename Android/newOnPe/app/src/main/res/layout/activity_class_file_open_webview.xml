@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:weightSum="896"
     android:background="@color/white"
-    tools:context=".home.class_file_open_webview_Activity">
+    tools:context=".page.home.class_file_open_webview_Activity">
 
 
     <LinearLayout

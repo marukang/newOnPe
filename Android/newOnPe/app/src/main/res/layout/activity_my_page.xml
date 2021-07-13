@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/my_page_drawerview"
-        tools:context=".my_page.my_page_Activity">
+        tools:context=".page.setting.my_page_Activity">
 
     <LinearLayout
             android:layout_width="match_parent"

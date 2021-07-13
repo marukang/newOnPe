@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".notice_class.show_notice_message_Activity">
+    tools:context=".page.notice.show_notice_message_Activity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
