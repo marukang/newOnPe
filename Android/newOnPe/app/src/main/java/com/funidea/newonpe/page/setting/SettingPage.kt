@@ -19,10 +19,10 @@ import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.set_clear
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.set_User_info.Companion.student_push_agreement
-import com.funidea.newonpe.dialog.input_password_for_resign_bottom_dialog
+import com.funidea.newonpe.dialog.InputPasswordForResignDialog
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
@@ -128,7 +128,7 @@ class SettingPage : AppCompatActivity() {
             //기존 static value 삭제
             set_clear()
 
-            val intent = Intent(this, SplashActivity::class.java)
+            val intent = Intent(this, LoginPage::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             val bundle = ActivityOptions.makeCustomAnimation(this, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left).toBundle()
             startActivity(intent, bundle)
@@ -149,12 +149,12 @@ class SettingPage : AppCompatActivity() {
     //탈퇴하기 버튼
     val withdraw_button = View.OnClickListener {
 
-        val inputPasswordForResignBottomDialog = input_password_for_resign_bottom_dialog(this)
+        val inputPasswordForResignBottomDialog = InputPasswordForResignDialog(this)
 
         inputPasswordForResignBottomDialog.show()
 
 
-        inputPasswordForResignBottomDialog.setInputPasswordListener(object : input_password_for_resign_bottom_dialog.InputPasswordListener
+        inputPasswordForResignBottomDialog.setInputPasswordListener(object : InputPasswordForResignDialog.InputPasswordListener
         {
             override fun input_password(input_password: String?) {
 
@@ -270,7 +270,7 @@ class SettingPage : AppCompatActivity() {
     //faq 목록 가져오기
     fun push_agreement_change(student_id : String, student_token : String, student_push_agreement : String)
     {
-        serverConnection!!.push_agreement_change(student_id,student_token, student_push_agreement).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.push_agreement_change(student_id,student_token, student_push_agreement).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -331,7 +331,7 @@ class SettingPage : AppCompatActivity() {
     fun student_resign(student_password : String)
     {
 
-        serverConnection!!.student_resign(student_id, access_token, student_password).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.student_resign(student_id, access_token, student_password).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -360,7 +360,7 @@ class SettingPage : AppCompatActivity() {
                         //기존 static value 삭제
                         set_clear()
 
-                        val intent = Intent(this@SettingPage, SplashActivity::class.java)
+                        val intent = Intent(this@SettingPage, LoginPage::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                         val bundle = ActivityOptions.makeCustomAnimation(this@SettingPage, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left).toBundle()
                         startActivity(intent, bundle)

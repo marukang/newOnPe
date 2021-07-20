@@ -14,10 +14,10 @@ import com.funidea.utils.set_User_info.Companion.select_class_code_str
 import com.funidea.utils.set_User_info.Companion.select_class_name_str
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.side_menu_layout.Companion.side_menu_setting_test
-import com.funidea.newonpe.dialog.class_code_dialog
-import com.funidea.newonpe.dialog.class_code_dialog_Utils.class_code_dialog_Item
+import com.funidea.newonpe.dialog.InsertClassCodeDialog
+import com.funidea.newonpe.dialog.ClassCodeItem
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_message.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -59,7 +59,7 @@ class class_message_Activity : AppCompatActivity() {
 
                 if(set_User_info.student_class_code_key_Array.get(i).equals(set_User_info.select_class_code_str))
                 {
-                    classCodeDialogItem.add(class_code_dialog_Item(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),1))
+                    classCodeDialogItem.add(ClassCodeItem(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),1))
                     class_code_default_position = i
                     //임의 값
                     class_code_number = set_User_info.student_class_code_key_Array.get(i)
@@ -67,7 +67,7 @@ class class_message_Activity : AppCompatActivity() {
                 }
                 else
                 {
-                    classCodeDialogItem.add(class_code_dialog_Item(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),0))
+                    classCodeDialogItem.add(ClassCodeItem(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),0))
                 }
 
 
@@ -141,15 +141,15 @@ class class_message_Activity : AppCompatActivity() {
 
 
     var class_code_default_position : Int = 0
-    var classCodeDialogItem = ArrayList<class_code_dialog_Item>()
+    var classCodeDialogItem = ArrayList<ClassCodeItem>()
     val change_class_code = View.OnClickListener {
 
 
-        val classCodeDialog = class_code_dialog(this, classCodeDialogItem)
+        val classCodeDialog = InsertClassCodeDialog(this, classCodeDialogItem)
 
         classCodeDialog.show()
 
-        classCodeDialog.setclassCodeSelectListener(object : class_code_dialog.classCodeSelectListener{
+        classCodeDialog.setclassCodeSelectListener(object : InsertClassCodeDialog.classCodeSelectListener{
             override fun select_code_value(select_code_name: String, select_code: String, select_position: Int?) {
 
                 classCodeDialog.dismiss()
@@ -175,7 +175,7 @@ class class_message_Activity : AppCompatActivity() {
 
     fun get_class_message(get_student_class_code : String )
     {
-        serverConnection!!.get_student_message_list(student_id,access_token,get_student_class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_message_list(student_id,access_token,get_student_class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

@@ -16,7 +16,7 @@ import com.funidea.utils.set_User_info.Companion.student_sex
 import com.funidea.utils.set_User_info.Companion.student_tall
 import com.funidea.utils.set_User_info.Companion.student_weight
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.input_user_info_bottom_dialog.*
 import kotlinx.android.synthetic.main.input_user_info_bottom_dialog.view.*
@@ -36,7 +36,7 @@ import java.io.IOException
  *
  */
 
-class input_user_info_bottom_dialog(context: Context) : BottomSheetDialog(context) {
+class InputUserInfoDialog(context: Context) : BottomSheetDialog(context) {
 
 
     var get_user_info_Listener : InputUserInfoListener? =null
@@ -311,7 +311,7 @@ class input_user_info_bottom_dialog(context: Context) : BottomSheetDialog(contex
                                       get_student_weight : String?, get_student_age:String?, get_student_sex : String?) {
 
 
-        serverConnection!!.first_user_information_change(set_User_info.student_id, set_User_info.access_token, get_student_content, get_student_tall,get_student_weight, get_student_age, get_student_sex)
+        serverConnectionSpec!!.first_user_information_change(set_User_info.student_id, set_User_info.access_token, get_student_content, get_student_tall,get_student_weight, get_student_age, get_student_sex)
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                         try {

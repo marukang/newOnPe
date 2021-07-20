@@ -10,7 +10,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_id_search.*
 import kotlinx.android.synthetic.main.activity_join_page.*
 import okhttp3.ResponseBody
@@ -79,7 +79,7 @@ class SearchIDPage : AppCompatActivity() {
     fun search_id(user_id: String?, user_email: String?) {
 
 
-     serverConnection!!.find_id(user_id, user_email).enqueue(object : Callback<ResponseBody> {
+     serverConnectionSpec!!.find_id(user_id, user_email).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     val result = JSONObject(response.body()!!.string())

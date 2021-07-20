@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="false" android:drawable="@drawable/view_main_color_2edge_round_button"/>
+    <item android:state_selected="true" android:drawable="@drawable/view_grey_color_2edge_round_button"/>
+</selector>

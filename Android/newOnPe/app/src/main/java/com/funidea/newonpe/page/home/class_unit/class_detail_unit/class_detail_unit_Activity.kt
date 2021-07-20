@@ -20,12 +20,12 @@ import com.funidea.utils.set_User_info.Companion.user_evaluation_JSONArray
 import com.funidea.utils.set_User_info.Companion.user_practice_JSONArray
 import com.funidea.utils.set_User_info.Companion.user_task_JSONArray
 import com.funidea.utils.side_menu_layout
-import com.funidea.newonpe.dialog.pose_exercise_start_bottom_dialog
+import com.funidea.newonpe.dialog.NotifyExerciseStartDialog
 import com.funidea.newonpe.page.pose.PoseActivity
 import com.funidea.newonpe.R
 import com.funidea.newonpe.page.home.class_result.class_result_Activity
 import com.funidea.newonpe.page.message.class_message_Activity
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_class_detail_unit.*
 import okhttp3.ResponseBody
@@ -164,13 +164,13 @@ class class_detail_unit_Activity : AppCompatActivity() {
 
                 if(!class_unit_info_shard.contains(unit_class_code))
                 {
-                    val poseExerciseStartBottomDialog = pose_exercise_start_bottom_dialog(this@class_detail_unit_Activity)
+                    val poseExerciseStartBottomDialog = NotifyExerciseStartDialog(this@class_detail_unit_Activity)
 
                     poseExerciseStartBottomDialog.behavior.state  = BottomSheetBehavior.STATE_EXPANDED
 
                     poseExerciseStartBottomDialog.show()
 
-                    poseExerciseStartBottomDialog.setExerciseConfirmListener(object : pose_exercise_start_bottom_dialog.ExerciseConfirmListener{
+                    poseExerciseStartBottomDialog.setExerciseConfirmListener(object : NotifyExerciseStartDialog.ExerciseConfirmListener{
                         override fun select_confirm(select: String?) {
 
                             if(select.equals("1"))
@@ -629,7 +629,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
     //수업 콘텐츠 가져오기
     fun get_content_list(content_code : String, content_title : String, position_number : Int, array_size : Int)
     {
-        serverConnection!!.get_content_list(student_id, access_token, content_code).enqueue(object : Callback<ResponseBody>
+        serverConnectionSpec!!.get_content_list(student_id, access_token, content_code).enqueue(object : Callback<ResponseBody>
         {
 
 
@@ -747,7 +747,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
     //클래스 최종 과제 제출하기
     fun student_update_submit_task(class_code: String, unit_class_code: String, unit_class_type : String, unit_group_name:String)
     {
-        serverConnection!!.student_update_submit_task(student_id, access_token, class_code, unit_class_code, student_number, unit_class_type, unit_group_name).enqueue(object : Callback<ResponseBody>
+        serverConnectionSpec!!.student_update_submit_task(student_id, access_token, class_code, unit_class_code, student_number, unit_class_type, unit_group_name).enqueue(object : Callback<ResponseBody>
         {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
@@ -805,7 +805,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
     //수업 현황 가져오기
     fun get_student_class_record(class_code: String, unit_class_code: String )
     {
-        serverConnection!!.get_student_class_record(student_id, access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody>
+        serverConnectionSpec!!.get_student_class_record(student_id, access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody>
         {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
@@ -1025,7 +1025,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
     //실습 업데이트
     fun update_student_record_class_practice(class_code : String, class_unit_code : String, class_practice: String, class_content_use_time : String)
     {
-        serverConnection!!.update_student_record_class_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_record_class_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -1074,7 +1074,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
     }
     fun update_student_record_task_practice(class_code : String, class_unit_code : String, class_practice: String, class_content_use_time : String)
     {
-        serverConnection!!.update_student_record_task_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_record_task_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -1121,7 +1121,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
     }
     fun update_student_record_evaluation_practice(class_code : String, class_unit_code : String, class_practice: String, class_content_use_time: String)
     {
-        serverConnection!!.update_student_record_evaluation_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_record_evaluation_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

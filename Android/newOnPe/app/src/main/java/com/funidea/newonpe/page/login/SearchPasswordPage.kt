@@ -12,7 +12,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_pw_search.*
 import okhttp3.ResponseBody
 import org.json.JSONException
@@ -97,7 +97,7 @@ class SearchPasswordPage : AppCompatActivity() {
     fun search_pw(user_id: String?, user_name: String?, user_email: String?) {
 
 
-        serverConnection!!.find_pw(user_id, user_name, user_email).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.find_pw(user_id, user_name, user_email).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     val result = JSONObject(response.body()!!.string())

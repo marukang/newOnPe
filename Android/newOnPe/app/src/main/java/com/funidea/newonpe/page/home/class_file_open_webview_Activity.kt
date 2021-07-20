@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.baseURL
+import com.funidea.newonpe.page.login.LoginPage.Companion.baseURL
 import kotlinx.android.synthetic.main.activity_class_file_open_webview.*
 
 /** Class Unit Activity(차시별 클래스 Home) 에 있는

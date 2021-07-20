@@ -18,7 +18,7 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import com.funidea.newonpe.R;
-import com.funidea.newonpe.page.login.SplashActivity;
+import com.funidea.newonpe.page.login.LoginPage;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -37,10 +37,9 @@ import static android.content.ContentValues.TAG;
 public class MyFirebaseMessagingService  extends FirebaseMessagingService {
 
 
-    private static final String CHANNEL_NAME = "com.funidea.newonpe.serviceClass";
-    private static final int REQUEST_CODE = 100;
-
-
+    public static final String CHANNEL_NAME = "com.funidea.newonpe.serviceClass";
+    public static final int REQUEST_CODE = 100;
+    public static String mDeviceToken = null;
 
     @Override
     public void onNewToken(@NonNull @org.jetbrains.annotations.NotNull String s) {
@@ -154,7 +153,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
         }
         else
         {
-            Intent intent = new Intent(this, SplashActivity.class);
+            Intent intent = new Intent(this, LoginPage.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, REQUEST_CODE /* Request code */, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);

@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.baseURL
+import com.funidea.newonpe.page.login.LoginPage.Companion.baseURL
 import kotlinx.android.synthetic.main.activity_show_photo.*
 
 /** 게시판에 첨부 된 사진 이미지를 보여줄 View

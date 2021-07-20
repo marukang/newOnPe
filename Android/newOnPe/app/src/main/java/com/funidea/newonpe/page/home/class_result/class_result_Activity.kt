@@ -10,7 +10,7 @@ import com.funidea.utils.save_SharedPreferences
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_result.class_result_recyclerview
 import kotlinx.android.synthetic.main.activity_class_result_test.*
 import okhttp3.ResponseBody
@@ -209,7 +209,7 @@ class class_result_Activity : AppCompatActivity() {
     //결과 기록 가져오기
     fun get_student_class_record(class_code : String, class_unit_code : String)
     {
-        serverConnection!!.get_student_class_record(student_id,access_token, class_code, class_unit_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_class_record(student_id,access_token, class_code, class_unit_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -360,7 +360,7 @@ class class_result_Activity : AppCompatActivity() {
     //클래스 정보 가져오기
     fun get_unit_class(class_code : String, unit_class_code : String)
     {
-        serverConnection!!.student_get_curriculum(student_id, access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.student_get_curriculum(student_id, access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

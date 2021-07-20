@@ -12,7 +12,7 @@ import com.funidea.utils.save_SharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity
+import com.funidea.newonpe.page.login.LoginPage
 import kotlinx.android.synthetic.main.fragment_message_notice.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -111,7 +111,7 @@ class message_notice_fragment : Fragment() {
     fun get_my_news(type : String)
     {
 
-        SplashActivity.serverConnection!!.get_my_news(set_User_info.student_id, set_User_info.access_token,  type).enqueue(object : Callback<ResponseBody> {
+        LoginPage.serverConnectionSpec!!.get_my_news(set_User_info.student_id, set_User_info.access_token,  type).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

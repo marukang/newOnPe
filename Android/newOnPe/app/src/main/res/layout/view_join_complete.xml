@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="896"
-    tools:context=".page.login.search_id_pw.id_search_complete_Activity">
+    android:background="@color/white"
+    android:weightSum="896">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.newonpe.dialog.class_code_dialog_Utils.self_class_bottom_dialog_Item
-import com.funidea.newonpe.dialog.self_class_exercise_name_bottom_dialog
+import com.funidea.newonpe.dialog.SelfClassItem
+import com.funidea.newonpe.dialog.SelectClassCategoryDialogLegacy2
 import com.funidea.newonpe.R
 
 import kotlinx.android.synthetic.main.activity_self_class_select_exercise.*
@@ -35,13 +35,13 @@ class self_class_select_exercise_Activity : AppCompatActivity() {
     var selfClassListItem = ArrayList<self_class_list_Item>()
 
     //종목
-    var exercise_name_Array = ArrayList<self_class_bottom_dialog_Item>()
+    var exercise_name_Array = ArrayList<SelfClassItem>()
     var exercise_name_str : String =""
     //대분류
-    var exercise_category_Array = ArrayList<self_class_bottom_dialog_Item>()
+    var exercise_category_Array = ArrayList<SelfClassItem>()
     var exercise_category_str : String = ""
     //동작명
-    var exercise_detail_name_Array = ArrayList<self_class_bottom_dialog_Item>()
+    var exercise_detail_name_Array = ArrayList<SelfClassItem>()
     var exercise_detail_name_str : String = ""
 
 
@@ -86,23 +86,23 @@ class self_class_select_exercise_Activity : AppCompatActivity() {
         self_class_select_exercise_recyclerview.adapter = selfClassListAdapter
 
         //임시 데이터
-        exercise_name_Array.add(self_class_bottom_dialog_Item("농구"))
-        exercise_name_Array.add(self_class_bottom_dialog_Item("축구"))
-        exercise_name_Array.add(self_class_bottom_dialog_Item("배구"))
-        exercise_name_Array.add(self_class_bottom_dialog_Item("야구"))
-        exercise_name_Array.add(self_class_bottom_dialog_Item("족구"))
+        exercise_name_Array.add(SelfClassItem("농구"))
+        exercise_name_Array.add(SelfClassItem("축구"))
+        exercise_name_Array.add(SelfClassItem("배구"))
+        exercise_name_Array.add(SelfClassItem("야구"))
+        exercise_name_Array.add(SelfClassItem("족구"))
 
-        exercise_category_Array.add(self_class_bottom_dialog_Item("공던지기"))
-        exercise_category_Array.add(self_class_bottom_dialog_Item("패스트슛"))
-        exercise_category_Array.add(self_class_bottom_dialog_Item("패스트드리블"))
-        exercise_category_Array.add(self_class_bottom_dialog_Item("공바운드"))
-        exercise_category_Array.add(self_class_bottom_dialog_Item("롱패스"))
-        exercise_category_Array.add(self_class_bottom_dialog_Item("스루패스"))
+        exercise_category_Array.add(SelfClassItem("공던지기"))
+        exercise_category_Array.add(SelfClassItem("패스트슛"))
+        exercise_category_Array.add(SelfClassItem("패스트드리블"))
+        exercise_category_Array.add(SelfClassItem("공바운드"))
+        exercise_category_Array.add(SelfClassItem("롱패스"))
+        exercise_category_Array.add(SelfClassItem("스루패스"))
 
-        exercise_detail_name_Array.add(self_class_bottom_dialog_Item("동작1"))
-        exercise_detail_name_Array.add(self_class_bottom_dialog_Item("동작2"))
-        exercise_detail_name_Array.add(self_class_bottom_dialog_Item("동작3"))
-        exercise_detail_name_Array.add(self_class_bottom_dialog_Item("동작4"))
+        exercise_detail_name_Array.add(SelfClassItem("동작1"))
+        exercise_detail_name_Array.add(SelfClassItem("동작2"))
+        exercise_detail_name_Array.add(SelfClassItem("동작3"))
+        exercise_detail_name_Array.add(SelfClassItem("동작4"))
     }
 
 
@@ -111,11 +111,11 @@ class self_class_select_exercise_Activity : AppCompatActivity() {
         
 
 
-        val selfClassExerciseNameBottomDialog = self_class_exercise_name_bottom_dialog(this, exercise_name_Array)
+        val selfClassExerciseNameBottomDialog = SelectClassCategoryDialogLegacy2(this, exercise_name_Array)
 
         selfClassExerciseNameBottomDialog.show()
 
-        selfClassExerciseNameBottomDialog.setselfClassListener(object  : self_class_exercise_name_bottom_dialog.selfClassListener
+        selfClassExerciseNameBottomDialog.setselfClassListener(object  : SelectClassCategoryDialogLegacy2.selfClassListener
         {
             override fun select_class_name_value(select_code_name: String, select_position: Int?) {
 
@@ -138,11 +138,11 @@ class self_class_select_exercise_Activity : AppCompatActivity() {
 
         if(select_exercise_name_value==true){
         
-        val selfClassExerciseNameBottomDialog = self_class_exercise_name_bottom_dialog(this, exercise_category_Array)
+        val selfClassExerciseNameBottomDialog = SelectClassCategoryDialogLegacy2(this, exercise_category_Array)
 
         selfClassExerciseNameBottomDialog.show()
 
-        selfClassExerciseNameBottomDialog.setselfClassListener(object  : self_class_exercise_name_bottom_dialog.selfClassListener
+        selfClassExerciseNameBottomDialog.setselfClassListener(object  : SelectClassCategoryDialogLegacy2.selfClassListener
         {
             override fun select_class_name_value(select_code_name: String, select_position: Int?) {
 
@@ -169,11 +169,11 @@ class self_class_select_exercise_Activity : AppCompatActivity() {
 
         if(select_category_value==true){
 
-        val selfClassExerciseNameBottomDialog = self_class_exercise_name_bottom_dialog(this, exercise_detail_name_Array)
+        val selfClassExerciseNameBottomDialog = SelectClassCategoryDialogLegacy2(this, exercise_detail_name_Array)
 
         selfClassExerciseNameBottomDialog.show()
 
-        selfClassExerciseNameBottomDialog.setselfClassListener(object  : self_class_exercise_name_bottom_dialog.selfClassListener
+        selfClassExerciseNameBottomDialog.setselfClassListener(object  : SelectClassCategoryDialogLegacy2.selfClassListener
         {
             override fun select_class_name_value(select_code_name: String, select_position: Int?) {
 

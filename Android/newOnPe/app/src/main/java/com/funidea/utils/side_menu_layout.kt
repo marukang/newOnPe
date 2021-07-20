@@ -19,7 +19,7 @@ import com.funidea.newonpe.page.message.class_message_Activity
 import com.funidea.newonpe.page.setting.my_page_Activity
 import com.funidea.newonpe.page.setting.SettingPage
 import com.funidea.newonpe.page.main.side_menu_class_Adapter
-import com.funidea.newonpe.page.login.SplashActivity
+import com.funidea.newonpe.page.login.LoginPage
 import kotlinx.android.synthetic.main.activity_side_menu.view.*
 
 /** 햄버거 버튼 레이아웃 클래스
@@ -148,7 +148,7 @@ class side_menu_layout
 
 
 
-            Glide.with(context).load(SplashActivity.baseURL + set_User_info.student_image_url)
+            Glide.with(context).load(LoginPage.baseURL + set_User_info.student_image_url)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .centerCrop()

@@ -23,7 +23,10 @@
         <activity android:name="com.funidea.newonpe.page.faq.faq_answer_Activity" />
         <activity android:name="com.funidea.newonpe.page.message.class_message_write_Activity" />
         <activity android:name="com.funidea.newonpe.page.youtube.after_school_youtube_content_Activity" />
-        <activity android:name="com.funidea.newonpe.page.login.SNSLoginPage" android:screenOrientation="portrait">
+        <activity
+            android:name="com.funidea.newonpe.page.login.SNSLoginPage"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentCompat">
 
         </activity>
 
@@ -60,14 +63,9 @@
         <activity
             android:name="com.funidea.newonpe.page.message.class_message_answer_Activity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.funidea.newonpe.page.login.search_id_pw.id_search_complete_Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.funidea.newonpe.page.login.join_complete_Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.funidea.newonpe.page.login.SplashActivity"
+            android:name="com.funidea.newonpe.page.login.LoginPage"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,7 +74,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".page.pose.GetDateActivity_kt" />
-        <activity android:name=".GetDataActivity" />
+
         <activity
             android:name="com.funidea.newonpe.page.pose.PoseActivity"
             android:screenOrientation="landscape" />
@@ -84,10 +82,7 @@
             android:name=".page.juggling.JugglingActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".SelectActivity" />
-        <activity
-            android:name=".SettingsActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.funidea.newonpe.page.management.self_class_select_exercise_Activity"
             android:screenOrientation="portrait" />
@@ -106,9 +101,7 @@
         <activity
             android:name="com.funidea.newonpe.page.home.class_home.class_home_Activity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".notice_Activity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.funidea.newonpe.page.setting.SettingPage"
             android:screenOrientation="portrait" />
@@ -143,7 +136,7 @@
             android:name="com.funidea.newonpe.page.main.MainHomeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".test" />
+
         <activity
             android:name="com.funidea.newonpe.page.home.class_unit.class_unit_Activity"
             android:screenOrientation="portrait" />
@@ -162,6 +155,24 @@
             android:name="com.funidea.newonpe.page.login.EmailLoginPage"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity android:name=".page.login.SMSAuthPage"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+
+        <activity android:name=".page.main.MainHomePage"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+
+        <activity android:name=".page.login.ProfileRegistrationPage"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

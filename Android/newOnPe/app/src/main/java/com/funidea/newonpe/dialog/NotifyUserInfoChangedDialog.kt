@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.confirm_bottom_dialog.*
  *  사용자가 정보를 변경하면 변경되었다는 문구와 함께 보여지는 BottomDialog
  */
 
-class confirm_dialog(context: Context) : BottomSheetDialog(context) {
+class NotifyUserInfoChangedDialog(context: Context) : BottomSheetDialog(context) {
 
 
     var get_image_select_Listener : ImageSelectListener? =null
@@ -37,7 +37,6 @@ class confirm_dialog(context: Context) : BottomSheetDialog(context) {
         bottom_dialog_confirm_button.setOnClickListener {
 
             dismiss()
-
         }
 
     }

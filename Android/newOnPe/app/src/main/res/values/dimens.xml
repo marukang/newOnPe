@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_side_padding">23.4dp</dimen>
+    <dimen name="registration_form_top_margin">10.4dp</dimen>
+    <dimen name="input_form_height">59.8dp</dimen>
+    <dimen name="dialog_corner_radius">15dp</dimen>
+</resources>

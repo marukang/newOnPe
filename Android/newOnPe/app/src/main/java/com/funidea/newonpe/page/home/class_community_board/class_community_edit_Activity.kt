@@ -22,9 +22,9 @@ import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.set_User_info.Companion.student_name
-import com.funidea.newonpe.dialog.picture_dialog
+import com.funidea.newonpe.dialog.SelectPictureDialog
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_community_edit.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -287,11 +287,11 @@ class class_community_edit_Activity : AppCompatActivity() {
 
         select_value = 1
 
-        val pictureDialog = picture_dialog(this)
+        val pictureDialog = SelectPictureDialog(this)
 
         pictureDialog.show()
 
-        pictureDialog.setImageSelectListener(object : picture_dialog.ImageSelectListener{
+        pictureDialog.setImageSelectListener(object : SelectPictureDialog.ImageSelectListener{
             override fun select_image_value(select: String?) {
                 pictureDialog.dismiss()
                 if(select.equals("0"))
@@ -314,11 +314,11 @@ class class_community_edit_Activity : AppCompatActivity() {
         select_value = 2
 
 
-        val pictureDialog = picture_dialog(this)
+        val pictureDialog = SelectPictureDialog(this)
 
         pictureDialog.show()
 
-        pictureDialog.setImageSelectListener(object : picture_dialog.ImageSelectListener{
+        pictureDialog.setImageSelectListener(object : SelectPictureDialog.ImageSelectListener{
             override fun select_image_value(select: String?) {
                 pictureDialog.dismiss()
                 if(select.equals("0"))
@@ -553,7 +553,7 @@ class class_community_edit_Activity : AppCompatActivity() {
 
 
         Log.d("차례대로3", "send_student_message: ")
-        serverConnection!!.update_student_community(request_id, request_token, request_class_code, request_title,request_content,community_file_name1,community_file_name2,list, community_insert_file_name1, community_insert_file_name2, community_delete_file_name1, community_delete_file_name2).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_community(request_id, request_token, request_class_code, request_title,request_content,community_file_name1,community_file_name2,list, community_insert_file_name1, community_insert_file_name2, community_delete_file_name1, community_delete_file_name2).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
 

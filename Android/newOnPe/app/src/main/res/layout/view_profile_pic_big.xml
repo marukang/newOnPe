@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="134dp"
+    android:layout_height="134dp">
+
+    <ImageView
+        android:id="@+id/backView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="5dp"
+        android:background="@drawable/view_circle_main_color"/>
+
+    <ImageView
+        android:layout_width="77dp"
+        android:layout_height="77dp"
+        android:layout_gravity="center"
+        android:elevation="10dp"
+        android:background="@drawable/icon_profile"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/selectedPicView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="11dp"/>
+
+    <FrameLayout
+        android:layout_width="35.2dp"
+        android:layout_height="35.2dp"
+        android:elevation="15dp"
+        android:layout_gravity="right|bottom">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/view_circle_white_color"/>
+
+        <ImageView
+            android:layout_width="20.1dp"
+            android:layout_height="20.1dp"
+            android:layout_gravity="center"
+            android:background="@drawable/icon_camera"/>
+
+    </FrameLayout>
+
+</FrameLayout>

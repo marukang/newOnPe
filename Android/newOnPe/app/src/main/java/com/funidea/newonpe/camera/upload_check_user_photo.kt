@@ -5,7 +5,7 @@ import android.util.Log
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.newonpe.page.pose.PoseActivity.photo_capture_value
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -57,7 +57,7 @@ class upload_check_user_photo
         val request_file_name: RequestBody = RequestBody.create(MediaType.parse("Multipart/form-data"), file_name)
 
 
-        serverConnection!!.update_student_record_image_confirmation(request_id, request_token,request_class_code,request_unit_code, request_file_name, list).enqueue(object : Callback<ResponseBody?> {
+        serverConnectionSpec!!.update_student_record_image_confirmation(request_id, request_token,request_class_code,request_unit_code, request_file_name, list).enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
 
                 try{

@@ -11,7 +11,7 @@ import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.set_User_info.Companion.student_name
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_message_write.*
 import okhttp3.ResponseBody
 import org.json.JSONException
@@ -96,7 +96,7 @@ class class_message_write_Activity : AppCompatActivity() {
     }
     fun send_student_message(class_code : String, class_message_title : String, class_message_text : String)
     {
-        serverConnection!!.send_student_message(student_id, access_token, student_name, class_code, class_message_title, class_message_text).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.send_student_message(student_id, access_token, student_name, class_code, class_message_title, class_message_text).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" ></script>
+</head>
+<body>
+<!-- 아임포트 자바스크립트는 jQuery 기반으로 개발되었습니다 -->
+
+<script type="text/javascript">
+var IMP = window.IMP; // 생략가능
+IMP.init('imp22612421');
+
+/* 중략 */
+IMP.certification({
+    merchant_uid : 'merchant_' + new Date().getTime() //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+}, function(rsp) {
+
+    if (rsp.success)
+    {
+         // 인증성공
+        console.log(JSON.stringify(rsp));
+        console.log(rsp.imp_uid);
+        console.log(rsp.merchant_uid);
+
+        $.ajax({
+			url: "https://www.myservice.com/certifications", // 서비스 웹서버
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            data: { imp_uid: rsp.imp_uid }
+		});
+
+        takeResponseAndHandle(rsp)
+    }
+    else
+    {
+        window.Bridge.onReceiveErrorMessage("인증실패");
+    }
+});
+
+function takeResponseAndHandle(rsp) {
+    if (rsp.success)
+    {
+        // 인증성공
+        console.log("takeResponseAndHandle : " + rsp.imp_uid);
+        console.log("takeResponseAndHandle : " + rsp.merchant_uid);
+
+        window.Bridge.onReceiveResult(rsp.imp_uid);
+    }
+    else
+    {
+        window.Bridge.onReceiveErrorMessage("error = " + rsp);
+    }
+}
+</script>
+</body>
+</html>

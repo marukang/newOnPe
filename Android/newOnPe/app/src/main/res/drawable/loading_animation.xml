@@ -4,25 +4,25 @@
 
 
 
-    <item android:drawable="@drawable/ic_test_1"
+    <item android:drawable="@drawable/logo_1"
 
           android:duration="150"/>
 
 
 
-    <item android:drawable="@drawable/ic_test_2"
+    <item android:drawable="@drawable/logo_4"
 
           android:duration="150"/>
 
 
 
-    <item android:drawable="@drawable/ic_test_4"
+    <item android:drawable="@drawable/logo_3"
 
           android:duration="150"/>
 
 
 
-    <item android:drawable="@drawable/ic_test_3"
+    <item android:drawable="@drawable/logo_2"
 
           android:duration="150"/>
 

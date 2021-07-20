@@ -12,10 +12,10 @@ import com.funidea.utils.save_SharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.select_class_code_str
 import com.funidea.utils.set_User_info.Companion.select_class_name_str
-import com.funidea.newonpe.dialog.class_code_dialog
-import com.funidea.newonpe.dialog.class_code_dialog_Utils.class_code_dialog_Item
+import com.funidea.newonpe.dialog.InsertClassCodeDialog
+import com.funidea.newonpe.dialog.ClassCodeItem
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.fragment_class_notice.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -48,7 +48,7 @@ class class_notice_fragment : Fragment() {
     private var param2: String? = null
 
     var class_code_default_position : Int = 0
-    var classCodeDialogItem = ArrayList<class_code_dialog_Item>()
+    var classCodeDialogItem = ArrayList<ClassCodeItem>()
     var class_code_number : String =""
 
     lateinit var classNoticeAdapter: notice_Adapter
@@ -119,14 +119,14 @@ class class_notice_fragment : Fragment() {
             {
                 if(set_User_info.student_class_code_key_Array.get(i).equals(set_User_info.select_class_code_str))
                 {
-                    classCodeDialogItem.add(class_code_dialog_Item(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),1))
+                    classCodeDialogItem.add(ClassCodeItem(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),1))
                     class_code_default_position = i
                     //임의 값
                     class_code_number = set_User_info.student_class_code_key_Array.get(i)
                 }
                 else
                 {
-                    classCodeDialogItem.add(class_code_dialog_Item(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),0))
+                    classCodeDialogItem.add(ClassCodeItem(set_User_info.student_class_code_value_Array.get(i), set_User_info.student_class_code_key_Array.get(i),0))
                 }
 
             }
@@ -138,11 +138,11 @@ class class_notice_fragment : Fragment() {
 
     val change_class_code = View.OnClickListener {
 
-        val classCodeDialog = class_code_dialog(activity!!, classCodeDialogItem)
+        val classCodeDialog = InsertClassCodeDialog(activity!!, classCodeDialogItem)
 
         classCodeDialog.show()
 
-        classCodeDialog.setclassCodeSelectListener(object : class_code_dialog.classCodeSelectListener{
+        classCodeDialog.setclassCodeSelectListener(object : InsertClassCodeDialog.classCodeSelectListener{
             override fun select_code_value(select_code_name: String, select_code: String, select_position: Int?) {
 
                 classCodeDialog.dismiss()
@@ -176,7 +176,7 @@ class class_notice_fragment : Fragment() {
     fun get_my_news(type : String, class_code : String)
     {
 
-        serverConnection!!.get_my_news_in_class(set_User_info.student_id, set_User_info.access_token,type, class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_my_news_in_class(set_User_info.student_id, set_User_info.access_token,type, class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

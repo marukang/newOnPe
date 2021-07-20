@@ -19,31 +19,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="23.4dp"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
+                android:transitionName="title1"
                 android:text="온 국민이 즐기는 \n인공지능 체육수업"
                 android:textColor="@color/white"
-                android:textSize="30dp" />
-
+                android:textSize="20.8dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="23.4dp"
                 android:fontFamily="@font/notosans_kr_bold"
                 android:includeFontPadding="false"
                 android:paddingTop="10dp"
+                android:transitionName="title2"
                 android:text="온체육"
                 android:textColor="@color/white"
-                android:textSize="40dp" />
+                android:textSize="28.6dp" />
 
         </LinearLayout>
 
@@ -57,7 +55,8 @@
             android:src="@drawable/loading_animation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:transitionName="logo"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -65,50 +64,99 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="23.4dp"
+                android:layout_marginRight="23.4dp"
                 android:gravity="center"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="127.4dp"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/snsLoginButton1"
-                    android:layout_width="225dp"
-                    android:layout_height="65dp"
-                    android:text="구글"
-                    android:fontFamily="@font/notosanscjkkr_medium"
-                    android:textSize="20dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/shape_round_white_button"/>
-
-                <Button
+                <FrameLayout
                     android:id="@+id/snsLoginButton2"
-                    android:layout_width="225dp"
+                    android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="5dp"
-                    android:text="카카오톡"
-                    android:fontFamily="@font/notosanscjkkr_medium"
-                    android:textSize="20dp"
                     android:textColor="@color/white"
-                    android:background="@drawable/shape_round_white_button"/>
+                    android:background="@drawable/sns_login_button_kakao_rectangle">
 
-                <Button
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="37.7dp"
+                        android:background="@drawable/icon_kakao"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20.8dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:layout_gravity="center"
+                        android:textColor="@color/kakao_text_color"
+                        android:text="카카오로 로그인"/>
+
+                </FrameLayout>
+
+                <FrameLayout
                     android:id="@+id/snsLoginButton3"
-                    android:layout_width="225dp"
+                    android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="5dp"
-                    android:text="네이버"
-                    android:fontFamily="@font/notosanscjkkr_medium"
-                    android:textSize="20dp"
                     android:textColor="@color/white"
-                    android:background="@drawable/shape_round_white_button"/>
+                    android:background="@drawable/sns_login_button_naver_rectangle">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="37.7dp"
+                        android:background="@drawable/icon_naver"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20.8dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:text="네이버로 로그인"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/snsLoginButton1"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/sns_login_button_google_rectangle">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="37.7dp"
+                        android:background="@drawable/icon_google"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20.8dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Google 로그인"/>
+
+                </FrameLayout>
 
                 <Button
                     android:id="@+id/snsLoginButton4"
-                    android:layout_width="225dp"
+                    android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="5dp"
-                    android:text="이메일"
+                    android:text="기존 계정으로 로그인"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:textSize="20dp"
                     android:textColor="@color/white"
@@ -116,9 +164,21 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_bottom_guide"
+                android:textSize="14dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:lineSpacingExtra="3dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:textColor="#a0ffffff"/>
+
         </FrameLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

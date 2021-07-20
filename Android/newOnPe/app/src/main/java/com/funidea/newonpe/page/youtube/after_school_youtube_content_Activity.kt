@@ -10,7 +10,7 @@ import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.side_menu_layout.Companion.side_menu_setting_test
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_after_school_youtube_content.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -59,7 +59,7 @@ class after_school_youtube_content_Activity : AppCompatActivity() {
 
     fun student_class_code()
     {
-        serverConnection!!.get_student_content_list_admin(student_id, access_token).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_content_list_admin(student_id, access_token).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

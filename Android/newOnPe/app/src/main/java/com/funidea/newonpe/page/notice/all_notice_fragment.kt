@@ -11,7 +11,7 @@ import com.funidea.utils.*
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.fragment_all_notice.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -113,7 +113,7 @@ class all_notice_fragment : Fragment() {
     fun get_my_news(type : String)
     {
 
-        serverConnection!!.get_my_news(student_id, access_token,  type).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_my_news(student_id, access_token,  type).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

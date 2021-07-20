@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/titleFrame"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/view_bottom_line"
+        android:orientation="horizontal"
+        android:elevation="5dp"
+        android:weightSum="100">
+
+        <ImageView
+            android:id="@+id/join_page_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:padding="18dp"
+            app:srcCompat="@drawable/back_button_image" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:gravity="center"
+            android:text="프로필 등록"
+            android:textColor="#404040"
+            android:textSize="18dp"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="70dp"
+        android:background="#FAFAFA">
+
+        <com.funidea.newonpe.views.SelfProfileImageView
+            android:id="@+id/profilePicView"
+            android:layout_width="134dp"
+            android:layout_height="134dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:id="@+id/profileNamePrefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_color"
+            android:textSize="12dp"
+            android:text="이름"
+            android:layout_marginBottom="-30dp"
+            android:layout_alignLeft="@+id/profileNameInputBox"
+            android:layout_above="@+id/profileNameInputBox"/>
+
+        <FrameLayout
+            android:id="@+id/profileNameInputBox"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_below="@+id/profilePicView"
+            android:layout_marginTop="41dp"
+            android:background="@drawable/view_grey_color_round_edge">
+
+            <EditText
+                android:id="@+id/name_inputBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:background="@null"
+                android:hint="이름을 입력해주세요"/>
+
+            <TextView
+                android:id="@+id/insertedNameLengthView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="52dp"
+                android:text="(0/10)"
+                android:textColor="@color/gray"/>
+
+            <ImageView
+                android:id="@+id/clearInsertedName"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/icon_close_circle"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next_tiem"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:textColor="@color/gray"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/main_color"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="확인"
+        android:layout_below="@+id/memberShipJoinForm"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="normal"/>
+
+</FrameLayout>

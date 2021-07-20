@@ -27,7 +27,7 @@ import com.funidea.newonpe.page.home.class_file_open_webview_Activity
 import com.funidea.newonpe.page.home.class_result.class_result_Activity
 import com.funidea.newonpe.page.home.class_unit.class_detail_unit.class_detail_unit_Activity
 import com.funidea.newonpe.page.message.class_message_Activity
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_unit.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -339,7 +339,7 @@ class class_unit_Activity : AppCompatActivity() {
     //클래스 정보 가져오기
     fun get_unit_class(class_code : String, unit_class_code : String)
     {
-        serverConnection!!.student_get_curriculum(student_id, access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.student_get_curriculum(student_id, access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -572,7 +572,7 @@ class class_unit_Activity : AppCompatActivity() {
     //클래스 수업 참여 확인하기
     fun student_update_participation(class_code: String, unit_class_code: String, unit_class_type : String, unit_group_name:String)
     {
-        serverConnection!!.student_update_participation(student_id, access_token, class_code, unit_class_code, student_number, unit_class_type, unit_group_name).enqueue(object : Callback<ResponseBody>
+        serverConnectionSpec!!.student_update_participation(student_id, access_token, class_code, unit_class_code, student_number, unit_class_type, unit_group_name).enqueue(object : Callback<ResponseBody>
         {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
@@ -641,7 +641,7 @@ class class_unit_Activity : AppCompatActivity() {
     fun create_student_class_record(class_code: String, unit_class_code: String)
     {
 
-        serverConnection!!.create_student_class_record(student_id, access_token, class_code, unit_class_code, student_name, student_level, student_class, student_number,"1", content_test_value).enqueue(object : Callback<ResponseBody>
+        serverConnectionSpec!!.create_student_class_record(student_id, access_token, class_code, unit_class_code, student_name, student_level, student_class, student_number,"1", content_test_value).enqueue(object : Callback<ResponseBody>
         {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {

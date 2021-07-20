@@ -16,12 +16,12 @@ import com.funidea.utils.set_User_info.Companion.student_class_code_value_Array
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.side_menu_layout.Companion.side_menu_setting_test
 import com.funidea.newonpe.*
-import com.funidea.newonpe.dialog.class_code_dialog
-import com.funidea.newonpe.dialog.class_code_dialog_Utils.class_code_dialog_Item
+import com.funidea.newonpe.dialog.InsertClassCodeDialog
+import com.funidea.newonpe.dialog.ClassCodeItem
 import com.funidea.newonpe.page.home.class_community_board.class_community_Activity
 import com.funidea.newonpe.page.home.class_result.class_result_Activity
 import com.funidea.newonpe.page.home.class_unit.class_unit_Activity
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_home.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -205,29 +205,29 @@ class class_home_Activity : AppCompatActivity() {
     //클래스 코드 변경하기
     val change_class_code_button = View.OnClickListener {
 
-        var classCodeDialogItem = ArrayList<class_code_dialog_Item>()
+        var classCodeDialogItem = ArrayList<ClassCodeItem>()
 
         for(i in student_class_code_key_Array.indices)
         {
             if(student_class_code_key_Array.get(i).equals(select_class_code_str))
             {
-                classCodeDialogItem.add(class_code_dialog_Item(student_class_code_value_Array.get(i),student_class_code_key_Array.get(i),1))
+                classCodeDialogItem.add(ClassCodeItem(student_class_code_value_Array.get(i),student_class_code_key_Array.get(i),1))
                 select_class_code_position = i
 
             }
             else
             {
-                classCodeDialogItem.add(class_code_dialog_Item(student_class_code_value_Array.get(i),student_class_code_key_Array.get(i),0))
+                classCodeDialogItem.add(ClassCodeItem(student_class_code_value_Array.get(i),student_class_code_key_Array.get(i),0))
             }
         }
 
 
-        val classCodeDialog = class_code_dialog(this, classCodeDialogItem)
+        val classCodeDialog = InsertClassCodeDialog(this, classCodeDialogItem)
         classCodeDialog.show()
 
 
 
-        classCodeDialog.setclassCodeSelectListener(object  : class_code_dialog.classCodeSelectListener
+        classCodeDialog.setclassCodeSelectListener(object  : InsertClassCodeDialog.classCodeSelectListener
         {
             override fun select_code_value(select_code_name: String, select_code: String, select_position: Int?) {
 
@@ -292,7 +292,7 @@ class class_home_Activity : AppCompatActivity() {
     //클래스 유닛 리스트 가져오기
     fun get_class_unit(class_code : String)
     {
-        serverConnection!!.get_class_unit_list(student_id, access_token, class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_class_unit_list(student_id, access_token, class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -347,7 +347,7 @@ class class_home_Activity : AppCompatActivity() {
     //클래스 유닛 리스트 가져오기
     fun get_class_project_submit_type(class_code : String)
     {
-        serverConnection!!.get_class_project_submit_type(student_id, access_token, class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_class_project_submit_type(student_id, access_token, class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -430,7 +430,7 @@ class class_home_Activity : AppCompatActivity() {
     //결과 기록 가져오기
     fun get_student_class_record(class_code : String, class_unit_code : String, class_unit_title : String)
     {
-        serverConnection!!.get_student_class_record(student_id,access_token, class_code, class_unit_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_class_record(student_id,access_token, class_code, class_unit_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

@@ -4,237 +4,241 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#FAFAFA"
     android:fillViewport="true"
     android:orientation="vertical"
     tools:context=".page.login.EmailLoginPage">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FAFAFA"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="80dp"
+            android:gravity="left"
+            android:src="@drawable/logo_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:text="온 국민이 즐기는 인공지능 체육수업"
+            android:textColor="#777777"
+            android:textSize="18dp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="46dp">
+
+            <EditText
+                android:id="@+id/login_page_input_id_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/view_grey_color_round_edge"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center_vertical"
+                android:hint="아이디를 입력해주세요."
+                android:includeFontPadding="false"
+                android:maxLength="30"
+                android:paddingLeft="18dp"
+                android:singleLine="true"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/login_page_user_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="아이디 입력"
+                    android:textColor="#3378fd"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/login_page_input_pw_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/view_grey_color_round_edge"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center_vertical"
+                android:hint="비밀번호를 입력해주세요."
+                android:includeFontPadding="false"
+                android:inputType="textPassword"
+                android:maxLength="30"
+                android:paddingLeft="18dp"
+                android:singleLine="true"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:paddingLeft="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_login_page_lock" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="비밀번호 입력"
+                    android:textColor="#3378fd"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/login_page_login_textview"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/view_main_color_round_button"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:gravity="center"
+            android:elevation="5dp"
+            android:includeFontPadding="false"
+            android:text="로그인"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="80dp"/>
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="left"
-                android:src="@drawable/login_logo" />
+            <TextView
+                android:id="@+id/login_page_search_id_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:text="아이디 찾기"
+                android:textColor="#797979"
+                android:textSize="13dp"
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="28dp"
-                android:fontFamily="@font/notosanscjkkr_regular"
-                android:gravity="center_vertical"
+                android:fontFamily="@font/notosans_kr_bold"
                 android:includeFontPadding="false"
-                android:text="온 국민이 즐기는 인공지능 체육수업"
-                android:textColor="#777777"
-                android:textSize="18dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="\u00b7"
+                android:textColor="#797979"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/login_page_search_pw_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:text="비밀번호 찾기"
+                android:textColor="#797979"
+                android:textSize="13dp"
                 android:textStyle="normal" />
+        </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="60dp"/>
-
-
-            <FrameLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
-
-                <EditText
-                    android:id="@+id/login_page_input_id_edittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="28dp"
-                    android:background="@drawable/view_main_color_round_edge"
-                    android:fontFamily="@font/notosanscjkkr_regular"
-                    android:gravity="center_vertical"
-                    android:hint="아이디를 입력해주세요."
-                    android:includeFontPadding="false"
-                    android:maxLength="30"
-                    android:paddingLeft="18dp"
-                    android:singleLine="true"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="44dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:paddingLeft="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@color/white"
-                        app:srcCompat="@drawable/login_page_user_icon" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/notosanscjkkr_regular"
-                        android:includeFontPadding="false"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="아이디 입력"
-                        android:textColor="#3378fd"
-                        android:textSize="14dp"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <FrameLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
-
-                <EditText
-                    android:id="@+id/login_page_input_pw_edittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="28dp"
-                    android:background="@drawable/view_main_color_round_edge"
-                    android:fontFamily="@font/notosanscjkkr_regular"
-                    android:gravity="center_vertical"
-                    android:hint="비밀번호를 입력해주세요."
-                    android:includeFontPadding="false"
-                    android:inputType="textPassword"
-                    android:maxLength="30"
-                    android:paddingLeft="18dp"
-                    android:singleLine="true"
-                    android:textSize="15dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="44dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:paddingLeft="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@color/white"
-                        app:srcCompat="@drawable/ic_login_page_lock" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/notosanscjkkr_regular"
-                        android:includeFontPadding="false"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="비밀번호 입력"
-                        android:textColor="#3378fd"
-                        android:textSize="14dp"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginLeft="28dp"
-                android:layout_marginRight="28dp"
-                android:gravity="center_vertical|right"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/login_page_search_id_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanscjkkr_medium"
-                    android:includeFontPadding="false"
-                    android:text="아이디 찾기"
-                    android:textColor="#797979"
-                    android:textSize="13dp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_kr_bold"
-                    android:includeFontPadding="false"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="\u00b7"
-                    android:textColor="#797979"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/login_page_search_pw_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanscjkkr_medium"
-                    android:includeFontPadding="false"
-                    android:text="비밀번호 찾기"
-                    android:textColor="#797979"
-                    android:textSize="13dp"
-                    android:textStyle="normal" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="아직 회원이 아니신가요?"
-                android:textColor="@color/main_color"
-                android:textSize="14dp"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/gray"
+                android:textSize="12dp"
                 android:textStyle="normal" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <TextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login_page_join_textview"
                 android:layout_width="140dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:background="@drawable/view_white_color_round_edge"
+                android:background="@drawable/view_main_color_round_edge"
                 android:elevation="5dp"
+                android:layout_marginBottom="32dp"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -242,28 +246,8 @@
                 android:textColor="@color/main_color"
                 android:textSize="14dp"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="80dp" />
-
         </LinearLayout>
 
-    </ScrollView>
-
-    <TextView
-        android:id="@+id/login_page_login_textview"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom"
-        android:background="@color/gray"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="로그인"
-        android:textColor="@color/white"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

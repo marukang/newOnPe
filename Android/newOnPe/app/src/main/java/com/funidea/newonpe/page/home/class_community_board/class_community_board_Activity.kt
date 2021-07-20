@@ -19,8 +19,8 @@ import com.funidea.utils.set_User_info.Companion.student_name
 import com.funidea.utils.side_menu_layout.Companion.side_menu_setting_test
 import com.funidea.newonpe.R
 import com.funidea.newonpe.page.home.show_photo_Activity
-import com.funidea.newonpe.page.login.SplashActivity.Companion.baseURL
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.baseURL
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_community_board.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -171,7 +171,7 @@ class class_community_board_Activity : AppCompatActivity() {
     //댓글 불러오기
     fun get_student_community_comment_list(community_number : String )
     {
-        serverConnection!!.get_student_community_comment_list(student_id, access_token, community_number).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_community_comment_list(student_id, access_token, community_number).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -248,7 +248,7 @@ class class_community_board_Activity : AppCompatActivity() {
     //게시글 상세 정보 가져오기
     fun get_student_community(community_number : String )
     {
-        serverConnection!!.get_student_community(student_id, access_token, community_number).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_community(student_id, access_token, community_number).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -398,7 +398,7 @@ class class_community_board_Activity : AppCompatActivity() {
     //댓글 작성
     fun create_student_community_comment_list(community_number : String, comment_content : String )
     {
-        serverConnection!!.create_student_community_comment_list(student_id, access_token, student_name, community_number, comment_content).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.create_student_community_comment_list(student_id, access_token, student_name, community_number, comment_content).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -456,7 +456,7 @@ class class_community_board_Activity : AppCompatActivity() {
     //댓글 삭제
     fun delete_student_community_comment_list(community_number : String, comment_number : String , position : Int)
     {
-        serverConnection!!.delete_student_community_comment_list(student_id, access_token, community_number, comment_number).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.delete_student_community_comment_list(student_id, access_token, community_number, comment_number).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -598,7 +598,7 @@ class class_community_board_Activity : AppCompatActivity() {
     //게시글 삭제
     fun delete_student_community(community_number : String)
     {
-        serverConnection!!.delete_student_community(student_id, access_token, community_number).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.delete_student_community(student_id, access_token, community_number).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

@@ -11,7 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_id_search.*
 import kotlinx.android.synthetic.main.activity_join_page.*
 import kotlinx.android.synthetic.main.activity_pw_search_change.*
@@ -111,7 +111,7 @@ class ChangePasswordPage : AppCompatActivity() {
     fun search_change_pw(user_email: String?, user_password: String?, email_code: String?) {
 
 
-        serverConnection!!.find_change_pw(user_email, user_password, email_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.find_change_pw(user_email, user_password, email_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     val result = JSONObject(response.body()!!.string())

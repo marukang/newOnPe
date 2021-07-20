@@ -14,7 +14,7 @@ import com.funidea.newonpe.page.home.class_result.class_result_JSONArray_Item
 import com.funidea.newonpe.page.home.class_result.class_result_state_Adapter
 import com.funidea.newonpe.page.home.class_result.class_result_state_Item
 import com.funidea.newonpe.detector.Pose_ResultInformation
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import com.funidea.newonpe.page.pose.GetDateActivity_kt
 import com.funidea.newonpe.page.pose.PoseActivity
 import kotlinx.android.synthetic.main.activity_complete_exercise_record.*
@@ -217,7 +217,7 @@ class ExerciseRecordPage : AppCompatActivity() {
     //클래스 정보 가져오기
     fun get_unit_class(class_code : String, unit_class_code : String)
     {
-        serverConnection!!.student_get_curriculum(set_User_info.student_id, set_User_info.access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.student_get_curriculum(set_User_info.student_id, set_User_info.access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

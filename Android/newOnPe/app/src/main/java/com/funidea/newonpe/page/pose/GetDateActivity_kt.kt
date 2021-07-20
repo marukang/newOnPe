@@ -16,7 +16,7 @@ import com.funidea.utils.set_User_info.Companion.user_practice_JSONArray
 import com.funidea.utils.set_User_info.Companion.user_task_JSONArray
 import com.funidea.newonpe.detector.Pose_ResultInformation
 import com.funidea.newonpe.detector.ResultInformation
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_getdata.*
 import okhttp3.ResponseBody
 import org.json.JSONArray
@@ -125,7 +125,7 @@ class GetDateActivity_kt : AppCompatActivity() {
     //수업 기록하기
     fun update_student_record_class_practice(class_code : String, class_unit_code : String, class_practice: String, class_content_use_time : String)
     {
-        serverConnection!!.update_student_record_class_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_record_class_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try
@@ -174,7 +174,7 @@ class GetDateActivity_kt : AppCompatActivity() {
     //과제 기록하기
     fun update_student_record_task_practice(class_code : String, class_unit_code : String, class_practice: String, class_content_use_time : String)
     {
-        serverConnection!!.update_student_record_task_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_record_task_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -222,7 +222,7 @@ class GetDateActivity_kt : AppCompatActivity() {
     //평가 기록하기
     fun update_student_record_evaluation_practice(class_code : String, class_unit_code : String, class_practice: String, class_content_use_time : String)
     {
-        serverConnection!!.update_student_record_evaluation_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_record_evaluation_practice(student_id, access_token, class_code, class_unit_code, class_practice, class_content_use_time, class_unit_group_name).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

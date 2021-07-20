@@ -14,7 +14,7 @@ import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.set_User_info.Companion.student_name
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_message_answer.*
 import okhttp3.ResponseBody
 import org.json.JSONException
@@ -109,7 +109,7 @@ class class_message_answer_Activity : AppCompatActivity() {
 
     fun delete_student_message(message_number : String)
     {
-        serverConnection!!.delete_student_message(student_id, access_token,message_number).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.delete_student_message(student_id, access_token,message_number).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -159,7 +159,7 @@ class class_message_answer_Activity : AppCompatActivity() {
     //메세지 가져오기
     fun get_class_message(message_number : String )
     {
-        serverConnection!!.get_student_message(student_id, access_token,message_number).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_message(student_id, access_token,message_number).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

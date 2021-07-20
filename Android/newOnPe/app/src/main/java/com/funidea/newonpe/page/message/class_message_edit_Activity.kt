@@ -10,7 +10,7 @@ import com.funidea.utils.save_SharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.student_name
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import kotlinx.android.synthetic.main.activity_class_message_edit.*
 import kotlinx.android.synthetic.main.activity_class_message_write.*
 import okhttp3.ResponseBody
@@ -103,7 +103,7 @@ class class_message_edit_Activity : AppCompatActivity() {
 
     fun update_student_message(class_message_title : String, class_message_text : String, class_message_number : String)
     {
-        serverConnection!!.update_student_message(set_User_info.student_id, set_User_info.access_token,class_message_title, class_message_text, class_message_number).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.update_student_message(set_User_info.student_id, set_User_info.access_token,class_message_title, class_message_text, class_message_number).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

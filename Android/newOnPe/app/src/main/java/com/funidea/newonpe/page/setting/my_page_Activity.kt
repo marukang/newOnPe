@@ -37,11 +37,11 @@ import com.funidea.utils.set_User_info.Companion.student_sex
 import com.funidea.utils.set_User_info.Companion.student_tall
 import com.funidea.utils.set_User_info.Companion.student_weight
 import com.funidea.utils.side_menu_layout.Companion.side_menu_setting_test
-import com.funidea.newonpe.dialog.confirm_dialog
-import com.funidea.newonpe.dialog.picture_dialog
+import com.funidea.newonpe.dialog.NotifyUserInfoChangedDialog
+import com.funidea.newonpe.dialog.SelectPictureDialog
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.login.SplashActivity
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.page.login.LoginPage
+import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_my_page.*
@@ -145,7 +145,7 @@ class my_page_Activity : AppCompatActivity() {
 
 
         //유저 이미지 가져오기
-        Glide.with(this).load(SplashActivity.baseURL + set_User_info.student_image_url)
+        Glide.with(this).load(LoginPage.baseURL + set_User_info.student_image_url)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .centerCrop()
@@ -451,11 +451,11 @@ class my_page_Activity : AppCompatActivity() {
     //유저 프로필 사진 변경 버튼
     val change_user_profile_button = View.OnClickListener {
 
-        val pictureDialog = picture_dialog(this)
+        val pictureDialog = SelectPictureDialog(this)
 
         pictureDialog.show()
 
-        pictureDialog.setImageSelectListener(object : picture_dialog.ImageSelectListener{
+        pictureDialog.setImageSelectListener(object : SelectPictureDialog.ImageSelectListener{
             override fun select_image_value(select: String?) {
                 pictureDialog.dismiss()
                 if(select.equals("0"))
@@ -626,54 +626,54 @@ class my_page_Activity : AppCompatActivity() {
         }
         val request_id: RequestBody = RequestBody.create(MediaType.parse("Multipart/form-data"), student_id)
         val request_token: RequestBody = RequestBody.create(MediaType.parse("Multipart/form-data"), access_token)
-
-        serverConnection!!.profile_change(request_id, request_token, list).enqueue(object : Callback<ResponseBody?> {
-            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-
-               try{
-
-
-                   val result = JSONObject(response.body()!!.string())
-
-
-                   var i : Iterator<String>
-                   i =  result.keys()
-
-
-                   if(i.next().equals("success"))
-                   {
-                       access_token = result.getString("student_token")
-                       save_SharedPreferences.save_shard(this@my_page_Activity, access_token)
-                       show(this@my_page_Activity, "프로필 사진이 변경되었습니다.")
-
-                       if(student_image_url.equals("")|| student_image_url.equals("null"))
-                       {
-                           student_image_url = "/resources/student_profile/"+ student_id+".jpg"
-                       }
-
-                   }
-                   else
-                   {
-                       Toast.makeText(this@my_page_Activity,"변경에 실패하였습니다.\n인터넷 상태를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
-                   }
-
-
-               }
-               catch (t : KotlinNullPointerException)
-               {
-                   Log.d("결과", "onResponse: "+t)
-
-               }
-
-                mArrayUri.clear()
-            }
-
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-
-                Log.d("결과", "onResponse: "+t)
-                Log.d("결과", "onResponse: "+call)
-            }
-        })
+//
+//        serverConnectionSpec!!.profile_change(request_id, request_token, list).enqueue(object : Callback<ResponseBody?> {
+//            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
+//
+//               try{
+//
+//
+//                   val result = JSONObject(response.body()!!.string())
+//
+//
+//                   var i : Iterator<String>
+//                   i =  result.keys()
+//
+//
+//                   if(i.next().equals("success"))
+//                   {
+//                       access_token = result.getString("student_token")
+//                       save_SharedPreferences.save_shard(this@my_page_Activity, access_token)
+//                       show(this@my_page_Activity, "프로필 사진이 변경되었습니다.")
+//
+//                       if(student_image_url.equals("")|| student_image_url.equals("null"))
+//                       {
+//                           student_image_url = "/resources/student_profile/"+ student_id+".jpg"
+//                       }
+//
+//                   }
+//                   else
+//                   {
+//                       Toast.makeText(this@my_page_Activity,"변경에 실패하였습니다.\n인터넷 상태를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
+//                   }
+//
+//
+//               }
+//               catch (t : KotlinNullPointerException)
+//               {
+//                   Log.d("결과", "onResponse: "+t)
+//
+//               }
+//
+//                mArrayUri.clear()
+//            }
+//
+//            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+//
+//                Log.d("결과", "onResponse: "+t)
+//                Log.d("결과", "onResponse: "+call)
+//            }
+//        })
     }
 
 
@@ -1137,7 +1137,7 @@ class my_page_Activity : AppCompatActivity() {
     //학급 정보 변경
     fun class_information_change(student_level_str: String?, student_class_str: String?, student_number_str : String ? ) {
 
-        serverConnection!!.class_information_change(student_id, student_level_str, student_class_str, student_number_str,access_token)
+        serverConnectionSpec!!.class_information_change(student_id, student_level_str, student_class_str, student_number_str,access_token)
                 .enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
@@ -1157,7 +1157,7 @@ class my_page_Activity : AppCompatActivity() {
 
                         save_shard(this@my_page_Activity, student_token)
 
-                        val confirmDialog = confirm_dialog(this@my_page_Activity)
+                        val confirmDialog = NotifyUserInfoChangedDialog(this@my_page_Activity)
 
                        confirmDialog.show()
 
@@ -1192,7 +1192,7 @@ class my_page_Activity : AppCompatActivity() {
                                 student_weight_str: String?, student_age_str:String?) {
 
 
-        serverConnection!!.user_information_change(student_id, access_token, student_content_str, student_tall_str,student_weight_str, student_age_str)
+        serverConnectionSpec!!.user_information_change(student_id, access_token, student_content_str, student_tall_str,student_weight_str, student_age_str)
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                         try {
@@ -1215,7 +1215,7 @@ class my_page_Activity : AppCompatActivity() {
 
                                 save_shard(this@my_page_Activity, student_token)
 
-                                val confirmDialog = confirm_dialog(this@my_page_Activity)
+                                val confirmDialog = NotifyUserInfoChangedDialog(this@my_page_Activity)
 
                                 confirmDialog.show()
 
@@ -1247,7 +1247,7 @@ class my_page_Activity : AppCompatActivity() {
     //비밀번호 변경
     fun password_information_change(student_password_before: String?, student_password_new: String? ) {
 
-        serverConnection!!.password_information_change(student_id, access_token, student_password_before, student_password_new)
+        serverConnectionSpec!!.password_information_change(student_id, access_token, student_password_before, student_password_new)
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                         try {
@@ -1267,7 +1267,7 @@ class my_page_Activity : AppCompatActivity() {
 
                                 save_shard(this@my_page_Activity, student_token)
 
-                                val confirmDialog = confirm_dialog(this@my_page_Activity)
+                                val confirmDialog = NotifyUserInfoChangedDialog(this@my_page_Activity)
 
                                 confirmDialog.show()
                             }

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:background="@drawable/view_side_round_edge">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="152dp">
+
+        <com.funidea.newonpe.views.SelfProfileImageView
+            android:id="@+id/selfProfileView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            app:type="small"/>
+
+        <TextView
+            android:id="@+id/profileNameView"
+            android:layout_toRightOf="@+id/selfProfileView"
+            android:layout_alignTop="@+id/selfProfileView"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:textSize="16dp"
+            android:text="신우진"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#404040"
+            android:layout_marginTop="6dp"
+            android:text="최근 운동 시작일 : 2021-07-21"
+            android:textSize="12dp"
+            android:layout_below="@id/profileNameView"
+            android:layout_alignLeft="@+id/profileNameView"/>
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/icon_close_black"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/sideButton1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="26dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="내 강좌"
+            android:textSize="26dp"
+            android:textColor="@color/black"
+            android:layout_gravity="start"
+            android:includeFontPadding="false"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/right_arrow"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/sideButton2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="메시지"
+            android:textSize="26dp"
+            android:textColor="@color/black"
+            android:layout_gravity="start"
+            android:includeFontPadding="false"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/right_arrow"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/sideButton3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="강좌 게시판"
+            android:textSize="26dp"
+            android:textColor="@color/black"
+            android:layout_gravity="start"
+            android:includeFontPadding="false"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/right_arrow"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/sideButton4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="환경설정"
+            android:textSize="26dp"
+            android:textColor="@color/black"
+            android:layout_gravity="start"
+            android:includeFontPadding="false"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/right_arrow"/>
+
+    </FrameLayout>
+
+</LinearLayout>

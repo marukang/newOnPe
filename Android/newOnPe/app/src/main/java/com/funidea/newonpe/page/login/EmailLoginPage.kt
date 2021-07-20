@@ -10,22 +10,15 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.utils.set_User_info
-import com.funidea.utils.set_User_info.Companion.access_token
-import com.funidea.utils.set_User_info.Companion.fcm_token
-import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.newonpe.R
-import com.funidea.newonpe.page.main.MainHomeActivity
-import com.funidea.newonpe.page.login.SplashActivity.Companion.serverConnection
+import com.funidea.newonpe.model.CurrentLoginStudent
+import com.funidea.newonpe.model.Student
+import com.funidea.newonpe.network.ServerConnection
+import com.funidea.newonpe.page.CommonActivity
+import com.funidea.newonpe.page.main.MainHomePage
+import com.funidea.newonpe.services.MyFirebaseMessagingService
+import com.google.android.gms.common.internal.service.Common
 import kotlinx.android.synthetic.main.activity_login_page.*
-import okhttp3.ResponseBody
-import org.json.JSONException
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.IOException
 
 
 /** 로그인 Class
@@ -37,128 +30,66 @@ import java.io.IOException
  *
  */
 
-class EmailLoginPage : AppCompatActivity() {
+class EmailLoginPage : CommonActivity() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun init(savedInstanceState: Bundle?)
+    {
         setContentView(R.layout.activity_login_page)
 
-
-        //아이디 입력
-        login_page_input_id_edittext.addTextChangedListener(id_textWatcher)
-
-        //비밀번호 입력
-        login_page_input_pw_edittext.addTextChangedListener(pw_textWatcher)
-
-        //아이디찾기
-        login_page_search_id_textview.setOnClickListener(id_search_button)
-
-        //비밀번호 찾기
-        login_page_search_pw_textview.setOnClickListener(pw_search_button)
-
-        //회원가입
-        login_page_join_textview.setOnClickListener(join_button)
-
-        //로그인 버튼
-        login_page_login_textview.setOnClickListener(login_button)
-
-
+        login_page_input_id_edittext.addTextChangedListener(mTextWatcherInsertedID) //아이디 입력
+        login_page_input_pw_edittext.addTextChangedListener(mTextWatcherInsertedPassword) //비밀번호 입력
+        login_page_search_id_textview.setOnClickListener(mClickActionOfIDSearch) //아이디찾기
+        login_page_search_pw_textview.setOnClickListener(mClickActionOfPasswordSearch) //비밀번호 찾기
+        login_page_join_textview.setOnClickListener(mClickActionOfJoinMember) //회원가입
+        login_page_login_textview.setOnClickListener(mClickActionOfLogin) //로그인 버튼
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-    fun setUserinfo(dosa_id: String?, dosa_pw: String?) {
-
-       serverConnection!!.login(dosa_id, dosa_pw, fcm_token).enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                try {
-                    val result = JSONObject(response.body()!!.string())
-                    val result_value = result.toString()
-
-                    Log.d("결과값", "onResponse:"+result_value)
-                    var i : Iterator<String>
-                    i =  result.keys()
-
-                    if(!i.next().equals("fail"))
-                    {
-
-                        var setUserInfo = set_User_info()
-
-                        setUserInfo.set_user_info(result)
-
-
-
-                        show(this@EmailLoginPage, "로그인이 되었습니다.")
-
-                        val prefs = getSharedPreferences("user_info", Context.MODE_PRIVATE)
-                        val editor = prefs.edit()
-
-                        editor.putString("user_id", student_id)
-                        editor.putString("user_access_token", access_token)
-
-                        editor.commit()
-
-
-                        val intent = Intent(this@EmailLoginPage, MainHomeActivity::class.java)
-                        startActivity(intent)
-                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
-                        finish()
-                    }
-                    else
-                    {
-                        //Toast.makeText(this@login_page_Activity, "로그인이 되었습니다.", Toast.LENGTH_SHORT).show()
-
-
-                        show(this@EmailLoginPage, "아이디와 비밀번호를 확인해주세요.")
-
-
-                    }
-
-
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
+        when
+        {
+            requestCode == MemberJoinPage.CALL && resultCode == RESULT_OK ->
+            {
+                val intent = Intent(this@EmailLoginPage, MainHomePage::class.java)
+                startActivity(intent)
+                finish()
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
             }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
-
-                show(this@EmailLoginPage, resources.getString(R.string.fail_connect))
-
-            }
-        })
+        }
     }
 
+    override fun onBackPressed()
+    {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right)
+    }
 
-    val id_search_button = View.OnClickListener {
+    private val mClickActionOfIDSearch = View.OnClickListener {
         val intent = Intent(this, SearchIDPage::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, 0)
         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
     }
-    val pw_search_button = View.OnClickListener {
+    private val mClickActionOfPasswordSearch = View.OnClickListener {
         val intent = Intent(this, SearchPasswordPage::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, 1)
         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
     }
 
     //회원가입 버튼
-    val join_button = View.OnClickListener {
+    private val mClickActionOfJoinMember = View.OnClickListener {
 
         val intent = Intent(this, MemberJoinPage::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, MemberJoinPage.CALL)
         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
-
-
     }
 
     //아이디 체크
-    var id_textWatcher: TextWatcher = object : TextWatcher {
+    private var mTextWatcherInsertedID: TextWatcher = object : TextWatcher {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
-           if(s.length>0)
+           if(s.isNotEmpty())
            {
                if(login_page_input_pw_edittext.length()>0)
                {
@@ -185,10 +116,10 @@ class EmailLoginPage : AppCompatActivity() {
         }
     }
     //비밀번호 체크
-    var pw_textWatcher: TextWatcher = object : TextWatcher {
+    private var mTextWatcherInsertedPassword: TextWatcher = object : TextWatcher {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
-            if(s.length>0)
+            if(s.isNotEmpty())
             {
                 if(login_page_input_id_edittext.length()>0)
                 {
@@ -215,12 +146,14 @@ class EmailLoginPage : AppCompatActivity() {
         }
     }
     //로그인 버튼
-    val login_button = View.OnClickListener {
+    private val mClickActionOfLogin = View.OnClickListener {
 
-        if(TextUtils.isEmpty(login_page_input_id_edittext.text.toString())||
-            TextUtils.isEmpty(login_page_input_pw_edittext.text.toString()))
+        val insertedId = login_page_input_id_edittext.text.toString()
+        val insertedPassword = login_page_input_pw_edittext.text.toString()
+
+        if (TextUtils.isEmpty(insertedId) || TextUtils.isEmpty(insertedPassword))
         {
-          if(TextUtils.isEmpty(login_page_input_id_edittext.text.toString()))
+          if (TextUtils.isEmpty(insertedId))
           {
               login_page_input_id_edittext.requestFocus()
           }
@@ -230,15 +163,54 @@ class EmailLoginPage : AppCompatActivity() {
           }
 
           Toast.makeText(this, "빈 칸을 확인해주세요.", Toast.LENGTH_SHORT).show()
-
         }
-        else{
+        else
+        {
+            var sharedPreferencesSavedToken: String? = ""
+            val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+            if (sharedPreferences.contains("user_id"))
+            {
+                val sharedPreferencesSavedId : String = sharedPreferences.getString("user_id", "").toString()
+                if (sharedPreferencesSavedId == insertedId && !TextUtils.isEmpty(sharedPreferencesSavedId))
+                {
+                    sharedPreferencesSavedToken = sharedPreferences.getString("user_access_token", "").toString()
+                    Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedId = $sharedPreferencesSavedId")
+                    Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedToken = $sharedPreferencesSavedToken")
+                }
+            }
 
-            //서버 전송 코드
+            val callBack : (Int?, Any?) -> Unit = { code, response ->
 
-            setUserinfo(login_page_input_id_edittext.text.toString(),
-                    login_page_input_pw_edittext.text.toString())
+                Log.d("debug", ">> [complexion] login callBack code = $code")
+
+                if (code!! > -1)
+                {
+                    CurrentLoginStudent.root = response as Student
+
+                    val preferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                    val editor = preferences.edit()
+
+                    editor.putString("user_id", CurrentLoginStudent.root!!.student_id)
+                    editor.putString("user_access_token", CurrentLoginStudent.root!!.access_token)
+                    editor.commit()
+
+                    if (TextUtils.isEmpty(CurrentLoginStudent.root!!.student_name))
+                    {
+                        val intent = Intent(this@EmailLoginPage, ProfileRegistrationPage::class.java)
+                        startActivityForResult(intent, 4)
+                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
+                    }
+                    else
+                    {
+                        val intent = Intent(this@EmailLoginPage, MainHomePage::class.java)
+                        startActivity(intent)
+                        finish()
+                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
+                    }
+                }
+            }
+
+            ServerConnection.login(insertedId, insertedPassword, callBack)
         }
-
     }
 }

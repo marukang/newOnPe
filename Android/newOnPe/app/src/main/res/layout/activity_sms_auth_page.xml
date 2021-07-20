@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".page.login.SMSAuthPage">
+
+    <LinearLayout
+        android:id="@+id/titleFrame"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/view_bottom_line"
+        android:orientation="horizontal"
+        android:elevation="5dp"
+        android:weightSum="100">
+
+        <ImageView
+            android:id="@+id/join_page_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:padding="18dp"
+            app:srcCompat="@drawable/back_button_image" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:gravity="center"
+            android:text="본인인증"
+            android:textColor="#404040"
+            android:textSize="18dp"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/authWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"/>
+
+</FrameLayout>

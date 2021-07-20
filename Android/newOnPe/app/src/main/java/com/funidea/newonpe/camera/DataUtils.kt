@@ -14,7 +14,7 @@ class DataUtils {
             } catch (e : Exception) {
                 e.printStackTrace()
 
-                null;
+                "";
             }
         }
     }
