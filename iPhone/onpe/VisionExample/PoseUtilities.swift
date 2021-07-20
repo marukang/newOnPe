@@ -19,7 +19,7 @@ import MLKit
 import UIKit
 
 /// Defines UI-related utilitiy methods for vision detection.
-public class UIUtilities {
+public class PoseUtilities {
 
   // MARK: - Public
 

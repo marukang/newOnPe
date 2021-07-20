@@ -327,7 +327,7 @@ extension ViewController {
 
         // Pose detected. Currently, only single person detection is supported.
         poses.forEach { pose in
-          for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
+          for (startLandmarkType, endLandmarkTypesArray) in PoseUtilities.poseConnections() {
             let startLandmark = pose.landmark(ofType: startLandmarkType)
             for endLandmarkType in endLandmarkTypesArray {
               let endLandmark = pose.landmark(ofType: endLandmarkType)
@@ -335,7 +335,7 @@ extension ViewController {
                 transform)
               let transformedEndLandmarkPoint = self.pointFrom(endLandmark.position).applying(
                 transform)
-              UIUtilities.addLineSegment(
+              PoseUtilities.addLineSegment(
                 fromPoint: transformedStartLandmarkPoint,
                 toPoint: transformedEndLandmarkPoint,
                 inView: self.annotationOverlayView,
@@ -346,7 +346,7 @@ extension ViewController {
           }
           for landmark in pose.landmarks {
             let transformedPoint = self.pointFrom(landmark.position).applying(transform)
-            UIUtilities.addCircle(
+            PoseUtilities.addCircle(
               atPoint: transformedPoint,
               to: self.annotationOverlayView,
               color: UIColor.blue,

@@ -864,7 +864,7 @@
                 DispatchQueue.main.async {
                     poses.forEach { pose in
                         
-                        for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
+                        for (startLandmarkType, endLandmarkTypesArray) in PoseUtilities.poseConnections() {
                             
                             
                             let startLandmark = pose.landmark(ofType: startLandmarkType)
@@ -876,7 +876,7 @@
                                 let endLandmarkPoint = self.normalizedPoint(
                                     fromVisionPoint: endLandmark.position, width: width, height: height)
                                 
-                                UIUtilities.addLineSegment(
+                                PoseUtilities.addLineSegment(
                                     fromPoint: startLandmarkPoint,
                                     toPoint: endLandmarkPoint,
                                     inView: self.annotationOverlayView,
@@ -1308,7 +1308,7 @@
         
         lastFrame = sampleBuffer
         let visionImage = VisionImage(buffer: sampleBuffer)
-        let orientation = UIUtilities.imageOrientation(
+        let orientation = PoseUtilities.imageOrientation(
             fromDevicePosition: isUsingFrontCamera ? .front : .back
         )
         

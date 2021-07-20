@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */; };
+		1001E6F720CEE0DD00445CB3 /* PoseUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F620CEE0DD00445CB3 /* PoseUtilities.swift */; };
 		1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F820CF021E00445CB3 /* CameraViewController.swift */; };
 		1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
 		10224B582087E43100A77316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B572087E43100A77316 /* ViewController.swift */; };
@@ -121,7 +121,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
+		1001E6F620CEE0DD00445CB3 /* PoseUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseUtilities.swift; sourceTree = "<group>"; };
 		1001E6F820CF021E00445CB3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10224B572087E43100A77316 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -632,7 +632,7 @@
 				291EDE6425C2718B0017F984 /* classListClass */,
 				2940ACFD2602FA6D00796EDC /* exerciseClass */,
 				10224B5B2087E49F00A77316 /* MLKitExtensions.swift */,
-				1001E6F620CEE0DD00445CB3 /* UIUtilities.swift */,
+				1001E6F620CEE0DD00445CB3 /* PoseUtilities.swift */,
 				BB287B4A2072A0200069707A /* Supporting Files */,
 				BB287B4420729CE90069707A /* Info.plist */,
 				2977ACC425F9D9800021E6A4 /* GoogleService-Info.plist */,
@@ -1071,7 +1071,7 @@
 				291EDE8D25C272940017F984 /* idFindResultViewController.swift in Sources */,
 				29F82D2E25EF5B5A0021D6B7 /* CameraView2Controller.swift in Sources */,
 				290B00A125C29D200017ED2C /* jsonStruct.swift in Sources */,
-				1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */,
+				1001E6F720CEE0DD00445CB3 /* PoseUtilities.swift in Sources */,
 				29C7292725FF33A000DD5449 /* teacherMessagePostViewController.swift in Sources */,
 				29C7291F25FEF19100DD5449 /* totalNoticePostViewController.swift in Sources */,
 				2941AEC525F3394B00BB43D1 /* classListCellCollectionViewHeader.swift in Sources */,

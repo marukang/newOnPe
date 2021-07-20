@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-public class extensionClass{
+public class extensionClass
+{
     // textField 위의 글자 크기
     static let textSize1 : CGFloat = 13
     //textField의 글자크기
