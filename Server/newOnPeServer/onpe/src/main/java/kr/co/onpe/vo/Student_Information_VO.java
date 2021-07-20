@@ -31,6 +31,7 @@ public class Student_Information_VO{
 	private String student_recent_exercise_date;
 	private String student_token;
 	public String access_token;
+	public String student_login_type;
 	
 	
 	
@@ -196,6 +197,12 @@ public class Student_Information_VO{
 	}
 	public void setStudent_recent_join_date(String student_recent_join_date) {
 		this.student_recent_join_date = student_recent_join_date;
+	}
+	public String getStudent_login_type() {
+		return student_login_type;
+	}
+	public void setStudent_login_type(String student_login_type) {
+		this.student_login_type = student_login_type;
 	}
 	
 	

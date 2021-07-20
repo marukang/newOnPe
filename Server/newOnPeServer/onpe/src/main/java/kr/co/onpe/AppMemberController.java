@@ -218,7 +218,15 @@ public class AppMemberController{
 	public String profile_change(Locale locale, HttpServletRequest request, MultipartFile file) {
 		
 		String student_id = request.getParameter("student_id");
+		String student_name = request.getParameter("student_name");
 		String student_token = request.getParameter("student_token");
+		String student_login_type = request.getParameter("student_login_type");
+		
+		System.out.println(">> (staging) profile_change 사용자 아디 : " + student_id);
+		System.out.println(">> (staging) profile_change 사용자 student_token : " + student_token);
+		System.out.println(">> (staging) profile_change 사용자 student_name : " + student_name);
+		System.out.println(">> (staging) profile_change 사용자 login_type : " + student_login_type);
+		System.out.println(">> (staging) profile_change -----------------------");
 		
 		Gson gson = new Gson();
 		JsonObject object = new JsonObject();
@@ -228,47 +236,63 @@ public class AppMemberController{
 		if(student_id != null && student_token != null && !file.isEmpty()) {
 			
 			student_token = jwtTokenProvider.TokenCheck(student_id, "STUDENT", student_token);
-			if(student_token.equals("fail")) {
+			
+			if(student_token.equals("fail")) 
+			{
 				object.addProperty("fail", "token_authentication_fail");	// 사용자 아이디와 토큰 내부 아이디 불일치
 				return gson.toJson(object);
-			}else if(student_token.equals("expired")) {
+			}
+			else if(student_token.equals("expired")) 
+			{
 				object.addProperty("fail", "token_expired");	//토큰 만료시간 지남
 				return gson.toJson(object);
-			}else {
+			}
+			else
+			{
 				
 				String fileName = file.getOriginalFilename();	//파일명 긁어오기 ( 확장자 체크 )
-				
+				System.out.println(">> (staging) profile_change 사용자 fileName : " + fileName);
 				//확장자 체크
 				if(kr.co.onpe.common.common.checkImageType(fileName)) {
 					
 					File target = new File(Student_Profile_uploadPath, student_id + ".jpg");	//jpg로 통일
 			        
 			        //경로 생성
-			        if ( ! new File(Student_Profile_uploadPath).exists()) {
+			        if (!new File(Student_Profile_uploadPath).exists()) 
+			        {
 			        	new File(Student_Profile_uploadPath).mkdirs();
 			    	}
 			        
 			        //파일 복사
-			        try {
+			        try 
+			        {
 			        	FileCopyUtils.copy(file.getBytes(), target);
-			        	System.out.println(file);
+			        	System.out.println(">> (staging) profile_change 사용자 Student_Profile_uploadPath : " + Student_Profile_uploadPath);
+			        	System.out.println(">> (staging) profile_change 사용자 filePath : " + (Student_Profile_uploadPath + student_id + ".jpg"));
 			        	
 		            	try {
 		            		
 		            		// 썸네일 이미지로 변환
-		            		if(target.exists()) {
+		            		if (target.exists()) 
+		            		{
 		            			FileOutputStream thumbnail = new FileOutputStream(target);
 		            			Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 250, 250);
 		            			thumbnail.close();
 		            		}
 		            		
-		    				boolean return_qry = student_information_service.Student_Change_Profile_Image(student_id, "/resources/student_profile/" + student_id + ".jpg");
+		    				boolean return_qry = student_information_service.Student_Change_Profile_Image(student_id, student_name, "/resources/student_profile/" + student_id + ".jpg");
 		    				
-		    				if(return_qry) {
+		    				if (return_qry) 
+		    				{
 		    					object.addProperty("success", "success_change"); // 변경 성공
 		    					object.addProperty("student_token", student_token);
+		    					object.addProperty("student_name", student_name);
+		    					System.out.println(">> (staging) profile_change 사용자 response success : ");
+		    					System.out.println(">> (staging) profile_change 사용자 ------------------- ");
 		    					return gson.toJson(object);	
-		    				}else {
+		    				}
+		    				else 
+		    				{
 		    					object.addProperty("fail", "server_error");	// 변경 실패
 		    					return gson.toJson(object);	
 		    				}

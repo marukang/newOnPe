@@ -57,7 +57,7 @@
     
     <!-- 사용자 회원가입 -->
     <insert id="Create_Student_Information" parameterType="hashMap">
-    	INSERT INTO student_information(student_id, student_name, student_password, student_email, student_phone, student_push_agreement, student_email_agreement, student_message_agreement, student_state, news_state, new_messgae_state, student_create_date) VALUES(#{student_id}, #{student_name}, #{student_password}, #{student_email}, #{student_phone}, #{student_push_agreement}, #{student_push_agreement}, #{student_push_agreement}, "0", "0", "0", #{student_create_date});
+    	INSERT INTO student_information(student_id, student_name, student_password, student_email, student_phone, student_push_agreement, student_email_agreement, student_message_agreement, student_state, news_state, new_messgae_state, student_create_date, student_token) VALUES(#{student_id}, #{student_name}, #{student_password}, #{student_email}, #{student_phone}, #{student_push_agreement}, #{student_push_agreement}, #{student_push_agreement}, "0", "0", "0", #{student_create_date}, #{student_device_token});
     </insert>
     
     <!-- 사용자 SNS 회원가입 -->
@@ -107,7 +107,7 @@
     
     <!-- 사용자 프로필 이미지 변경 -->
     <update id="Student_Change_Profile_Image" parameterType="hashMap">
-    	UPDATE student_information SET student_image_url=#{student_image_url} WHERE student_id=#{student_id}
+    	UPDATE student_information SET student_image_url=#{student_image_url}, student_name=#{student_name} WHERE student_id=#{student_id}
     </update>
     
     <!-- 사용자 비밀번호 변경 -->

@@ -115,7 +115,7 @@ public class Student_Information_DAO {
     }
     
     /* 회원가입 */
-    public boolean Create_Student_Information(String student_id, String student_name, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone) {
+    public boolean Create_Student_Information(String student_id, String student_name, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String device_token) {
     	
     	HashMap<String, String> data = new HashMap<String, String>();
     	data.put("student_id", student_id);
@@ -125,6 +125,7 @@ public class Student_Information_DAO {
     	data.put("student_push_agreement", student_push_agreement);
     	data.put("student_create_date", student_create_date);
     	data.put("student_phone", student_phone);
+    	data.put("student_device_token", device_token);
     	System.out.println(data);
     	
     	if(sqlSession.insert(namespace + ".Create_Student_Information", data) == 1) {
@@ -135,12 +136,12 @@ public class Student_Information_DAO {
     }
     
     /* 회원가입 */
-    public boolean Create_Student_SNSInformation(String student_id, String student_name, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String student_token, String student_login_type) {
+    public boolean Create_Student_SNSInformation(String student_id, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String student_token, String student_login_type) {
     	
     	HashMap<String, String> data = new HashMap<String, String>();
     	data.put("student_id", student_id);
-    	data.put("student_name", student_name);
     	data.put("student_password", student_password);
+    	data.put("student_name", null);
     	data.put("student_email", student_email);
     	data.put("student_push_agreement", student_push_agreement);
     	data.put("student_create_date", student_create_date);
@@ -240,9 +241,10 @@ public class Student_Information_DAO {
     }
     
     /* 사용자 프로필이미지 변경 */
-    public boolean Student_Change_Profile_Image(String student_id, String student_image_url) {
+    public boolean Student_Change_Profile_Image(String student_id, String student_name, String student_image_url) {
     	HashMap<String, String> data = new HashMap<String, String>();
     	data.put("student_id", student_id);
+    	data.put("student_name", student_name);
     	data.put("student_image_url", student_image_url);
     	
     	if(sqlSession.update(namespace + ".Student_Change_Profile_Image", data) == 1) {

@@ -102,12 +102,12 @@ public class Student_Information_Service {
     }
     
     /* 회원가입 */
-    public boolean Create_Student_Information(String student_id, String student_name, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone) {
-    	return Student_information_DAO.Create_Student_Information(student_id, student_name, student_password, student_email, student_push_agreement, student_create_date, student_phone);
+    public boolean Create_Student_Information(String student_id, String student_name, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String device_token) {
+    	return Student_information_DAO.Create_Student_Information(student_id, student_name, student_password, student_email, student_push_agreement, student_create_date, student_phone, device_token);
     }
     /* 회원가입 (SNS로그인) */
-    public boolean Upsert_Student(String student_id, String student_name, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String student_token, String student_login_type) {
-    	return Student_information_DAO.Create_Student_SNSInformation(student_id, student_name, student_password, student_email, student_push_agreement, student_create_date, student_phone, student_token, student_login_type);
+    public boolean Upsert_Student(String student_id, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String student_token, String student_login_type) {
+    	return Student_information_DAO.Create_Student_SNSInformation(student_id, student_password, student_email, student_push_agreement, student_create_date, student_phone, student_token, student_login_type);
     }
     
     /* 아이디찾기 */
@@ -143,8 +143,8 @@ public class Student_Information_Service {
     }
     
     /* 사용자 프로필이미지 변경 */
-    public boolean Student_Change_Profile_Image(String student_id, String student_image_url) {
-    	return Student_information_DAO.Student_Change_Profile_Image(student_id, student_image_url);
+    public boolean Student_Change_Profile_Image(String student_id, String student_name, String student_image_url) {
+    	return Student_information_DAO.Student_Change_Profile_Image(student_id, student_name, student_image_url);
     }
     
     /* 사용자 비밀번호 변경 */

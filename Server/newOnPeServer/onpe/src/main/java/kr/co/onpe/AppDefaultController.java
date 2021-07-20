@@ -69,17 +69,16 @@ public class AppDefaultController {
 		String fcmtoken = request.getParameter("fcmtoken");
 		String loginType = request.getParameter("loginType");
 		
-		String student_name = request.getParameter("student_name");
 		String student_email = request.getParameter("student_email");
 		String student_push_agreement = request.getParameter("student_push_agreement");
 		String student_phone_number = request.getParameter("student_phone_number");
 
-		System.out.println(">> snsLogin 사용자 아디 : " + student_id);
-		System.out.println(">> snsLogin 사용자 accessToken : " + accessToken);
-		System.out.println(">> snsLogin 사용자 fcmtoken : " + fcmtoken);
-		System.out.println(">> snsLogin 사용자 loginType : " + loginType);
-		System.out.println(">> snsLogin 사용자 student_phone_number : " + student_phone_number);
-		System.out.println(">> snsLogin -----------------------");
+		System.out.println(">> (staging) snsLogin 사용자 아디 : " + student_id);
+		System.out.println(">> (staging) snsLogin 사용자 accessToken : " + accessToken);
+		System.out.println(">> (staging) snsLogin 사용자 fcmtoken : " + fcmtoken);
+		System.out.println(">> (staging) snsLogin 사용자 loginType : " + loginType);
+		System.out.println(">> (staging) snsLogin 사용자 student_phone_number : " + student_phone_number);
+		System.out.println(">> (staging) snsLogin -----------------------");
 		
 		//토큰 로그인 ( 자동로그인 )
 		if (!TextUtils.isEmpty(accessToken)) 
@@ -130,7 +129,7 @@ public class AppDefaultController {
 				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
 				String time_number = simpleDateFormat.format(time);
 				
-				if (student_information_service.Upsert_Student(student_id, student_name, "N/A", student_email, student_push_agreement, time_number, student_phone_number, fcmtoken, loginType)) {
+				if (student_information_service.Upsert_Student(student_id, "N/A", student_email, student_push_agreement, time_number, student_phone_number, fcmtoken, loginType)) {
 					
 					String createdToken = jwtTokenProvider.createToken(student_id, "STUDENT");
 					
@@ -179,7 +178,7 @@ public class AppDefaultController {
 		System.out.println(">> (staging) login -----------------------");
 
 		//토큰 로그인 ( 자동로그인 )
-		if (token != null) 
+		if (!TextUtils.isEmpty(token)) 
 		{
 			token = jwtTokenProvider.TokenCheck(student_id, "STUDENT", token);
 			
@@ -199,6 +198,8 @@ public class AppDefaultController {
 				student_information.access_token = token;
 				student_information_service.Update_Student_Token(student_id, fcmtoken);
 				
+				System.out.println(">> (staging) login 사용자 student_login_type : " + student_information.student_login_type);
+				System.out.println(">> (staging) login -----------------------");
 				try 
 				{
 					String returnStr = obm.writeValueAsString(student_information);
@@ -274,15 +275,25 @@ public class AppDefaultController {
 	@RequestMapping(value = "/id_overlap_check", produces = "application/json; charset=utf8", method = RequestMethod.POST)
 	public String id_overlap_check(Locale locale, HttpServletRequest request) {
 		String student_id = request.getParameter("student_id");
+		
+		System.out.println(">> (staging) id_overlap_check 사용자 student_id : " + student_id);
+		System.out.println(">> (staging) id_overlap_check -----------------------");
+		
 		Gson gson = new Gson();
 		JsonObject object = new JsonObject();
 		if(student_id != null) {
 			boolean result =  student_information_service.Id_Overlap_Check(student_id);
 			
-			if(result) {
+			System.out.println(">> (staging) id_overlap_check result : " + result);
+			System.out.println(">> (staging) id_overlap_check -----------------------");
+			
+			if (result) 
+			{
 				object.addProperty("success", "y");
 				return gson.toJson(object);
-			}else {
+			}
+			else 
+			{
 				object.addProperty("success", "n");
 				return gson.toJson(object);
 			}
@@ -394,13 +405,29 @@ public class AppDefaultController {
 		String student_email = request.getParameter("student_email");
 		String authentication_code = request.getParameter("authentication_code");
 		String student_push_agreement = request.getParameter("student_push_agreement");
+		String student_device_token = request.getParameter("student_device_token");
 		String student_phone_number = request.getParameter("student_phone_number");
-		if(student_phone_number != null && student_phone_number.length() > 0) {
-			if(student_phone_number.length() != 13) {
+		
+		System.out.println(">> (staging) sign_up 사용자 student_id : " + student_id);
+		System.out.println(">> (staging) sign_up 사용자 student_name : " + student_name);
+		System.out.println(">> (staging) sign_up 사용자 student_password : " + student_password);
+		System.out.println(">> (staging) sign_up 사용자 student_email : " + student_email);
+		System.out.println(">> (staging) sign_up 사용자 authentication_code : " + authentication_code);
+		System.out.println(">> (staging) sign_up 사용자 student_push_agreement : " + student_push_agreement);
+		System.out.println(">> (staging) sign_up 사용자 student_device_token : " + student_device_token);
+		System.out.println(">> (staging) sign_up 사용자 student_phone_number : " + student_phone_number);
+		System.out.println(">> (staging) sign_up -----------------------");
+		
+		if (student_phone_number != null && student_phone_number.length() > 0) 
+		{
+			if(student_phone_number.length() < 10) 
+			{
 				object.addProperty("fail", "student_phone_length");
 				return gson.toJson(object);	
 			}
-		}else {
+		}
+		else 
+		{
 			student_phone_number = null;
 		}
 		
@@ -413,11 +440,11 @@ public class AppDefaultController {
 			// 4. 이메일 및 인증코드 검증
 			// 5. 핸드폰번호 13자리 맞는지 검증
 			
-			if(student_id.length() > 3 && student_id.length() < 13) {	//아이디 문자열 길이 확인
+			if(student_id.length() > 3 && student_id.length() < 25) {	//아이디 문자열 길이 확인
 				
 				if(!student_information_service.Id_Overlap_Check(student_id)) {	//아이디 중복확인
 					
-					if(student_name.length() > 1 && student_name.length() < 7) {	//이름 문자열 길이 확인
+					if(student_name.length() > 1 && student_name.length() < 10) {	//이름 문자열 길이 확인
 						
 						if(kr.co.onpe.common.common.passwordCheck(student_password)){	//비밀번호 정규식 확인
 							
@@ -425,7 +452,7 @@ public class AppDefaultController {
 								
 								if(!student_information_service.Email_Overlap_Check(student_email)) {	//이메일 중복검사 확인
 									
-									if(student_information_service.Student_Email_Authentication_Code_Check(student_email, authentication_code)) {	//이메일 인증코드 검증
+									if("N/A".equals(authentication_code) || student_information_service.Student_Email_Authentication_Code_Check(student_email, authentication_code)) {	//이메일 인증코드 검증
 										
 										/* 비밀번호 암호화 */
 										try {
@@ -445,16 +472,32 @@ public class AppDefaultController {
 											Date time = new Date();
 											String time_number = format.format(time);
 											
-											if(student_information_service.Create_Student_Information(student_id, student_name, sha256pw, student_email, push_agreement, time_number, student_phone_number)) {
+											if (student_information_service.Create_Student_Information(student_id, student_name, sha256pw, student_email, push_agreement, time_number, student_phone_number, student_device_token)) {
 												student_information_service.Delete_Student_Email_Authentication_Code(student_email);
+												
+												String createdToken = jwtTokenProvider.createToken(student_id, "STUDENT");
+												
+												Student_Information_VO student_information = student_information_service.Student_Information_for_Auto_login(student_id, "E");
+												student_information.access_token = createdToken;
+												ObjectMapper objectMapper  = new ObjectMapper();
+												
 												object.addProperty("success", "success_create");
+												object.addProperty("student", objectMapper.writeValueAsString(student_information));
 												return gson.toJson(object);
 											}else {
 												object.addProperty("fail", "server_error");
 												return gson.toJson(object);										
 											}
 											
-										} catch (NoSuchAlgorithmException e) {	//SHA256 변환 실패
+										} 
+										catch (NoSuchAlgorithmException e) //SHA256 변환 실패
+										{	
+											e.printStackTrace();
+											object.addProperty("fail", "server_error");
+											return gson.toJson(object);	
+										} 
+										catch (JsonProcessingException e) {
+											
 											e.printStackTrace();
 											object.addProperty("fail", "server_error");
 											return gson.toJson(object);	
