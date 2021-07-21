@@ -63,11 +63,8 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:padding="10dp"
-                android:text="가입 당시 입력한 이름/이메일을 입력해주세요."
-                android:textStyle="normal"
-
-
-                />
+                android:text="실명 기입후 본인인증을 주세요"
+                android:textStyle="normal"/>
 
             <View
                 android:layout_width="match_parent"
@@ -122,6 +119,7 @@
                     android:text="이름"
                     android:textColor="@color/join_gray"
                     android:textSize="14dp"
+                    android:visibility="gone"
 
                     />
 
@@ -129,6 +127,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="20dp">
@@ -177,11 +176,28 @@
                     android:text="이메일 주소"
                     android:textColor="@color/join_gray"
                     android:textSize="14dp"
+                    android:visibility="gone"
 
                     />
 
 
             </FrameLayout>
+
+            <Button
+                android:id="@+id/sending_sms_auth_code"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="28dp"
+                android:background="@drawable/selector_registration_form_button2"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="본인인증 미완료"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="normal" />
 
         </LinearLayout>
 
@@ -198,16 +214,17 @@
         android:background="@color/gray"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:gravity="center"
-        android:text="확인"
+        android:text="아이디 찾기"
         android:textColor="@color/white"
         android:textSize="18dp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <include layout="@layout/view_id_search_complete"
+    <include
         android:id="@+id/IDSearchCompletion"
-        android:visibility="gone"
+        layout="@layout/view_id_search_complete"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

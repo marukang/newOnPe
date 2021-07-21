@@ -63,7 +63,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:padding="10dp"
-                android:text="가입 당시 입력한 이름/이메일/전화번호를 입력해주세요."
+                android:text="가입 당시 입력한 이름/아이디를 입력해주세요."
                 android:textStyle="normal"
 
 
@@ -76,7 +76,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
                 <LinearLayout
@@ -84,7 +84,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="28dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="28dp"
                     android:background="@drawable/view_gray_color_round_edge"
                     android:orientation="horizontal"
@@ -120,6 +119,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:text="이름"
+                    android:visibility="gone"
                     android:textColor="@color/join_gray"
                     android:textSize="14dp"
 
@@ -130,7 +130,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
                 <LinearLayout
@@ -138,7 +138,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="28dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="28dp"
                     android:background="@drawable/view_gray_color_round_edge"
                     android:orientation="horizontal"
@@ -174,6 +173,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:text="아이디"
+                    android:visibility="gone"
                     android:textColor="@color/join_gray"
                     android:textSize="14dp"
 
@@ -182,9 +182,26 @@
 
             </FrameLayout>
 
+            <Button
+                android:id="@+id/sending_sms_auth_code"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="28dp"
+                android:background="@drawable/selector_registration_form_button2"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="본인인증 미완료"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="normal" />
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:visibility="gone"
                 android:layout_marginTop="20dp">
 
                 <LinearLayout

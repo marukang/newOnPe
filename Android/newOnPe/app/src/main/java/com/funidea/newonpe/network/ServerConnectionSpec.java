@@ -21,6 +21,9 @@ import retrofit2.http.Url;
 
 import static com.funidea.newonpe.network.NetworkConstants.APP_LOGIN;
 import static com.funidea.newonpe.network.NetworkConstants.CHECK_DUPLICATED_ID;
+import static com.funidea.newonpe.network.NetworkConstants.SEARCH_ID;
+import static com.funidea.newonpe.network.NetworkConstants.SEARCH_PW;
+import static com.funidea.newonpe.network.NetworkConstants.SIGN_UP;
 import static com.funidea.newonpe.network.NetworkConstants.SNS_LOGIN;
 
 /**
@@ -96,7 +99,7 @@ public interface ServerConnectionSpec
 
     //회원 가입 - 최종 보내기
     @FormUrlEncoded
-    @POST("app/sign_up")
+    @POST(SIGN_UP)
     Call<ResponseBody> sign_up
     (
             @Field("student_id") String student_id,
@@ -126,22 +129,22 @@ public interface ServerConnectionSpec
 
     //아이디 찾기
     @FormUrlEncoded
-    @POST("/app/find_id")
+    @POST(SEARCH_ID)
     Call<ResponseBody> find_id
     (
             @Field("student_name") String student_name,
-            @Field("student_email") String student_email
+            @Field("student_phone_number") String student_phone_number
 
     );
 
     //비밀번호 찾기
     @FormUrlEncoded
-    @POST("/app/find_pw")
+    @POST(SEARCH_PW)
     Call<ResponseBody> find_pw
     (
             @Field("student_id") String student_id,
             @Field("student_name") String student_name,
-            @Field("student_email") String student_email
+            @Field("student_phone_number") String student_phone_number
 
     );
 

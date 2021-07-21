@@ -156,7 +156,7 @@ object ServerConnection : NetworkConstants
                 try
                 {
                     val result = JSONObject(response.body()!!.string())
-                    Log.d("debug", "++ tryRegistration result = ${result.toString()}")
+
                     val i : Iterator<String> = result.keys()
                     if (i.next() == "success")
                     {
@@ -187,11 +187,88 @@ object ServerConnection : NetworkConstants
 
             override fun onFailure(call: Call<ResponseBody>, response: Throwable)
             {
-                Log.d("debug", "++ tryRegistration onFailure ")
-
                 callback(false)
             }
         })
+    }
+
+    fun searchId(student_name : String, phoneNumber : String, callback: (Boolean, String?) -> Unit)
+    {
+        mServerConnectionSpec?.find_id(student_name, phoneNumber)?.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                try
+                {
+                    val result = JSONObject(response.body()!!.string())
+
+                    val i : Iterator<String> = result.keys()
+                    if (i.next() == "success")
+                    {
+                        val studentId = result.getString("student_id")
+
+                        callback(true, studentId)
+                    }
+                    else
+                    {
+                        callback(false, null)
+                    }
+                }
+                catch (e : Exception)
+                {
+                    e.printStackTrace()
+
+                    callback(false, null)
+                }
+            }
+
+            override fun onFailure(p0: Call<ResponseBody>, p1: Throwable)
+            {
+                callback(false, null)
+            }
+        })
+    }
+
+    fun searchPassword(student_id : String, student_name : String, phoneNumber : String, callback: (Boolean, String?, String?) -> Unit)
+    {
+        mServerConnectionSpec?.find_pw(student_id, student_name, phoneNumber)?.enqueue(object : Callback<ResponseBody> {
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                try
+                {
+                    val result = JSONObject(response.body()!!.string())
+
+                    val i : Iterator<String> = result.keys()
+                    if (i.next() == "success")
+                    {
+                        val emailAddress = result.getString("email")
+                        val certificationNumber = result.getString("certificationNumber")
+                        callback(true, certificationNumber, emailAddress)
+                    }
+                    else
+                    {
+                        callback(false, null, null)
+                    }
+                }
+                catch (e : Exception)
+                {
+                    e.printStackTrace()
+
+                    callback(false, null, null)
+                }
+            }
+
+            override fun onFailure(p0: Call<ResponseBody>, p1: Throwable)
+            {
+                callback(false, null, null)
+            }
+
+        })
+    }
+
+    fun changePassword()
+    {
+
     }
 
     fun uploadProfileImage(student_id : String, student_name : String ,student_token : String, list : MutableList<MultipartBody.Part>, callback: (Boolean) -> Unit)

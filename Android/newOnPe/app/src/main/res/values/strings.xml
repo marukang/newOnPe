@@ -8,6 +8,9 @@
     <string name="registration_marketing_popup_sub_message">- 이후에 설정에서 변경 가능합니다</string>
     <string name="next_tiem"><u>다음에 등록하기</u></string>
 
+    <string name="my_class_guide_text1">강좌 코드를\n입력해주세요.</string>
+    <string name="my_class_guide_text2">내 강좌 목록이 비었습니다.\n강좌 코드 입력과 강좌 검색을 통해\n강좌를 등록하세요. </string>
+
     <!-- Ted Permission -->
     <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>
     <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>

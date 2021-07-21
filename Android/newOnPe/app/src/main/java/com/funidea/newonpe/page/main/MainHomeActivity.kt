@@ -69,9 +69,6 @@ import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-//온 체육 메인 홈 Activity
-
 class MainHomeActivity : AppCompatActivity() {
 
     lateinit var appUpdateManager : AppUpdateManager
@@ -98,182 +95,182 @@ class MainHomeActivity : AppCompatActivity() {
 
 
 
-//       //처음 혹은 사용자 정보를 완벽히 입력하지 않을 경우 보여질 user_info_bottom_dialog
-//        //2021-06-06 다이어로그가 나오지 않도록 주석 처리.
-//        //input_user_info(student_sex)
-//
-//        //권한 설정
-//        tedPermission()
-//
-//        if(student_class_code_value_Array.size!=0)
-//        {
-//
-//        main_home_class_list_linearlayout.visibility = View.VISIBLE
-//        main_home_first_add_new_class_linearlayout.visibility = View.GONE
-//
-//        if(classNameItem.size!=0)
-//        {
-//            classNameItem.clear()
-//            sideMenuClassItem.clear()
-//        }
-//
-//
-//        for(i in student_class_code_value_Array.indices)
-//        {
-//         /*   Log.d("값보기", "onCreate:"+ student_class_code_value_Array.size +"+"+i)
-//
-//            var size_value = student_class_code_value_Array.size-1 -i
-//            Log.d("값보기", "onCreate:"+ size_value)*/
-//            classNameItem.add(class_name_Item(student_class_code_key_Array.get(i), student_class_code_value_Array.get(i)))
-//            sideMenuClassItem.add(side_menu_class_Item(student_class_code_key_Array.get(i), student_class_code_value_Array.get(i)))
-//
-//        }
-//
-//        }
-//        else
-//        {
-//
-//            main_home_class_list_linearlayout.visibility = View.GONE
-//            main_home_first_add_new_class_linearlayout.visibility = View.VISIBLE
-//            main_home_menu_linearlayout_1.visibility = View.INVISIBLE
-//            main_home_menu_linearlayout_2.visibility = View.INVISIBLE
-//        }
-//
-//        Collections.reverse(classNameItem);
-//
-//        //클래스 네임 리사이클러뷰
-//        classNameAdapter = class_name_Adapter(this, classNameItem)
-//
-//
-//        snapHelper!!.attachToRecyclerView(main_home_class_name_recyclerview)
-//        //레이아웃 매니저
-//        var linearLayoutManager : VariableScrollSpeedLinearLayoutManager
-//        linearLayoutManager = VariableScrollSpeedLinearLayoutManager(this, 4F)
-//        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-//        linearLayoutManager.scrollToPosition(0)
-//        main_home_class_name_recyclerview.layoutManager = linearLayoutManager
-//        circleindicator.attachToRecyclerView(main_home_class_name_recyclerview, snapHelper!!)
-//        circleindicator.createIndicators(classNameItem.size,classNameItem.size)
-//
-//        classNameAdapter.registerAdapterDataObserver(circleindicator.adapterDataObserver)
-//        main_home_class_name_recyclerview.adapter = classNameAdapter
-//
-//
-//        //선택 클래스 change_listener
-//        main_home_class_name_recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//
-//                //현재 리사이클러뷰 위치
-//                class_name_recyclerview_position = (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
-//
-//                if(class_name_recyclerview_position!=-1)
-//                {
-//
-//                select_class_code_str = classNameItem.get(class_name_recyclerview_position).class_code_name
-//                select_class_name_str = classNameItem.get(class_name_recyclerview_position).class_name
-//
-//                }
-//                    val itemTotalCount = recyclerView.adapter!!.itemCount - 1
-//
-//
-//            }
-//        })
-//
-//
-//        //리사이클러뷰 좌우 이동 버튼
-//        main_home_class_move_left_imageview.setOnClickListener(move_left)
-//        main_home_class_move_right_imageview.setOnClickListener(move_right)
-//
-//
-//        //클래스 입장하기
-//        main_home_class_enter_textview_button.setOnClickListener(class_enter_button)
-//        //새소식 버튼
-//        //main_home_notice_button_textview.setOnClickListener(notice_button)
-//        //햄버거 버튼
-//        main_home_side_menu_button_imageview.setOnClickListener(side_menu_button)
-//        //셋팅 페이지 이동 버튼
-//        main_home_setting_button_imageview.setOnClickListener(setting_button)
-//        //마이 페이지 이동 버튼
-//        main_home_mypage_button_textview.setOnClickListener(mypage_button)
-//        //커뮤니티 이동 버튼
-//        main_home_community_button_linearlayout.setOnClickListener(community_button)
-//        //메인 홈 컨텐츠
-//        main_home_content_button_textview.setOnClickListener(content_button)
-//        //온라인 체육 수업 버튼
-//        main_home_self_class_button_textview.setOnClickListener(self_class_button)
-//
-//        //신규 수업 추가 버튼
-//        main_home_add_new_class_linearlayout.setOnClickListener(add_new_class)
-//
-//        //첫번쨰 수업 추가 버튼
-//        main_home_first_add_new_class_linearlayout.setOnClickListener(add_new_class)
-//
-//        //유저이름
-//        main_home_student_name_textview.setText(student_name)
-//
-//        //사이드 메뉴 세팅
-//        val sideMenuView : View = findViewById(R.id.main_home_child_drawerview)
-//
-//        side_menu_setting_test(main_home_drawerview, sideMenuView,this)
-//
-//
-//
-//        appUpdateManager = AppUpdateManagerFactory.create(this)
-//
-//        appUpdateManager?.let {
-//            it.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-//
-//                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-//                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                    // or AppUpdateType.FLEXIBLE
-//                    appUpdateManager?.startUpdateFlowForResult(
-//                            appUpdateInfo,
-//                            AppUpdateType.IMMEDIATE, // or AppUpdateType.FLEXIBLE
-//                            this,
-//                            REQUEST_CODE_UPDATE
-//                    )
-//                }
-//            }
-//        }
-//
-//
+       //처음 혹은 사용자 정보를 완벽히 입력하지 않을 경우 보여질 user_info_bottom_dialog
+        //2021-06-06 다이어로그가 나오지 않도록 주석 처리.
+        //input_user_info(student_sex)
+
+        //권한 설정
+        tedPermission()
+
+        if(student_class_code_value_Array.size!=0)
+        {
+
+        main_home_class_list_linearlayout.visibility = View.VISIBLE
+        main_home_first_add_new_class_linearlayout.visibility = View.GONE
+
+        if(classNameItem.size!=0)
+        {
+            classNameItem.clear()
+            sideMenuClassItem.clear()
+        }
+
+
+        for(i in student_class_code_value_Array.indices)
+        {
+         /*   Log.d("값보기", "onCreate:"+ student_class_code_value_Array.size +"+"+i)
+
+            var size_value = student_class_code_value_Array.size-1 -i
+            Log.d("값보기", "onCreate:"+ size_value)*/
+            classNameItem.add(class_name_Item(student_class_code_key_Array.get(i), student_class_code_value_Array.get(i)))
+            sideMenuClassItem.add(side_menu_class_Item(student_class_code_key_Array.get(i), student_class_code_value_Array.get(i)))
+
+        }
+
+        }
+        else
+        {
+
+            main_home_class_list_linearlayout.visibility = View.GONE
+            main_home_first_add_new_class_linearlayout.visibility = View.VISIBLE
+            main_home_menu_linearlayout_1.visibility = View.INVISIBLE
+            main_home_menu_linearlayout_2.visibility = View.INVISIBLE
+        }
+
+        Collections.reverse(classNameItem);
+
+        //클래스 네임 리사이클러뷰
+        classNameAdapter = class_name_Adapter(this, classNameItem)
+
+
+        snapHelper!!.attachToRecyclerView(main_home_class_name_recyclerview)
+        //레이아웃 매니저
+        var linearLayoutManager : VariableScrollSpeedLinearLayoutManager
+        linearLayoutManager = VariableScrollSpeedLinearLayoutManager(this, 4F)
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        linearLayoutManager.scrollToPosition(0)
+        main_home_class_name_recyclerview.layoutManager = linearLayoutManager
+        circleindicator.attachToRecyclerView(main_home_class_name_recyclerview, snapHelper!!)
+        circleindicator.createIndicators(classNameItem.size,classNameItem.size)
+
+        classNameAdapter.registerAdapterDataObserver(circleindicator.adapterDataObserver)
+        main_home_class_name_recyclerview.adapter = classNameAdapter
+
+
+        //선택 클래스 change_listener
+        main_home_class_name_recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                //현재 리사이클러뷰 위치
+                class_name_recyclerview_position = (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
+
+                if(class_name_recyclerview_position!=-1)
+                {
+
+                select_class_code_str = classNameItem.get(class_name_recyclerview_position).class_code_name
+                select_class_name_str = classNameItem.get(class_name_recyclerview_position).class_name
+
+                }
+                    val itemTotalCount = recyclerView.adapter!!.itemCount - 1
+
+
+            }
+        })
+
+
+        //리사이클러뷰 좌우 이동 버튼
+        main_home_class_move_left_imageview.setOnClickListener(move_left)
+        main_home_class_move_right_imageview.setOnClickListener(move_right)
+
+
+        //클래스 입장하기
+        main_home_class_enter_textview_button.setOnClickListener(class_enter_button)
+        //새소식 버튼
+        //main_home_notice_button_textview.setOnClickListener(notice_button)
+        //햄버거 버튼
+        main_home_side_menu_button_imageview.setOnClickListener(side_menu_button)
+        //셋팅 페이지 이동 버튼
+        main_home_setting_button_imageview.setOnClickListener(setting_button)
+        //마이 페이지 이동 버튼
+        main_home_mypage_button_textview.setOnClickListener(mypage_button)
+        //커뮤니티 이동 버튼
+        main_home_community_button_linearlayout.setOnClickListener(community_button)
+        //메인 홈 컨텐츠
+        main_home_content_button_textview.setOnClickListener(content_button)
+        //온라인 체육 수업 버튼
+        main_home_self_class_button_textview.setOnClickListener(self_class_button)
+
+        //신규 수업 추가 버튼
+        main_home_add_new_class_linearlayout.setOnClickListener(add_new_class)
+
+        //첫번쨰 수업 추가 버튼
+        main_home_first_add_new_class_linearlayout.setOnClickListener(add_new_class)
+
+        //유저이름
+        main_home_student_name_textview.setText(student_name)
+
+        //사이드 메뉴 세팅
+        val sideMenuView : View = findViewById(R.id.main_home_child_drawerview)
+
+        side_menu_setting_test(main_home_drawerview, sideMenuView,this)
+
+
+
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+
+        appUpdateManager?.let {
+            it.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+
+                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    // or AppUpdateType.FLEXIBLE
+                    appUpdateManager?.startUpdateFlowForResult(
+                            appUpdateInfo,
+                            AppUpdateType.IMMEDIATE, // or AppUpdateType.FLEXIBLE
+                            this,
+                            REQUEST_CODE_UPDATE
+                    )
+                }
+            }
+        }
+
+
 
     }
 
     override fun onResume() {
         super.onResume()
 
-//        mGlideRequestManager = Glide.with(this)
-//        mGlideRequestManager.load(baseURL+student_image_url)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .skipMemoryCache(true)
-//                .centerCrop()
-//                .placeholder(R.drawable.user_profile)
-//                .into(main_home_student_profile_imageview)
-//
-//        //유저최근운동일
-//        student_recent_excercise_date_textview.setText(change_time_include_second(student_recent_exercise_date))
-//
-//
-//        if(!student_school.equals("")&&!student_school.isEmpty())
-//        {
-//            main_home_school_name_textview.setText(student_school+"학교")
-//        }
-//        else
-//        {
-//            main_home_school_name_textview.setText("-")
-//        }
-//
-//        if(!student_level.equals("")&&!student_level.isEmpty()){ main_home_school_grade_textview.setText(student_level)}
-//        else { main_home_school_grade_textview.setText("-")}
-//        if(!student_class.equals("")&&!student_class.isEmpty()){ main_home_school_class_textview.setText(student_class)}
-//        else { main_home_school_class_textview.setText("-")}
-//        if(!student_content.equals("")&&!student_content.isEmpty()){ main_home_studnet_comment_textview.setText(student_content)}
-//        else { main_home_studnet_comment_textview.setText("좌우명을 입력해주세요.")}
-//
-//        //새소식 버튼
-//        news_state_button_class()
+        mGlideRequestManager = Glide.with(this)
+        mGlideRequestManager.load(baseURL+student_image_url)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .centerCrop()
+                .placeholder(R.drawable.user_profile)
+                .into(main_home_student_profile_imageview)
+
+        //유저최근운동일
+        student_recent_excercise_date_textview.setText(change_time_include_second(student_recent_exercise_date))
+
+
+        if(!student_school.equals("")&&!student_school.isEmpty())
+        {
+            main_home_school_name_textview.setText(student_school+"학교")
+        }
+        else
+        {
+            main_home_school_name_textview.setText("-")
+        }
+
+        if(!student_level.equals("")&&!student_level.isEmpty()){ main_home_school_grade_textview.setText(student_level)}
+        else { main_home_school_grade_textview.setText("-")}
+        if(!student_class.equals("")&&!student_class.isEmpty()){ main_home_school_class_textview.setText(student_class)}
+        else { main_home_school_class_textview.setText("-")}
+        if(!student_content.equals("")&&!student_content.isEmpty()){ main_home_studnet_comment_textview.setText(student_content)}
+        else { main_home_studnet_comment_textview.setText("좌우명을 입력해주세요.")}
+
+        //새소식 버튼
+        news_state_button_class()
     }
 
     //초기 신체 정보 입력을 위한 bottom dialog

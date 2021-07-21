@@ -601,13 +601,12 @@ class MemberJoinPage : CommonActivity() {
             SMSAuthPage.CALL ->
             {
                 val userData = data?.getStringExtra("user")
-                if (!TextUtils.isEmpty(userData))
+                if (!TextUtils.isEmpty(userData) && resultCode == RESULT_OK)
                 {
                     val json = JSONObject(userData)
 
                     mInsertedStudentName = json.getString("name")
                     mInsertedStudentPhoneNumber = json.getString("phone")
-                    mInsertedStudentPhoneNumber = mInsertedStudentPhoneNumber?.replace("-", "")
                     mInsertedStudentBirthDate = json.getString("birthday")
 
                     sending_sms_auth_code.isSelected = false
