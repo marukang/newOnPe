@@ -158,21 +158,40 @@ public class Student_Information_DAO {
     }
     
     /* 아이디찾기 */
-    public String Student_Find_Id(String student_name, String student_email) {
+    public String Student_Find_Id(String student_name, String student_phone) {
     	HashMap<String, String> data = new HashMap<String, String>();
     	data.put("student_name", student_name);
-    	data.put("student_email", student_email);
+    	data.put("student_phone", student_phone);
     	return sqlSession.selectOne(namespace + ".Student_Find_Id", data);
     }
     
+    public String Student_Find_Email(String student_id) {
+    	return sqlSession.selectOne(namespace + ".Student_Find_Email", student_id);
+    }
+    
+    public boolean Student_Find_Pw(String student_id, String student_name, String student_phone) {
+    	HashMap<String, String> data = new HashMap<String, String>();
+    	data.put("student_id", student_id);
+    	data.put("student_name", student_name);
+    	data.put("student_phone", student_phone);
+    	
+    	String getEmail = sqlSession.selectOne(namespace + ".Student_Find_Pw", data);
+    	
+    	if(getEmail != null) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+    }
+    
     /* 비밀번호 찾기 ( 존재하는 계정인지 확인 ) */
-    public boolean Student_Find_Pw(String student_id, String student_name, String student_email) {
+    public boolean Student_Find_Pw_withEmail(String student_id, String student_name, String student_email) {
     	HashMap<String, String> data = new HashMap<String, String>();
     	data.put("student_id", student_id);
     	data.put("student_name", student_name);
     	data.put("student_email", student_email);
     	
-    	String getEmail = sqlSession.selectOne(namespace + ".Student_Find_Pw", data);
+    	String getEmail = sqlSession.selectOne(namespace + ".Student_Find_Pw_withEmail", data);
     	
     	if(getEmail != null) {
     		return true;

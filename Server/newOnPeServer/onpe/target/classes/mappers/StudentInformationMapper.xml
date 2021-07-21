@@ -67,11 +67,19 @@
     
     <!-- 사용자 아이디 찾기 -->
     <select id="Student_Find_Id" parameterType="hashMap" resultType="String">
-    	SELECT student_id FROM student_information WHERE student_name=#{student_name} and student_email=#{student_email}
+    	SELECT student_id FROM student_information WHERE student_name=#{student_name} and student_phone=#{student_phone} LIMIT 1
+    </select>
+    
+    <select id="Student_Find_Email" parameterType="String" resultType="String">
+    	SELECT student_email FROM student_information WHERE student_id=#{student_id} LIMIT 1
+    </select>
+    
+    <select id="Student_Find_Pw" parameterType="hashMap" resultType="String">
+    	SELECT student_email FROM student_information WHERE student_id=#{student_id} AND student_name=#{student_name} and student_phone=#{student_phone} LIMIT 1
     </select>
     
     <!-- 사용자 비밀번호 찾기 -->
-    <select id="Student_Find_Pw" parameterType="hashMap" resultType="String">
+    <select id="Student_Find_Pw_withEmail" parameterType="hashMap" resultType="String">
     	SELECT student_email FROM student_information WHERE student_id=#{student_id} and student_email=#{student_email} and student_name=#{student_name}
     </select>
     

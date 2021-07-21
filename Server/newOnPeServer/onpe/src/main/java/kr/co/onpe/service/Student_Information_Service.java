@@ -111,13 +111,21 @@ public class Student_Information_Service {
     }
     
     /* 아이디찾기 */
-    public String Student_Find_Id(String student_name, String student_email) {
-    	return Student_information_DAO.Student_Find_Id(student_name, student_email);
+    public String Student_Find_Id(String student_name, String student_phone) {
+    	return Student_information_DAO.Student_Find_Id(student_name, student_phone);
+    }
+    
+    public String Student_Find_Email(String student_id) {
+    	return Student_information_DAO.Student_Find_Email(student_id);
+    }
+    
+    public boolean Student_Find_Pw(String student_id, String student_name, String student_phone) {
+    	return Student_information_DAO.Student_Find_Pw(student_id, student_name, student_phone);
     }
     
     /* 비밀번호 찾기 ( 존재하는 계정인지 확인 ) */
-    public boolean Student_Find_Pw(String student_id, String student_name, String student_email) {
-    	return Student_information_DAO.Student_Find_Pw(student_id, student_name, student_email);
+    public boolean Student_Find_Pw_withEmail(String student_id, String student_name, String student_email) {
+    	return Student_information_DAO.Student_Find_Pw_withEmail(student_id, student_name, student_email);
     }
     
     /* 비밀번호 변경 */

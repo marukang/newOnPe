@@ -553,27 +553,149 @@ public class AppDefaultController {
 		JsonObject object = new JsonObject();
 		
 		String student_name = request.getParameter("student_name");
-		String student_email = request.getParameter("student_email");
+		String student_phone = request.getParameter("student_phone_number");
 
-		if(student_name != null && student_email != null) {	//전달받은 데이터 확인
-			
-			if(kr.co.onpe.common.common.isValidEmail(student_email)) {	//이메일 정규식 체크
+		System.out.println(">> (staging) find_id 사용자 student_name : " + student_name);
+		System.out.println(">> (staging) find_id 사용자 student_phone : " + student_phone);
+		System.out.println(">> (staging) find_id -----------------------");
+		
+		if (student_name != null && student_phone != null) //전달받은 데이터 확인
+		{	
+			try
+			{
+				student_name = student_name.replace(" ", "");
 				
-				String get_id = student_information_service.Student_Find_Id(student_name, student_email);
+				System.out.println(">> (staging) find_id 사용자 student_name : " + student_name);
+				System.out.println(">> (staging) find_id -----------------------");
 				
-				if(get_id != null) {
+				String get_id = student_information_service.Student_Find_Id(student_name, student_phone);
+				
+				System.out.println(">> (staging) find_id 사용자 get_id : " + get_id);
+				System.out.println(">> (staging) find_id -----------------------");
+				if (get_id != null) 
+				{
 					object.addProperty("success", get_id);
+					object.addProperty("student_id", get_id);
 					return gson.toJson(object);
-				}else {	//조회 사용자 없음
+				}
+				else 
+				{	//조회 사용자 없음
 					object.addProperty("fail", "null_user");
 					return gson.toJson(object);
 				}
 				
-			}else {
-				object.addProperty("fail", "unvalid_email");
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				
+				object.addProperty("fail", "error");
 				return gson.toJson(object);
 			}
-			
+		}
+		
+		object.addProperty("fail", "access_denied");
+		
+		return gson.toJson(object);
+	}
+	
+	/* 사용자 아이디 찾기 */
+	@ResponseBody
+	@RequestMapping(value = "/find_pw", produces = "application/json; charset=utf8", method = RequestMethod.POST)
+	public String find_pw(Locale locale, HttpServletRequest request) {
+		/* 이름, 이메일로 사용자 아이디 조회 */
+		
+		Gson gson = new Gson();
+		JsonObject object = new JsonObject();
+		
+		String student_id = request.getParameter("student_id");
+		String student_name = request.getParameter("student_name");
+		String student_phone = request.getParameter("student_phone_number");
+
+		System.out.println(">> (staging) find_pw 사용자 student_id : " + student_id);
+		System.out.println(">> (staging) find_pw 사용자 student_name : " + student_name);
+		System.out.println(">> (staging) find_pw 사용자 student_phone : " + student_phone);
+		System.out.println(">> (staging) find_pw -----------------------");
+		
+		if (!TextUtils.isEmpty(student_id) && !TextUtils.isEmpty(student_name) && !TextUtils.isEmpty(student_phone)) //전달받은 데이터 확인
+		{	
+			try
+			{
+				student_name = student_name.replace(" ", "");
+				
+				if (student_information_service.Student_Find_Pw(student_id, student_name, student_phone))
+				{
+					// 메일 제목
+					String subject = "온체육 비밀번호찾기 인증번호";
+					// 보내는 사람
+					String from ="온체육 <complexionco@naver.com>";
+					// 받는 사람
+					String to = student_information_service.Student_Find_Email(student_id);
+					
+					// 인증 번호
+					String authenticationCode = kr.co.onpe.common.common.numberGen(6,1);
+					
+					System.out.println(">> (staging) find_pw 사용자 from : " + from);
+					System.out.println(">> (staging) find_pw 사용자 to : " + to);
+					System.out.println(">> (staging) find_pw 사용자 authenticationCode : " + authenticationCode);
+					System.out.println(">> (staging) find_pw -----------------------");
+					
+					// 인증받을 이메일과 인증번호를 DB에 저장한다.
+					boolean queryResult = student_information_service.Create_Student_Email_Authentication_Code(to, authenticationCode);
+					
+					if (queryResult) 
+					{
+						try {
+							// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
+							MimeMessage mail = mailSender.createMimeMessage();
+				            MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+
+							// 메일 내용을 채워줌
+							mailHelper.setFrom(from);	// 보내는 사람 셋팅
+							mailHelper.setTo(to);		// 받는 사람 셋팅
+							mailHelper.setSubject(subject);	// 제목 셋팅
+							mailHelper.setText("<div style='width:100%; padding:20px 0; text-align:center;'><div style='vertical-align:center; display:inline-block; width:200px; padding:30px 5px;'>" +
+									"<div style='float:left; width:100%; text-align:center; font-size:22px; font-weight:bold;'>온체육 이메일 인증</div>" +
+									"<div style='float:left; margin:10px 0; border-top:3px solid; width:100%; height:1px;'></div>" +
+									"<div style='float:left; width:100%; text-align:center; font-size:18px; font-weight:bold;'>인증번호 : "+ authenticationCode +"</div></div></div>", true);	// 내용 셋팅
+
+							// 메일 전송
+							mailSender.send(mail);
+							
+							object.addProperty("success", authenticationCode);
+							object.addProperty("authenticationCode", authenticationCode);
+							object.addProperty("email", to);
+							
+							return gson.toJson(object);
+							
+						} 
+						catch(Exception e) 
+						{
+							e.printStackTrace();
+							object.addProperty("fail", "server_error");
+							
+							return gson.toJson(object);
+						}
+					}
+					else 
+					{
+						object.addProperty("fail", "server_error");
+						return gson.toJson(object);
+					}
+				}
+				else
+				{
+					
+				}
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				
+				object.addProperty("fail", "error");
+				return gson.toJson(object);
+			}
 		}
 		
 		object.addProperty("fail", "access_denied");
@@ -583,8 +705,8 @@ public class AppDefaultController {
 	
 	/* 사용자 비밀번호 찾기 */
 	@ResponseBody
-	@RequestMapping(value = "/find_pw", produces = "application/json; charset=utf8", method = RequestMethod.POST)
-	public String find_pw(Locale locale, HttpServletRequest request) {
+	@RequestMapping(value = "/find_pw_withEmail", produces = "application/json; charset=utf8", method = RequestMethod.POST)
+	public String find_pw_withEmail(Locale locale, HttpServletRequest request) {
 		/*이름 + 아이디 + 이메일 주소 확인 후 해당 이메일 주소로 이메일 보내기*/
 		
 		Gson gson = new Gson();
@@ -598,7 +720,7 @@ public class AppDefaultController {
 
 			if(kr.co.onpe.common.common.isValidEmail(student_email)) {	//이메일 정규식 체크
 				
-				if(student_information_service.Student_Find_Pw(student_id, student_name, student_email)) {
+				if(student_information_service.Student_Find_Pw_withEmail(student_id, student_name, student_email)) {
 					
 					// 메일 제목
 					String subject = "온체육 비밀번호찾기 인증번호";
@@ -612,7 +734,8 @@ public class AppDefaultController {
 					// 인증받을 이메일과 인증번호를 DB에 저장한다.
 					boolean queryResult = student_information_service.Create_Student_Email_Authentication_Code(to, certinumber);
 					
-					if(queryResult) {
+					if(queryResult) 
+					{
 						try {
 							// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
 							MimeMessage mail = mailSender.createMimeMessage();
@@ -638,7 +761,9 @@ public class AppDefaultController {
 							object.addProperty("fail", "server_error");
 							return gson.toJson(object);
 						}
-					}else {
+					}
+					else 
+					{
 						object.addProperty("fail", "server_error");
 						return gson.toJson(object);
 					}
@@ -683,7 +808,7 @@ public class AppDefaultController {
 						try {
 							String sha256pw = kr.co.onpe.common.common.sha256(student_password);
 						
-							if(student_information_service.Student_Change_Pw(student_email, sha256pw)) {
+							if (student_information_service.Student_Change_Pw(student_email, sha256pw)) {
 								student_information_service.Delete_Student_Email_Authentication_Code(student_email);
 								object.addProperty("success", "success_change");
 								return gson.toJson(object);
