@@ -143,7 +143,7 @@ public class WebAdminExerciseManagementController {
 				/* 임시 종목 + 임시 대분류 */
 				/*#################################################*/
 				HashMap<String, Object> data = new HashMap<String, Object>();
-				List<Object> top_list = new ArrayList<>();	
+				List<Object> top_list = new ArrayList();	
 				top_list.add("홈트레이닝");
 				
 				data.put("홈트레이닝", top_list);	
@@ -187,7 +187,7 @@ public class WebAdminExerciseManagementController {
 					/* 임시 종목 + 임시 대분류 */
 					/*#################################################*/
 					HashMap<String, Object> data = new HashMap<String, Object>();
-					List<Object> top_list = new ArrayList<>();	
+					List<Object> top_list = new ArrayList();	
 					top_list.add("홈트레이닝");
 					
 					data.put("홈트레이닝", top_list);	
@@ -213,7 +213,7 @@ public class WebAdminExerciseManagementController {
 							HashMap<String, Object> data = new HashMap<String, Object>();
 							for(int x=1;x<6;x++) {
 								
-								List<Object> top_list = new ArrayList<>();	
+								List<Object> top_list = new ArrayList();	
 								for(int xx=0;xx<5;xx++) {
 									top_list.add("분류"+Integer.toString(temp_number));	
 									temp_number++;

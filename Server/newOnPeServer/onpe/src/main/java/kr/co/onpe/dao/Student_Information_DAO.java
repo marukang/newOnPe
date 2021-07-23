@@ -156,7 +156,7 @@ public class Student_Information_DAO {
     		return false;
     	}
     }
-    
+
     /* 아이디찾기 */
     public String Student_Find_Id(String student_name, String student_phone) {
     	HashMap<String, String> data = new HashMap<String, String>();
@@ -287,16 +287,18 @@ public class Student_Information_DAO {
     }
     
     /* 사용자 클래스코드목록 변경 */
-    public boolean Student_Change_Class(String student_id, String student_classcode, String student_school, String class_code) {
+    public boolean Student_Change_Class(String student_id, String student_school, String class_code) {
     	HashMap<String, String> data = new HashMap<String, String>();
     	data.put("student_id", student_id);
-    	data.put("student_classcode", student_classcode);
     	data.put("student_school", student_school);
     	data.put("class_code", class_code);
     	
-    	if(sqlSession.update(namespace + ".Student_Change_Class", data) == 1) {
+    	if(sqlSession.update(namespace + ".Student_Change_Class", data) == 1) 
+    	{
     		return true;
-    	}else {
+    	}
+    	else 
+    	{
     		return false;
     	}
     }

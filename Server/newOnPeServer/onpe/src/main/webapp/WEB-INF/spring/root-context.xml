@@ -32,21 +32,15 @@
 	
 	<!-- SMTP 메일 (추후에 username, password는 변경해야 한다.) -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.naver.com" />
-		<property name="port" value="465" />
-		<property name="username" value="complexionco" />	<!-- complexionco -->
-		<property name="password" value="vjsleldj!#" />	<!-- vjsleldj!# -->
-		<property name="defaultEncoding" value="utf-8" />
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.debug">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtps.ssl.trust">*</prop>
-				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-			</props>
-		</property>
+		<property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="ninecco@gmail.com" />
+	    <property name="password" value="##mj5611xu1244" />
+	    <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.smtp.starttls.enable">true</prop>
+	    </props>
+	    </property>
 	</bean>
 	
 	<!-- 파일 업로드 관련 -->

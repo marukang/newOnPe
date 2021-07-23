@@ -62,8 +62,9 @@
     
     <!-- 사용자 SNS 회원가입 -->
     <insert id="Create_Student_SNS_Information" parameterType="hashMap">
-    	INSERT INTO student_information(student_id, student_name, student_password, student_email, student_phone, student_push_agreement, student_email_agreement, student_message_agreement, student_state, news_state, new_messgae_state, student_create_date, student_token, student_login_type) VALUES(#{student_id}, #{student_name}, #{student_password}, #{student_email}, #{student_phone}, #{student_push_agreement}, #{student_push_agreement}, #{student_push_agreement}, "0", "0", "0", #{student_create_date}, #{student_token}, #{student_login_type}) ON DUPLICATE KEY UPDATE student_token = #{student_token} ;
+    	INSERT INTO student_information(student_id, student_name, student_password, student_email, student_phone, student_push_agreement, student_email_agreement, student_message_agreement, student_state, news_state, new_messgae_state, student_create_date, student_token, student_login_type) VALUES(#{student_id}, #{student_name}, #{student_password}, #{student_email}, #{student_phone}, #{student_push_agreement}, #{student_push_agreement}, #{student_push_agreement}, "0", "0", "0", #{student_create_date}, #{student_token}, #{student_login_type}) ;
     </insert>
+  
     
     <!-- 사용자 아이디 찾기 -->
     <select id="Student_Find_Id" parameterType="hashMap" resultType="String">
@@ -125,7 +126,6 @@
     
     <!-- 사용자 클래스목록 업데이트 -->
     <update id="Student_Change_Class" parameterType="hashMap">
-    	<![CDATA[UPDATE student_information SET student_classcode=#{student_classcode} WHERE student_id=#{student_id}]]>;
     	<![CDATA[UPDATE student_information SET student_school=#{student_school} WHERE student_id=#{student_id}]]>;
     	<![CDATA[INSERT class_join_list VALUES(#{class_code}, #{student_id})]]>
     </update>

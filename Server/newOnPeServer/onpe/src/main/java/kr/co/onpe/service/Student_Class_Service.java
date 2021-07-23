@@ -10,6 +10,7 @@ import kr.co.onpe.dao.Student_Class_DAO;
 import kr.co.onpe.vo.Class_Community_Comment_VO;
 import kr.co.onpe.vo.Class_Community_List_VO;
 import kr.co.onpe.vo.Class_Community_VO;
+import kr.co.onpe.vo.Class_List_VO;
 import kr.co.onpe.vo.Content_List_Admin_VO;
 import kr.co.onpe.vo.Content_List_VO;
 import kr.co.onpe.vo.FAQ_VO;
@@ -44,6 +45,11 @@ public class Student_Class_Service {
     /* 클래스 임장하기 */
     public String Get_Class_Unit_List(String class_code) {
     	return student_Class_DAO.Get_Class_Unit_List(class_code);
+    }
+    
+    /* 수업 목록 가져오기 */
+    public List<Class_List_VO> Get_Student_Class_List(String student_id) {
+    	return student_Class_DAO.Get_Student_Class_List(student_id);
     }
 
     /* 컨텐츠 목록 하나 가져오기 */

@@ -106,10 +106,10 @@ public class Student_Information_Service {
     	return Student_information_DAO.Create_Student_Information(student_id, student_name, student_password, student_email, student_push_agreement, student_create_date, student_phone, device_token);
     }
     /* 회원가입 (SNS로그인) */
-    public boolean Upsert_Student(String student_id, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String student_token, String student_login_type) {
+    public boolean Create_Student_snsInformation(String student_id, String student_password, String student_email, String student_push_agreement, String student_create_date, String student_phone, String student_token, String student_login_type) {
     	return Student_information_DAO.Create_Student_SNSInformation(student_id, student_password, student_email, student_push_agreement, student_create_date, student_phone, student_token, student_login_type);
     }
-    
+  
     /* 아이디찾기 */
     public String Student_Find_Id(String student_name, String student_phone) {
     	return Student_information_DAO.Student_Find_Id(student_name, student_phone);
@@ -162,8 +162,8 @@ public class Student_Information_Service {
     
     
     /* 사용자 클래스코드목록 변경 */
-    public boolean Student_Change_Class(String student_id, String student_classcode, String student_school, String class_code) {
-    	return Student_information_DAO.Student_Change_Class(student_id, student_classcode, student_school, class_code);
+    public boolean Student_Change_Class(String student_id, String student_school, String class_code) {
+    	return Student_information_DAO.Student_Change_Class(student_id, student_school, class_code);
     }
     
     /* FCM 토큰 업데이트 */

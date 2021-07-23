@@ -31,4 +31,8 @@
     	SELECT * FROM content_list WHERE content_code=#{content_code}
     </select>
     
+    <select id="Get_Student_Class_list" resultType="kr.co.onpe.vo.Class_List_VO" parameterType="String">
+    	SELECT * FROM class_list WHERE class_code IN ( SELECT class_code FROM class_join_list WHERE student_id = #{student_id} )
+    </select>
+    
 </mapper>

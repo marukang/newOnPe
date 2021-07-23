@@ -1,8 +1,10 @@
 package kr.co.onpe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -64,43 +66,49 @@ public class AppClassController {
 		
 		String student_id = request.getParameter("student_id");
 		String student_token = request.getParameter("student_token");
-		String student_classcode = request.getParameter("student_classcode");	//JSON Array를 받아야함
 		String class_code = request.getParameter("class_code");
 		
 		Gson gson = new Gson();
 		JsonObject object = new JsonObject();
 		
-		if(student_id != null && student_token != null && student_classcode != null && class_code != null) {
+		if (student_id != null && student_token != null && class_code != null) {
 			
 			student_token = jwtTokenProvider.TokenCheck(student_id, "STUDENT", student_token);
 			
-			if(student_token.equals("fail")) {
+			if (student_token.equals("fail")) 
+			{
 				object.addProperty("fail", "token_authentication_fail");	// 사용자 아이디와 토큰 내부 아이디 불일치
 				return gson.toJson(object);
-			}else if(student_token.equals("expired")) {
+			}
+			else if(student_token.equals("expired")) 
+			{
 				object.addProperty("fail", "token_expired");	//토큰 만료시간 지남
 				return gson.toJson(object);
-			}else {
+			}
+			else 
+			{
 				
-				if(student_class_service.Get_Class_Code(class_code)) {
+				if(student_class_service.Get_Class_Code(class_code)) 
+				{
 					
-					// 클래스 참여 인원수+
 					if(student_class_service.Update_Class_People_Count_Up(class_code)) {
 						
 						String student_school = class_code.split("_")[0];
 						
-						if(student_information_service.Student_Change_Class(student_id, student_classcode, student_school, class_code)) {
+						if(student_information_service.Student_Change_Class(student_id, student_school, class_code)) 
+						{
 							
 							object.addProperty("success", "success_change");
 							object.addProperty("student_token", student_token);
 							return gson.toJson(object);	
 							
-						}else {
-							
+						}
+						else 
+						{
 							//학생 신규 클래스추가에 실패시 참여인원-
 							student_class_service.Update_Class_People_Count_Down(class_code);
 							
-							object.addProperty("fail", "server_error");	// 실패
+							object.addProperty("fail", "full");	// 실패
 							return gson.toJson(object);	
 						}
 						
@@ -109,12 +117,13 @@ public class AppClassController {
 						return gson.toJson(object);	
 					}
 					
-				}else {
+				}
+				else 
+				{
 					// 이미 클래스가 꽉찼거나 클래스가 없는경우
 					object.addProperty("fail", "none_class");
 					return gson.toJson(object);
 				}
-				
 			}
 		}
 		
@@ -130,31 +139,53 @@ public class AppClassController {
 		
 		String student_id = request.getParameter("student_id");
 		String student_token = request.getParameter("student_token");
-		String class_code = request.getParameter("class_code");
+		System.out.println(">> (staging) get_class_unit_list 사용자 student_id : " + student_id);
+		System.out.println(">> (staging) get_class_unit_list 사용자 student_token : " + student_token);
+		System.out.println(">> (staging) get_class_unit_list -----------------------");
 		
 		Gson gson = new Gson();
 		JsonObject object = new JsonObject();
 		
-		if(student_id != null && student_token != null && class_code != null) {
+		if (student_id != null && student_token != null) {
 			
 			student_token = jwtTokenProvider.TokenCheck(student_id, "STUDENT", student_token);
 			
-			if(student_token.equals("fail")) {
+			if (student_token.equals("fail")) 
+			{
 				object.addProperty("fail", "token_authentication_fail");	// 사용자 아이디와 토큰 내부 아이디 불일치
 				return gson.toJson(object);
-			}else if(student_token.equals("expired")) {
+			} 
+			else if(student_token.equals("expired")) 
+			{
 				object.addProperty("fail", "token_expired");	//토큰 만료시간 지남
 				return gson.toJson(object);
-			}else {
-
+			} 
+			else
+			{
+				ObjectMapper mapper = new ObjectMapper();	
 				/* class_code에 해당하는 class_list테이블의 class_unit_list 컬럼값 반환 */
-				String result = student_class_service.Get_Class_Unit_List(class_code);
+				List result = student_class_service.Get_Student_Class_List(student_id);
 				
-				if(result != null) {
-					object.addProperty("success", result);
-					object.addProperty("student_token", student_token);
-					return gson.toJson(object);	
-				}else {
+				if(result != null) 
+				{
+					System.out.println(">> (staging) get_class_unit_list 사용자 result.size : " + result.size());
+					System.out.println(">> (staging) get_class_unit_list -----------------------");
+					
+					try
+					{
+						Map<String, Object> data = new HashMap<String, Object>();
+						data.put("success", result);
+						data.put("student_token", student_token);
+						
+						return mapper.writeValueAsString(data);
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
+				else 
+				{
 					object.addProperty("fail", "none_class_unit_list");	// 해당 클래스가 없을때
 					return gson.toJson(object);	
 				}		

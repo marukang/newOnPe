@@ -4,12 +4,18 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
@@ -129,31 +135,53 @@ public class AppDefaultController {
 				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
 				String time_number = simpleDateFormat.format(time);
 				
-				if (student_information_service.Upsert_Student(student_id, "N/A", student_email, student_push_agreement, time_number, student_phone_number, fcmtoken, loginType)) {
+				if (!student_information_service.Id_Overlap_Check(student_id)) 
+				{
+				
+					boolean result = student_information_service.Create_Student_snsInformation(student_id, "N/A", student_email, student_push_agreement, time_number, student_phone_number, fcmtoken, loginType);
 					
+					if (result)
+					{
+						String createdToken = jwtTokenProvider.createToken(student_id, "STUDENT");
+						
+						Student_Information_VO student_information = student_information_service.Student_Information_for_Auto_login(student_id, loginType);
+						student_information.access_token = createdToken;
+						System.out.println(">> snsLogin 사용자 (1) returnStr : " + obm.writeValueAsString(student_information));
+						System.out.println(">> snsLogin 사용자 (1) createdToken : " + createdToken);
+						System.out.println(">> snsLogin -----------------------");
+						return obm.writeValueAsString(student_information);
+					}
+					else
+					{
+						object.addProperty("fail", "server_error");
+						return gson.toJson(object);	
+					}
+				}
+				else 
+				{
 					String createdToken = jwtTokenProvider.createToken(student_id, "STUDENT");
 					
 					Student_Information_VO student_information = student_information_service.Student_Information_for_Auto_login(student_id, loginType);
 					student_information.access_token = createdToken;
-					System.out.println(">> snsLogin 사용자 returnStr : " + obm.writeValueAsString(student_information));
-					System.out.println(">> snsLogin 사용자 createdToken : " + createdToken);
+					System.out.println(">> snsLogin 사용자 (2) returnStr : " + obm.writeValueAsString(student_information));
+					System.out.println(">> snsLogin 사용자 (2) createdToken : " + createdToken);
 					System.out.println(">> snsLogin -----------------------");
-					return obm.writeValueAsString(student_information);
-				}
-				else 
-				{
-					object.addProperty("fail", "server_error");
-					return gson.toJson(object);										
+					return obm.writeValueAsString(student_information);									
 				}
 			}
 			catch (Exception e) 
 			{
 				e.printStackTrace();
+				System.out.println(">> (staging) snsLogin error (2) ");
+				
 				object.addProperty("fail", "server_error");
 				return gson.toJson(object);
 			}
 		}
 		object.addProperty("fail", "access_denied");
+		
+		System.out.println(">> (staging) snsLogin error (3) ");
+		
 		return gson.toJson(object);	
 	}
 	
@@ -625,59 +653,17 @@ public class AppDefaultController {
 				
 				if (student_information_service.Student_Find_Pw(student_id, student_name, student_phone))
 				{
-					// 메일 제목
-					String subject = "온체육 비밀번호찾기 인증번호";
-					// 보내는 사람
-					String from ="온체육 <complexionco@naver.com>";
-					// 받는 사람
-					String to = student_information_service.Student_Find_Email(student_id);
-					
-					// 인증 번호
 					String authenticationCode = kr.co.onpe.common.common.numberGen(6,1);
+					String studentEmail = student_information_service.Student_Find_Email(student_id);
 					
-					System.out.println(">> (staging) find_pw 사용자 from : " + from);
-					System.out.println(">> (staging) find_pw 사용자 to : " + to);
-					System.out.println(">> (staging) find_pw 사용자 authenticationCode : " + authenticationCode);
-					System.out.println(">> (staging) find_pw -----------------------");
-					
-					// 인증받을 이메일과 인증번호를 DB에 저장한다.
-					boolean queryResult = student_information_service.Create_Student_Email_Authentication_Code(to, authenticationCode);
-					
-					if (queryResult) 
+					if(student_information_service.Create_Student_Email_Authentication_Code(studentEmail, authenticationCode)) 
 					{
-						try {
-							// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
-							MimeMessage mail = mailSender.createMimeMessage();
-				            MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
-
-							// 메일 내용을 채워줌
-							mailHelper.setFrom(from);	// 보내는 사람 셋팅
-							mailHelper.setTo(to);		// 받는 사람 셋팅
-							mailHelper.setSubject(subject);	// 제목 셋팅
-							mailHelper.setText("<div style='width:100%; padding:20px 0; text-align:center;'><div style='vertical-align:center; display:inline-block; width:200px; padding:30px 5px;'>" +
-									"<div style='float:left; width:100%; text-align:center; font-size:22px; font-weight:bold;'>온체육 이메일 인증</div>" +
-									"<div style='float:left; margin:10px 0; border-top:3px solid; width:100%; height:1px;'></div>" +
-									"<div style='float:left; width:100%; text-align:center; font-size:18px; font-weight:bold;'>인증번호 : "+ authenticationCode +"</div></div></div>", true);	// 내용 셋팅
-
-							// 메일 전송
-							mailSender.send(mail);
-							
-							object.addProperty("success", authenticationCode);
-							object.addProperty("authenticationCode", authenticationCode);
-							object.addProperty("email", to);
-							
-							return gson.toJson(object);
-							
-						} 
-						catch(Exception e) 
-						{
-							e.printStackTrace();
-							object.addProperty("fail", "server_error");
-							
-							return gson.toJson(object);
-						}
+						object.addProperty("success", student_id);
+						object.addProperty("student_email", studentEmail);
+						object.addProperty("authenticationCode", authenticationCode);
+						return gson.toJson(object);
 					}
-					else 
+					else
 					{
 						object.addProperty("fail", "server_error");
 						return gson.toJson(object);
@@ -685,9 +671,9 @@ public class AppDefaultController {
 				}
 				else
 				{
-					
-				}
-				
+					object.addProperty("fail", "null_user");
+					return gson.toJson(object);
+				}	
 			}
 			catch(Exception e)
 			{
@@ -796,36 +782,41 @@ public class AppDefaultController {
 		String student_password = request.getParameter("student_password");
 		String authentication_code = request.getParameter("authentication_code");
 		
+		System.out.println(">> (staging) find_change_pw 사용자 student_email : " + student_email);
+		System.out.println(">> (staging) find_change_pw 사용자 student_password : " + student_password);
+		System.out.println(">> (staging) find_change_pw 사용자 authentication_code : " + authentication_code);
+		System.out.println(">> (staging) find_change_pw -----------------------");
+		
 		if(student_email != null && student_password != null && authentication_code != null) {	//전달받은 데이터 확인
 
 			if(kr.co.onpe.common.common.isValidEmail(student_email)) {	//이메일 정규식 체크
 				
 				if(student_information_service.Student_Email_Authentication_Code_Check(student_email, authentication_code)) {	//이메일 인증코드 검증
 					
-					if(kr.co.onpe.common.common.passwordCheck(student_password)){	//비밀번호 정규식 확인
-						
-						/* 비밀번호 암호화 */
-						try {
-							String sha256pw = kr.co.onpe.common.common.sha256(student_password);
-						
-							if (student_information_service.Student_Change_Pw(student_email, sha256pw)) {
-								student_information_service.Delete_Student_Email_Authentication_Code(student_email);
-								object.addProperty("success", "success_change");
-								return gson.toJson(object);
-								
-							}else {
-								object.addProperty("fail", "server_error");
-								return gson.toJson(object);	
-							}
+					/* 비밀번호 암호화 */
+					try 
+					{
+						String sha256pw = kr.co.onpe.common.common.sha256(student_password);
+					
+						if (student_information_service.Student_Change_Pw(student_email, sha256pw)) 
+						{
+							student_information_service.Delete_Student_Email_Authentication_Code(student_email);
+							System.out.println(">> (staging) find_change_pw success_change !! ");
+							System.out.println(">> (staging) find_change_pw -----------------------");
 							
-						} catch (NoSuchAlgorithmException e) {	//SHA256 변환 실패
-							e.printStackTrace();
+							object.addProperty("success", "success_change");
+							return gson.toJson(object);
+							
+						}
+						else 
+						{
 							object.addProperty("fail", "server_error");
 							return gson.toJson(object);	
 						}
 						
-					}else {
-						object.addProperty("fail", "unvalid_password");
+					} catch (NoSuchAlgorithmException e) {	//SHA256 변환 실패
+						e.printStackTrace();
+						object.addProperty("fail", "server_error");
 						return gson.toJson(object);	
 					}
 					

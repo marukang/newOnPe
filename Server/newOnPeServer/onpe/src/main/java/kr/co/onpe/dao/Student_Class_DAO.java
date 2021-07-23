@@ -1,10 +1,13 @@
 package kr.co.onpe.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.co.onpe.vo.Class_List_VO;
 import kr.co.onpe.vo.Content_List_VO;
 
 /* 사용자 클래스 관련 DAO */
@@ -59,5 +62,10 @@ public class Student_Class_DAO {
     /* 컨텐츠 목록 하나 가져오기 */
     public Content_List_VO Get_Content_List(String content_code) {
     	return sqlSession.selectOne(namespace + ".Get_Content_List", content_code);
+    }
+    
+    /* 수업 목록 가져오기 */
+    public List<Class_List_VO> Get_Student_Class_List(String student_id) {
+    	return sqlSession.selectList(namespace + ".Get_Student_Class_list", student_id);
     }
 }
