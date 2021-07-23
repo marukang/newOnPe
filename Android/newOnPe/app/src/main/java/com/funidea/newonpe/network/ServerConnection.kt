@@ -1,18 +1,24 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.funidea.newonpe.network
 
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.funidea.newonpe.model.CurrentLoginStudent
 import com.funidea.newonpe.model.Student
+import com.funidea.newonpe.model.Subject
 import com.funidea.newonpe.network.NetworkConstants.BASE_URL
 import com.funidea.newonpe.services.MyFirebaseMessagingService
 import com.funidea.utils.CustomToast
 import com.funidea.utils.save_SharedPreferences
 import com.funidea.utils.set_User_info
+import com.google.gson.Gson
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -39,18 +45,40 @@ object ServerConnection : NetworkConstants
         mServerConnectionSpec?.login(id, password, deviceToken)?.enqueue(object : Callback<Student> {
             override fun onResponse(call: Call<Student>, response: Response<Student>)
             {
-                if (response.isSuccessful)
+                try
                 {
-                    callback(1, response.body())
+                    if (response.isSuccessful)
+                    {
+                        val student = response.body()
+                        val studentId = student?.student_id
+
+                        if (!TextUtils.isEmpty(studentId))
+                        {
+                            callback(1, student)
+                        }
+                        else
+                        {
+                            callback(-1, null)
+                        }
+                    }
+                    else
+                    {
+                        callback(-2, null)
+                    }
                 }
-                else
+                catch (e: JSONException)
                 {
-                    callback(-2, null)
+                    e.printStackTrace()
+                }
+                catch (e: IOException)
+                {
+                    e.printStackTrace()
                 }
             }
 
-            override fun onFailure(call: Call<Student>, response: Throwable) {
-                callback(-1, response)
+            override fun onFailure(call: Call<Student>, response: Throwable)
+            {
+                callback(-3, response)
             }
         })
     }
@@ -64,18 +92,30 @@ object ServerConnection : NetworkConstants
                 {
                     if (response.isSuccessful)
                     {
-                        callback(1, response.body())
+                        val student = response.body()
+                        val studentId = student?.student_id
+
+                        if (!TextUtils.isEmpty(studentId))
+                        {
+                            callback(1, student)
+                        }
+                        else
+                        {
+                            callback(-1, null)
+                        }
                     }
                     else
                     {
-                        callback(-1, null)
+                        callback(-2, null)
                     }
                 }
-                catch (e : Exception)
+                catch (e: JSONException)
                 {
                     e.printStackTrace()
-
-                    callback(-2, null)
+                }
+                catch (e: IOException)
+                {
+                    e.printStackTrace()
                 }
             }
 
@@ -92,19 +132,40 @@ object ServerConnection : NetworkConstants
         mServerConnectionSpec?.auto_sns_login(user_id, student_token, fcmToken, loginType, student_email, student_push_agreement, student_phone_number)?.enqueue(object : Callback<Student> {
             override fun onResponse(call: Call<Student>, response: Response<Student>)
             {
-                if (response.isSuccessful)
+                try
                 {
-                    callback(1, response.body())
+                    if (response.isSuccessful)
+                    {
+                        val student = response.body()
+                        val studentId = student?.student_id
+                        Log.d("woozie", "++ snsLogin studentId = ${studentId}")
+                        if (!TextUtils.isEmpty(studentId))
+                        {
+                            callback(1, student)
+                        }
+                        else
+                        {
+                            callback(-1, null)
+                        }
+                    }
+                    else
+                    {
+                        callback(-2, null)
+                    }
                 }
-                else
+                catch (e: JSONException)
                 {
-                    callback(-2, response)
+                    e.printStackTrace()
+                }
+                catch (e: IOException)
+                {
+                    e.printStackTrace()
                 }
             }
 
             override fun onFailure(call: Call<Student>, response: Throwable)
             {
-                callback(-1, response)
+                callback(-3, response)
             }
         })
     }
@@ -241,9 +302,10 @@ object ServerConnection : NetworkConstants
                     val i : Iterator<String> = result.keys()
                     if (i.next() == "success")
                     {
-                        val emailAddress = result.getString("email")
-                        val certificationNumber = result.getString("certificationNumber")
-                        callback(true, certificationNumber, emailAddress)
+                        val authenticationCode = result.getString("authenticationCode")
+                        val studentEmail = result.getString("student_email")
+
+                        callback(true, authenticationCode, studentEmail)
                     }
                     else
                     {
@@ -266,9 +328,129 @@ object ServerConnection : NetworkConstants
         })
     }
 
-    fun changePassword()
+    fun changePassword(student_email: String?, student_password: String, authenticationCode : String, callback: (Boolean) -> Unit)
     {
+        mServerConnectionSpec?.find_change_pw(student_email, student_password, authenticationCode)?.enqueue(object : Callback<ResponseBody> {
 
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                try
+                {
+                    val result = JSONObject(response.body()!!.string())
+
+                    val i : Iterator<String> = result.keys()
+                    if (i.next() == "success")
+                    {
+                        callback(true)
+                    }
+                    else
+                    {
+                        val message = result.getString("fail")
+
+                        Log.d("debug", " ++ changePassword fail message = $message")
+
+                        callback(false)
+                    }
+                }
+                catch (e : Exception)
+                {
+                    e.printStackTrace()
+
+                    callback(false)
+                }
+            }
+
+            override fun onFailure(p0: Call<ResponseBody>, p1: Throwable)
+            {
+                callback(false)
+            }
+
+        })
+    }
+
+    fun updateClassCode(classCode : String, callback: (Boolean, String?) -> Unit)
+    {
+        val studentId = CurrentLoginStudent.root?.student_id
+        val accessToken = CurrentLoginStudent.root?.access_token
+
+        mServerConnectionSpec?.student_class_update(studentId, accessToken, classCode)?.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                try
+                {
+                    val result = JSONObject(response.body()!!.string())
+                    Log.d("woozie", "++ updateClassCode result = ${result.toString()}")
+                    val i : Iterator<String> = result.keys()
+                    if (i.next() == "success" || i.next() == "student_token")
+                    {
+                        val accessToken : String = result.getString("student_token")
+
+                        callback(true, accessToken)
+                    }
+                    else
+                    {
+                        callback(false, null)
+                    }
+                }
+                catch (e : Exception)
+                {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable)
+            {
+                callback(false, null)
+            }
+
+        })
+    }
+
+    fun getStudentClassList(callback: (Boolean, String?, ArrayList<Subject>?) -> Unit)
+    {
+        val studentId = CurrentLoginStudent.root?.student_id
+        val accessToken = CurrentLoginStudent.root?.access_token
+
+        mServerConnectionSpec?.get_class_unit_list(studentId, accessToken)?.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
+            {
+                try
+                {
+                    val result = JSONObject(response.body()!!.string())
+
+                    val i : Iterator<String> = result.keys()
+                    if (i.next() == "student_token")
+                    {
+                        val accessToken : String = result.getString("student_token")
+                        val array : JSONArray = result.getJSONArray("success")
+
+                        val gson = Gson()
+                        val subjectList : ArrayList<Subject> = arrayListOf()
+
+                        for (i in 0 until array.length())
+                        {
+                            val json = array[i]
+                            val subject : Subject = gson.fromJson(json.toString(), Subject::class.java)
+                            subjectList.add(subject)
+                        }
+                        callback(true, accessToken, subjectList)
+                    }
+                    else
+                    {
+                        callback(false, null, null)
+                    }
+                }
+                catch (e : Exception)
+                {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable)
+            {
+                callback(false, null, null)
+            }
+        })
     }
 
     fun uploadProfileImage(student_id : String, student_name : String ,student_token : String, list : MutableList<MultipartBody.Part>, callback: (Boolean) -> Unit)

@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.funidea.newonpe.R
+import com.funidea.newonpe.dialog.CommonDialog
 import com.funidea.newonpe.model.CurrentLoginStudent
 import com.funidea.newonpe.model.Student
 import com.funidea.newonpe.network.ServerConnection
@@ -79,32 +80,109 @@ class EmailLoginPage : CommonActivity() {
 
     //회원가입 버튼
     private val mClickActionOfJoinMember = View.OnClickListener {
-
         val intent = Intent(this, MemberJoinPage::class.java)
         startActivityForResult(intent, MemberJoinPage.CALL)
         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
+    }
+
+    //로그인 버튼
+    private val mClickActionOfLogin = View.OnClickListener {
+
+        val insertedId = login_page_input_id_edittext.text.toString()
+        val insertedPassword = login_page_input_pw_edittext.text.toString()
+
+        if (TextUtils.isEmpty(insertedId) || TextUtils.isEmpty(insertedPassword))
+        {
+          if (TextUtils.isEmpty(insertedId))
+          {
+              login_page_input_id_edittext.requestFocus()
+          }
+          else
+          {
+              login_page_input_pw_edittext.requestFocus()
+          }
+
+          Toast.makeText(this, "빈 칸을 확인해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
+            var sharedPreferencesSavedToken: String? = ""
+            val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+            if (sharedPreferences.contains("user_id"))
+            {
+                val sharedPreferencesSavedId : String = sharedPreferences.getString("user_id", "").toString()
+                if (sharedPreferencesSavedId == insertedId && !TextUtils.isEmpty(sharedPreferencesSavedId))
+                {
+                    sharedPreferencesSavedToken = sharedPreferences.getString("user_access_token", "").toString()
+                    Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedId = $sharedPreferencesSavedId")
+                    Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedToken = $sharedPreferencesSavedToken")
+                }
+            }
+
+            val callBack : (Int?, Any?) -> Unit = { code, response ->
+
+                Log.d("debug", ">> [complexion] login callBack code = $code")
+                Log.d("debug", ">> [complexion] login callBack response = $response")
+
+                if (code!! > -1)
+                {
+                    CurrentLoginStudent.root = response as Student
+
+                    val preferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                    val editor = preferences.edit()
+
+                    editor.putString("user_id", CurrentLoginStudent.root!!.student_id)
+                    editor.putString("user_access_token", CurrentLoginStudent.root!!.access_token)
+                    editor.commit()
+
+                    if (TextUtils.isEmpty(CurrentLoginStudent.root!!.student_name))
+                    {
+                        val intent = Intent(this@EmailLoginPage, ProfileRegistrationPage::class.java)
+                        startActivityForResult(intent, 4)
+                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
+                    }
+                    else
+                    {
+                        val intent = Intent(this@EmailLoginPage, MainHomePage::class.java)
+                        startActivity(intent)
+                        finish()
+                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
+                    }
+                }
+                else if (code == -1)
+                {
+                    showDialog("알림", "입력한 아이디 및 패스워드를 다시 확인해주세요", buttonCount = CommonDialog.ButtonCount.ONE)
+                }
+                else
+                {
+                    showDialog("알림", "서버와 통신중에 오류가 발생하였습니다. 다시 시도하여 주세요", buttonCount = CommonDialog.ButtonCount.ONE)
+                }
+            }
+
+            ServerConnection.login(insertedId, insertedPassword, callBack)
+        }
     }
 
     //아이디 체크
     private var mTextWatcherInsertedID: TextWatcher = object : TextWatcher {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
-           if(s.isNotEmpty())
-           {
-               if(login_page_input_pw_edittext.length()>0)
-               {
-                   login_page_login_textview.setBackgroundResource(R.color.main_color)
-               }
-               else if(login_page_input_pw_edittext.length()<=0)
-               {
-                   login_page_login_textview.setBackgroundResource(R.color.gray)
-               }
+            if (s.isNotEmpty())
+            {
+                if(login_page_input_pw_edittext.length()>0)
+                {
+                    login_page_login_textview.setBackgroundResource(R.color.main_color)
+                }
+                else if(login_page_input_pw_edittext.length()<=0)
+                {
+                    login_page_login_textview.setBackgroundResource(R.color.gray)
+                }
 
-           }
-           else
-           {
-               login_page_login_textview.setBackgroundResource(R.color.gray)
-           }
+            }
+            else
+            {
+                login_page_login_textview.setBackgroundResource(R.color.gray)
+            }
         }
 
         override fun afterTextChanged(arg0: Editable) {
@@ -143,74 +221,6 @@ class EmailLoginPage : CommonActivity() {
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             // 입력하기 전에
-        }
-    }
-    //로그인 버튼
-    private val mClickActionOfLogin = View.OnClickListener {
-
-        val insertedId = login_page_input_id_edittext.text.toString()
-        val insertedPassword = login_page_input_pw_edittext.text.toString()
-
-        if (TextUtils.isEmpty(insertedId) || TextUtils.isEmpty(insertedPassword))
-        {
-          if (TextUtils.isEmpty(insertedId))
-          {
-              login_page_input_id_edittext.requestFocus()
-          }
-          else
-          {
-              login_page_input_pw_edittext.requestFocus()
-          }
-
-          Toast.makeText(this, "빈 칸을 확인해주세요.", Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
-            var sharedPreferencesSavedToken: String? = ""
-            val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
-            if (sharedPreferences.contains("user_id"))
-            {
-                val sharedPreferencesSavedId : String = sharedPreferences.getString("user_id", "").toString()
-                if (sharedPreferencesSavedId == insertedId && !TextUtils.isEmpty(sharedPreferencesSavedId))
-                {
-                    sharedPreferencesSavedToken = sharedPreferences.getString("user_access_token", "").toString()
-                    Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedId = $sharedPreferencesSavedId")
-                    Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedToken = $sharedPreferencesSavedToken")
-                }
-            }
-
-            val callBack : (Int?, Any?) -> Unit = { code, response ->
-
-                Log.d("debug", ">> [complexion] login callBack code = $code")
-
-                if (code!! > -1)
-                {
-                    CurrentLoginStudent.root = response as Student
-
-                    val preferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
-                    val editor = preferences.edit()
-
-                    editor.putString("user_id", CurrentLoginStudent.root!!.student_id)
-                    editor.putString("user_access_token", CurrentLoginStudent.root!!.access_token)
-                    editor.commit()
-
-                    if (TextUtils.isEmpty(CurrentLoginStudent.root!!.student_name))
-                    {
-                        val intent = Intent(this@EmailLoginPage, ProfileRegistrationPage::class.java)
-                        startActivityForResult(intent, 4)
-                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
-                    }
-                    else
-                    {
-                        val intent = Intent(this@EmailLoginPage, MainHomePage::class.java)
-                        startActivity(intent)
-                        finish()
-                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
-                    }
-                }
-            }
-
-            ServerConnection.login(insertedId, insertedPassword, callBack)
         }
     }
 }

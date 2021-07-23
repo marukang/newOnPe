@@ -22,6 +22,7 @@ import com.funidea.newonpe.page.CommonActivity
 import com.funidea.newonpe.page.setting.PersonalAgreementPage
 import com.funidea.newonpe.page.setting.terms_of_user_information_agreement_Activity
 import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
+import com.funidea.utils.Utility
 import kotlinx.android.synthetic.main.activity_join_page.*
 import okhttp3.ResponseBody
 import org.json.JSONException
@@ -606,7 +607,7 @@ class MemberJoinPage : CommonActivity() {
                     val json = JSONObject(userData)
 
                     mInsertedStudentName = json.getString("name")
-                    mInsertedStudentPhoneNumber = json.getString("phone")
+                    mInsertedStudentPhoneNumber = Utility.getPhoneNumberWithHyphen(json.getString("phone"))
                     mInsertedStudentBirthDate = json.getString("birthday")
 
                     sending_sms_auth_code.isSelected = false

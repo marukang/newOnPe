@@ -292,7 +292,7 @@ class class_home_Activity : AppCompatActivity() {
     //클래스 유닛 리스트 가져오기
     fun get_class_unit(class_code : String)
     {
-        serverConnectionSpec!!.get_class_unit_list(student_id, access_token, class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_class_unit_list(student_id, access_token).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

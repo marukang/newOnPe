@@ -474,7 +474,7 @@ class MainHomeActivity : AppCompatActivity() {
     fun add_new_class(class_code : String, class_code_list : String)
     {
 
-        serverConnectionSpec!!.student_class_update(student_id,access_token, class_code, class_code_list).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.student_class_update(student_id,access_token, class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -568,7 +568,7 @@ class MainHomeActivity : AppCompatActivity() {
     //수업 입장하기
     fun enter_class(class_code : String)
     {
-        serverConnectionSpec!!.get_class_unit_list(student_id,access_token, class_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_class_unit_list(student_id,access_token).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {

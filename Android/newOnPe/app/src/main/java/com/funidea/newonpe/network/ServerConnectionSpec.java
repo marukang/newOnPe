@@ -20,7 +20,10 @@ import retrofit2.http.Part;
 import retrofit2.http.Url;
 
 import static com.funidea.newonpe.network.NetworkConstants.APP_LOGIN;
+import static com.funidea.newonpe.network.NetworkConstants.CHANGE_PW;
 import static com.funidea.newonpe.network.NetworkConstants.CHECK_DUPLICATED_ID;
+import static com.funidea.newonpe.network.NetworkConstants.CLASS_LIST;
+import static com.funidea.newonpe.network.NetworkConstants.REGISTER_NEW_CLASS;
 import static com.funidea.newonpe.network.NetworkConstants.SEARCH_ID;
 import static com.funidea.newonpe.network.NetworkConstants.SEARCH_PW;
 import static com.funidea.newonpe.network.NetworkConstants.SIGN_UP;
@@ -150,7 +153,7 @@ public interface ServerConnectionSpec
 
     //비밀번호 찾기
     @FormUrlEncoded
-    @POST("/app/find_change_pw")
+    @POST(CHANGE_PW)
     Call<ResponseBody> find_change_pw
     (
             @Field("student_email") String student_email, //이메일
@@ -415,29 +418,25 @@ public interface ServerConnectionSpec
           @Field("student_token") String student_token,//토큰
           @Field("community_number") String community_number,//커뮤니티 코맨트 번호
           @Field("comment_number") String comment_number//커뮤니티 글 번호
-
   );
 
   //학생 신규 클래스 추가
   @FormUrlEncoded
-  @POST("/app/class/student_class_update")
+  @POST(REGISTER_NEW_CLASS)
   Call<ResponseBody> student_class_update
   (
           @Field("student_id") String student_id, //아이디
           @Field("student_token") String student_token,//토큰
-          @Field("class_code") String class_code,//신규 클래스 코드
-          @Field("student_classcode") String student_class_code//전체 클래스 코드 값
-
+          @Field("class_code") String class_code//신규 클래스 코드
   );
 
   //클래스 입장
   @FormUrlEncoded
-  @POST("/app/class/get_class_unit_list")
+  @POST(CLASS_LIST)
   Call<ResponseBody> get_class_unit_list
   (
           @Field("student_id") String student_id, //아이디
-          @Field("student_token") String student_token,//토큰
-          @Field("class_code") String class_code//클래스 코드
+          @Field("student_token") String student_token //토큰
   );
 
   //차시별(단원별) 클래스 수업 입장하기

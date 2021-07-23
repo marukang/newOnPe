@@ -17,6 +17,7 @@ import com.funidea.newonpe.dialog.CommonDialog
 import com.funidea.newonpe.network.ServerConnection
 import com.funidea.newonpe.page.CommonActivity
 import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
+import com.funidea.utils.Utility
 import kotlinx.android.synthetic.main.activity_id_search.*
 import kotlinx.android.synthetic.main.activity_join_page.*
 import kotlinx.android.synthetic.main.activity_pw_search.*
@@ -37,7 +38,7 @@ import java.util.regex.Pattern
 class SearchPasswordPage : CommonActivity() {
 
     //아이디 확인을 위한 TextWatcher
-    val mTextWatcherInsertedId: TextWatcher = object : TextWatcher {
+    private val mTextWatcherInsertedId: TextWatcher = object : TextWatcher {
         //입력되는 텍스트에 변화가 있을 때
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
@@ -109,7 +110,7 @@ class SearchPasswordPage : CommonActivity() {
         }
     }
     //이메일 입력 확인을 위한 TextWatcher
-    val mTextWatcherInsertedEmail: TextWatcher = object : TextWatcher {
+    private val mTextWatcherInsertedEmail: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 
             if (!Patterns.EMAIL_ADDRESS.matcher(charSequence).matches())
@@ -156,49 +157,6 @@ class SearchPasswordPage : CommonActivity() {
         }
     }
 
-    //확인 버튼
-    val mClickActionOfConfirmButton = View.OnClickListener {
-
-        if (!isRegularFormatName())
-        {
-            pw_search_input_name_edittext.requestFocus()
-            Toast.makeText(this, "이름을 제대로 입력해주세요.", Toast.LENGTH_SHORT).show()
-        }
-        else if (!isRegularFormatId())
-        {
-            pw_search_input_id_edittext.requestFocus()
-            Toast.makeText(this, "아이디를 제대로 입력해주세요.", Toast.LENGTH_SHORT).show()
-        }
-        else if (mSMSAuthButton.isSelected || TextUtils.isEmpty(mAuthedStudentPhoneNumber))
-        {
-            showDialog("알림", "본인인증을 실행해주세요", buttonCount = CommonDialog.ButtonCount.ONE)
-        }
-        else
-        {
-            val insertedId : String = pw_search_input_id_edittext.text.toString()
-            val insertedName : String = pw_search_input_name_edittext.text.toString()
-
-            ServerConnection.searchPassword(insertedId, insertedName, mAuthedStudentPhoneNumber!!) { isSuccess, AuthenticationCode, EmailAddress ->
-
-                if (isSuccess)
-                {
-                    val message = "가입 당시 입력 해주신 이메일 [$EmailAddress] 로 인증코드를 보내드렸습니다. 비밀번호 변경 하기로 넘어갑니다"
-
-                    showDialog("알림", message, buttonCount = CommonDialog.ButtonCount.ONE) {
-
-                        moveAuthenticationPage(AuthenticationCode!!, EmailAddress!!)
-                    }
-                }
-                else
-                {
-                    showDialog("알림", "일치하는 회원정보가 없습니다", buttonCount = CommonDialog.ButtonCount.ONE)
-                }
-            }
-        }
-    }
-
-    private lateinit var mSMSAuthButton : Button
-
     private var mAuthedStudentName : String? = ""
     private var mAuthedStudentBirthDate : String? = ""
     private var mAuthedStudentPhoneNumber : String? = ""
@@ -213,11 +171,8 @@ class SearchPasswordPage : CommonActivity() {
         pw_search_back_button.setOnClickListener {
             onBackPressed()
         }
-        pw_search_confirm_textview.setOnClickListener(mClickActionOfConfirmButton)
 
-        mSMSAuthButton = findViewById(R.id.sending_sms_auth_code)
-        mSMSAuthButton.isSelected = true
-        mSMSAuthButton.setOnClickListener {
+        pw_search_confirm_textview.setOnClickListener {
             val intent = Intent(this, SMSAuthPage::class.java)
             startActivityForResult(intent, SMSAuthPage.CALL)
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
@@ -235,17 +190,44 @@ class SearchPasswordPage : CommonActivity() {
                 val userData = data?.getStringExtra("user")
                 if (!TextUtils.isEmpty(userData) && resultCode == RESULT_OK)
                 {
-                    mSMSAuthButton.isSelected = false
-                    mSMSAuthButton.text = "본인인증 완료"
-
                     val json = JSONObject(userData)
                     mAuthedStudentName = json.getString("name")
-                    mAuthedStudentPhoneNumber = json.getString("phone")
+                    mAuthedStudentPhoneNumber = Utility.getPhoneNumberWithHyphen(json.getString("phone"))
                     mAuthedStudentBirthDate = json.getString("birthday")
 
-                    updateConfirmButtonStatus()
+                    val insertedId : String = pw_search_input_id_edittext.text.toString()
+                    val insertedName : String = pw_search_input_name_edittext.text.toString()
+                    if (!TextUtils.isEmpty(mAuthedStudentName) && mAuthedStudentName.equals(insertedName))
+                    {
+                        ServerConnection.searchPassword(insertedId, mAuthedStudentName!!, mAuthedStudentPhoneNumber!!) { isSuccess, authenticationCode, emailAddress ->
+
+                            if (isSuccess)
+                            {
+                                movePasswordChangePage(emailAddress!!, authenticationCode!!)
+                            }
+                            else
+                            {
+                                showDialog("알림", "일치하는 회원정보가 없습니다", buttonCount = CommonDialog.ButtonCount.ONE)
+                            }
+                        }
+                    }
+                    else
+                    {
+                        showDialog("알림", "실명인증한 정보와 일치하지 않습니다", buttonCount = CommonDialog.ButtonCount.ONE)
+                    }
                 }
             }
+
+            999 ->
+            {
+                if (resultCode == RESULT_OK)
+                {
+                    setResult(RESULT_OK)
+
+                    onBackPressed()
+                }
+            }
+
         }
     }
 
@@ -257,7 +239,7 @@ class SearchPasswordPage : CommonActivity() {
 
     private fun updateConfirmButtonStatus()
     {
-        if(isRegularFormatId() && isRegularFormatName() && !mSMSAuthButton.isSelected)
+        if(isRegularFormatId() && isRegularFormatName())
         {
             pw_search_confirm_textview.setBackgroundColor(Color.parseColor("#3378fd"))
         }
@@ -281,14 +263,12 @@ class SearchPasswordPage : CommonActivity() {
                 Pattern.matches("^[ㄱ-ㅎㅏ-ㅣ가-힣].{0,8}", insertedName) && Pattern.matches("^[가-힣].{1,8}", insertedName)
     }
 
-    private fun moveAuthenticationPage(authenticationCode : String, emailAddress : String)
+    private fun movePasswordChangePage(insertedEmail : String, authenticationCode : String)
     {
-        //추후 바꿀 것
-        val intent = Intent(this@SearchPasswordPage, EmailAuthenticationPage::class.java)
-        intent.putExtra("confirm_code", authenticationCode)
-        intent.putExtra("input_email", emailAddress)
-        startActivity(intent)
-        finish()
+        val intent = Intent(this@SearchPasswordPage, ChangePasswordPage::class.java)
+        intent.putExtra("insertedEmail", insertedEmail)
+        intent.putExtra("authenticationCode", authenticationCode)
+        startActivityForResult(intent, 999)
         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
     }
 }

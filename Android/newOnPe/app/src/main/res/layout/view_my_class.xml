@@ -41,6 +41,7 @@
             android:background="@drawable/view_gray_color_round_edge">
 
             <EditText
+                android:id="@+id/classCodeInputBox1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -50,6 +51,7 @@
         </FrameLayout>
 
         <Button
+            android:id="@+id/registerClassCodeButton1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="등록하기"
@@ -59,5 +61,13 @@
             android:textColor="@color/white"/>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/myClassListFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    </FrameLayout>
 
 </FrameLayout>

@@ -18,6 +18,7 @@ import android.widget.*
 import androidx.annotation.NonNull
 import com.funidea.newonpe.R
 import com.funidea.newonpe.camera.DataUtils
+import com.funidea.newonpe.dialog.CommonDialog
 import com.funidea.newonpe.model.CurrentLoginStudent
 import com.funidea.newonpe.model.Student
 import com.funidea.newonpe.network.ServerConnection
@@ -93,7 +94,7 @@ class LoginPage : CommonActivity() {
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
         }
         mLogoImageView = findViewById(R.id.splash_image)
-        //애니메이션 함수
+
         val anim = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)
         activity_splash.startAnimation(anim)
 
@@ -166,10 +167,6 @@ class LoginPage : CommonActivity() {
         editor.putString("user_id", CurrentLoginStudent.root!!.student_id)
         editor.putString("user_access_token", CurrentLoginStudent.root!!.access_token)
         editor.commit()
-
-        Log.d("debug", "++ [complexion] showMainPage 아이디 = ${CurrentLoginStudent.root!!.student_id}")
-        Log.d("debug", "++ [complexion] showMainPage student_name = ${CurrentLoginStudent.root!!.student_name}")
-        Log.d("debug", "++ [complexion] showMainPage student_login_type = ${CurrentLoginStudent.root!!.student_login_type}")
 
         UtilityUI.setAnimationEffectBounce(mLogoImageView, 1000) {
 
@@ -349,7 +346,7 @@ class LoginPage : CommonActivity() {
                     mAnimationDrawable?.stop()
                     mAnimationDrawable = null
 
-                    val intent = Intent(this@LoginPage, MainHomeActivity::class.java)
+                    val intent = Intent(this@LoginPage, MainHomePage::class.java)
                     startActivity(intent)
                     finish()
                     overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
@@ -383,8 +380,6 @@ class LoginPage : CommonActivity() {
         {
             override fun run(success: Boolean)
             {
-                Log.d("debug", ">> [complexion] onNaverLoginTry OAuthLoginHandler success = $success")
-
                 if (success)
                 {
                     val accessToken = loginAuthInstance.getAccessToken(this@LoginPage)
@@ -393,8 +388,7 @@ class LoginPage : CommonActivity() {
                         val thread : Thread = thread {
                             val serverUrl : String = "https://openapi.naver.com/v1/nid/me"
                             val userInformation : String = loginAuthInstance.requestApi(this@LoginPage, accessToken, serverUrl)
-                            Log.d("debug", ">> [complexion] onNaverLoginTry OAuthLoginHandler accessToken = $accessToken")
-                            Log.d("debug", ">> [complexion] onNaverLoginTry OAuthLoginHandler userInformation = $userInformation")
+
                             if (!TextUtils.isEmpty(userInformation))
                             {
                                 try
@@ -430,8 +424,6 @@ class LoginPage : CommonActivity() {
                                             if (sharedPreferencesSavedId == userId)
                                             {
                                                 sharedPreferencesSavedToken = sharedPreferences.getString("user_access_token", "").toString()
-                                                Log.d("debug", ">> [complexion] onNaverLoginTry sharedPreferencesSavedId = $sharedPreferencesSavedId")
-                                                Log.d("debug", ">> [complexion] onNaverLoginTry sharedPreferencesSavedToken = $sharedPreferencesSavedToken")
                                             }
                                         }
                                         snsLogin(userId, "N", userEmail, userPushAgreement, userPhoneNumber)
@@ -462,8 +454,6 @@ class LoginPage : CommonActivity() {
 
     private fun onGoogleLoginTry()
     {
-        Log.d("debug", ">> [complexion] onGoogleLoginTry ")
-
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -484,15 +474,10 @@ class LoginPage : CommonActivity() {
 
             if (token != null && error == null)
             {
-                Log.d("debug", ">> [complexion] onKaKaoLoginTry token accessToken = " + token.accessToken)
-
                 UserApiClient.instance.me { user, userInfoError ->
 
                     if (user != null && userInfoError == null)
                     {
-                        Log.d("debug", ">> [complexion] onKaKaoLoginTry user id = " + user.id)
-                        Log.d("debug", ">> [complexion] onKaKaoLoginTry user email = " + (user.kakaoAccount?.email ?: ""))
-
                         val userId : String = user.id.toString()
                         val userEmail : String = (user.kakaoAccount?.email ?: "N/A")
                         val userPushAgreement : String = "Y";
@@ -516,8 +501,6 @@ class LoginPage : CommonActivity() {
 
     private fun onReceiveGoogleLoginResult(requestCode: Int, resultCode: Int, data: Intent?)
     {
-        Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult requestCode : $requestCode resultCode = $resultCode")
-
         val googleSignInTask = GoogleSignIn.getSignedInAccountFromIntent(data)
 
         try
@@ -529,43 +512,19 @@ class LoginPage : CommonActivity() {
             val firebaseAuth : FirebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signInWithCredential(googleCredential).addOnCompleteListener(this) { task ->
 
-                Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult task.isSuccessful : " + task.isSuccessful)
-
                 if (task.isSuccessful)
                 {
                     val user = firebaseAuth.currentUser
-
-                    Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult email = " + (user?.email ?: ""))
-                    Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult tenantId = " + (user?.tenantId ?: ""))
-                    Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult phoneNumber = " + (user?.phoneNumber ?: ""))
-                    Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult displayName = " + (user?.displayName ?: ""))
 
                     val userEmail : String = (user?.email ?: "")
                     if (!TextUtils.isEmpty(userEmail))
                     {
                         val userId : String = "google" + userEmail.split("@")[0]
-                        val userName : String = (user?.displayName ?: "N/A")
                         val userPushAgreement : String = "Y";
                         val userPhoneNumber : String = (user?.phoneNumber ?: "N/A")
 
-                        var sharedPreferencesSavedToken: String? = ""
-                        val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
-                        if (sharedPreferences.contains("user_id"))
-                        {
-                            val sharedPreferencesSavedId: String = sharedPreferences.getString("user_id", "").toString()
-                            if (sharedPreferencesSavedId == userId)
-                            {
-                                sharedPreferencesSavedToken = sharedPreferences.getString("user_access_token", "").toString()
-                                Log.d("debug", ">> [complexion] onReceiveGoogleLoginResult sharedPreferencesSavedId = $sharedPreferencesSavedId")
-                                Log.d("debug", ">> [complexion] onReceiveGoogleLoginResult sharedPreferencesSavedToken = $sharedPreferencesSavedToken")
-                            }
-                        }
                         snsLogin(userId, "G", userEmail, userPushAgreement, userPhoneNumber)
                     }
-                }
-                else
-                {
-                    Log.d("debug", "++ [complexion] onReceiveGoogleLoginResult exception = " + task.exception)
                 }
             }
         }
@@ -588,7 +547,24 @@ class LoginPage : CommonActivity() {
 
             CHANGE_PROFILE_NAME_PICTURE ->
             {
-                rollbackSNSLoginButtonFrame()
+                val alpha = snsLoginFrame.alpha
+                if (alpha != 0.0f)
+                {
+                    rollbackSNSLoginButtonFrame()
+                }
+                else
+                {
+                    UtilityUI.setAnimationEffectBounce(mLogoImageView, 1000) {
+
+                        mAnimationDrawable?.stop()
+                        mAnimationDrawable = null
+
+                        val intent = Intent(this@LoginPage, MainHomePage::class.java)
+                        startActivity(intent)
+                        finish()
+                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)
+                    }
+                }
             }
         }
     }
@@ -605,18 +581,21 @@ class LoginPage : CommonActivity() {
             if (sharedPreferencesSavedId == userId && !TextUtils.isEmpty(sharedPreferencesSavedId))
             {
                 sharedPreferencesSavedToken = sharedPreferences.getString("user_access_token", "").toString()
-                Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedId = $sharedPreferencesSavedId")
-                Log.d("debug", ">> [complexion] snsLogin sharedPreferencesSavedToken = $sharedPreferencesSavedToken")
             }
         }
 
         val callBack : (Int?, Any?) -> Unit = { code, response ->
 
-            Log.d("debug", ">> [complexion] snsLogin callBack code = $code")
-
-            if (code!! > -1)
-            {
-                showMainPage(response as Student)
+            when {
+                code!! > -1 -> {
+                    showMainPage(response as Student)
+                }
+                code == -1 -> {
+                    showDialog("알림", "입력한 아이디 및 패스워드를 다시 확인해주세요", buttonCount = CommonDialog.ButtonCount.ONE)
+                }
+                else -> {
+                    showDialog("알림", "서버와 통신중에 오류가 발생하였습니다. 다시 시도하여 주세요", buttonCount = CommonDialog.ButtonCount.ONE)
+                }
             }
         }
 

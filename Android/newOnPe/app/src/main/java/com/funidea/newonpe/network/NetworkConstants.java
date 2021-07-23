@@ -9,5 +9,8 @@ public interface NetworkConstants {
     String CHECK_DUPLICATED_ID = "app/id_overlap_check";
     String SEARCH_ID = "app/find_id";
     String SEARCH_PW = "app/find_pw";
+    String CHANGE_PW = "app/find_change_pw";
     String SIGN_UP = "app/sign_up";
+    String CLASS_LIST = "app/class/get_class_unit_list";
+    String REGISTER_NEW_CLASS = "app/class/student_class_update";
 }

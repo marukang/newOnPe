@@ -16,6 +16,7 @@ import com.funidea.newonpe.dialog.CommonDialog
 import com.funidea.newonpe.network.ServerConnection
 import com.funidea.newonpe.page.CommonActivity
 import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
+import com.funidea.utils.Utility
 import kotlinx.android.synthetic.main.activity_id_search.*
 import kotlinx.android.synthetic.main.activity_join_page.*
 import okhttp3.ResponseBody
@@ -199,7 +200,7 @@ class SearchIDPage : CommonActivity() {
 
                     val json = JSONObject(userData)
                     mAuthedStudentName = json.getString("name")
-                    mAuthedStudentPhoneNumber = json.getString("phone")
+                    mAuthedStudentPhoneNumber = Utility.getPhoneNumberWithHyphen(json.getString("phone"))
                     mAuthedStudentBirthDate = json.getString("birthday")
 
                     updateConfirmButtonStatus()
