@@ -22,15 +22,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.utils.save_SharedPreferences
-import com.funidea.utils.save_SharedPreferences.Companion.save_shard
+import com.funidea.utils.SimpleSharedPreferences.Companion.saveAccessToken
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_age
 import com.funidea.utils.set_User_info.Companion.student_class
 import com.funidea.utils.set_User_info.Companion.student_content
 import com.funidea.utils.set_User_info.Companion.student_id
-import com.funidea.utils.set_User_info.Companion.student_image_url
 import com.funidea.utils.set_User_info.Companion.student_level
 import com.funidea.utils.set_User_info.Companion.student_number
 import com.funidea.utils.set_User_info.Companion.student_sex
@@ -1155,7 +1153,7 @@ class my_page_Activity : AppCompatActivity() {
                         //토큰 재 갱신
                         access_token = student_token
 
-                        save_shard(this@my_page_Activity, student_token)
+                        saveAccessToken(this@my_page_Activity, student_token)
 
                         val confirmDialog = NotifyUserInfoChangedDialog(this@my_page_Activity)
 
@@ -1213,7 +1211,7 @@ class my_page_Activity : AppCompatActivity() {
                                 //토큰 재 갱신
                                 access_token = student_token
 
-                                save_shard(this@my_page_Activity, student_token)
+                                saveAccessToken(this@my_page_Activity, student_token)
 
                                 val confirmDialog = NotifyUserInfoChangedDialog(this@my_page_Activity)
 
@@ -1265,7 +1263,7 @@ class my_page_Activity : AppCompatActivity() {
                                 //토큰 재 갱신
                                 access_token = student_token
 
-                                save_shard(this@my_page_Activity, student_token)
+                                saveAccessToken(this@my_page_Activity, student_token)
 
                                 val confirmDialog = NotifyUserInfoChangedDialog(this@my_page_Activity)
 

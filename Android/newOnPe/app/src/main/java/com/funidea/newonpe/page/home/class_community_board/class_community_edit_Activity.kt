@@ -17,7 +17,7 @@ import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.bumptech.glide.RequestManager
 import com.funidea.utils.CustomToast
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
@@ -573,7 +573,7 @@ class class_community_edit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_community_edit_Activity, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_community_edit_Activity, set_User_info.access_token)
 
                         CustomToast.show(this@class_community_edit_Activity, "정상적으로 수정 되었습니다.")
 

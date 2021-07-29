@@ -32,9 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static com.funidea.newonpe.page.pose.PoseActivity.get_pose_category_name;
-import static com.funidea.newonpe.page.pose.PoseActivity.pose_estimation_imageview;
-
 /**
  * Draw the detected pose in preview.
  */
@@ -68,15 +65,9 @@ public class PoseGraphic extends GraphicOverlay.Graphic {
 
     public void setDrawViewListener(drawViewListener listener) {
         mListener = listener;
-
     }
 
-
-
-    public PoseGraphic(
-            GraphicOverlay overlay,
-            Pose pose,
-            boolean showInFrameLikelihood) {
+    public PoseGraphic(GraphicOverlay overlay, Pose pose, boolean showInFrameLikelihood) {
         super(overlay);
 
         this.pose = pose;
@@ -88,27 +79,27 @@ public class PoseGraphic extends GraphicOverlay.Graphic {
         //스쿼드 클래스
         posemeasurefunction = new PoseMeasureFunction();
 
-        Log.d("자주실행?", "PoseGraphic:");
+        // Log.d("자주실행?", "PoseGraphic:");
 
         //색상
         whitePaint = new Paint();
         leftPaint = new Paint();
         rightPaint = new Paint();
 
-        if(get_pose_category_name.equals("홈트레이닝"))
-        {
-            whitePaint.setColor(Color.WHITE);
-            whitePaint.setTextSize(IN_FRAME_LIKELIHOOD_TEXT_SIZE);
-            leftPaint.setColor(Color.GREEN);
-            rightPaint.setColor(Color.YELLOW);
-        }
-        else
-        {
-            whitePaint.setColor(Color.TRANSPARENT);
-            whitePaint.setTextSize(IN_FRAME_LIKELIHOOD_TEXT_SIZE);
-            leftPaint.setColor(Color.TRANSPARENT);
-            rightPaint.setColor(Color.TRANSPARENT);
-        }
+//        if(get_pose_category_name.equals("홈트레이닝"))
+//        {
+//            whitePaint.setColor(Color.WHITE);
+//            whitePaint.setTextSize(IN_FRAME_LIKELIHOOD_TEXT_SIZE);
+//            leftPaint.setColor(Color.GREEN);
+//            rightPaint.setColor(Color.YELLOW);
+//        }
+//        else
+//        {
+//            whitePaint.setColor(Color.TRANSPARENT);
+//            whitePaint.setTextSize(IN_FRAME_LIKELIHOOD_TEXT_SIZE);
+//            leftPaint.setColor(Color.TRANSPARENT);
+//            rightPaint.setColor(Color.TRANSPARENT);
+//        }
 
 
 
@@ -131,21 +122,22 @@ public class PoseGraphic extends GraphicOverlay.Graphic {
 
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas)
+    {
         List<PoseLandmark> landmarks = pose.getAllPoseLandmarks();
 
         if(landmarks.size()==0)
         {
             draw_value =0;
-            pose_estimation_imageview.setBackgroundResource(R.drawable.red_circle);
+            // pose_estimation_imageview.setBackgroundResource(R.drawable.red_circle);
         }
         else
         {
             draw_value=1;
-            pose_estimation_imageview.setBackgroundResource(R.drawable.green_circle);
+            // pose_estimation_imageview.setBackgroundResource(R.drawable.green_circle);
         }
 
-        Log.d("값확인", "draw:"+draw_value);
+        // Log.d("값확인", "draw:"+draw_value);
         //mListener.detectSkeletonPoint("포즈네임");
 
         if (landmarks.isEmpty()) {
@@ -202,15 +194,14 @@ public class PoseGraphic extends GraphicOverlay.Graphic {
 
 
         if(mListener==null){
-            Log.d("동작인식123123 mListener: ", "null");
+            // Log.d("동작인식123123 mListener: ", "null");
         }else{
-            Log.d("동작인식123123 mListener: ", "not null");
+            // Log.d("동작인식123123 mListener: ", "not null");
 
             ArrayList<Float> mDrawPoint = new ArrayList<Float>();
 
             //클리어
             mDrawPoint.clear();
-
             mDrawPoint.add(leftShoulder.getPosition().x);
             mDrawPoint.add(leftShoulder.getPosition().y);
             mDrawPoint.add(rightShoulder.getPosition().x);

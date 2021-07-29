@@ -6,7 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.funidea.newonpe.R
 import com.funidea.utils.CustomToast
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.class_unit_group_name
@@ -143,7 +143,7 @@ class GetDateActivity_kt : AppCompatActivity() {
                         //토큰 갱신
                         set_User_info.access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@GetDateActivity_kt, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@GetDateActivity_kt, set_User_info.access_token)
 
 
 
@@ -191,7 +191,7 @@ class GetDateActivity_kt : AppCompatActivity() {
                         //토큰 갱신
                         set_User_info.access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@GetDateActivity_kt, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@GetDateActivity_kt, set_User_info.access_token)
 
 
 
@@ -239,7 +239,7 @@ class GetDateActivity_kt : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@GetDateActivity_kt, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@GetDateActivity_kt, access_token)
 
 
 

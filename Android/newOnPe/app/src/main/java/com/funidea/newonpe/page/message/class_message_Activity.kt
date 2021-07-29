@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.View
 import com.funidea.utils.CustomToast
 import com.funidea.utils.change_date_value.Companion.change_time_include_second
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.select_class_code_str
@@ -193,7 +193,7 @@ class class_message_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_message_Activity, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_message_Activity, set_User_info.access_token)
 
 
                         var message_jsonarray : JSONArray

@@ -19,7 +19,7 @@ import com.bumptech.glide.RequestManager
 import com.funidea.utils.CustomToast
 import com.funidea.utils.CustomToast.Companion.show
 import com.funidea.utils.get_Time.Companion.formatDate
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.set_User_info.Companion.student_name
@@ -432,7 +432,7 @@ class class_community_write_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_community_write_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_community_write_Activity, access_token)
 
                         show(this@class_community_write_Activity, "정상적으로 등록 되었습니다.")
 

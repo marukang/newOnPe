@@ -12,6 +12,7 @@ public class PoseInformation {
     static public boolean pose_status_sub = false;
     //동작 각도
     static public double pose_degree = 180;
+
     //동작 개수
     static public int pose_count = 0;
     //동작 개수 (0.5씩 카운트)

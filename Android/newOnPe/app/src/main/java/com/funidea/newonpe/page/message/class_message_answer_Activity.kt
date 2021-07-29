@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.View
 import com.funidea.utils.CustomToast
 import com.funidea.utils.change_date_value.Companion.change_time_include_second
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.set_User_info.Companion.student_name
@@ -125,7 +125,7 @@ class class_message_answer_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_message_answer_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_message_answer_Activity, access_token)
 
                         CustomToast.show(this@class_message_answer_Activity, "정상적으로 삭제 되었습니다.")
 
@@ -175,7 +175,7 @@ class class_message_answer_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_message_answer_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_message_answer_Activity, access_token)
 
 
                         val success_JSONObject = result.getJSONObject("success")

@@ -9,7 +9,7 @@ import com.funidea.utils.CustomToast.Companion.show
 import com.funidea.newonpe.R
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import kotlinx.android.synthetic.main.class_unit_youtube_recyclerview_item.view.*
+import kotlinx.android.synthetic.main.view_class_unit_item_youtube.view.*
 import org.jetbrains.annotations.NotNull
 
 
@@ -69,7 +69,7 @@ class class_unit_youtube_Adapter(context: Context, classUnitYoutubeItem: ArrayLi
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
 
         val view: View = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.class_unit_youtube_recyclerview_item, viewGroup, false)
+            .inflate(R.layout.view_class_unit_item_youtube, viewGroup, false)
         return ViewHolder(view, mListener)
 
     }

@@ -74,8 +74,8 @@ public class InferenceInfoGraphic extends GraphicOverlay.Graphic {
 //            y + TEXT_SIZE*2,
 //            textPaint);
 
-    Log.d("동작 개수 텍스트 x좌표", String.valueOf(x));
-    Log.d("동작 개수 텍스트 y좌표", String.valueOf(y));
+    // Log.d("동작 개수 텍스트 x좌표", String.valueOf(x));
+    // Log.d("동작 개수 텍스트 y좌표", String.valueOf(y));
 
 //    canvas.drawText(
 //        "InputImage size: " + overlay.getImageWidth() + "x" + overlay.getImageHeight(),

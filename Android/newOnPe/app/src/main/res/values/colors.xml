@@ -23,4 +23,7 @@
     <color name="join_gray">#404040</color>
     <color name="transparent">#00FFFFFF</color>
 
+    <color name="progress_gray">#FFD8D8D8</color>
+    <color name="progress_gray_dark">#FF383838</color>
+
 </resources>

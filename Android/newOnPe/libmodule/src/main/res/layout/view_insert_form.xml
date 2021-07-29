@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/insertFormLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/insertFormTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dp14"
+        android:textColor="@color/color_white"
+        android:text="title"
+        android:fontFamily="@font/font_normal"
+        android:gravity="center_vertical"/>
+
+    <EditText
+        android:id="@+id/insertForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp10"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp5"
+        android:textSize="@dimen/dp16"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:fontFamily="@font/font_normal"
+        android:textCursorDrawable="@drawable/common_text_cursor"
+        android:background="@drawable/selector_drawable_common_form"/>
+
+    <TextView
+        android:id="@+id/descriptionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dp14"
+        android:fontFamily="@font/font_normal"
+        android:textColor="#dddddd"
+        android:layout_marginTop="@dimen/dp10"
+        android:visibility="gone"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/errorNotificationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dp14"
+        android:fontFamily="@font/font_normal"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dp10"
+        android:textColor="@color/color_FF4081"
+        android:gravity="center_vertical"/>
+
+</LinearLayout>

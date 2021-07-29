@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.funidea.newonpe.dialog.CommonDialog
 
-abstract class CommonFragment(var resourceLayoutId : Int) : Fragment() {
+abstract class CommonFragment(private var resourceLayoutId : Int) : Fragment() {
 
     lateinit var mFragmentView :View
 
@@ -31,5 +32,21 @@ abstract class CommonFragment(var resourceLayoutId : Int) : Fragment() {
     protected fun <T : View> findViewById(resourceId : Int) : T
     {
         return mFragmentView.findViewById(resourceId)
+    }
+
+    protected open fun inflateView(resourceId: Int, parent: ViewGroup?): View
+    {
+        return LayoutInflater.from(context).inflate(resourceId, parent, false)
+    }
+
+    fun showDialog(vararg messages : String?, buttonCount : CommonDialog.ButtonCount = CommonDialog.ButtonCount.ONE, listener : ((confirmed : Boolean) -> Unit)? = null)
+    {
+        val dialog = CommonDialog(context!!, *messages, buttonCount = buttonCount)
+        dialog.setOnDismissListener {
+            if (listener != null) {
+                listener(dialog.mConfirmed)
+            }
+        }
+        dialog.show()
     }
 }

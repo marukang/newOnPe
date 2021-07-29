@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.student_age
 import com.funidea.utils.set_User_info.Companion.student_content
@@ -332,7 +332,7 @@ class InputUserInfoDialog(context: Context) : BottomSheetDialog(context) {
                                 //토큰 재 갱신
                                 set_User_info.access_token = student_token
 
-                                save_SharedPreferences.save_shard(context, student_token)
+                                SimpleSharedPreferences.saveAccessToken(context, student_token)
 
                                 show(context, "정보가 등록되었습니다.")
 

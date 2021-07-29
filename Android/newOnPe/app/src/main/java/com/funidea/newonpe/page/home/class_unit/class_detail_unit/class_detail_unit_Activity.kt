@@ -10,7 +10,7 @@ import android.util.Log
 import android.view.View
 import com.funidea.utils.CustomToast
 import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.class_unit_group_name
@@ -650,7 +650,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_detail_unit_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_detail_unit_Activity, access_token)
 
 
                         val content_JOSNObject = JSONObject(result.getString("success"))
@@ -765,7 +765,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_detail_unit_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_detail_unit_Activity, access_token)
 
                         show(this@class_detail_unit_Activity, "최종 제출 되었습니다.\n선생님이 요청한 제출방식에 맞추어 제출해주시길 바랍니다.")
 
@@ -805,7 +805,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
     //수업 현황 가져오기
     fun get_student_class_record(class_code: String, unit_class_code: String )
     {
-        serverConnectionSpec!!.get_student_class_record(student_id, access_token, class_code, unit_class_code).enqueue(object : Callback<ResponseBody>
+        serverConnectionSpec!!.get_student_class_record(student_id, access_token, class_code).enqueue(object : Callback<ResponseBody>
         {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
@@ -823,7 +823,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_detail_unit_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_detail_unit_Activity, access_token)
 
                         var class_detail_unit_list = result.getString("success")
 
@@ -1042,7 +1042,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_detail_unit_Activity, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_detail_unit_Activity, set_User_info.access_token)
 
 
 
@@ -1091,7 +1091,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_detail_unit_Activity, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_detail_unit_Activity, set_User_info.access_token)
 
 
 
@@ -1138,7 +1138,7 @@ class class_detail_unit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_detail_unit_Activity, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_detail_unit_Activity, set_User_info.access_token)
 
 
 
@@ -1188,12 +1188,13 @@ class class_detail_unit_Activity : AppCompatActivity() {
                     if(user_practice_JSONArray.length()!=0)
                     {
 
-                        if(user_practice_JSONArray.get(class_practice_Int).toString().length>10)
+                        if(user_practice_JSONArray.get(class_practice_Int).toString().length > 10)
                         {
 
                             classDetailUnitClassListItem.set(i, classDetailUnitClassListItem.get(i)).class_value = 1
                             class_practice_Int = class_practice_Int+1
-                        }else
+                        }
+                        else
                         {
                             class_practice_Int = class_practice_Int+1
                         }

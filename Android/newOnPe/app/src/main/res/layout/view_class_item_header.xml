@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:background="@color/white"
+    android:paddingRight="18dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:textColor="#595959"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/notosanscjkkr_regular"
+        android:text="강좌 추가하기"
+        android:includeFontPadding="false"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_form_height"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_registration_form"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <EditText
+                android:id="@+id/codeInsertBox"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="75"
+                android:background="@null"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center_vertical"
+                android:hint="코드등록"
+                android:includeFontPadding="false"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/registerCodeButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="25"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="등록하기"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:background="@drawable/selector_registration_form_button"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:background="@color/white"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="아이디"
+            android:visibility="gone"
+            android:textColor="@color/join_gray"
+            android:textSize="14dp"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:textColor="#595959"
+        android:layout_marginTop="29dp"
+        android:fontFamily="@font/notosanscjkkr_regular"
+        android:text="내 강좌"
+        android:layout_marginBottom="10dp"
+        android:includeFontPadding="false"/>
+
+</LinearLayout>

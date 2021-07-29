@@ -10,6 +10,7 @@
         android:orientation="vertical"
         android:paddingLeft="18dp"
         android:paddingRight="18dp"
+        android:visibility="gone"
         android:background="@color/white">
 
         <TextView
@@ -66,7 +67,13 @@
         android:id="@+id/myClassListFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:background="@color/white">
+
+        <com.funidea.newonpe.views.CommonRecyclerView
+            android:id="@+id/classItemListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </FrameLayout>
 

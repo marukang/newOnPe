@@ -23,6 +23,12 @@ import static com.funidea.newonpe.network.NetworkConstants.APP_LOGIN;
 import static com.funidea.newonpe.network.NetworkConstants.CHANGE_PW;
 import static com.funidea.newonpe.network.NetworkConstants.CHECK_DUPLICATED_ID;
 import static com.funidea.newonpe.network.NetworkConstants.CLASS_LIST;
+import static com.funidea.newonpe.network.NetworkConstants.CLASS_UNIT_LIST;
+import static com.funidea.newonpe.network.NetworkConstants.CONTENT_GROUP_CARD;
+import static com.funidea.newonpe.network.NetworkConstants.CREATION_STUDENT_RECORD;
+import static com.funidea.newonpe.network.NetworkConstants.GET_CLASS_UNIT_DETAILED;
+import static com.funidea.newonpe.network.NetworkConstants.GET_SUBJECT_RECORD;
+import static com.funidea.newonpe.network.NetworkConstants.PARTICIPATION_CLASS_UNIT;
 import static com.funidea.newonpe.network.NetworkConstants.REGISTER_NEW_CLASS;
 import static com.funidea.newonpe.network.NetworkConstants.SEARCH_ID;
 import static com.funidea.newonpe.network.NetworkConstants.SEARCH_PW;
@@ -433,15 +439,25 @@ public interface ServerConnectionSpec
   //클래스 입장
   @FormUrlEncoded
   @POST(CLASS_LIST)
-  Call<ResponseBody> get_class_unit_list
+  Call<ResponseBody> get_class_list
   (
           @Field("student_id") String student_id, //아이디
           @Field("student_token") String student_token //토큰
   );
 
+    //클래스 입장
+    @FormUrlEncoded
+    @POST(CLASS_UNIT_LIST)
+    Call<ResponseBody> get_class_unit_list
+    (
+            @Field("student_id") String student_id, //아이디
+            @Field("student_token") String student_token, //토큰
+            @Field("class_code") String class_code//신규 클래스 코드
+    );
+
   //차시별(단원별) 클래스 수업 입장하기
   @FormUrlEncoded
-  @POST("/app/curriculum/student_get_curriculum")
+  @POST(GET_CLASS_UNIT_DETAILED)
   Call<ResponseBody> student_get_curriculum
   (
           @Field("student_id") String student_id, //아이디
@@ -452,7 +468,7 @@ public interface ServerConnectionSpec
 
   //수업 참여확인하기
   @FormUrlEncoded
-  @POST("/app/curriculum/student_update_participation")
+  @POST(PARTICIPATION_CLASS_UNIT)
   Call<ResponseBody> student_update_participation
   (
           @Field("student_id") String student_id, //아이디
@@ -482,13 +498,12 @@ public interface ServerConnectionSpec
 
     //수업 현황 조회하기
     @FormUrlEncoded
-    @POST("/app/record/get_student_class_record")
+    @POST(GET_SUBJECT_RECORD)
     Call<ResponseBody> get_student_class_record
     (
             @Field("student_id") String student_id, //아이디
             @Field("student_token") String student_token,//토큰
-            @Field("class_code") String class_code,//클래스 코드
-            @Field("unit_code") String unit_code//유닛 코드
+            @Field("class_code") String class_code//클래스 코드
     );
     //수업 콘텐츠 가져오기
     @FormUrlEncoded
@@ -501,9 +516,20 @@ public interface ServerConnectionSpec
 
     );
 
+    //수업 콘텐츠 가져오기
+    @FormUrlEncoded
+    @POST(CONTENT_GROUP_CARD)
+    Call<ResponseBody> get_content_groupcard
+    (
+            @Field("student_id") String student_id, //아이디
+            @Field("student_token") String student_token,//토큰
+            @Field("class_code") String class_code,//클래스 코드
+            @Field("unit_code") String unit_code//클래스 코드
+    );
+
     //수업 현황 최초 생성하기
     @FormUrlEncoded
-    @POST("/app/record/create_student_class_record")
+    @POST(CREATION_STUDENT_RECORD)
     Call<ResponseBody> create_student_class_record
     (
             @Field("student_id") String student_id, //아이디

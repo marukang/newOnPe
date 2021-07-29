@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.funidea.utils.change_date_value
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.newonpe.R
@@ -134,7 +134,7 @@ class message_notice_fragment : Fragment() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(activity!!, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(activity!!, set_User_info.access_token)
 
 
                         var all_notice_JSONArray : JSONArray

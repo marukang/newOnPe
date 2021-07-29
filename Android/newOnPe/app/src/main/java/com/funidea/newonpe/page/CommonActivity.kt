@@ -1,10 +1,17 @@
 package com.funidea.newonpe.page
 
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.funidea.newonpe.dialog.CommonDialog
 import com.funidea.newonpe.model.CurrentLoginStudent
+import com.funidea.newonpe.page.pose.PoseActivity
+import java.util.*
 
 abstract class CommonActivity : AppCompatActivity()
 {
@@ -36,18 +43,14 @@ abstract class CommonActivity : AppCompatActivity()
         super.onPause()
     }
 
-    fun showDialog(vararg messages : String?, buttonCount : CommonDialog.ButtonCount = CommonDialog.ButtonCount.TWO, listener : (confirmed : Boolean) -> Unit)
+    fun showDialog(vararg messages : String?, buttonCount : CommonDialog.ButtonCount = CommonDialog.ButtonCount.ONE, listener : ((confirmed : Boolean) -> Unit)? = null)
     {
         val dialog = CommonDialog(this, *messages, buttonCount = buttonCount)
         dialog.setOnDismissListener {
-            listener(dialog.mConfirmed)
+            if (listener != null) {
+                listener(dialog.mConfirmed)
+            }
         }
-        dialog.show()
-    }
-
-    fun showDialog(vararg messages : String?, buttonCount : CommonDialog.ButtonCount = CommonDialog.ButtonCount.TWO)
-    {
-        val dialog = CommonDialog(this, *messages, buttonCount = buttonCount)
         dialog.show()
     }
 
@@ -132,5 +135,55 @@ abstract class CommonActivity : AppCompatActivity()
             }
         }
         return null
+    }
+
+    protected open fun requestRuntimePermissions()
+    {
+        val allNeededPermissions: MutableList<String> = ArrayList()
+        for (permission in getRequiredPermissions()) {
+            if (!isPermissionGranted(this, permission!!)) {
+                allNeededPermissions.add(permission)
+            }
+        }
+        if (allNeededPermissions.isNotEmpty())
+        {
+            ActivityCompat.requestPermissions(this, allNeededPermissions.toTypedArray(), 1)
+        }
+    }
+
+    protected open fun getRequiredPermissions(): Array<String?>
+    {
+        return try {
+            val info = this.packageManager
+                .getPackageInfo(this.packageName, PackageManager.GET_PERMISSIONS)
+            val ps = info.requestedPermissions
+            if (ps != null && ps.isNotEmpty()) {
+                ps
+            } else {
+                arrayOfNulls(0)
+            }
+        } catch (e: java.lang.Exception) {
+            arrayOfNulls(0)
+        }
+    }
+
+    protected open fun isPermissionGranted(context: Context, permission: String): Boolean
+    {
+        if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED)
+        {
+            return true
+        }
+        return false
+    }
+
+    protected open fun isAllPermissionsGranted(): Boolean
+    {
+        for (permission in getRequiredPermissions())
+        {
+            if (!isPermissionGranted(this, permission!!)) {
+                return false
+            }
+        }
+        return true
     }
 }

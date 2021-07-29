@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.newonpe.R
@@ -209,7 +209,7 @@ class class_result_Activity : AppCompatActivity() {
     //결과 기록 가져오기
     fun get_student_class_record(class_code : String, class_unit_code : String)
     {
-        serverConnectionSpec!!.get_student_class_record(student_id,access_token, class_code, class_unit_code).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_student_class_record(student_id,access_token, class_code).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -226,7 +226,7 @@ class class_result_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_result_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_result_Activity, access_token)
 
 
                         var class_result_score_list = result.getString("success")
@@ -379,7 +379,7 @@ class class_result_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_result_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_result_Activity, access_token)
 
 
                         var class_unit_info_JSONArray : JSONArray

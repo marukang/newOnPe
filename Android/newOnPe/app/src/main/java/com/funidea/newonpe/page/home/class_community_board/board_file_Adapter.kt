@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.funidea.newonpe.R
+import com.funidea.newonpe.model.FileItem
 import kotlinx.android.synthetic.main.class_community_board_file_recyclerview_item.view.*
 
 /** 커뮤니티의 게시글 및 클래스의 첨부파일의 RecyclerView Adapter
  *
  * 관련 Class - class_community_board_Activity , class_unit_Activity
  */
-class board_file_Adapter(context: Context, boardFileItem : ArrayList<board_file_Item>?)
+class board_file_Adapter(context: Context, fileItem : ArrayList<FileItem>?)
     : RecyclerView.Adapter<board_file_Adapter.ViewHolder>() {
 
-    private val boardFileItem: ArrayList<board_file_Item>?
+    private val fileItem: ArrayList<FileItem>?
 
     private val context: Context
 
@@ -32,7 +33,7 @@ class board_file_Adapter(context: Context, boardFileItem : ArrayList<board_file_
 
 
     init {
-        this.boardFileItem = boardFileItem
+        this.fileItem = fileItem
         this.context = context
     }
 
@@ -76,7 +77,7 @@ class board_file_Adapter(context: Context, boardFileItem : ArrayList<board_file_
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        val position_item: board_file_Item = boardFileItem!![position]
+        val position_item: FileItem = fileItem!![position]
 
         viewHolder.board_file_name_textview.setText(position_item.file_name)
 
@@ -84,6 +85,6 @@ class board_file_Adapter(context: Context, boardFileItem : ArrayList<board_file_
 
 
     override fun getItemCount(): Int {
-        return boardFileItem?.size ?: 0
+        return fileItem?.size ?: 0
     }
 }

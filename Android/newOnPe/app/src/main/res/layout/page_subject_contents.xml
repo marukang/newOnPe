@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/titleFrame"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/view_bottom_line"
+        android:orientation="horizontal"
+        android:elevation="5dp"
+        android:weightSum="100">
+
+        <ImageView
+            android:id="@+id/join_page_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:padding="18dp"
+            app:srcCompat="@drawable/back_button_image" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:gravity="center_vertical"
+            android:text="실습운동"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:ellipsize="end"
+            android:textColor="#404040"
+            android:textSize="18dp"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+    <com.funidea.newonpe.views.CommonRecyclerView
+        android:id="@+id/contentListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"/>
+
+</FrameLayout>

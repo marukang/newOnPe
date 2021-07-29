@@ -1,8 +1,13 @@
 package com.funidea.newonpe.model
 
-class Subject
+import com.funidea.newonpe.page.main.ClassItemType.BODY_ITEM
+import com.funidea.newonpe.views.ICommonItem
+import java.io.Serializable
+
+class Subject : ICommonItem, Serializable
 {
     val teacher_id: String? = null
+    val teacher_name: String? = null
     val class_code: String? = null
     val class_year: String? = null
     val class_semester: String? = null
@@ -16,4 +21,9 @@ class Subject
     val class_project_submit_type: String? = null
     val class_state: String? = null
     val class_unit_list: String? = null
+
+    override fun listItemType(): Int
+    {
+        return BODY_ITEM
+    }
 }

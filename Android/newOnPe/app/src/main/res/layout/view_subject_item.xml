@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    android:clipChildren="false">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardItem"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="6dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="18dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/classTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="65dp"
+                android:textSize="16dp"
+                android:text="나의강좌1나의강좌1나의강좌1나의강좌1나의강좌1나의강좌1"
+                android:maxLines="1"
+                android:fontFamily="@font/notosans_kr_bold"
+                android:includeFontPadding="false"
+                android:maxLength="30"
+                android:ellipsize="end"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/classDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="#404040"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#404040"
+                    android:textSize="14dp"
+                    android:text="2012-05-30 ~ 2012-06-30"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:textColor="#404040"
+                    android:textSize="14dp"
+                    android:text="·"/>
+
+                <TextView
+                    android:id="@+id/teacherName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:maxLines="1"
+                    android:text="홍길동"
+                    android:textColor="#404040"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/typeView"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:textSize="13sp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:textColor="@color/white"
+            android:layout_gravity="right|top"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="12dp"
+            android:text="실습"
+            android:includeFontPadding="false"
+            android:gravity="center"
+            android:background="@drawable/view_main_color_round_button"/>
+
+        <FrameLayout
+            android:id="@+id/doneCover"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80ececec">
+
+            <ImageView
+                android:layout_width="95dp"
+                android:layout_height="91dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/icon_done_1"/>
+
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

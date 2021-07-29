@@ -6,7 +6,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import com.funidea.utils.CustomToast
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.utils.set_User_info.Companion.student_name
 import com.funidea.newonpe.R
@@ -120,7 +120,7 @@ class class_message_edit_Activity : AppCompatActivity() {
                         //토큰 갱신
                         set_User_info.access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@class_message_edit_Activity, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@class_message_edit_Activity, set_User_info.access_token)
 
                         CustomToast.show(this@class_message_edit_Activity, "정상적으로 수정 되었습니다.")
 

@@ -197,6 +197,11 @@ public class UtilityUI {
         }
     }
 
+    public static int dpToPx(Context context, int dp)
+    {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
+
     public static InputFilter getEnglishFilter()
     {
         return new InputFilter() {

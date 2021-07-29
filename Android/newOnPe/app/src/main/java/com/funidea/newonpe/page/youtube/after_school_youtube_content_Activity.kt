@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.funidea.utils.change_date_value.Companion.change_time
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.side_menu_layout.Companion.side_menu_setting_test
@@ -77,7 +77,7 @@ class after_school_youtube_content_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@after_school_youtube_content_Activity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@after_school_youtube_content_Activity, access_token)
 
 
                         var youtube_jsonarray : JSONArray

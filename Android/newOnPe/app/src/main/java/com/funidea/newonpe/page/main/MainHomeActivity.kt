@@ -20,7 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.funidea.utils.CustomToast.Companion.show
 import com.funidea.utils.change_class_name.Companion.input_change_class_name
 import com.funidea.utils.change_date_value.Companion.change_time_include_second
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.news_state
 import com.funidea.utils.set_User_info.Companion.select_class_code_str
@@ -43,7 +43,7 @@ import com.funidea.newonpe.dialog.RegisterNewClassDialog
 import com.funidea.newonpe.page.youtube.after_school_content_Activity
 import com.funidea.newonpe.page.home.VariableScrollSpeedLinearLayoutManager
 import com.funidea.newonpe.page.home.class_community_menu_Activity
-import com.funidea.newonpe.page.home.class_home.class_home_Activity
+import com.funidea.newonpe.page.home.subject.class_home_Activity
 import com.funidea.newonpe.page.setting.my_page_Activity
 import com.funidea.newonpe.page.setting.SettingPage
 import com.funidea.newonpe.page.notice.notice_main_home_Activity
@@ -491,7 +491,7 @@ class MainHomeActivity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@MainHomeActivity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@MainHomeActivity, access_token)
 
                         Collections.reverse(classNameItem)
 
@@ -568,7 +568,7 @@ class MainHomeActivity : AppCompatActivity() {
     //수업 입장하기
     fun enter_class(class_code : String)
     {
-        serverConnectionSpec!!.get_class_unit_list(student_id,access_token).enqueue(object : Callback<ResponseBody> {
+        serverConnectionSpec!!.get_class_list(student_id,access_token).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>)
             {
                 try {
@@ -584,7 +584,7 @@ class MainHomeActivity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@MainHomeActivity, access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@MainHomeActivity, access_token)
 
                         var unit_code_list : String = ""
 

@@ -64,7 +64,7 @@ class SelfProfileImageView : FrameLayout
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .centerCrop()
-                .placeholder(R.drawable.user_profile)
+                .placeholder(R.drawable.icon_profile)
                 .into(mImageView)
         }
     }

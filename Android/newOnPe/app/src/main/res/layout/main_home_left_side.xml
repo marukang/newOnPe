@@ -73,9 +73,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:text="내 강좌"
-            android:textSize="26dp"
+            android:textSize="18dp"
             android:textColor="@color/black"
             android:layout_gravity="start"
             android:includeFontPadding="false"/>
@@ -85,7 +85,7 @@
             android:layout_height="35dp"
             android:layout_gravity="right"
             android:layout_marginRight="15dp"
-            android:background="@drawable/right_arrow"/>
+            android:background="@drawable/right_arrow_black"/>
 
     </FrameLayout>
 
@@ -98,19 +98,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:text="메시지"
-            android:textSize="26dp"
+            android:textSize="18dp"
             android:textColor="@color/black"
             android:layout_gravity="start"
             android:includeFontPadding="false"/>
 
         <ImageView
             android:layout_width="20dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_gravity="right"
             android:layout_marginRight="15dp"
-            android:background="@drawable/right_arrow"/>
+            android:background="@drawable/right_arrow_black"/>
 
     </FrameLayout>
 
@@ -123,19 +123,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:text="강좌 게시판"
-            android:textSize="26dp"
+            android:textSize="18dp"
             android:textColor="@color/black"
             android:layout_gravity="start"
             android:includeFontPadding="false"/>
 
         <ImageView
             android:layout_width="20dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_gravity="right"
             android:layout_marginRight="15dp"
-            android:background="@drawable/right_arrow"/>
+            android:background="@drawable/right_arrow_black"/>
 
     </FrameLayout>
 
@@ -148,19 +148,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:text="환경설정"
-            android:textSize="26dp"
+            android:textSize="18dp"
             android:textColor="@color/black"
             android:layout_gravity="start"
             android:includeFontPadding="false"/>
 
         <ImageView
             android:layout_width="20dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_gravity="right"
             android:layout_marginRight="15dp"
-            android:background="@drawable/right_arrow"/>
+            android:background="@drawable/right_arrow_black"/>
 
     </FrameLayout>
 

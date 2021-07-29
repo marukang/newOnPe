@@ -424,25 +424,25 @@ public class PoseActivity extends AppCompatActivity
         //posename_array.add("푸쉬업");
         //posename_array.add("브이업");
         //개수 arraylist
-        pose_category_name_array = new ArrayList<String>();
+        pose_category_name_array = new ArrayList<>();
         //pose_category_name_array.add("하체운동");
         //pose_category_name_array.add("하체운동");
 
-        pose_detail_name_array = new ArrayList<String>();
+        pose_detail_name_array = new ArrayList<>();
         // pose_detail_name_array.add("기본 스쿼트");
         //pose_detail_name_array.add("기본 스쿼트");
 
-        posecount_array = new ArrayList<Integer>();
+        posecount_array = new ArrayList<>();
         //posecount_array.add(2);
         //posecount_array.add(3);
         //posecount_array.add(7);
         //posecount_array.add(7);
         //시간 arraylist
-        posetime_array = new ArrayList<Integer>();
+        posetime_array = new ArrayList<>();
 
-        pose_gif_url_array  = new ArrayList<String>();
+        pose_gif_url_array  = new ArrayList<>();
 
-        pose_content_name_array = new ArrayList<String>();
+        pose_content_name_array = new ArrayList<>();
 
         pose_recyclerview = findViewById(R.id.pose_recyclerview);
 

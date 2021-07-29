@@ -14,7 +14,7 @@ import android.view.View
 import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.utils.save_SharedPreferences.Companion.save_shard
+import com.funidea.utils.SimpleSharedPreferences.Companion.saveAccessToken
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.set_clear
 import com.funidea.utils.set_User_info.Companion.student_id
@@ -285,7 +285,7 @@ class SettingPage : AppCompatActivity() {
                     {
                         access_token = result.getString("student_token")
 
-                        save_shard(this@SettingPage, access_token)
+                        saveAccessToken(this@SettingPage, access_token)
 
                         switch_value = switch_value+1;
 

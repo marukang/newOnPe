@@ -7,7 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.funidea.newonpe.R
 import com.funidea.utils.CustomToast
-import com.funidea.utils.save_SharedPreferences
+import com.funidea.utils.SimpleSharedPreferences
 import com.funidea.utils.set_User_info
 import com.funidea.newonpe.page.home.class_result.class_result_JSONArray_Adapter
 import com.funidea.newonpe.page.home.class_result.class_result_JSONArray_Item
@@ -234,7 +234,7 @@ class ExerciseRecordPage : AppCompatActivity() {
                         //토큰 갱신
                         set_User_info.access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(this@ExerciseRecordPage, set_User_info.access_token)
+                        SimpleSharedPreferences.saveAccessToken(this@ExerciseRecordPage, set_User_info.access_token)
 
 
                         var class_unit_info_JSONArray : JSONArray

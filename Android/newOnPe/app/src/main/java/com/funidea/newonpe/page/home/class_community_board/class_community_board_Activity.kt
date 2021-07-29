@@ -12,12 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.funidea.utils.CustomToast
 import com.funidea.utils.change_date_value.Companion.change_time
 import com.funidea.utils.change_date_value.Companion.change_time_include_second
-import com.funidea.utils.save_SharedPreferences.Companion.save_shard
+import com.funidea.utils.SimpleSharedPreferences.Companion.saveAccessToken
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.utils.set_User_info.Companion.student_name
 import com.funidea.utils.side_menu_layout.Companion.side_menu_setting_test
 import com.funidea.newonpe.R
+import com.funidea.newonpe.model.FileItem
 import com.funidea.newonpe.page.home.show_photo_Activity
 import com.funidea.newonpe.page.login.LoginPage.Companion.baseURL
 import com.funidea.newonpe.page.login.LoginPage.Companion.serverConnectionSpec
@@ -43,7 +44,7 @@ class class_community_board_Activity : AppCompatActivity() {
 
     //첨부파일
     lateinit var boardFileAdapter: board_file_Adapter
-    var get_file_Array = ArrayList<board_file_Item>()
+    var get_file_Array = ArrayList<FileItem>()
     //댓글
     lateinit var boardCommentAdapter: board_comment_Adapter
     var boardCommentItem = ArrayList<board_comment_Item>()
@@ -185,7 +186,7 @@ class class_community_board_Activity : AppCompatActivity() {
 
                           //토큰 갱신
                           access_token = result.getString("student_token")
-                          save_shard(this@class_community_board_Activity, access_token)
+                          saveAccessToken(this@class_community_board_Activity, access_token)
 
                           var comment_jsonarray : JSONArray
                           comment_jsonarray = result.getJSONArray("success")
@@ -266,7 +267,7 @@ class class_community_board_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_shard(this@class_community_board_Activity, access_token)
+                        saveAccessToken(this@class_community_board_Activity, access_token)
 
                         var success_value : JSONObject
 
@@ -414,7 +415,7 @@ class class_community_board_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_shard(this@class_community_board_Activity, access_token)
+                        saveAccessToken(this@class_community_board_Activity, access_token)
 
 
                         if(boardCommentItem.size!=0)
@@ -470,7 +471,7 @@ class class_community_board_Activity : AppCompatActivity() {
                     {
 
                         access_token = result.getString("student_token")
-                        save_shard(this@class_community_board_Activity, access_token)
+                        saveAccessToken(this@class_community_board_Activity, access_token)
                         boardCommentItem.removeAt(position)
                         boardCommentAdapter.notifyItemRemoved(position)
                         boardCommentAdapter.notifyItemRangeChanged(position, boardCommentItem.size)
@@ -613,7 +614,7 @@ class class_community_board_Activity : AppCompatActivity() {
 
 
                         access_token = result.getString("student_token")
-                        save_shard(this@class_community_board_Activity, access_token)
+                        saveAccessToken(this@class_community_board_Activity, access_token)
                         CustomToast.show(this@class_community_board_Activity, "게시글이 삭제되었습니다.")
                         finish()
                         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left)

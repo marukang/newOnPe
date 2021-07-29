@@ -130,7 +130,7 @@ class all_notice_fragment : Fragment() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_SharedPreferences.save_shard(activity!!, access_token)
+                        SimpleSharedPreferences.saveAccessToken(activity!!, access_token)
 
 
                         var all_notice_JSONArray : JSONArray

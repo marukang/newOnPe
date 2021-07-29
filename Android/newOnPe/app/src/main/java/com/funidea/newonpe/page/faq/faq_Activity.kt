@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.funidea.utils.CustomToast.Companion.show
-import com.funidea.utils.save_SharedPreferences.Companion.save_shard
+import com.funidea.utils.SimpleSharedPreferences.Companion.saveAccessToken
 import com.funidea.utils.set_User_info.Companion.access_token
 import com.funidea.utils.set_User_info.Companion.student_id
 import com.funidea.newonpe.R
@@ -118,7 +118,7 @@ class faq_Activity : AppCompatActivity() {
                         //토큰 갱신
                         access_token = result.getString("student_token")
 
-                        save_shard(this@faq_Activity, access_token)
+                        saveAccessToken(this@faq_Activity, access_token)
 
 
                         var faq_jsonarray : JSONArray

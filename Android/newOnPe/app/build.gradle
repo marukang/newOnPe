@@ -198,6 +198,12 @@ dependencies {
     implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    def exoplayer_version = '2.9.3'
+    implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayer_version"
+
+    implementation 'com.airbnb.android:lottie:3.0.7'
 }
 
 configurations {
